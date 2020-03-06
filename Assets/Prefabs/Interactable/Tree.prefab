@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3070268503419552554}
   - component: {fileID: 6324783972556887955}
   - component: {fileID: 1997225435}
+  - component: {fileID: 259696106250184528}
+  - component: {fileID: 7375753544278186241}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -107,3 +109,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27247941, y: 0.25735188}
   m_EdgeRadius: 0
+--- !u!114 &259696106250184528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455665606651421210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b91a07c87db4ccfbc44b202f1636bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!68 &7375753544278186241
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455665606651421210}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.005010605, y: 0.8302703}
+  - {x: -0.43227863, y: 1.0213118}
+  - {x: 0.061205864, y: 4.7521925}
+  - {x: 0.5333996, y: 1.0201783}
+  - {x: 0.043841362, y: 0.81085634}

@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Interactable\tree.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
