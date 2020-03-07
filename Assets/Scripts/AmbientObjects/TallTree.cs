@@ -5,6 +5,9 @@ using UnityEngine;
 public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
+    public GameObject treeDropStick;
+
+    int health = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +25,19 @@ public class TallTree : Interactable
     {
         base.Interact();
         
-        Debug.Log("Cutting down " + transform.name);
+        Debug.Log("Cutting down " + transform.name + " with health: " + health);
+        health-=5;
+        if(health<=0)
+        {
+        //drop stick at tree position
+        int randNum = Random.Range(1,6);
+        for(int i = 0; i < randNum; i++ )
+        {
+            Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+            Instantiate(treeDropStick,transform.position + randDist, Quaternion.identity);
+        }
         Destroy(gameObject);
+        }
     }
 
     //check if player is behind tree

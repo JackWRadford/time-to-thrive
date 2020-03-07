@@ -46,8 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
-     <Compile Include="Assets\Scripts\GenerateWorld.cs" />
-     <Compile Include="Assets\Scripts\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Other\GenerateWorld.cs" />
+     <Compile Include="Assets\Scripts\Other\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Other\PickUp.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

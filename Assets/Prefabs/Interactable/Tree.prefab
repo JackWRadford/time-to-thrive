@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b91a07c87db4ccfbc44b202f1636bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treeDropStick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2,
+    type: 3}
 --- !u!68 &1701091967
 EdgeCollider2D:
   m_ObjectHideFlags: 0

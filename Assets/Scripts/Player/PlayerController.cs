@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         //interact with objects through raycast
         if((Input.GetKeyDown(KeyCode.Space)))
         {
-            RaycastHit2D hit = Physics2D.CircleCast(rb2D.position + Vector2.up * 0.2f, 0.1f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
+            RaycastHit2D hit = Physics2D.CircleCast(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
             if(hit.collider != null)
             {
                 //check not edge collider as is used for alpha change on objects
