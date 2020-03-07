@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tree : MonoBehaviour
+public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
 
@@ -16,6 +16,14 @@ public class tree : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Interact()
+    {
+        base.Interact();
+        
+        Debug.Log("Cutting down " + transform.name);
+        Destroy(gameObject);
     }
 
     //check if player is behind tree

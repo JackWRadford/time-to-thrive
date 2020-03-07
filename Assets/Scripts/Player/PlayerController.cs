@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     //hiding inherited rigidbody2D fix?
     Rigidbody2D rb2D;
-    Vector2 lookDirection = new Vector2(1,0);//direction player is moving
+    Vector2 lookDirection = new Vector2(1,0);//direction player is looking
     Vector2 move = new Vector2(1,0);
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -35,6 +36,24 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", lookDirection.x);
         animator.SetFloat("Vertical", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+
+        //interact with objects through raycast
+        if((Input.GetKeyDown(KeyCode.Space)))
+        {
+            RaycastHit2D hit = Physics2D.CircleCast(rb2D.position + Vector2.up * 0.2f, 0.1f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
+            if(hit.collider != null)
+            {
+                //check not edge collider as is used for alpha change on objects
+                if(hit.collider.GetType() != typeof(EdgeCollider2D))
+                {
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if(interactable != null)
+                {
+                    interactable.Interact();
+                }
+                }
+            }
+        }
     }
     //use to stop framerate issues
     void FixedUpdate()
@@ -43,4 +62,6 @@ public class PlayerController : MonoBehaviour
         position = position + move*speed*Time.fixedDeltaTime;
         rb2D.MovePosition(position);
     }
+
+    
 }
