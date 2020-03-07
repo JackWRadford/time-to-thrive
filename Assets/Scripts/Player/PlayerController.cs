@@ -7,14 +7,15 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;//speed of player
 
     Animator animator;
-    Rigidbody2D rigidbody2D;
+    //hiding inherited rigidbody2D fix?
+    Rigidbody2D rb2D;
     Vector2 lookDirection = new Vector2(1,0);//direction player is moving
     Vector2 move = new Vector2(1,0);
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -38,8 +39,8 @@ public class PlayerController : MonoBehaviour
     //use to stop framerate issues
     void FixedUpdate()
     {
-        Vector2 position = rigidbody2D.position;//change position
+        Vector2 position = rb2D.position;//change position
         position = position + move*speed*Time.fixedDeltaTime;
-        rigidbody2D.MovePosition(position);
+        rb2D.MovePosition(position);
     }
 }

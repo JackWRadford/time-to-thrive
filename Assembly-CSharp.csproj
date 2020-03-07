@@ -50,6 +50,9 @@
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
@@ -74,17 +77,14 @@
  <Reference Include="Unity.2D.Tilemap.Editor">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>/Users/jackradford/UnityProjects/time-to-thrive/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2019.2.18f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

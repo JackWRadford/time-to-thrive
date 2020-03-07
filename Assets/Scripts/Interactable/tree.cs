@@ -18,26 +18,19 @@ public class tree : MonoBehaviour
         
     }
 
-    //check if player if behind tree
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     print(other + " is behind a tree");
-    //     //make tree transparent
-    //     Color tmp = transform.GetComponent<SpriteRenderer>().color;
-    //     tmp.a = 0.6f;
-    //     transform.GetComponent<SpriteRenderer>().color = tmp;
-    // }
+    //check if player is behind tree
+    private void OnTriggerStay2D(Collider2D other) {
+        //make tree transparent
+        Color tmp = transform.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.6f;
+        transform.GetComponent<SpriteRenderer>().color = tmp;
+    }
+
     //check if player exists from behind tree
     private void OnTriggerExit2D(Collider2D other) {
         //make tree sprite alpha 1.0f
         Color tmp = transform.GetComponent<SpriteRenderer>().color;
         tmp.a = 1.0f;
-        transform.GetComponent<SpriteRenderer>().color = tmp;
-    }
-
-    private void OnTriggerStay2D(Collider2D other) {
-        //make tree transparent
-        Color tmp = transform.GetComponent<SpriteRenderer>().color;
-        tmp.a = 0.6f;
         transform.GetComponent<SpriteRenderer>().color = tmp;
     }
 }
