@@ -19,8 +19,11 @@ public class Inventory : MonoBehaviour
     #endregion
 
     //update UI when certain events happen
-    public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
+    public delegate void OnItemAdded();
+    public OnItemAdded onItemAddedCallback;
+
+    public delegate void OnItemRemoved();
+    public OnItemRemoved onItemRemovedCallback;
 
     public int space = 9;
     public List<Item> items = new List<Item>();
@@ -34,9 +37,9 @@ public class Inventory : MonoBehaviour
         items.Add(item);
 
         //update UI
-        if(onItemChangedCallback != null)
+        if(onItemAddedCallback != null)
         {
-            onItemChangedCallback.Invoke();
+            onItemAddedCallback.Invoke();
         }
 
         return true;
@@ -47,9 +50,9 @@ public class Inventory : MonoBehaviour
         items.Remove(item);
 
         //update UI
-        if(onItemChangedCallback != null)
-        {
-            onItemChangedCallback.Invoke();
-        }
+        // if(onItemRemovedCallback != null)
+        // {
+        //     onItemRemovedCallback.Invoke();
+        // }
     }
 }

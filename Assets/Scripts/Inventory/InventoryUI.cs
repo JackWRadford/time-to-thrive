@@ -13,7 +13,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventory = Inventory.instance;
         //subscribe to event (call UpdateUI whenever an item is added or removed)
-        inventory.onItemChangedCallback += UpdateUI;
+        inventory.onItemAddedCallback += UpdateUIAddItem;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
@@ -24,15 +24,26 @@ public class InventoryUI : MonoBehaviour
         
     }
 
-    void UpdateUI()
+    void UpdateUIAddItem()
     {
-        for (int i = 0; i < slots.Length; i++)
+        // for (int i = 0; i < slots.Length; i++)
+        // {
+        //     if(i < inventory.items.Count)
+        //     {
+        //         slots[i].AddItem(inventory.items[i]);
+        //     }else{
+        //         slots[i].ClearSlot();
+        //     }
+        // }
+
+        for (int i = 0; i < inventory.items.Count; i++)
         {
-            if(i < inventory.items.Count)
+            for (int j = 0; j < slots.Length; j++)
             {
-                slots[i].AddItem(inventory.items[i]);
-            }else{
-                slots[i].ClearSlot();
+                if(slots[j].GetItem() == null)
+                {
+                    slots[j].AddItem(inventory.items[i]);
+                }
             }
         }
     }

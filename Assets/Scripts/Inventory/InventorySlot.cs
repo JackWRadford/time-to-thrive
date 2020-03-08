@@ -9,6 +9,11 @@ public class InventorySlot : MonoBehaviour
     Item item;
     public Button inventoryBtn;
 
+    public Item GetItem()
+    {
+        return item;
+    }
+
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -32,5 +37,8 @@ public class InventorySlot : MonoBehaviour
     public void OnRemoveButton()
     {
         Inventory.instance.Remove(item);
+
+        //clear slot with removed item
+        ClearSlot();
     }
 }
