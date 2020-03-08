@@ -24,6 +24,7 @@ public class InventoryUI : MonoBehaviour
         
     }
 
+    //update inventory UI with new item/ new item count
     void UpdateUIAddItem()
     {
         // for (int i = 0; i < slots.Length; i++)
@@ -40,9 +41,24 @@ public class InventoryUI : MonoBehaviour
         {
             for (int j = 0; j < slots.Length; j++)
             {
+                //check if item can be stacked
+                if(slots[j].GetItem() != null)
+                {
+                    if(slots[j].GetItem().stackable)
+                    {
+                        if(slots[j].GetItem().name == inventory.items[i].name)
+                        {
+                            slots[j].AddItem(inventory.items[i]);
+                            return;
+                        }
+                    }
+                }
+                
+                //if item can't be stacked add to free space
                 if(slots[j].GetItem() == null)
                 {
                     slots[j].AddItem(inventory.items[i]);
+                    return;
                 }
             }
         }

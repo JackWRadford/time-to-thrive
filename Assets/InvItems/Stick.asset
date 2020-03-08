@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stick
   icon: {fileID: 21300000, guid: 577ef3848f84d48c189bd72e26da20f9, type: 3}
+  stackable: 1
+  count: 17

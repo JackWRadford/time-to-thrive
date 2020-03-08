@@ -30,11 +30,30 @@ public class Inventory : MonoBehaviour
 
     public bool Add(Item item)
     {
+        bool stacked = false;
+        //check if any items can be stacked
+        for (int i = 0; i < items.Count; i++)
+        {
+            if(items[i].stackable == true)
+            {
+                if(items[i].name == item.name)
+                {
+                    items[i].count++;
+                    stacked = true;
+                }
+            }
+        }
+
+        //check inventory isn't full
         if(items.Count >= space)
         {
             return false;
         }
-        items.Add(item);
+
+        if(!stacked)
+        {
+            items.Add(item);
+        }
 
         //update UI
         if(onItemAddedCallback != null)

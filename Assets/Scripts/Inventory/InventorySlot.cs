@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     Item item;
     public Button inventoryBtn;
+    public Text count;
 
     public Item GetItem()
     {
@@ -20,7 +21,12 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = item.icon;
         icon.enabled = true;
-
+        //don't show item count if only 1 item
+        if(item.count <= 1){
+            count.text = null;
+        }else{
+            count.text = item.count.ToString();
+        }
         inventoryBtn.interactable = true;
     }
 
@@ -30,6 +36,7 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
+        count.text = null;
 
         inventoryBtn.interactable = false;
     }
