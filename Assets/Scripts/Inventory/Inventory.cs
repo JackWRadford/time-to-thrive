@@ -18,6 +18,23 @@ public class Inventory : MonoBehaviour
 
     #endregion
 
+    public class Slot
+    {
+        public Item item;
+        public int count;
+
+        public Slot(Item i, int c)
+        {
+            item = i;
+            count = c;
+        }
+
+        public void IncrementCount()
+        {
+            count = count + 1;
+        }
+    }
+
     //update UI when certain events happen
     public delegate void OnItemAdded();
     public OnItemAdded onItemAddedCallback;
@@ -26,7 +43,8 @@ public class Inventory : MonoBehaviour
     public OnItemRemoved onItemRemovedCallback;
 
     public int space = 9;
-    public List<Item> items = new List<Item>();
+    //public List<Item> items = new List<Item>();
+    public List<Slot> items = new List<Slot>();
 
     public bool Add(Item item)
     {
@@ -34,25 +52,36 @@ public class Inventory : MonoBehaviour
         //check if any items can be stacked
         for (int i = 0; i < items.Count; i++)
         {
-            if(items[i].stackable == true)
+            // if(items[i].stackable == true)
+            // {
+            //     if(items[i].name == item.name)
+            //     {
+            //         //items[i].count++;
+            //         stacked = true;
+            //     }
+            // }
+            if(items[i].item.stackable == true)
             {
-                if(items[i].name == item.name)
+                if(items[i].item.name == item.name)
                 {
-                    items[i].count++;
+                    //items[i].count++;
+                    items[i].IncrementCount();
                     stacked = true;
                 }
             }
         }
 
-        //check inventory isn't full
+        //check inventory is full
         if(items.Count >= space)
         {
             return false;
         }
-
+        //if couldn't stack add to new slot 
         if(!stacked)
         {
-            items.Add(item);
+            // items.Add(item);
+            Slot s = new Slot(item,1);
+            items.Add(s);
         }
 
         //update UI
@@ -66,7 +95,14 @@ public class Inventory : MonoBehaviour
 
     public void Remove(Item item)
     {
-        items.Remove(item);
+        for (int i = 0; i < items.Count; i++)
+        {
+            if(items[i].item == item)
+            {
+                items.RemoveAt(i);
+            }
+        }
+        //items.Remove(item);
 
         //update UI
         // if(onItemRemovedCallback != null)

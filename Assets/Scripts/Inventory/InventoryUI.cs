@@ -46,9 +46,14 @@ public class InventoryUI : MonoBehaviour
                 {
                     if(slots[j].GetItem().stackable)
                     {
-                        if(slots[j].GetItem().name == inventory.items[i].name)
+                        // if(slots[j].GetItem().name == inventory.items[i].name)
+                        // {
+                        //     slots[j].AddItem(inventory.items[i]);
+                        //     return;
+                        // }
+                        if(slots[j].GetItem().name == inventory.items[i].item.name)
                         {
-                            slots[j].AddItem(inventory.items[i]);
+                            slots[j].AddItem(inventory.items[i].item, inventory.items[i].count);
                             return;
                         }
                     }
@@ -57,7 +62,9 @@ public class InventoryUI : MonoBehaviour
                 //if item can't be stacked add to free space
                 if(slots[j].GetItem() == null)
                 {
-                    slots[j].AddItem(inventory.items[i]);
+                    // slots[j].AddItem(inventory.items[i]);
+                    // return;
+                    slots[j].AddItem(inventory.items[i].item, inventory.items[i].count);
                     return;
                 }
             }

@@ -9,6 +9,4 @@ public class Item : ScriptableObject
     public Sprite icon = null;
 
     public bool stackable;
-
-    public int count;
 }
