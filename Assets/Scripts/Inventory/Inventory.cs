@@ -125,10 +125,10 @@ public class Inventory : MonoBehaviour
         {
             onItemAddedCallback.Invoke();
         }
-        // foreach (bool uon in used)
-        // {
-        //     Debug.Log(uon);
-        // }
+        foreach (bool uon in used)
+        {
+            Debug.Log(uon);
+        }
 
         return true;
     }
@@ -137,10 +137,13 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Count; i++)
         {
+            //find item to be removed
             if(items[i].item == item)
             {
+                Debug.Log(items[i].slotNum);
                 used[items[i].slotNum] = false;
                 items.RemoveAt(i);
+                break;
             }
         }
         //items.Remove(item);
@@ -150,5 +153,9 @@ public class Inventory : MonoBehaviour
         // {
         //     onItemRemovedCallback.Invoke();
         // }
+        foreach (bool uon in used)
+        {
+            Debug.Log(uon);
+        }
     }
 }
