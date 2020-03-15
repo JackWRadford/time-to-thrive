@@ -138,7 +138,8 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < items.Count; i++)
         {
             //find item to be removed
-            if(items[i].item == item)
+            Debug.Log(items[i].item.id + "\n" + item.id);
+            if(items[i].item.id == item.id)
             {
                 Debug.Log(items[i].slotNum);
                 used[items[i].slotNum] = false;
