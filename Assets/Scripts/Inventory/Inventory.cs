@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
     public OnItemRemoved onItemRemovedCallback;
 
     public int space = 9;
-    //public List<Item> items = new List<Item>();
+
     public List<ItemCountCombo> items = new List<ItemCountCombo>();
 
     //slots used or not
@@ -63,21 +63,12 @@ public class Inventory : MonoBehaviour
         //check if any items can be stacked
         for (int i = 0; i < items.Count; i++)
         {
-            // if(items[i].stackable == true)
-            // {
-            //     if(items[i].name == item.name)
-            //     {
-            //         //items[i].count++;
-            //         stacked = true;
-            //     }
-            // }
             if(items[i].item.stackable == true)
             {
                 if(items[i].item.name == item.name)
                 {
-                    if(items[i].count < 4)
+                    if(items[i].count < 2)
                     {
-                        //items[i].count++;
                         items[i].IncrementCount();
                         stacked = true;
                         break;
@@ -86,26 +77,17 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        //check inventory is full
-        if(items.Count >= space)
-        {
-            return false;
-        }
         //if couldn't stack add to new slot 
         if(!stacked)
         {
+            //check inventory is full
+            if(items.Count >= space)
+            {
+                return false;
+            }
+
             int slotIdx = 0;
-            //check used slot numbers
-            // for (int i = 0; i < space; i++)
-            // {   
-            //     for (int j = 0; j < items.Count; j++)
-            //     {
-            //         if(items[j].slotNum == i+1)
-            //         {
-            //             used[i] = true;
-            //         }
-            //     }
-            // }
+            
             for (int i = 0; i < used.Length; i++)
             {
                 if(!used[i])
@@ -115,7 +97,7 @@ public class Inventory : MonoBehaviour
                     break;
                 }
             }
-            // items.Add(item);
+            
             ItemCountCombo s = new ItemCountCombo(item,1,slotIdx);
             items.Add(s);
         }
@@ -138,8 +120,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < items.Count; i++)
         {
             //find item to be removed
-            Debug.Log(items[i].item.id + "\n" + item.id);
-            if(items[i].item.id == item.id)
+            if(items[i].item == item)
             {
                 Debug.Log(items[i].slotNum);
                 used[items[i].slotNum] = false;
@@ -147,13 +128,7 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
-        //items.Remove(item);
-
-        //update UI
-        // if(onItemRemovedCallback != null)
-        // {
-        //     onItemRemovedCallback.Invoke();
-        // }
+        
         foreach (bool uon in used)
         {
             Debug.Log(uon);

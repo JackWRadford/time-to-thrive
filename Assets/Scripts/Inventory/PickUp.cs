@@ -10,16 +10,11 @@ public class PickUp : Interactable
     
 
     private void OnTriggerEnter2D(Collider2D other) {
-        //item.newGuid();
-        item.id = Guid.NewGuid();
+        
         if(other.CompareTag("Player"))
         {
-            //Add to inventory if enough space
-
-
-            Debug.Log("PickUp " + item.name);
-            
-            bool wasPickedUp = Inventory.instance.Add(item);
+            //Add instance to inventory if enough space
+            bool wasPickedUp = Inventory.instance.Add(Instantiate(item));
             if(wasPickedUp)
             {
                 Destroy(gameObject);

@@ -16,20 +16,6 @@ public class InventorySlot : MonoBehaviour
         return item;
     }
 
-    // public void AddItem(Item newItem)
-    // {
-    //     item = newItem;
-
-    //     icon.sprite = item.icon;
-    //     icon.enabled = true;
-    //     //don't show item count if only 1 item
-    //     if(item.count <= 1){
-    //         count.text = null;
-    //     }else{
-    //         count.text = item.count.ToString();
-    //     }
-    //     inventoryBtn.interactable = true;
-    // }
     public void AddItem(Item newItem, int cnt)
     {
         item = newItem;
