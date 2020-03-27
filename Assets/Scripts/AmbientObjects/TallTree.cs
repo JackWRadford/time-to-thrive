@@ -25,7 +25,7 @@ public class TallTree : Interactable
     {
         base.Interact();
         
-        Debug.Log("Cutting down " + transform.name + " with health: " + health);
+        //Debug.Log("Cutting down " + transform.name + " with health: " + health);
         health-=5;
         if(health<=0)
         {
