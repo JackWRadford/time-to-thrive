@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 494}
   m_MaxSize: {x: 14002, y: 14044}
   vertical: 0
-  controlID: 105
+  controlID: 34
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -178,7 +178,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1007
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &8
 MonoBehaviour:
@@ -139298,19 +139298,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jackr\unityprojects\time-to-thrive
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: aa300000
-    m_LastClickedID: 12458
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 12330000
+    m_LastClickedID: 13074
     m_ExpandedIDs: 00000000882e00001c30000000330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -139366,7 +139366,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -139462,9 +139462,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ce300000
       m_LastClickedID: 0
-      m_ExpandedIDs: 70fbffff
+      m_ExpandedIDs: dc89ffff0a8cfffff28effff928fffffe092ffffe098ffffd69affff0e9bffffac9cffffc69fffff1aa3ffff4ca3ffff58a5ffffe8aaffffd8adffff0eb1ffff4eb1fffffeb9ffff4abeffffaec3ffff28c5ffff0ce9ffff7ae9ffffe0f6ffff8ef7ffffeef7ffff0cf9ffff70fbffffc43500002e3600003c360000ee36000058370000d23a0000183b00003c3b0000585d0000d25d0000ee5f00008e660000f8660000bc720000367300009e740000e4740000747a0000ba7a0000e27d00005c7e00007c800000c2800000d08300004a840000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
