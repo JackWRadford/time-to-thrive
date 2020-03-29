@@ -17,7 +17,23 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
+        //listen for save event
+        // GameEvents.SaveInitiated += Save;
+
     }
+
+    // void Save()
+    // {
+    //     SaveSystem.Save<Vector3>(transform.position, "playerposition");
+    // }
+
+    // void Load()
+    // {
+    //     if(SaveSystem.SaveExists("playerposition"))
+    //     {
+    //         transform.position = SaveSystem.Load<Vector3>("playerposition");
+    //     }
+    // }
 
     // Update is called once per frame
     void Update()

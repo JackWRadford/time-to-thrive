@@ -6,6 +6,12 @@ public class LoadGame : MonoBehaviour
 {
     void Start()
     {
+        //load player position
+        PlayerPosition();
+    }
+
+    public void PlayerPosition()
+    {
         PlayerData data = SaveSystem.LoadPlayer();
 
         Vector3 position;

@@ -54,9 +54,11 @@
      <Compile Include="Assets\Scripts\Other\GenerateWorld.cs" />
      <Compile Include="Assets\Scripts\Other\Interactable.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Saving\GameEvents.cs" />
      <Compile Include="Assets\Scripts\Saving\LoadGame.cs" />
      <Compile Include="Assets\Scripts\Saving\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveSystem.cs" />
+     <Compile Include="Assets\Scripts\Saving\TreeData.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

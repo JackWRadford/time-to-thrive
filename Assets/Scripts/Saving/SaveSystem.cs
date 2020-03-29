@@ -6,6 +6,47 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
+
+    // //generic save 
+    // public static void Save<T>(T objectToSave, string key)
+    // {
+    //     string path = Application.persistentDataPath + "/saves/";
+    //     //creates directory if one doesn't already exist
+    //     Directory.CreateDirectory(path);
+    //     BinaryFormatter formatter = new BinaryFormatter();
+    //     using (FileStream stream = new FileStream(path + key + ".txt", FileMode.Open))
+    //     {
+    //         formatter.Serialize(stream, objectToSave);
+    //     }
+
+    // }
+
+    // //generic load 
+    // public static void Load<T>(string key)
+    // {
+    //     string path = Application.persistentDataPath + "/saves/";
+    //     BinaryFormatter formatter = new BinaryFormatter();
+    //     //return default value of that type id we don't find a file
+    //     T returnValue = default(T);
+    //     using (FileStream stream = new FileStream(path + key + ".txt", FileMode.Open))
+    //     {
+    //         returnValue = (T)formatter.Deserialize(stream);
+    //     }
+
+    // }
+
+    // public static bool SaveExists(string key){
+    //     string path = Application.persistentDataPath + "/saves/" + key + ".txt";
+    //     return File.Exists(path);
+    // }
+
+    // public static void DeleteAllSaveFiles()
+    // {
+    //     string path = Application.persistentDataPath + "/saves/";
+    //     DirectoryInfo directory = new DirectoryInfo(path);
+    //     directory.Delete();
+    //     Directory.CreateDirectory(path);
+    // }
     
     public static void SavePlayer(PlayerController player)
     {

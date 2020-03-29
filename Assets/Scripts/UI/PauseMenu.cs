@@ -48,5 +48,6 @@ public class PauseMenu : MonoBehaviour
     public void SaveGame()
     {
         SaveSystem.SavePlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>());
+        //GameEvents.OnSaveInitiated();
     }
 }
