@@ -6,6 +6,7 @@ public class UIInventory : MonoBehaviour
 {
     public List<UIItem> uiItems = new List<UIItem>();
     public GameObject slotPrefab;
+    //items parent
     public Transform slotPanel;
 
     void Awake()

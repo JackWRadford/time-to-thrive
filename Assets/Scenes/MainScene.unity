@@ -216,7 +216,7 @@ RectTransform:
   - {fileID: 1989796566}
   - {fileID: 1395455262}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -687,7 +687,7 @@ Transform:
   m_Children:
   - {fileID: 183669504}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546173334
 GameObject:
@@ -773,7 +773,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &546173338
 MonoBehaviour:
@@ -81625,7 +81625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274062587 stripped
 GameObject:
@@ -81647,6 +81647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 1461756151}
   inventoryUI: {fileID: 1989796568}
+  capacity: 9
 --- !u!1 &1337982809
 GameObject:
   m_ObjectHideFlags: 0
@@ -82288,7 +82289,7 @@ GameObject:
   - component: {fileID: 1723272033}
   m_Layer: 5
   m_Name: ItemsParent
-  m_TagString: Untagged
+  m_TagString: itemsParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82713,7 +82714,7 @@ PrefabInstance:
     - target: {fileID: 7592613447586605650, guid: a1d96a6522ba30a4c9637355ff8a1200,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7592613447586605650, guid: a1d96a6522ba30a4c9637355ff8a1200,
         type: 3}
@@ -82777,7 +82778,7 @@ PrefabInstance:
     - target: {fileID: 5374468306012557041, guid: 6a1658fe8f0a19a4493a87b001a2afae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5374468306012557041, guid: 6a1658fe8f0a19a4493a87b001a2afae,
         type: 3}

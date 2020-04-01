@@ -41,14 +41,14 @@ public class GameInventory : MonoBehaviour
 
     public void GiveItem(int id)
     {
-        GameItem itemToAdd = itemDatabase.GetItem(id);
+        GameItem itemToAdd = new GameItem(itemDatabase.GetItem(id));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
         Debug.Log("Added item: " + itemToAdd.title);
     }
     public void GiveItem(string itemName)
     {
-        GameItem itemToAdd = itemDatabase.GetItem(itemName);
+        GameItem itemToAdd = new GameItem(itemDatabase.GetItem(itemName));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
         Debug.Log("Added item: " + itemToAdd.title);
@@ -61,6 +61,10 @@ public class GameInventory : MonoBehaviour
     public GameItem CheckForItem(string itemName)
     {
         return characterItems.Find(item=> item.title == itemName );
+    }
+    public GameItem CheckForItem(GameItem i)
+    {
+        return characterItems.Find(item=> item == i );
     }
 
     public void RemoveItem(int id)
@@ -77,6 +81,17 @@ public class GameInventory : MonoBehaviour
     public void RemoveItem(string itemName)
     {
         GameItem itemToRemove = CheckForItem(itemName);
+
+        if(itemToRemove != null)
+        {
+            characterItems.Remove(itemToRemove);
+            inventoryUI.RemoveItem(itemToRemove);
+            Debug.Log("Removed item: " + itemToRemove.title);
+        }
+    }
+    public void RemoveItem(GameItem i)
+    {
+        GameItem itemToRemove = CheckForItem(i);
 
         if(itemToRemove != null)
         {
