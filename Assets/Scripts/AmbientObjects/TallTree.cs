@@ -7,6 +7,7 @@ public class TallTree : Interactable
     EdgeCollider2D edgeCollider2D;
     public GameObject stick;
     public GameObject apple;
+    public GameObject log;
 
     int health = 10;
 
@@ -30,13 +31,21 @@ public class TallTree : Interactable
         health-=5;
         if(health<=0)
         {
-        //drop stick at tree position
+        //drop logs
+        int randNumLogs = Random.Range(2,4);
+        for(int i = 0; i < randNumLogs; i++ )
+        {
+            Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+            Instantiate(log,transform.position + randDist, Quaternion.identity);
+        }
+        //drop sticks
         int randNumSticks = Random.Range(1,6);
         for(int i = 0; i < randNumSticks; i++ )
         {
             Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
             Instantiate(stick,transform.position + randDist, Quaternion.identity);
         }
+        //drop apples
         int randNumApples = Random.Range(0,3);
         for(int i = 0; i < randNumApples; i++ )
         {

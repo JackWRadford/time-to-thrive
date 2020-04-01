@@ -15,7 +15,11 @@ public class PickUp : Interactable
         if(other.CompareTag("Player"))
         {
             //Add item to inventory if enough space
-            if(!GameInventory.instance.IsFull())
+            if(GameInventory.instance.IsStackable(itemName))
+            {
+                Destroy(gameObject);
+            }
+            else if(!GameInventory.instance.IsFull(itemName))
             {
                 GameInventory.instance.GiveItem(itemName);
                 Destroy(gameObject);

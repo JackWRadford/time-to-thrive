@@ -31,8 +31,27 @@ public class GameInventory : MonoBehaviour
         // GiveItem(0);
     }
 
-    public bool IsFull()
+    public bool IsStackable(string itemName)
     {
+        //check if item to be picked up can be stacked
+        for (int i = 0; i < this.characterItems.Count; i++)
+        {
+            if(characterItems[i].title == itemName)
+            {
+                if((characterItems[i].count >= 1)&&(characterItems[i].count < characterItems[i].maxCount))
+                {
+                    characterItems[i].count++;
+                    Debug.Log(characterItems[i].title + " " + characterItems[i].count);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool IsFull(string itemName)
+    {
+        //check if all inventory slots are full
         if(characterItems.Count >= capacity){
             return true;
         }

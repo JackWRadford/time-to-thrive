@@ -27,13 +27,17 @@ public class ItemDatabase : MonoBehaviour
             new GameItem(0, "Stick", "Just a stick",
             new Dictionary<string, int>{
                 {"Attack", 2}
-            }),
+            },1,16),
             //Apple
             new GameItem(1, "Apple", "Eat me",
             new Dictionary<string, int>{
                 {"Nutrition", 5},
                 {"EdibleLife", 3}
-            })
+            },0,1),
+            //Log
+            new GameItem(2, "Log", "Build stuff with me",
+            new Dictionary<string, int>{
+            },1,4)
         };
     }
 }

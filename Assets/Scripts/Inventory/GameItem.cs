@@ -9,14 +9,18 @@ public class GameItem
     public string description;
     public Sprite icon;
     public Dictionary<string, int> stats = new Dictionary<string, int>();
+    public int count;
+    public int maxCount;
 
-    public GameItem(int id, string title, string description, Dictionary<string, int> stats)
+    public GameItem(int id, string title, string description, Dictionary<string, int> stats, int count, int maxCount)
     {
         this.id = id;
         this.title = title;
         this.description = description;
         this.icon = Resources.Load<Sprite>("Sprites/Items/" + title);
         this.stats = stats;
+        this.count = count;
+        this.maxCount = maxCount;
     }
 
     //copy constructor
@@ -27,5 +31,7 @@ public class GameItem
         this.description = item.description;
         this.icon = Resources.Load<Sprite>("Sprites/Items/" + item.title);
         this.stats = item.stats;
+        this.count = item.count;
+        this.maxCount = item.maxCount;
     }
 }
