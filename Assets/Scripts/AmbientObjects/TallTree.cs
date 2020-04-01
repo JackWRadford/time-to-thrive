@@ -5,7 +5,8 @@ using UnityEngine;
 public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
-    public GameObject treeDropStick;
+    public GameObject stick;
+    public GameObject apple;
 
     int health = 10;
 
@@ -30,11 +31,17 @@ public class TallTree : Interactable
         if(health<=0)
         {
         //drop stick at tree position
-        int randNum = Random.Range(1,6);
-        for(int i = 0; i < randNum; i++ )
+        int randNumSticks = Random.Range(1,6);
+        for(int i = 0; i < randNumSticks; i++ )
         {
             Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
-            Instantiate(treeDropStick,transform.position + randDist, Quaternion.identity);
+            Instantiate(stick,transform.position + randDist, Quaternion.identity);
+        }
+        int randNumApples = Random.Range(0,3);
+        for(int i = 0; i < randNumApples; i++ )
+        {
+            Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+            Instantiate(apple,transform.position + randDist, Quaternion.identity);
         }
         Destroy(gameObject);
         }

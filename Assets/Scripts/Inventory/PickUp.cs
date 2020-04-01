@@ -6,17 +6,18 @@ using System;
 public class PickUp : Interactable
 {
     //scriptable item to be added to inventory
-    public Item item;
+    //public GameItem item;
+    public string itemName;
     
 
     private void OnTriggerEnter2D(Collider2D other) {
         
         if(other.CompareTag("Player"))
         {
-            //Add instance to inventory if enough space
-            bool wasPickedUp = Inventory.instance.Add(Instantiate(item));
-            if(wasPickedUp)
+            //Add item to inventory if enough space
+            if(!GameInventory.instance.IsFull())
             {
+                GameInventory.instance.GiveItem(itemName);
                 Destroy(gameObject);
             }
         }
