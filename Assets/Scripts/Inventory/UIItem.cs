@@ -43,55 +43,59 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //debug
-        if(Input.GetMouseButtonDown(2))
-        {
-            for (int i = 0; i < GameInventory.instance.characterItems.Count; i++)
+        //check for parent (don't allow click if in hotbar slotParent) (allow in actual inventory)
+        //if(UIInventory.inventoryIsOpen)
+        
+            //debug
+            if(Input.GetMouseButtonDown(2))
             {
-                if(GameInventory.instance.characterItems[i] != null)
+                for (int i = 0; i < GameInventory.instance.characterItems.Count; i++)
                 {
-                    Debug.Log(GameInventory.instance.characterItems[i].title + " : " + GameInventory.instance.characterItems[i].count);
+                    if(GameInventory.instance.characterItems[i] != null)
+                    {
+                        Debug.Log(GameInventory.instance.characterItems[i].title + " : " + GameInventory.instance.characterItems[i].count);
+                    }
                 }
             }
-        }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(this.item != null)
+            if(Input.GetMouseButtonDown(0))
             {
-                //if dragging an item
-                if(selectedItem.item != null)
+                if(this.item != null)
                 {
-                    //clone item in slot
-                    // not new GameItem ???
-                    GameItem clone = selectedItem.item;
-                    //put item in slot as itembeing dragged
-                    selectedItem.UpdateItem(this.item);
-                    //put item that was bring dragged in slot
-                    UpdateItem(clone);
+                    //if dragging an item
+                    if(selectedItem.item != null)
+                    {
+                        //clone item in slot
+                        // not new GameItem ???
+                        GameItem clone = selectedItem.item;
+                        //put item in slot as itembeing dragged
+                        selectedItem.UpdateItem(this.item);
+                        //put item that was bring dragged in slot
+                        UpdateItem(clone);
+                    }
+                    else
+                    {
+                        //not dragging an item
+                        selectedItem.UpdateItem(this.item);
+                        UpdateItem(null);
+                    }
                 }
-                else
+                //dragging item and no item in clicked slot
+                else if(selectedItem.item != null)
                 {
-                    //not dragging an item
-                    selectedItem.UpdateItem(this.item);
-                    UpdateItem(null);
+                    //put dragged item in slot
+                    UpdateItem(selectedItem.item);
+                    selectedItem.UpdateItem(null);
                 }
             }
-            //dragging item and no item in clicked slot
-            else if(selectedItem.item != null)
+            else if(Input.GetMouseButtonDown(1))
             {
-                //put dragged item in slot
-                UpdateItem(selectedItem.item);
-                selectedItem.UpdateItem(null);
+                if(this.item != null)
+                {
+                    //delete item
+                    GameInventory.instance.RemoveItem(this.item);
+                }
             }
-        }
-        else if(Input.GetMouseButtonDown(1))
-        {
-            if(this.item != null)
-            {
-                //delete item
-                GameInventory.instance.RemoveItem(this.item);
-            }
-        }
+        
     }
 }

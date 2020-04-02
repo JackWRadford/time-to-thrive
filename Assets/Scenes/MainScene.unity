@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 163029875}
   m_Layer: 5
   m_Name: SelectedItem
-  m_TagString: Untagged
+  m_TagString: selectedItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82129,6 +82129,7 @@ GameObject:
   - component: {fileID: 1461756149}
   - component: {fileID: 1461756150}
   - component: {fileID: 1461756151}
+  - component: {fileID: 1461756148}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -82136,6 +82137,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1461756148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5526cf2e5a224f8cfb75081d84bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1461756149
 Transform:
   m_ObjectHideFlags: 0
@@ -82559,7 +82572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000013828, y: 38}
+  m_AnchoredPosition: {x: -0.0000076293945, y: 34}
   m_SizeDelta: {x: 445, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1989796567

@@ -14,18 +14,22 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(GameIsPaused)
+            if(!UIInventory.inventoryIsOpen)
             {
-                Resume();
-            }else
-            {
-                Pause();
+                if(GameIsPaused)
+                {
+                    Resume();
+                }else
+                {
+                    Pause();
+                }
             }
         }
     }
 
     public void Resume()
     {
+        //Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;

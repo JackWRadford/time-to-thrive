@@ -9,13 +9,72 @@ public class UIInventory : MonoBehaviour
     //items parent
     public Transform slotPanel;
 
+    public static bool inventoryIsOpen = false;
+
+    private UIItem selectedItem; 
+
     void Awake()
     {
+        selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+
         for(int i = 0; i < 9; i++)
         {
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(slotPanel);
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        }
+    }
+
+    void Update()
+    {
+        if(!PauseMenu.GameIsPaused)
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                if(inventoryIsOpen)
+                {
+                    Debug.Log("Close Inventory");
+                    //Cursor.visible = false;
+                    //check if an item is selected
+                    if(selectedItem.item != null)
+                    {
+                        //Remove item from inventory
+                        GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+                        //Update selectedItem UI
+                        selectedItem.UpdateItem(null);
+                    }
+                    //unpause
+                    Time.timeScale = 1f;
+                    inventoryIsOpen = false;
+                }
+                else
+                {
+                    Debug.Log("Open Inventory");
+                    //Cursor.visible = true;
+                    //pause
+                    Time.timeScale = 0f;
+                    inventoryIsOpen = true;
+                }
+            }
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(inventoryIsOpen)
+                {
+                    Debug.Log("Close Inventory");
+                    //Cursor.visible = false;
+                    //check if an item is selected
+                    if(selectedItem.item != null)
+                    {
+                        //Remove item from inventory
+                        GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+                        //Update selectedItem UI
+                        selectedItem.UpdateItem(null);
+                    }
+                    //unpause
+                    Time.timeScale = 1f;
+                    inventoryIsOpen = false;
+                }
+            }
         }
     }
 
@@ -37,5 +96,10 @@ public class UIInventory : MonoBehaviour
     public void RemoveItem(GameItem item)
     {
         UpdateSlot(uiItems.FindIndex(i=> i.item == item), null);
+    }
+
+    public void RemoveSelectedItem(GameItem item)
+    {
+        selectedItem.UpdateItem(null);
     }
 }

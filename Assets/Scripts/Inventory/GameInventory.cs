@@ -14,6 +14,8 @@ public class GameInventory : MonoBehaviour
             Debug.Log("more than one instance of inventory found");
         }
         instance = this;
+
+        selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
     }
 
     #endregion
@@ -23,6 +25,8 @@ public class GameInventory : MonoBehaviour
     public UIInventory inventoryUI;
     public int capacity = 9;
 
+    private UIItem selectedItem;
+
     void Start()
     {
         // GiveItem(1);
@@ -31,8 +35,20 @@ public class GameInventory : MonoBehaviour
         // GiveItem(0);
     }
 
+    public void RemoveSelectedItemIfExists()
+    {
+        if(selectedItem != null)
+        {
+            //Remove item from inventory
+            GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+            //Update selectedItem UI
+            selectedItem.UpdateItem(null);
+        }
+    }
+
     public bool IsStackable(string itemName)
     {
+        RemoveSelectedItemIfExists();
         //check if item to be picked up can be stacked
         for (int i = 0; i < this.characterItems.Count; i++)
         {
@@ -53,6 +69,7 @@ public class GameInventory : MonoBehaviour
 
     public bool IsFull(string itemName)
     {
+        RemoveSelectedItemIfExists();
         //check if all inventory slots are full
         if(characterItems.Count >= capacity){
             return true;
@@ -62,6 +79,7 @@ public class GameInventory : MonoBehaviour
 
     public void GiveItem(int id)
     {
+        RemoveSelectedItemIfExists();
         GameItem itemToAdd = new GameItem(itemDatabase.GetItem(id));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
@@ -69,6 +87,7 @@ public class GameInventory : MonoBehaviour
     }
     public void GiveItem(string itemName)
     {
+        RemoveSelectedItemIfExists();
         GameItem itemToAdd = new GameItem(itemDatabase.GetItem(itemName));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
@@ -118,6 +137,16 @@ public class GameInventory : MonoBehaviour
         {
             characterItems.Remove(itemToRemove);
             inventoryUI.RemoveItem(itemToRemove);
+            Debug.Log("Removed item: " + itemToRemove.title);
+        }
+    }
+    public void RemoveSelectedItem(GameItem i)
+    {
+        GameItem itemToRemove = CheckForItem(i);
+
+        if(itemToRemove != null)
+        {
+            characterItems.Remove(itemToRemove);
             Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
