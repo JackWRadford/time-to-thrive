@@ -23,7 +23,7 @@ public class GameInventory : MonoBehaviour
     public List<GameItem> characterItems = new List<GameItem>();
     public ItemDatabase itemDatabase;
     public UIInventory inventoryUI;
-    public int capacity = 9;
+    public int capacity = 30;
 
     private UIItem selectedItem;
 

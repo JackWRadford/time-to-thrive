@@ -8,6 +8,9 @@ public class UIInventory : MonoBehaviour
     public GameObject slotPrefab;
     //items parent
     public Transform slotPanel;
+    public Transform bagSlotPanel;
+    public Transform equipSlotPanel;
+    public GameObject bagUI;
 
     public static bool inventoryIsOpen = false;
 
@@ -17,10 +20,25 @@ public class UIInventory : MonoBehaviour
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
 
+        //populate slotPanel (hotbar inventory)
         for(int i = 0; i < 9; i++)
         {
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(slotPanel);
+            uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        }
+        //populate bagSlotPanel (bag inventory)
+        for(int i = 0; i < 21; i++)
+        {
+            GameObject instance = Instantiate(slotPrefab);
+            instance.transform.SetParent(bagSlotPanel);
+            uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        }
+        //populate equipSlotPanel (player equipment)
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject instance = Instantiate(slotPrefab);
+            instance.transform.SetParent(equipSlotPanel);
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
         }
     }
@@ -34,6 +52,7 @@ public class UIInventory : MonoBehaviour
                 if(inventoryIsOpen)
                 {
                     Debug.Log("Close Inventory");
+                    bagUI.SetActive(false);
                     //Cursor.visible = false;
                     //check if an item is selected
                     if(selectedItem.item != null)
@@ -50,6 +69,7 @@ public class UIInventory : MonoBehaviour
                 else
                 {
                     Debug.Log("Open Inventory");
+                    bagUI.SetActive(true);
                     //Cursor.visible = true;
                     //pause
                     Time.timeScale = 0f;
@@ -61,6 +81,7 @@ public class UIInventory : MonoBehaviour
                 if(inventoryIsOpen)
                 {
                     Debug.Log("Close Inventory");
+                    bagUI.SetActive(false);
                     //Cursor.visible = false;
                     //check if an item is selected
                     if(selectedItem.item != null)
