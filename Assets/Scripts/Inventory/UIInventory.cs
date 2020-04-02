@@ -39,7 +39,7 @@ public class UIInventory : MonoBehaviour
         {
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(equipSlotPanel);
-            uiItems.Add(instance.GetComponentInChildren<UIItem>());
+            //uiItems.Add(instance.GetComponentInChildren<UIItem>());
         }
     }
 
