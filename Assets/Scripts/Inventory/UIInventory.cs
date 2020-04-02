@@ -24,6 +24,11 @@ public class UIInventory : MonoBehaviour
         uiItems[slot].UpdateItem(item);
     }
 
+    public void UpdateItemCount(GameItem item)
+    {
+        UpdateSlot(uiItems.FindIndex(i=> i.item == item), item);
+    }
+
     public void AddNewItem(GameItem item)
     {
         UpdateSlot(uiItems.FindIndex(i=> i.item == null), item);

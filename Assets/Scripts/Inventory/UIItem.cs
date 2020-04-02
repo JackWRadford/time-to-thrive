@@ -8,11 +8,13 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
     public GameItem item;
     private Image spriteImage;
     private UIItem selectedItem;
+    private Text stackCount;
 
     void Awake()
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         spriteImage = GetComponent<Image>();
+        stackCount = transform.GetChild(0).GetComponent<Text>();
         UpdateItem(null);
     }
 
@@ -23,15 +25,29 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
         {
             spriteImage.color = Color.white;
             spriteImage.sprite = item.icon;
+            stackCount.text = item.count.ToString();
         }
         else
         {
             spriteImage.color = Color.clear;
+            stackCount.text = null;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        //debug
+        if(Input.GetMouseButtonDown(2))
+        {
+            for (int i = 0; i < GameInventory.instance.characterItems.Count; i++)
+            {
+                if(GameInventory.instance.characterItems[i] != null)
+                {
+                    Debug.Log(GameInventory.instance.characterItems[i].title + " : " + GameInventory.instance.characterItems[i].count);
+                }
+            }
+        }
+
         if(Input.GetMouseButtonDown(0))
         {
             if(this.item != null)

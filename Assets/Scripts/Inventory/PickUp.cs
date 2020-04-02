@@ -17,10 +17,12 @@ public class PickUp : Interactable
             //Add item to inventory if enough space
             if(GameInventory.instance.IsStackable(itemName))
             {
+                Debug.Log("stack");
                 Destroy(gameObject);
             }
             else if(!GameInventory.instance.IsFull(itemName))
             {
+                Debug.Log("don't stack");
                 GameInventory.instance.GiveItem(itemName);
                 Destroy(gameObject);
             }

@@ -41,6 +41,8 @@ public class GameInventory : MonoBehaviour
                 if((characterItems[i].count >= 1)&&(characterItems[i].count < characterItems[i].maxCount))
                 {
                     characterItems[i].count++;
+                    //update UI for increase in stack count
+                    inventoryUI.UpdateItemCount(characterItems[i]);
                     Debug.Log(characterItems[i].title + " " + characterItems[i].count);
                     return true;
                 }
