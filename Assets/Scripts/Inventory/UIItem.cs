@@ -25,7 +25,14 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
         {
             spriteImage.color = Color.white;
             spriteImage.sprite = item.icon;
-            stackCount.text = item.count.ToString();
+            if(item.count > 1)
+            {
+                stackCount.text = item.count.ToString();
+            }
+            else
+            {
+                stackCount.text = null;
+            }
         }
         else
         {
