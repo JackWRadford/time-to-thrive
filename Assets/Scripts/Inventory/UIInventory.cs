@@ -11,7 +11,8 @@ public class UIInventory : MonoBehaviour
     public Transform bagSlotPanel;
     public Transform equipSlotPanel;
     public GameObject bagUI;
-    public int selectedSlot = 0;
+    private int selectedSlot = 0;
+    private int prevSelectedSlot = -1;
     
 
     public static bool inventoryIsOpen = false;
@@ -47,6 +48,23 @@ public class UIInventory : MonoBehaviour
         }
     }
 
+    public void SetSlotSelected(int s)
+    {
+        prevSelectedSlot = selectedSlot;
+        selectedSlot = s;
+    }
+
+    public void UpdateSelected()
+    {
+        uiItems[selectedSlot].SetSelected(true);
+        uiItems[selectedSlot].SetSelectedSlot();
+        if(prevSelectedSlot != -1)
+        {
+            uiItems[prevSelectedSlot].SetSelected(false);
+            uiItems[prevSelectedSlot].UnsetSelectedSlot();
+        }
+    }
+
     void Update()
     {
         if(!PauseMenu.GameIsPaused)
@@ -54,45 +72,45 @@ public class UIInventory : MonoBehaviour
             //check for 1-9 input and set selected slot
             if(!inventoryIsOpen)
             {
-                if(Input.GetKeyDown(KeyCode.Alpha1))
+                if((Input.GetKeyDown(KeyCode.Alpha1))&&(selectedSlot != 0))
                 {
-                    selectedSlot = 0;
+                    SetSlotSelected(0);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha2))
+                else if((Input.GetKeyDown(KeyCode.Alpha2))&&(selectedSlot != 1))
                 {
-                    selectedSlot = 1;
+                    SetSlotSelected(1);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha3))
+                else if((Input.GetKeyDown(KeyCode.Alpha3))&&(selectedSlot != 2))
                 {
-                    selectedSlot = 2;
+                    SetSlotSelected(2);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha4))
+                else if((Input.GetKeyDown(KeyCode.Alpha4))&&(selectedSlot != 3))
                 {
-                    selectedSlot = 3;
+                    SetSlotSelected(3);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha5))
+                else if((Input.GetKeyDown(KeyCode.Alpha5))&&(selectedSlot != 4))
                 {
-                    selectedSlot = 4;
+                    SetSlotSelected(4);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha6))
+                else if((Input.GetKeyDown(KeyCode.Alpha6))&&(selectedSlot != 5))
                 {
-                    selectedSlot = 5;
+                    SetSlotSelected(5);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha7))
+                else if((Input.GetKeyDown(KeyCode.Alpha7))&&(selectedSlot != 6))
                 {
-                    selectedSlot = 6;
+                    SetSlotSelected(6);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha8))
+                else if((Input.GetKeyDown(KeyCode.Alpha8))&&(selectedSlot != 7))
                 {
-                    selectedSlot = 7;
+                    SetSlotSelected(7);
                 }
-                else if(Input.GetKeyDown(KeyCode.Alpha9))
+                else if((Input.GetKeyDown(KeyCode.Alpha9))&&(selectedSlot != 8))
                 {
-                    selectedSlot = 8;
+                    SetSlotSelected(8);
                 }
+                //update selected slot      
+                UpdateSelected();
             }
-            //change background of selected slot
-            //uiItems[selectedSlot].SetSelectedSlot();
 
             if(Input.GetKeyDown(KeyCode.E))
             {
@@ -161,6 +179,7 @@ public class UIInventory : MonoBehaviour
     public void AddNewItem(GameItem item)
     {
         UpdateSlot(uiItems.FindIndex(i=> i.item == null), item);
+        //UpdateSelectedItem(uiItems.FindIndex(i=> i.item == item));
     }
 
     public void RemoveItem(GameItem item)

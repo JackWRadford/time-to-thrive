@@ -10,7 +10,11 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private UIItem selectedItem;
     private Text stackCount;
     private Tooltip tooltip;
+    private bool selected = false;
+    private bool scaledUp = false;
     //private Image slotBackground;
+
+    private Vector3 scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
 
     void Awake()
     {
@@ -20,6 +24,15 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
         UpdateItem(null);
+    }
+
+    public bool IsSelected()
+    {
+        return selected;
+    }
+    public void SetSelected(bool tof)
+    {
+        this.selected = tof;
     }
 
     public void UpdateItem(GameItem item)
@@ -194,20 +207,21 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         tooltip.gameObject.SetActive(false);
     }
 
-    // public void SetSelectedSlot()
-    // {
-    //     //slotBackground.sprite = Resources.Load<Sprite>("Sprites/UI/selectedSlot");
-    //     //slotBackground.color = Color.green;
-    //     var tempColor = slotBackground.color;
-    //     tempColor.a = 0.1f;
-    //     slotBackground.color = tempColor;
-    // }
-    // public void UnsetSelectedSlot()
-    // {
-    //     //slotBackground.sprite = Resources.Load<Sprite>("Sprites/UI/selectedSlot");
-    //     //slotBackground.color = Color.green;
-    //     var tempColor = slotBackground.color;
-    //     tempColor.a = 0f;
-    //     slotBackground.color = tempColor;
-    // }
+    public void SetSelectedSlot()
+    {
+        //if((this.item != null)&&(scaledUp == false))
+        if((scaledUp == false)&&(selected))
+        {
+            transform.localScale += scaleChange;
+            scaledUp = true;
+        }
+    }
+    public void UnsetSelectedSlot()
+    {
+        if((scaledUp == true)&&(!selected))
+        {
+            transform.localScale -= scaleChange;
+            scaledUp = false;
+        }
+    }
 }
