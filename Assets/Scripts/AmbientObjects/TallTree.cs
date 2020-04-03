@@ -31,7 +31,24 @@ public class TallTree : Interactable
         //check playerController exists
         if(go.GetComponent<PlayerController>() != null)
         {
-            health-=go.GetComponent<PlayerController>().GetAttack();
+            //check player is holding an item
+            if(go.GetComponent<PlayerController>().GetHeldItem() != null)
+            {
+                //check for WoodCutting stat
+                if(go.GetComponent<PlayerController>().GetHeldItem().stats.ContainsKey("WoodCutting"))
+                {
+                    health-=go.GetComponent<PlayerController>().GetHeldItem().stats["WoodCutting"];
+                }
+                else
+                {
+                    health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+                }
+            }
+            else
+            {
+                health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+            }
+
         }
         if(health<=0)
         {

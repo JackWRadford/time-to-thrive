@@ -31,9 +31,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public GameItem GetHeldItem()
+    {
+        return this.heldItem;
+    }
+
     public int GetAttack()
     {
         return this.attack;
+    }
+
+    public int GetDefaultAttack()
+    {
+        return this.defaultAttack;
     }
 
     // void Save()
@@ -101,8 +111,10 @@ public class PlayerController : MonoBehaviour
 
     void UpdateStats()
     {
+        //update player stats
         if(this.heldItem != null)
         {
+            //attack
             if(this.heldItem.stats.ContainsKey("Attack"))
             {
                 this.attack = this.heldItem.stats["Attack"];
