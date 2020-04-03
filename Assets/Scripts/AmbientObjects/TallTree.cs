@@ -23,12 +23,16 @@ public class TallTree : Interactable
         
     }
 
-    public override void Interact()
+    public override void Interact(GameObject go)
     {
-        base.Interact();
+        base.Interact(go);
         
         //Debug.Log("Cutting down " + transform.name + " with health: " + health);
-        health-=5;
+        //check playerController exists
+        if(go.GetComponent<PlayerController>() != null)
+        {
+            health-=go.GetComponent<PlayerController>().GetAttack();
+        }
         if(health<=0)
         {
         //drop logs

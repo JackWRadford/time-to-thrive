@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3.0f;//speed of player
+    private int attack = 1;//player attack damage
+    private int defaultAttack = 1;
 
     Animator animator;
     //hiding inherited rigidbody2D fix?
@@ -27,6 +29,11 @@ public class PlayerController : MonoBehaviour
         //listen for save event
         // GameEvents.SaveInitiated += Save;
 
+    }
+
+    public int GetAttack()
+    {
+        return this.attack;
     }
 
     // void Save()
@@ -72,16 +79,17 @@ public class PlayerController : MonoBehaviour
                     Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if(interactable != null)
                 {
-                    interactable.Interact();
+                    interactable.Interact(this.gameObject);
                 }
                 }
             }
         }
         this.heldItem = uiInventory.GetSelectedItem();
-        if(uiInventory.GetSelectedItem() != null)
-        {
-            Debug.Log("holding: " + heldItem.title);
-        }
+        UpdateStats();
+        // if(uiInventory.GetSelectedItem() != null)
+        // {
+        //     Debug.Log("holding: " + heldItem.title);
+        // }
     }
     //use to stop framerate issues
     void FixedUpdate()
@@ -91,5 +99,18 @@ public class PlayerController : MonoBehaviour
         rb2D.MovePosition(position);
     }
 
-    
+    void UpdateStats()
+    {
+        if(this.heldItem != null)
+        {
+            if(this.heldItem.stats.ContainsKey("Attack"))
+            {
+                this.attack = this.heldItem.stats["Attack"];
+            }
+            else
+            {
+                this.attack = this.defaultAttack;
+            }
+        }
+    }
 }
