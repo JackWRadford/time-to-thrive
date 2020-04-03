@@ -129,10 +129,37 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
             }
             else if(Input.GetMouseButtonDown(1))
             {
-                if(this.item != null)
+                if((this.item != null)&&(selectedItem.item != null))
                 {
                     //delete item
                     //GameInventory.instance.RemoveItem(this.item);
+                    
+                    //add one to stack
+                    //check if items can be stacked
+                    if((this.item.title == selectedItem.item.title)&&(this.item.maxCount > 1))
+                    {
+                        if((this.item.count < this.item.maxCount))
+                        {
+                            Debug.Log("can stack");
+                            
+                            selectedItem.item.count--;
+                            this.item.count++;
+                            if(selectedItem.item.count <= 0)
+                            {
+                                Debug.Log("ran out");
+                                UpdateItem(this.item);
+                                GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+                                selectedItem.UpdateItem(null);
+                                return;
+                            }
+                            else
+                            {
+                                UpdateItem(this.item);
+                                selectedItem.UpdateItem(selectedItem.item);
+                            }
+                            
+                        }
+                    }
                 }
                 else if(selectedItem != null)
                 {
