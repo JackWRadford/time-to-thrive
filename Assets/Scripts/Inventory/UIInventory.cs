@@ -11,6 +11,7 @@ public class UIInventory : MonoBehaviour
     public Transform bagSlotPanel;
     public Transform equipSlotPanel;
     public GameObject bagUI;
+    public int selectedSlot = 0;
     
 
     public static bool inventoryIsOpen = false;
@@ -50,6 +51,49 @@ public class UIInventory : MonoBehaviour
     {
         if(!PauseMenu.GameIsPaused)
         {
+            //check for 1-9 input and set selected slot
+            if(!inventoryIsOpen)
+            {
+                if(Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    selectedSlot = 0;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    selectedSlot = 1;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    selectedSlot = 2;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    selectedSlot = 3;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    selectedSlot = 4;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    selectedSlot = 5;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha7))
+                {
+                    selectedSlot = 6;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha8))
+                {
+                    selectedSlot = 7;
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha9))
+                {
+                    selectedSlot = 8;
+                }
+            }
+            //change background of selected slot
+            //uiItems[selectedSlot].SetSelectedSlot();
+
             if(Input.GetKeyDown(KeyCode.E))
             {
                 if(inventoryIsOpen)
@@ -127,5 +171,10 @@ public class UIInventory : MonoBehaviour
     public void RemoveSelectedItem(GameItem item)
     {
         selectedItem.UpdateItem(null);
+    }
+
+    public GameItem GetSelectedItem()
+    {
+        return uiItems[selectedSlot].item;
     }
 }

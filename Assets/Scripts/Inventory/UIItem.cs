@@ -10,11 +10,13 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private UIItem selectedItem;
     private Text stackCount;
     private Tooltip tooltip;
+    //private Image slotBackground;
 
     void Awake()
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+        //slotBackground = transform.GetComponent<Image>();
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
         UpdateItem(null);
@@ -191,4 +193,21 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     {
         tooltip.gameObject.SetActive(false);
     }
+
+    // public void SetSelectedSlot()
+    // {
+    //     //slotBackground.sprite = Resources.Load<Sprite>("Sprites/UI/selectedSlot");
+    //     //slotBackground.color = Color.green;
+    //     var tempColor = slotBackground.color;
+    //     tempColor.a = 0.1f;
+    //     slotBackground.color = tempColor;
+    // }
+    // public void UnsetSelectedSlot()
+    // {
+    //     //slotBackground.sprite = Resources.Load<Sprite>("Sprites/UI/selectedSlot");
+    //     //slotBackground.color = Color.green;
+    //     var tempColor = slotBackground.color;
+    //     tempColor.a = 0f;
+    //     slotBackground.color = tempColor;
+    // }
 }

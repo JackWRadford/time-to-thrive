@@ -11,6 +11,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2D;
     Vector2 lookDirection = new Vector2(1,0);//direction player is looking
     Vector2 move = new Vector2(1,0);
+    private UIInventory uiInventory;
+    private GameItem heldItem;
+
+    void Awake()
+    {
+        uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
+    }
 
     void Start()
     {
@@ -69,6 +76,11 @@ public class PlayerController : MonoBehaviour
                 }
                 }
             }
+        }
+        this.heldItem = uiInventory.GetSelectedItem();
+        if(uiInventory.GetSelectedItem() != null)
+        {
+            Debug.Log("holding: " + heldItem.title);
         }
     }
     //use to stop framerate issues
