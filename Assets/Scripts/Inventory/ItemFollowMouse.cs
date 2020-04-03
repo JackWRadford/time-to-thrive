@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ItemFollowMouse : MonoBehaviour
 {
-    void Update()
+    //LateUpdate happends after Update
+    void LateUpdate()
     {
         transform.position = Input.mousePosition;
     }

@@ -11,14 +11,17 @@ public class UIInventory : MonoBehaviour
     public Transform bagSlotPanel;
     public Transform equipSlotPanel;
     public GameObject bagUI;
+    
 
     public static bool inventoryIsOpen = false;
 
     private UIItem selectedItem; 
+    private Tooltip tooltip;
 
     void Awake()
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
 
         //populate slotPanel (hotbar inventory)
         for(int i = 0; i < 9; i++)
@@ -53,6 +56,7 @@ public class UIInventory : MonoBehaviour
                 {
                     Debug.Log("Close Inventory");
                     bagUI.SetActive(false);
+                    tooltip.gameObject.SetActive(false);
                     //Cursor.visible = false;
                     //check if an item is selected
                     if(selectedItem.item != null)
@@ -81,6 +85,7 @@ public class UIInventory : MonoBehaviour
                 if(inventoryIsOpen)
                 {
                     Debug.Log("Close Inventory");
+                    tooltip.gameObject.SetActive(false);
                     bagUI.SetActive(false);
                     //Cursor.visible = false;
                     //check if an item is selected

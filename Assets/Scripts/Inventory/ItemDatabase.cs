@@ -25,18 +25,18 @@ public class ItemDatabase : MonoBehaviour
     {
         items = new List<GameItem>(){
             //Stick
-            new GameItem(0, "Stick", "Just a stick",
+            new GameItem(0, "Stick", "",
             new Dictionary<string, int>{
                 {"Attack", 2}
             },1,8),
             //Apple
-            new GameItem(1, "Apple", "Eat me",
+            new GameItem(1, "Apple", "",
             new Dictionary<string, int>{
                 {"Nutrition", 5},
-                {"EdibleLife", 3}
+                {"Hydration", 1}
             },0,1),
             //Log
-            new GameItem(2, "Log", "Build stuff with me",
+            new GameItem(2, "Log", "",
             new Dictionary<string, int>{
             },1,2)
         };

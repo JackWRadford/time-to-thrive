@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class UIItem : MonoBehaviour, IPointerDownHandler
+public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public GameItem item;
     private Image spriteImage;
     private UIItem selectedItem;
     private Text stackCount;
+    private Tooltip tooltip;
 
     void Awake()
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+        tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
         UpdateItem(null);
@@ -175,5 +177,18 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
                 }
             }
         
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if((this.item != null)&&(selectedItem.item == null))
+        {
+            tooltip.GenerateTooltip(this.item);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltip.gameObject.SetActive(false);
     }
 }

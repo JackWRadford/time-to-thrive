@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Inventory\Old\InventoryUI.cs" />
      <Compile Include="Assets\Scripts\Inventory\Old\Item.cs" />
      <Compile Include="Assets\Scripts\Inventory\PickUp.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Tooltip.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIItem.cs" />
      <Compile Include="Assets\Scripts\Other\Interactable.cs" />
