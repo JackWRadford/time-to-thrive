@@ -150,4 +150,12 @@ public class GameInventory : MonoBehaviour
             Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
+
+    //returns one of input item, adds it to inventory, lowers count of input
+    public GameItem SplitOneOffItemStack(GameItem i)
+    {
+        GameItem singleItem = new GameItem(itemDatabase.GetItem(i.id));
+        characterItems.Add(singleItem);
+        return singleItem;
+    }
 }

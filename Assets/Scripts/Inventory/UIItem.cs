@@ -65,13 +65,52 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
                     //if dragging an item
                     if(selectedItem.item != null)
                     {
-                        //clone item in slot
-                        // not new GameItem ???
-                        GameItem clone = selectedItem.item;
-                        //put item in slot as itembeing dragged
-                        selectedItem.UpdateItem(this.item);
-                        //put item that was bring dragged in slot
-                        UpdateItem(clone);
+                        //check if items can be stacked
+                        if((this.item.title == selectedItem.item.title)&&(this.item.maxCount > 1))
+                        {
+                            if((this.item.count < this.item.maxCount))
+                            {
+                                Debug.Log("can stack");
+                                int t = selectedItem.item.count;
+                                for (int i = 0; i < t; i++)
+                                {
+                                    selectedItem.item.count--;
+                                    this.item.count++;
+                                    if(this.item.count == this.item.maxCount)
+                                    {
+                                        Debug.Log("maxed");
+                                        UpdateItem(this.item);
+                                        if(selectedItem.item.count <= 0)
+                                        {
+                                            GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+                                            selectedItem.UpdateItem(null);
+                                        }
+                                        else
+                                        {
+                                            selectedItem.UpdateItem(selectedItem.item);
+                                        }
+                                        return;
+                                    }
+                                    if(selectedItem.item.count <= 0)
+                                    {
+                                        Debug.Log("ran out");
+                                        UpdateItem(this.item);
+                                        GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+                                        selectedItem.UpdateItem(null);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //clone item in slot
+                            GameItem clone = selectedItem.item;
+                            //put item in slot as itembeing dragged
+                            selectedItem.UpdateItem(this.item);
+                            //put item that was bring dragged in slot
+                            UpdateItem(clone);
+                        }
                     }
                     else
                     {
@@ -93,7 +132,19 @@ public class UIItem : MonoBehaviour, IPointerDownHandler
                 if(this.item != null)
                 {
                     //delete item
-                    GameInventory.instance.RemoveItem(this.item);
+                    //GameInventory.instance.RemoveItem(this.item);
+                }
+                else if(selectedItem != null)
+                {
+                    //check enough to split
+                    if(selectedItem.item.count > 1)
+                    {
+                        //put one of dragged item in slot
+                        UpdateItem(GameInventory.instance.SplitOneOffItemStack(selectedItem.item));
+                        //decrement count of selected item
+                        selectedItem.item.count--;
+                        selectedItem.UpdateItem(selectedItem.item);
+                    }
                 }
             }
         
