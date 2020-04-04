@@ -46,6 +46,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
+     <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
+     <Compile Include="Assets\Scripts\Crafting\UICrafting.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManager\GenerateWorld.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameInventory.cs" />
