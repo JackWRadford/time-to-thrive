@@ -20,7 +20,7 @@ public class PickUp : Interactable
                 Debug.Log("stack");
                 Destroy(gameObject);
             }
-            else if(!GameInventory.instance.IsFull(itemName))
+            else if(!GameInventory.instance.IsFull())
             {
                 Debug.Log("don't stack");
                 GameInventory.instance.GiveItem(itemName);

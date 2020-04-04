@@ -21,6 +21,7 @@ public class UICrafting : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             craftingUI.SetActive(!craftingUI.activeInHierarchy);
+            PlayerController.SetAllowedToMove(!craftingUI.activeInHierarchy);
             //if closing close all crafting sections
             if(currentOpenSection != null)
             {

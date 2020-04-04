@@ -118,6 +118,7 @@ public class UIInventory : MonoBehaviour
                 {
                     Debug.Log("Close Inventory");
                     bagUI.SetActive(false);
+                    PlayerController.SetAllowedToMove(true);
                     tooltip.gameObject.SetActive(false);
                     //Cursor.visible = false;
                     //check if an item is selected
@@ -129,16 +130,17 @@ public class UIInventory : MonoBehaviour
                         selectedItem.UpdateItem(null);
                     }
                     //unpause
-                    Time.timeScale = 1f;
+                    //Time.timeScale = 1f;
                     inventoryIsOpen = false;
                 }
                 else
                 {
                     Debug.Log("Open Inventory");
                     bagUI.SetActive(true);
+                    PlayerController.SetAllowedToMove(false);
                     //Cursor.visible = true;
                     //pause
-                    Time.timeScale = 0f;
+                    //Time.timeScale = 0f;
                     inventoryIsOpen = true;
                 }
             }
@@ -149,6 +151,7 @@ public class UIInventory : MonoBehaviour
                     Debug.Log("Close Inventory");
                     tooltip.gameObject.SetActive(false);
                     bagUI.SetActive(false);
+                    PlayerController.SetAllowedToMove(true);
                     //Cursor.visible = false;
                     //check if an item is selected
                     if(selectedItem.item != null)
@@ -159,7 +162,7 @@ public class UIInventory : MonoBehaviour
                         selectedItem.UpdateItem(null);
                     }
                     //unpause
-                    Time.timeScale = 1f;
+                    //Time.timeScale = 1f;
                     inventoryIsOpen = false;
                 }
             }

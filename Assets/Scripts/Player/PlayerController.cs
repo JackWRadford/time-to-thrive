@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private UIInventory uiInventory;
     private GameItem heldItem;
 
+    private static bool allowedToMove = true;
+
     void Awake()
     {
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
@@ -29,6 +31,11 @@ public class PlayerController : MonoBehaviour
         //listen for save event
         // GameEvents.SaveInitiated += Save;
 
+    }
+
+    public static void SetAllowedToMove(bool tof)
+    {
+        allowedToMove = tof;
     }
 
     public GameItem GetHeldItem()
@@ -68,15 +75,17 @@ public class PlayerController : MonoBehaviour
         move = new Vector2(horizontal, vertical);
         move.Normalize();//stop increased speed diagonally
 
-        if(!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))//if moving
+        if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
         }
-        animator.SetFloat("Horizontal", lookDirection.x);
-        animator.SetFloat("Vertical", lookDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
-
+        if(allowedToMove)
+        {
+            animator.SetFloat("Horizontal", lookDirection.x);
+            animator.SetFloat("Vertical", lookDirection.y);
+            animator.SetFloat("Speed", move.magnitude);
+        }
         //interact with objects through raycast
         if((Input.GetKeyDown(KeyCode.Space)))
         {
@@ -104,9 +113,12 @@ public class PlayerController : MonoBehaviour
     //use to stop framerate issues
     void FixedUpdate()
     {
-        Vector2 position = rb2D.position;//change position
-        position = position + move*speed*Time.fixedDeltaTime;
-        rb2D.MovePosition(position);
+        if(allowedToMove)
+        {
+            Vector2 position = rb2D.position;//change position
+            position = position + move*speed*Time.fixedDeltaTime;
+            rb2D.MovePosition(position);
+        }
     }
 
     void UpdateStats()

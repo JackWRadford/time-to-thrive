@@ -67,7 +67,7 @@ public class GameInventory : MonoBehaviour
         return false;
     }
 
-    public bool IsFull(string itemName)
+    public bool IsFull()
     {
         RemoveSelectedItemIfExists();
         //check if all inventory slots are full
@@ -176,6 +176,38 @@ public class GameInventory : MonoBehaviour
         return singleItem;
     }
 
+    //remove certain amount of an item
+    public void RemoveAmountOfItem(string itemName, int amount)
+    {
+        int amountToRemove = amount;
+        foreach (var item in this.characterItems)
+        {
+            if(item.title == itemName)
+            {
+                int t = item.count;
+                for (int i = 0; i < t; i++)
+                {
+                    item.count--;
+                    amountToRemove--;
+                    if(item.count <= 0)
+                    {
+                        RemoveItem(item);
+                    }
+                    else
+                    {
+                        inventoryUI.UpdateItemCount(item);
+                    }
+                    if(amountToRemove <= 0)
+                    {
+                        return;
+                    }
+                }
+                inventoryUI.UpdateItemCount(item);
+            }
+        }
+    }
+
+
     //check if item can be crafted from items in inventory
     public bool CanCraftItem(Dictionary<string,int> recipe)
     {
@@ -194,12 +226,24 @@ public class GameInventory : MonoBehaviour
     //try to craft the new item (remove recipe from inventory and add new item)
     public void CraftItemIfPossible(GameItem itemToCraft)
     {
+        RemoveSelectedItemIfExists();
         if(CanCraftItem(itemToCraft.recipe))
         {
-            //remove recipe items from inventory
+            if(!IsFull())
+            {   
+                //remove recipe items from inventory
+                foreach (var item in itemToCraft.recipe)
+                {
+                    RemoveAmountOfItem(item.Key, item.Value);
+                }
 
-            //add new item to inventory
-            GiveItem(itemToCraft.title);
+                //add new item to inventory
+                GiveItem(itemToCraft.title);
+            }
+            else
+            {
+                Debug.Log("Inventory too full to add new item!");
+            }
         }
     }
 }
