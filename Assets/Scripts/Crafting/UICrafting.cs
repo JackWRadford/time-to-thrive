@@ -9,6 +9,7 @@ public class UICrafting : MonoBehaviour
     //private bool craftingIsOpen = false;
     private GameObject currentOpenSection;
     public GameObject craftingUI;
+    public ItemDatabase itemDatabase;
     
     public GameObject toolsSection;
     public GameObject weaponsSection;
@@ -70,5 +71,22 @@ public class UICrafting : MonoBehaviour
             currentOpenSection = section;
         }
         section.SetActive(!section.activeInHierarchy);
+    }
+
+    //try to craft selected item
+    public void CraftItem(string itemToCraft)
+    {
+        Debug.Log("craft: " + itemToCraft);
+        //get gameItem from itemName
+        GameItem item = itemDatabase.GetItem(itemToCraft);
+
+        // check if item has a recipe
+        if(item.recipe != null)
+        {
+            //try to craft item
+            GameInventory.instance.CraftItemIfPossible(item);
+
+            Debug.Log(GameInventory.instance.CanCraftItem(item.recipe));
+        }
     }
 }

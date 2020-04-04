@@ -9,16 +9,18 @@ public class GameItem
     public string description;
     public Sprite icon;
     public Dictionary<string, int> stats = new Dictionary<string, int>();
+    public Dictionary<string, int> recipe = new Dictionary<string, int>();
     public int count;
     public int maxCount;
 
-    public GameItem(int id, string title, string description, Dictionary<string, int> stats, int count, int maxCount)
+    public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe, int count, int maxCount)
     {
         this.id = id;
         this.title = title;
         this.description = description;
         this.icon = Resources.Load<Sprite>("Sprites/Items/" + title);
         this.stats = stats;
+        this.recipe = recipe;
         this.count = count;
         this.maxCount = maxCount;
     }
@@ -31,6 +33,7 @@ public class GameItem
         this.description = item.description;
         this.icon = Resources.Load<Sprite>("Sprites/Items/" + item.title);
         this.stats = item.stats;
+        this.recipe = item.recipe;
         this.count = item.count;
         this.maxCount = item.maxCount;
     }

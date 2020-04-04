@@ -107,6 +107,23 @@ public class GameInventory : MonoBehaviour
         return characterItems.Find(item=> item == i );
     }
 
+    public bool CheckForAmountOfItem(string itemName, int amount)
+    {
+        int amountNeeded = amount;
+        foreach (var item in this.characterItems)
+        {
+            if(item.title == itemName)
+            {
+                amountNeeded -= item.count;
+            }
+            if(amountNeeded <= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void RemoveItem(int id)
     {
         GameItem itemToRemove = CheckForItem(id);
@@ -157,5 +174,32 @@ public class GameInventory : MonoBehaviour
         GameItem singleItem = new GameItem(itemDatabase.GetItem(i.id));
         characterItems.Add(singleItem);
         return singleItem;
+    }
+
+    //check if item can be crafted from items in inventory
+    public bool CanCraftItem(Dictionary<string,int> recipe)
+    {
+        foreach (var i in recipe)
+        {
+            Debug.Log(i.Value + " " + i.Key);
+            //check for specified amount of an item
+            if(!CheckForAmountOfItem(i.Key, i.Value))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //try to craft the new item (remove recipe from inventory and add new item)
+    public void CraftItemIfPossible(GameItem itemToCraft)
+    {
+        if(CanCraftItem(itemToCraft.recipe))
+        {
+            //remove recipe items from inventory
+
+            //add new item to inventory
+            GiveItem(itemToCraft.title);
+        }
     }
 }
