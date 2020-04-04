@@ -329,7 +329,6 @@ GameObject:
   - component: {fileID: 78750566}
   - component: {fileID: 78750565}
   - component: {fileID: 78750569}
-  - component: {fileID: 78750570}
   - component: {fileID: 78750571}
   m_Layer: 5
   m_Name: Canvas
@@ -432,19 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beea4796da1664616866a53a8a3195a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &78750570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78750564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed635ed94e2a7b4c9265d7f97431699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1395455261}
 --- !u!114 &78750571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,7 +643,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78750570}
+      - m_Target: {fileID: 1461756152}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1943,7 +1929,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78750570}
+      - m_Target: {fileID: 1461756152}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -83752,6 +83738,7 @@ GameObject:
   - component: {fileID: 1461756150}
   - component: {fileID: 1461756151}
   - component: {fileID: 1461756148}
+  - component: {fileID: 1461756152}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -83771,6 +83758,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb5526cf2e5a224f8cfb75081d84bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftingUI: {fileID: 1063234208}
+  bagUI: {fileID: 2008832460}
+  pauseMenuUI: {fileID: 1395455261}
+  inventory: {fileID: 1989796565}
+  canvas: {fileID: 78750564}
 --- !u!4 &1461756149
 Transform:
   m_ObjectHideFlags: 0
@@ -83809,6 +83801,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897e68a20a3b4454c9a84958f772f25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1461756152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed635ed94e2a7b4c9265d7f97431699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1395455261}
 --- !u!4 &1584242395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5374468306012557041, guid: 6a1658fe8f0a19a4493a87b001a2afae,
@@ -83995,7 +84000,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78750570}
+      - m_Target: {fileID: 1461756152}
         m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:

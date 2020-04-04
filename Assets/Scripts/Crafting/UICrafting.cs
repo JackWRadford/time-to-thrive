@@ -18,17 +18,30 @@ public class UICrafting : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        
+    }
+
+    public void OpenCrafting()
+    {
+        craftingUI.SetActive(true);
+        //PlayerController.SetAllowedToMove(false);
+        //if closing close all crafting sections
+        if(currentOpenSection != null)
         {
-            craftingUI.SetActive(!craftingUI.activeInHierarchy);
-            PlayerController.SetAllowedToMove(!craftingUI.activeInHierarchy);
-            //if closing close all crafting sections
-            if(currentOpenSection != null)
-            {
-                currentOpenSection.SetActive(false);
-                currentOpenSection = null;
-            }
-            
+            currentOpenSection.SetActive(false);
+            currentOpenSection = null;
+        }
+    }
+
+    public void CloseCrafting()
+    {
+        craftingUI.SetActive(false);
+        //PlayerController.SetAllowedToMove(true);
+        //if closing close all crafting sections
+        if(currentOpenSection != null)
+        {
+            currentOpenSection.SetActive(false);
+            currentOpenSection = null;
         }
     }
 

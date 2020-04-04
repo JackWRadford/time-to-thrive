@@ -111,61 +111,29 @@ public class UIInventory : MonoBehaviour
                 //update selected slot      
                 UpdateSelected();
             }
+        }
+    }
 
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                if(inventoryIsOpen)
-                {
-                    Debug.Log("Close Inventory");
-                    bagUI.SetActive(false);
-                    PlayerController.SetAllowedToMove(true);
-                    tooltip.gameObject.SetActive(false);
-                    //Cursor.visible = false;
-                    //check if an item is selected
-                    if(selectedItem.item != null)
-                    {
-                        //Remove item from inventory
-                        GameInventory.instance.RemoveSelectedItem(selectedItem.item);
-                        //Update selectedItem UI
-                        selectedItem.UpdateItem(null);
-                    }
-                    //unpause
-                    //Time.timeScale = 1f;
-                    inventoryIsOpen = false;
-                }
-                else
-                {
-                    Debug.Log("Open Inventory");
-                    bagUI.SetActive(true);
-                    PlayerController.SetAllowedToMove(false);
-                    //Cursor.visible = true;
-                    //pause
-                    //Time.timeScale = 0f;
-                    inventoryIsOpen = true;
-                }
-            }
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                if(inventoryIsOpen)
-                {
-                    Debug.Log("Close Inventory");
-                    tooltip.gameObject.SetActive(false);
-                    bagUI.SetActive(false);
-                    PlayerController.SetAllowedToMove(true);
-                    //Cursor.visible = false;
-                    //check if an item is selected
-                    if(selectedItem.item != null)
-                    {
-                        //Remove item from inventory
-                        GameInventory.instance.RemoveSelectedItem(selectedItem.item);
-                        //Update selectedItem UI
-                        selectedItem.UpdateItem(null);
-                    }
-                    //unpause
-                    //Time.timeScale = 1f;
-                    inventoryIsOpen = false;
-                }
-            }
+    public void OpenBag()
+    {
+        Debug.Log("Open Inventory");
+        bagUI.SetActive(true);
+        //PlayerController.SetAllowedToMove(false);
+        inventoryIsOpen = true;
+    }
+
+    public void CloseBag()
+    {
+        Debug.Log("Close Inventory");
+        tooltip.gameObject.SetActive(false);
+        bagUI.SetActive(false);
+        //PlayerController.SetAllowedToMove(true);
+        if(selectedItem.item != null)
+        {
+            //Remove item from inventory
+            GameInventory.instance.RemoveSelectedItem(selectedItem.item);
+            //Update selectedItem UI
+            selectedItem.UpdateItem(null);
         }
     }
 
