@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
