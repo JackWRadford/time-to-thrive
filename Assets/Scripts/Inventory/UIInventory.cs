@@ -70,8 +70,8 @@ public class UIInventory : MonoBehaviour
         if(!PauseMenu.GameIsPaused)
         {
             //check for 1-9 input and set selected slot
-            if(!inventoryIsOpen)
-            {
+            //if(!inventoryIsOpen)
+            //{
                 if((Input.GetKeyDown(KeyCode.Alpha1))&&(selectedSlot != 0))
                 {
                     SetSlotSelected(0);
@@ -110,7 +110,7 @@ public class UIInventory : MonoBehaviour
                 }
                 //update selected slot      
                 UpdateSelected();
-            }
+            //}
         }
     }
 
