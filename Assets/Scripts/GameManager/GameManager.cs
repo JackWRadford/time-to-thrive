@@ -15,7 +15,13 @@ public class GameManager : MonoBehaviour
         Load();
     }
     void Update()
-    {
+    {   
+        //delete all save files
+        // if(Input.GetKeyDown(KeyCode.P))
+        // {
+        //     SaveSystem.DeleteAllSaveFiles();
+        // }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if((!craftingUI.activeInHierarchy)&&(!bagUI.activeInHierarchy))

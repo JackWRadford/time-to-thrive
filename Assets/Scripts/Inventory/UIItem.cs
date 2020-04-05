@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+
 public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public GameItem item;
@@ -12,6 +14,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private Tooltip tooltip;
     private bool selected = false;
     private bool scaledUp = false;
+    private UIInventory uIInventory;
     //private Image slotBackground;
 
     private Vector3 scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
@@ -20,6 +23,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     {
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
+        uIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         //slotBackground = transform.GetComponent<Image>();
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
@@ -124,7 +128,9 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                         {
                             //clone item in slot
                             GameItem clone = selectedItem.item;
+                            clone.slot = this.item.slot;
                             //put item in slot as itembeing dragged
+                            this.item.slot = selectedItem.item.slot;
                             selectedItem.UpdateItem(this.item);
                             //put item that was bring dragged in slot
                             UpdateItem(clone);
@@ -142,6 +148,9 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                 {
                     //put dragged item in slot
                     UpdateItem(selectedItem.item);
+                    //update slot number
+                    selectedItem.item.slot = uIInventory.uiItems.FindIndex(i=> i.item == selectedItem.item);
+                    Debug.Log(selectedItem.item.slot);
                     selectedItem.UpdateItem(null);
                 }
             }
@@ -185,7 +194,11 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                     if(selectedItem.item.count > 1)
                     {
                         //put one of dragged item in slot
-                        UpdateItem(GameInventory.instance.SplitOneOffItemStack(selectedItem.item));
+                        GameItem tempItem = GameInventory.instance.SplitOneOffItemStack(selectedItem.item);
+                        //UpdateItem(GameInventory.instance.SplitOneOffItemStack(selectedItem.item));
+                        UpdateItem(tempItem);
+                        tempItem.slot = uIInventory.uiItems.FindIndex(i=> i.item == tempItem);
+
                         //decrement count of selected item
                         selectedItem.item.count--;
                         selectedItem.UpdateItem(selectedItem.item);

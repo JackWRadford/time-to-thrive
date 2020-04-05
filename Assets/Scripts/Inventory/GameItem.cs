@@ -13,8 +13,9 @@ public class GameItem
     public Dictionary<string, int> recipe = new Dictionary<string, int>();
     public int count;
     public int maxCount;
+    public int slot;
 
-    public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe, int count, int maxCount)
+    public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe, int count, int maxCount, int slot)
     {
         this.id = id;
         this.title = title;
@@ -24,6 +25,7 @@ public class GameItem
         this.recipe = recipe;
         this.count = count;
         this.maxCount = maxCount;
+        this.slot = slot;
     }
 
     //copy constructor
@@ -37,5 +39,6 @@ public class GameItem
         this.recipe = item.recipe;
         this.count = item.count;
         this.maxCount = item.maxCount;
+        this.slot = item.slot;
     }
 }

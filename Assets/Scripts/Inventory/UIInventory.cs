@@ -140,6 +140,11 @@ public class UIInventory : MonoBehaviour
     public void UpdateSlot(int slot, GameItem item)
     {
         uiItems[slot].UpdateItem(item);
+        if(item != null)
+        {
+            item.slot = slot;
+            Debug.Log(item.title + " is in " + item.slot);
+        }
     }
 
     public void UpdateItemCount(GameItem item)
@@ -156,6 +161,7 @@ public class UIInventory : MonoBehaviour
     public void RemoveItem(GameItem item)
     {
         UpdateSlot(uiItems.FindIndex(i=> i.item == item), null);
+        item.slot = -1;
     }
 
     public void RemoveSelectedItem(GameItem item)

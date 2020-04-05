@@ -20,7 +20,7 @@ public class ItemDatabase : MonoBehaviour
         return items.Find(item=> item.title == itemName);
     }
 
-    //start number (1: stackable, 0: non-stackable), max stack
+    //start number (1: stackable, 0: non-stackable), max stack, slot (-1 to start)
     void BuildDatabase()
     {
         items = new List<GameItem>(){
@@ -30,7 +30,7 @@ public class ItemDatabase : MonoBehaviour
             },
             new Dictionary<string, int>{
             },
-            1,8),
+            1,8,-1),
             //Apple
             new GameItem(1, "Apple", "Food",
             new Dictionary<string, int>{
@@ -39,14 +39,14 @@ public class ItemDatabase : MonoBehaviour
             },
             new Dictionary<string, int>{
             },
-            1,1),
+            1,1,-1),
             //Log
             new GameItem(2, "Log", "Building",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
             },
-            1,2),
+            1,2,-1),
             //WoodAxe
             new GameItem(3, "WoodAxe", "Tool",
             new Dictionary<string, int>{
@@ -57,7 +57,7 @@ public class ItemDatabase : MonoBehaviour
                 {"Stick", 2},
                 {"Log", 1}
             },
-            1,1)
+            1,1,-1)
         };
     }
 }

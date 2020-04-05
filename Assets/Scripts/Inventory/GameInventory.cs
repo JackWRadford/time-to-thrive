@@ -109,19 +109,27 @@ public class GameInventory : MonoBehaviour
         return false;
     }
 
-    public void LoadItems(string itemName, int count)
+    public void LoadItems(string itemName, int count, int slot)
     {
         GameItem itemToAdd = new GameItem(itemDatabase.GetItem(itemName));
         itemToAdd.count = count;
+        itemToAdd.slot = slot;
         characterItems.Add(itemToAdd);
-        inventoryUI.AddNewItem(itemToAdd);
+        if(slot >= 0)
+        {
+            inventoryUI.UpdateSlot(slot,itemToAdd);
+        }
+        else
+        {
+            inventoryUI.AddNewItem(itemToAdd);
+        }
     }
 
     public void GiveItems(List<GameItem> items)
     {
         foreach (var item in items)
         {
-            LoadItems(item.title, item.count);
+            LoadItems(item.title, item.count, item.slot);
         }
     }
 
@@ -269,6 +277,7 @@ public class GameInventory : MonoBehaviour
                 }
 
                 //add new item to inventory
+                Debug.Log("Craft: " + itemToCraft.title);
                 GiveItem(itemToCraft.title);
             }
             else
