@@ -41,7 +41,8 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         if(this.item != null)
         {
             spriteImage.color = Color.white;
-            spriteImage.sprite = item.icon;
+            // spriteImage.sprite = item.icon;
+            spriteImage.sprite = Resources.Load<Sprite>("Sprites/Items/" + item.title);
             if(item.count > 1)
             {
                 stackCount.text = item.count.ToString();

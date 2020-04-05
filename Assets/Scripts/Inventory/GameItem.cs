@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GameItem
 {
     public int id;
     public string title;
     public string description;
-    public Sprite icon;
+    //public Sprite icon;
     public Dictionary<string, int> stats = new Dictionary<string, int>();
     public Dictionary<string, int> recipe = new Dictionary<string, int>();
     public int count;
@@ -18,7 +19,7 @@ public class GameItem
         this.id = id;
         this.title = title;
         this.description = description;
-        this.icon = Resources.Load<Sprite>("Sprites/Items/" + title);
+        //this.icon = Resources.Load<Sprite>("Sprites/Items/" + title);
         this.stats = stats;
         this.recipe = recipe;
         this.count = count;
@@ -31,7 +32,7 @@ public class GameItem
         this.id = item.id;
         this.title = item.title;
         this.description = item.description;
-        this.icon = Resources.Load<Sprite>("Sprites/Items/" + item.title);
+        //this.icon = Resources.Load<Sprite>("Sprites/Items/" + item.title);
         this.stats = item.stats;
         this.recipe = item.recipe;
         this.count = item.count;

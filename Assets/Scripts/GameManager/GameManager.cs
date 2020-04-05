@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject inventory;
     public GameObject canvas;
+
+    void Start()
+    {
+        Load();
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -46,7 +51,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if((Input.GetKeyDown(KeyCode.E))&&(!pauseMenuUI.activeInHierarchy))
         {
             if(!bagUI.activeInHierarchy)
             {
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if((Input.GetKeyDown(KeyCode.Q))&&(!pauseMenuUI.activeInHierarchy))
         {
             if(!craftingUI.activeInHierarchy)
             {
@@ -83,5 +88,15 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Save()
+    {
+        GameEvents.OnSaveInitiated();
+    }
+
+    public void Load()
+    {
+        GameEvents.OnLoadInitiated();
     }
 }

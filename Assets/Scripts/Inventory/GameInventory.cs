@@ -29,10 +29,8 @@ public class GameInventory : MonoBehaviour
 
     void Start()
     {
-        // GiveItem(1);
-        // GiveItem(0);
-        // RemoveItem(0);
-        // GiveItem(0);
+        GameEvents.SaveInitiated += Save;
+        GameEvents.LoadInitiated += Load;
     }
 
     public void RemoveSelectedItemIfExists()
@@ -92,6 +90,39 @@ public class GameInventory : MonoBehaviour
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
         Debug.Log("Added item: " + itemToAdd.title);
+    }
+
+    public bool PickUpItem(string itemName)
+    {
+        //Add item to inventory if enough space
+        if(GameInventory.instance.IsStackable(itemName))
+        {
+            Debug.Log("stack");
+            return true;
+        }
+        else if(!GameInventory.instance.IsFull())
+        {
+            Debug.Log("don't stack");
+            GameInventory.instance.GiveItem(itemName);
+            return true;
+        }
+        return false;
+    }
+
+    public void LoadItems(string itemName, int count)
+    {
+        GameItem itemToAdd = new GameItem(itemDatabase.GetItem(itemName));
+        itemToAdd.count = count;
+        characterItems.Add(itemToAdd);
+        inventoryUI.AddNewItem(itemToAdd);
+    }
+
+    public void GiveItems(List<GameItem> items)
+    {
+        foreach (var item in items)
+        {
+            LoadItems(item.title, item.count);
+        }
     }
 
     public GameItem CheckForItem(int id)
@@ -244,6 +275,20 @@ public class GameInventory : MonoBehaviour
             {
                 Debug.Log("Inventory too full to add new item!");
             }
+        }
+    }
+
+    void Save()
+    {
+        SaveSystem.Save<List<GameItem>>(characterItems, "Inventory");
+    }
+
+    void Load()
+    {
+        if(SaveSystem.SaveExists("Inventory"))
+        {
+            Debug.Log("Save Exists");
+            GiveItems(SaveSystem.Load<List<GameItem>>("Inventory"));
         }
     }
 }

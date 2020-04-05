@@ -37,9 +37,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void SaveGame()
-    {
-        SaveSystem.SavePlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>());
-        //GameEvents.OnSaveInitiated();
-    }
+    // public void SaveGame()
+    // {
+    //     SaveSystem.SavePlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>());
+    //     //GameEvents.OnSaveInitiated();
+    // }
 }
