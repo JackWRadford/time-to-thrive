@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     void UpdateStats()
     {
         //update player stats
-        if(this.heldItem != null)
+        if((this.heldItem != null)&&(this.heldItem.stats != null))
         {
             //attack
             if(this.heldItem.stats.ContainsKey("Attack"))

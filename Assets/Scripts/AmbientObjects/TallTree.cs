@@ -6,6 +6,7 @@ using UnityEngine;
 public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
+    public TreeController treeController;
     public GameObject stick;
     public GameObject apple;
     public GameObject log;
@@ -16,6 +17,7 @@ public class TallTree : Interactable
     void Start()
     {
         edgeCollider2D = GetComponent<EdgeCollider2D>();
+        treeController = GameObject.Find("GameManager").GetComponent<TreeController>();
     }
 
     // Update is called once per frame
@@ -74,6 +76,12 @@ public class TallTree : Interactable
             Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
             Instantiate(apple,transform.position + randDist, Quaternion.identity);
         }
+        //remove from treeController list of tree positions
+        float[] position = new float[3];
+        position[0] = gameObject.transform.position.x;
+        position[1] = gameObject.transform.position.y;
+        position[2] = gameObject.transform.position.z;
+        treeController.RemoveTree(position);
         Destroy(gameObject);
         }
     }

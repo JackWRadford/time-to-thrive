@@ -29,6 +29,7 @@ public class GameInventory : MonoBehaviour
 
     void Start()
     {
+        //put in awake?
         GameEvents.SaveInitiated += Save;
         GameEvents.LoadInitiated += Load;
     }
