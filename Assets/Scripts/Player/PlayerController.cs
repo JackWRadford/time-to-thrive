@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
-        //listen for save event
-        // GameEvents.SaveInitiated += Save;
+        GameEvents.SaveInitiated += Save;
+        GameEvents.LoadInitiated += Load;
 
     }
 
@@ -53,18 +53,29 @@ public class PlayerController : MonoBehaviour
         return this.defaultAttack;
     }
 
-    // void Save()
-    // {
-    //     SaveSystem.Save<Vector3>(transform.position, "playerposition");
-    // }
+    void Save()
+    {
+        PlayerData pd = new PlayerData(this);
+        SaveSystem.Save<float[]>(pd.position, "player");
+    }
 
-    // void Load()
-    // {
-    //     if(SaveSystem.SaveExists("playerposition"))
-    //     {
-    //         transform.position = SaveSystem.Load<Vector3>("playerposition");
-    //     }
-    // }
+    void Load()
+    {
+        if(SaveSystem.SaveExists("player"))
+        {
+            float[] data = SaveSystem.Load<float[]>("player");
+            //load and set player position
+            Vector3 position;
+            position.x = data[0];
+            position.y = data[1];
+            position.z = data[2];
+            this.transform.position = position;
+
+            //make player look down
+            lookDirection.Set(0, -1);
+            lookDirection.Normalize();
+        }
+    }
 
     // Update is called once per frame
     void Update()
