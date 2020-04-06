@@ -77,11 +77,8 @@ public class TallTree : Interactable
             Instantiate(apple,transform.position + randDist, Quaternion.identity);
         }
         //remove from treeController list of tree positions
-        float[] position = new float[3];
-        position[0] = gameObject.transform.position.x;
-        position[1] = gameObject.transform.position.y;
-        position[2] = gameObject.transform.position.z;
-        treeController.RemoveTree(position);
+        TreeData td = new TreeData(this);
+        treeController.RemoveTree(td.position);
         Destroy(gameObject);
         }
     }

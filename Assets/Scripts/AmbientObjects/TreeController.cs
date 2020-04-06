@@ -34,18 +34,15 @@ public class TreeController : MonoBehaviour
         foreach (var t in treesToSpawn)
         {
             GameObject loadedTree = Instantiate(tree, new Vector3(t[0], t[1], 0), Quaternion.identity);
-            position = new float[3];
             PopulateTreePositions(loadedTree);
         }
     }
 
     public void PopulateTreePositions(GameObject t)
     {
-        position = new float[3];
-        position[0] = t.transform.position.x;
-        position[1] = t.transform.position.y;
-        position[2] = t.transform.position.z;
-        treePositions.Add(position);
+        TallTree tts = t.GetComponent<TallTree>();
+        TreeData td = new TreeData(tts);
+        treePositions.Add(td.position);
     }
 
     void Save()
