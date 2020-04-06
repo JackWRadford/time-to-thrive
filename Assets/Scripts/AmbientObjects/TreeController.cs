@@ -20,12 +20,40 @@ public class TreeController : MonoBehaviour
         treePositions.RemoveAll(a => a.SequenceEqual(treeToRemove));
     }
 
-    public void GenerateTrees()
+    public bool CheckSpaceFree(float[] pos)
     {
-        for(int i = 0; i < 18; i++){
-            GameObject t = Instantiate(tree, new Vector3(Random.Range(-10, 11) + 0.5f,Random.Range(-10, 11)+0.5f,0), Quaternion.identity);
-            //get tree transform as List of three floats
-            PopulateTreePositions(t);
+        if(treePositions != null)
+            {
+                //check tree not already in that position
+                foreach (var arr in treePositions)
+                {
+                    if(arr.SequenceEqual(pos))
+                    {
+                        //tree already exists in that location
+                        return false;
+                    }
+                }
+            }
+        return true;
+    }
+
+    public void GenerateTrees(int numberOfTrees)
+    {
+        for(int i = 0; i < numberOfTrees; i++){
+            float x = Random.Range(-10, 11) + 0.5f;
+            float y = Random.Range(-10, 11) + 0.5f;
+            float[] randPos = {x,y,0};
+            if(CheckSpaceFree(randPos))
+            {
+                GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
+                //get tree transform as List of three floats
+                PopulateTreePositions(t);
+            }
+            else
+            {
+                Debug.Log("Stopped duplicate");
+                i--;
+            }
         }
     }
 
@@ -62,7 +90,7 @@ public class TreeController : MonoBehaviour
         else
         {
             Debug.Log("Generate random trees");
-            GenerateTrees();
+            GenerateTrees(64);
         }
     }
 

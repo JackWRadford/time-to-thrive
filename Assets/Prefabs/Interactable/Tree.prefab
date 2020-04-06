@@ -97,10 +97,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06050819, y: 0.12300825}
+  m_Offset: {x: 0.011879325, y: 0.12300825}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.52, y: 0}
     oldSize: {x: 3, y: 5}
     newSize: {x: 3, y: 5}
     adaptiveTilingThreshold: 0.5
@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27247941, y: 0.25735188}
+  m_Size: {x: 0.24006009, y: 0.25735188}
   m_EdgeRadius: 0
 --- !u!114 &259696106250184528
 MonoBehaviour:
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b91a07c87db4ccfbc44b202f1636bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treeController: {fileID: 0}
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
@@ -143,12 +144,13 @@ EdgeCollider2D:
   m_Points:
   - {x: 0.06532192, y: 0.9552741}
   - {x: 0.43729258, y: 1.0133862}
-  - {x: 0.1853497, y: 1.7922192}
-  - {x: 0.20607233, y: 2.2762747}
-  - {x: 0.051600218, y: 3.615038}
-  - {x: -0.053430557, y: 2.6646385}
-  - {x: -0.09649825, y: 2.44725}
-  - {x: -0.045007467, y: 2.3545666}
-  - {x: -0.09254718, y: 1.927836}
-  - {x: -0.29188251, y: 1.0685539}
+  - {x: 0.3312359, y: 1.7922192}
+  - {x: 0.27091146, y: 2.1790166}
+  - {x: 0.0029706955, y: 3.8257627}
+  - {x: -0.1020596, y: 3.199555}
+  - {x: -0.16133642, y: 2.7552323}
+  - {x: -0.20710349, y: 2.4031954}
+  - {x: -0.23843384, y: 1.9764647}
+  - {x: -0.3340912, y: 1.4081488}
+  - {x: -0.34051156, y: 1.0361345}
   - {x: 0.01706338, y: 0.92437935}
