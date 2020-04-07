@@ -756,6 +756,14 @@
       <Project>{53f16305-cc26-742d-096e-da72f4a7cef2}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
+      <Project>{e4e1f8d9-8e29-0272-85a6-ec64f47ea277}</Project>
+      <Name>Unity.2D.PixelPerfect.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.PixelPerfect.csproj">
+      <Project>{c9827802-5bbe-57ff-5491-ab63d9014f1a}</Project>
+      <Name>Unity.2D.PixelPerfect</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

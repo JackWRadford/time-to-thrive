@@ -14,15 +14,36 @@ ScriptsOnlyBuild:
     - PickUp
     - PlayerController
     - TallTree
+    - Tayx.Graphy.Advanced.G_AdvancedData
+    - Tayx.Graphy.Audio.G_AudioGraph
+    - Tayx.Graphy.Audio.G_AudioManager
+    - Tayx.Graphy.Audio.G_AudioMonitor
+    - Tayx.Graphy.Audio.G_AudioText
+    - Tayx.Graphy.Fps.G_FpsGraph
+    - Tayx.Graphy.Fps.G_FpsManager
+    - Tayx.Graphy.Fps.G_FpsMonitor
+    - Tayx.Graphy.Fps.G_FpsText
+    - Tayx.Graphy.GraphyDebugger
+    - Tayx.Graphy.GraphyManager
+    - Tayx.Graphy.Ram.G_RamGraph
+    - Tayx.Graphy.Ram.G_RamManager
+    - Tayx.Graphy.Ram.G_RamMonitor
+    - Tayx.Graphy.Ram.G_RamText
     - Tooltip
+    - TreeController
+    - UICrafting
     - UIInventory
     - UIItem
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineFramingTransposer
     - Cinemachine.CinemachinePipeline
+    - Cinemachine.CinemachinePixelPerfect
     - Cinemachine.CinemachineVirtualCamera
+    Unity.2D.PixelPerfect.dll:
+    - UnityEngine.U2D.PixelPerfectCamera
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
@@ -58,16 +79,10 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.VolumeProfile
     Unity.RenderPipelines.Universal.Runtime.dll:
     - UnityEngine.Experimental.Rendering.Universal.Light2D
-    - UnityEngine.Experimental.Rendering.Universal.Renderer2DData
     - UnityEngine.Rendering.Universal.Bloom
-    - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
-    - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
-    - UnityEngine.Rendering.Universal.UniversalRenderPipelineEditorResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    Unity.ShaderGraph.Editor.dll:
-    - UnityEditor.ShaderGraph.Drawing.MaterialGraphEditWindow
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
@@ -78,9 +93,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -99,6 +115,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Mask
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Scrollbar
+    - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
@@ -136,81 +153,121 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 708}
+      Script: {instanceID: 712}
     - Class: 114
-      Script: {instanceID: 11306}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11364}
+      Script: {instanceID: 11342}
     - Class: 114
-      Script: {instanceID: 11592}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11654}
+      Script: {instanceID: 11598}
     - Class: 114
-      Script: {instanceID: 11740}
+      Script: {instanceID: 11660}
     - Class: 114
-      Script: {instanceID: 11840}
+      Script: {instanceID: 11746}
     - Class: 114
-      Script: {instanceID: 11858}
+      Script: {instanceID: 11764}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11850}
     - Class: 114
-      Script: {instanceID: 11936}
+      Script: {instanceID: 11870}
     - Class: 114
-      Script: {instanceID: 12270}
+      Script: {instanceID: 11934}
     - Class: 114
-      Script: {instanceID: 12272}
+      Script: {instanceID: 11948}
+    - Class: 114
+      Script: {instanceID: 12124}
+    - Class: 114
+      Script: {instanceID: 12214}
+    - Class: 114
+      Script: {instanceID: 12274}
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12320}
+      Script: {instanceID: 12294}
     - Class: 114
-      Script: {instanceID: 12416}
+      Script: {instanceID: 12314}
     - Class: 114
-      Script: {instanceID: 12494}
+      Script: {instanceID: 12342}
     - Class: 114
-      Script: {instanceID: 12524}
+      Script: {instanceID: 12388}
     - Class: 114
-      Script: {instanceID: 12616}
+      Script: {instanceID: 12438}
     - Class: 114
-      Script: {instanceID: 12922}
+      Script: {instanceID: 12516}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 12546}
     - Class: 114
-      Script: {instanceID: 13012}
+      Script: {instanceID: 12638}
     - Class: 114
-      Script: {instanceID: 13058}
+      Script: {instanceID: 12946}
     - Class: 114
-      Script: {instanceID: 13190}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 13344}
+      Script: {instanceID: 13036}
     - Class: 114
-      Script: {instanceID: 13376}
+      Script: {instanceID: 13084}
     - Class: 114
-      Script: {instanceID: 13640}
+      Script: {instanceID: 13128}
     - Class: 114
-      Script: {instanceID: 13780}
+      Script: {instanceID: 13220}
     - Class: 114
-      Script: {instanceID: 13784}
+      Script: {instanceID: 13226}
     - Class: 114
-      Script: {instanceID: 13896}
+      Script: {instanceID: 13378}
     - Class: 114
-      Script: {instanceID: 13900}
+      Script: {instanceID: 13410}
     - Class: 114
-      Script: {instanceID: 14206}
+      Script: {instanceID: 13476}
     - Class: 114
-      Script: {instanceID: 14334}
+      Script: {instanceID: 13530}
     - Class: 114
-      Script: {instanceID: 14358}
+      Script: {instanceID: 13680}
     - Class: 114
-      Script: {instanceID: 14744}
+      Script: {instanceID: 13820}
+    - Class: 114
+      Script: {instanceID: 13824}
+    - Class: 114
+      Script: {instanceID: 13936}
+    - Class: 114
+      Script: {instanceID: 13940}
+    - Class: 114
+      Script: {instanceID: 14250}
+    - Class: 114
+      Script: {instanceID: 14324}
+    - Class: 114
+      Script: {instanceID: 14380}
+    - Class: 114
+      Script: {instanceID: 14406}
+    - Class: 114
+      Script: {instanceID: 14794}
+    - Class: 114
+      Script: {instanceID: 14870}
     - Class: 114
       Script: {instanceID: 14912}
     - Class: 114
-      Script: {instanceID: 15054}
+      Script: {instanceID: 14970}
     - Class: 114
-      Script: {instanceID: 15110}
+      Script: {instanceID: 15048}
     - Class: 114
-      Script: {instanceID: 15194}
+      Script: {instanceID: 15056}
+    - Class: 114
+      Script: {instanceID: 15114}
+    - Class: 114
+      Script: {instanceID: 15170}
+    - Class: 114
+      Script: {instanceID: 15198}
+    - Class: 114
+      Script: {instanceID: 15232}
+    - Class: 114
+      Script: {instanceID: 15242}
+    - Class: 114
+      Script: {instanceID: 15260}
+    - Class: 114
+      Script: {instanceID: 15310}
+    - Class: 114
+      Script: {instanceID: 25786}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -261,101 +318,101 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11306}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11426}
+      Script: {instanceID: 11432}
     - Class: 114
-      Script: {instanceID: 11534}
+      Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11654}
+      Script: {instanceID: 11660}
     - Class: 114
-      Script: {instanceID: 11658}
+      Script: {instanceID: 11664}
     - Class: 114
-      Script: {instanceID: 11740}
+      Script: {instanceID: 11746}
     - Class: 114
-      Script: {instanceID: 11774}
+      Script: {instanceID: 11784}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11934}
     - Class: 114
-      Script: {instanceID: 11958}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 12322}
+      Script: {instanceID: 12344}
     - Class: 114
-      Script: {instanceID: 12394}
+      Script: {instanceID: 12416}
     - Class: 114
-      Script: {instanceID: 12524}
+      Script: {instanceID: 12546}
     - Class: 114
-      Script: {instanceID: 12584}
+      Script: {instanceID: 12606}
     - Class: 114
-      Script: {instanceID: 12642}
+      Script: {instanceID: 12664}
     - Class: 114
-      Script: {instanceID: 12848}
+      Script: {instanceID: 12872}
     - Class: 114
-      Script: {instanceID: 12890}
+      Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 12954}
+      Script: {instanceID: 12978}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 13092}
     - Class: 114
-      Script: {instanceID: 13376}
+      Script: {instanceID: 13410}
     - Class: 114
-      Script: {instanceID: 13402}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13546}
+      Script: {instanceID: 13586}
     - Class: 114
-      Script: {instanceID: 13716}
+      Script: {instanceID: 13756}
     - Class: 114
-      Script: {instanceID: 13780}
+      Script: {instanceID: 13820}
     - Class: 114
-      Script: {instanceID: 13784}
+      Script: {instanceID: 13824}
     - Class: 114
-      Script: {instanceID: 13802}
+      Script: {instanceID: 13842}
     - Class: 114
-      Script: {instanceID: 13808}
-    - Class: 114
-      Script: {instanceID: 13938}
-    - Class: 114
-      Script: {instanceID: 13970}
+      Script: {instanceID: 13848}
     - Class: 114
       Script: {instanceID: 13978}
     - Class: 114
-      Script: {instanceID: 14206}
+      Script: {instanceID: 14012}
     - Class: 114
-      Script: {instanceID: 14232}
+      Script: {instanceID: 14020}
     - Class: 114
-      Script: {instanceID: 14318}
+      Script: {instanceID: 14250}
     - Class: 114
-      Script: {instanceID: 14334}
+      Script: {instanceID: 14276}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 14364}
     - Class: 114
-      Script: {instanceID: 14638}
+      Script: {instanceID: 14380}
     - Class: 114
-      Script: {instanceID: 14684}
+      Script: {instanceID: 14438}
     - Class: 114
-      Script: {instanceID: 14824}
+      Script: {instanceID: 14686}
     - Class: 114
-      Script: {instanceID: 14872}
+      Script: {instanceID: 14732}
     - Class: 114
-      Script: {instanceID: 14912}
+      Script: {instanceID: 14876}
     - Class: 114
-      Script: {instanceID: 15076}
+      Script: {instanceID: 14928}
     - Class: 114
-      Script: {instanceID: 15078}
-    - Class: 114
-      Script: {instanceID: 15110}
+      Script: {instanceID: 14970}
     - Class: 114
       Script: {instanceID: 15136}
     - Class: 114
       Script: {instanceID: 15138}
     - Class: 114
-      Script: {instanceID: 15172}
+      Script: {instanceID: 15170}
     - Class: 114
-      Script: {instanceID: 15256}
+      Script: {instanceID: 15196}
     - Class: 114
-      Script: {instanceID: 15262}
+      Script: {instanceID: 15200}
+    - Class: 114
+      Script: {instanceID: 15236}
+    - Class: 114
+      Script: {instanceID: 15326}
+    - Class: 114
+      Script: {instanceID: 15332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -385,6 +442,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineStateDrivenCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 93fc328acd09bcfd49804de5b7c2995e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Fps
+    className: G_FpsText
   - hash:
       serializedVersion: 2
       Hash: 3c08375166df118bd1801438fc36b92f
@@ -525,6 +588,12 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
+      Hash: c478294b18ad4129197b16c5f565b128
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy
+    className: GraphyDebugger
+  - hash:
+      serializedVersion: 2
       Hash: 7dbf450932234158be58ca2027563dcb
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -549,7 +618,7 @@ ScriptsOnlyBuild:
     className: CinemachineExternalCamera
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: e450dcdd5dcb607b0e110c31d9cb0c5b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIItem
@@ -579,7 +648,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 7f222881f811895ecf361b8740e1b451
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemDatabase
@@ -633,6 +702,12 @@ ScriptsOnlyBuild:
     className: CameraSwitcher
   - hash:
       serializedVersion: 2
+      Hash: d3e1e5e343d9ca4cd2feb2400a93a573
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy
+    className: GraphyManager
+  - hash:
+      serializedVersion: 2
       Hash: bdb2aa563ff34cd96dfe8e46b3382012
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -651,6 +726,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: e1ee2d6edc5c544555d337d300c56ac6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Fps
+    className: G_FpsManager
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -661,6 +742,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameEvents
+  - hash:
+      serializedVersion: 2
+      Hash: b469e004d1b7f4e1492197dc8d4dc56a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.CustomizationScene
+    className: CustomizeGraphy
+  - hash:
+      serializedVersion: 2
+      Hash: 407cd073e918be72093f98306fb47a6f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Advanced
+    className: G_AdvancedData
   - hash:
       serializedVersion: 2
       Hash: 5e1b42111795132786218294341ee87e
@@ -789,6 +882,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerToggle
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Crafting
+  - hash:
+      serializedVersion: 2
       Hash: dbeab19c836bd50c0a0e371615445b64
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -867,7 +966,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 36bd27f0f831ba81bbd1b162e37458e8
+      Hash: bd7d92574efdcc39bc1097c422cd646f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TallTree
@@ -879,7 +978,7 @@ ScriptsOnlyBuild:
     className: CinemachineComposer
   - hash:
       serializedVersion: 2
-      Hash: 41354318ccee0d29b167fd4db4e10ad4
+      Hash: 3b37d171ef77d16b9bc4378bc1a5343a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameInventory
@@ -889,6 +988,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerToggleHistory
+  - hash:
+      serializedVersion: 2
+      Hash: d5d5b47e59a15c5b72713555b7a000cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.CustomizationScene
+    className: UpdateTextWithSliderValue
+  - hash:
+      serializedVersion: 2
+      Hash: 5765d6300946dc01c47fa9a41b70ddb6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Fps
+    className: G_FpsGraph
   - hash:
       serializedVersion: 2
       Hash: 15882a52798c275361cd0a3ada984ec5
@@ -913,6 +1024,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachinePipeline
+  - hash:
+      serializedVersion: 2
+      Hash: e95b5849b54502016fabc01a9ec4ad29
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Ram
+    className: G_RamText
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -975,10 +1092,22 @@ ScriptsOnlyBuild:
     className: CinemachineTargetGroup
   - hash:
       serializedVersion: 2
+      Hash: 07b10ec6743430d549314b87e8e67f9d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Audio
+    className: G_AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: 1f0602e7bad1e0a9cba31ce292eee8bb
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerWidget
+  - hash:
+      serializedVersion: 2
+      Hash: 1b92988a55396830baca92f66cfd570f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Audio
+    className: G_AudioGraph
   - hash:
       serializedVersion: 2
       Hash: f050e4ebd311386367bb1906f9218b01
@@ -1149,6 +1278,12 @@ ScriptsOnlyBuild:
     className: PixelPerfectCamera
   - hash:
       serializedVersion: 2
+      Hash: d5d5b47e59a15c5b72713555b7a000cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.CustomizationScene
+    className: ForceSliderToPowerOf2
+  - hash:
+      serializedVersion: 2
       Hash: df819f0bc77c8d047eca1df91bbaa90d
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -1203,6 +1338,12 @@ ScriptsOnlyBuild:
     className: CinemachineBlenderSettings
   - hash:
       serializedVersion: 2
+      Hash: d5d5b47e59a15c5b72713555b7a000cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.CustomizationScene
+    className: ForceSliderToMultipleOf3
+  - hash:
+      serializedVersion: 2
       Hash: c0201dbecd85f700bcdff493a272631d
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1233,6 +1374,12 @@ ScriptsOnlyBuild:
     className: ColorAdjustments
   - hash:
       serializedVersion: 2
+      Hash: 059e947208fbd17dc6d5d52ada6a4827
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Ram
+    className: G_RamManager
+  - hash:
+      serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1251,7 +1398,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 611dfc2a1b6a0ab86024e8014cd0403b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1335,10 +1482,22 @@ ScriptsOnlyBuild:
     className: ShadowCaster2D
   - hash:
       serializedVersion: 2
+      Hash: e22f45bf916d4a6396202657bd4059c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Ram
+    className: G_RamGraph
+  - hash:
+      serializedVersion: 2
       Hash: 8d35f16c5022311c6f4d9432be73bfcf
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerEnumHistory
+  - hash:
+      serializedVersion: 2
+      Hash: 1fe7347e8ecf4f528aa7d68864fd5419
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Fps
+    className: G_FpsMonitor
   - hash:
       serializedVersion: 2
       Hash: 89229a620f85ef21de336ab85a13d351
@@ -1387,6 +1546,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Outline
+  - hash:
+      serializedVersion: 2
+      Hash: e2ae2875fdbfcafb9754310f2bd2f70d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UICrafting
   - hash:
       serializedVersion: 2
       Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
@@ -1473,6 +1638,12 @@ ScriptsOnlyBuild:
     className: Toggle
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Ram
+    className: G_RamMonitor
+  - hash:
+      serializedVersion: 2
       Hash: 1f0602e7bad1e0a9cba31ce292eee8bb
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -1491,10 +1662,22 @@ ScriptsOnlyBuild:
     className: CinemachineClearShot
   - hash:
       serializedVersion: 2
+      Hash: ff9f6dc0f9591445d4193bbb7396df28
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Audio
+    className: G_AudioText
+  - hash:
+      serializedVersion: 2
       Hash: 7072231382eb3c4871b3dd75ad0227e1
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: 64b8678b18a4aff33702e590b68db7f3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TreeController
   - hash:
       serializedVersion: 2
       Hash: 098b08e77f16fc740b87d79978b382b6
@@ -1509,6 +1692,12 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: be3793efdd72cdd3aa963814d025d4c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.CustomizationScene
+    className: G_CUIColorPicker
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1519,6 +1708,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: Vignette
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Tayx.Graphy.Audio
+    className: G_AudioMonitor
   - hash:
       serializedVersion: 2
       Hash: 8b8b18ce5ce466450710494b38db41e5
@@ -1543,6 +1738,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Unity.2D.PixelPerfect.dll
+    namespaceName: UnityEngine.U2D
+    className: CinemachinePixelPerfect
+  - hash:
+      serializedVersion: 2
+      Hash: 63bdc2cf3273aa9bf650350f19d2af61
+    assemblyName: Unity.2D.PixelPerfect.dll
+    namespaceName: UnityEngine.U2D
+    className: PixelPerfectCamera
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity
