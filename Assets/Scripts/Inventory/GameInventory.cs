@@ -16,6 +16,7 @@ public class GameInventory : MonoBehaviour
         instance = this;
 
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
+        
     }
 
     #endregion
@@ -31,7 +32,8 @@ public class GameInventory : MonoBehaviour
     {
         //put in awake?
         GameEvents.SaveInitiated += Save;
-        GameEvents.LoadInitiated += Load;
+        //GameEvents.LoadInitiated += Load;
+        Load();
     }
 
     public void RemoveSelectedItemIfExists()

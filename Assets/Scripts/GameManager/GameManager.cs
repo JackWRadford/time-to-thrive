@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject inventory;
     public GameObject canvas;
+    public GameObject player;
 
+    void Awake()
+    {
+        Instantiate(player);
+    }
     void Start()
     {
         Load();

@@ -11,7 +11,12 @@ public class TreeController : MonoBehaviour
     void Awake()
     {
         GameEvents.SaveInitiated += Save;
-        GameEvents.LoadInitiated += Load;
+        //GameEvents.LoadInitiated += Load;
+    }
+
+    void Start()
+    {
+        Load();
     }
 
     public void RemoveTree(float[] treeToRemove)

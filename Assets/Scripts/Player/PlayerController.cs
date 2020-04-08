@@ -21,15 +21,16 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
-    }
-
-    void Start()
-    {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
         GameEvents.SaveInitiated += Save;
         GameEvents.LoadInitiated += Load;
+    }
+
+    void Start()
+    {
+        
 
     }
 
@@ -152,5 +153,11 @@ public class PlayerController : MonoBehaviour
                 this.attack = this.defaultAttack;
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        GameEvents.SaveInitiated -= Save;
+        GameEvents.LoadInitiated -= Load;
     }
 }
