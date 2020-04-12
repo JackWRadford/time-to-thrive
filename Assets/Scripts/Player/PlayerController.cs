@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -120,6 +121,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        if((Input.GetMouseButtonDown(1))&&(this.heldItem.placeable))
+        {
+            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+            Vector3 itemToPlacePos = new Vector3((float)Math.Round(this.transform.position.x + 0.5f),(float)Math.Round(this.transform.position.y + 0.5f),0);
+            Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+        }
         this.heldItem = uiInventory.GetSelectedItem();
         UpdateStats();
         // if(uiInventory.GetSelectedItem() != null)
@@ -153,6 +160,10 @@ public class PlayerController : MonoBehaviour
                 this.attack = this.defaultAttack;
             }
         }
+        // if((this.heldItem != null)&&(this.heldItem.placeable))
+        // {
+            
+        // }
     }
 
     void OnDestroy()

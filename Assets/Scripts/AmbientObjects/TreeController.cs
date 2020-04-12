@@ -95,7 +95,7 @@ public class TreeController : MonoBehaviour
         else
         {
             Debug.Log("Generate random trees");
-            GenerateTrees(64);
+            GenerateTrees(10);
         }
     }
 
