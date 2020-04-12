@@ -45,7 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\FollowPlayerCam.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
      <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
@@ -64,6 +63,7 @@
      <Compile Include="Assets\Scripts\Inventory\Tooltip.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIItem.cs" />
+     <Compile Include="Assets\Scripts\Other\FollowPlayerCam.cs" />
      <Compile Include="Assets\Scripts\Other\Interactable.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Saving\GameEvents.cs" />

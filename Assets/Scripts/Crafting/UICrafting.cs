@@ -15,6 +15,7 @@ public class UICrafting : MonoBehaviour
     public GameObject weaponsSection;
     public GameObject armourSection;
 
+    public GameObject buildSection;
 
     void Update()
     {
@@ -60,6 +61,10 @@ public class UICrafting : MonoBehaviour
             
             case "Armour":
                 ChangeSection(armourSection);
+                break;
+
+            case "Build":
+                ChangeSection(buildSection);
                 break;
 
             default:

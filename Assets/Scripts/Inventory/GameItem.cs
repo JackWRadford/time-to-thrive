@@ -15,7 +15,9 @@ public class GameItem
     public int maxCount;
     public int slot;
 
-    public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe, int count, int maxCount, int slot)
+    public bool placeable;
+
+    public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe, int count, int maxCount, int slot, bool placeable)
     {
         this.id = id;
         this.title = title;
@@ -26,6 +28,7 @@ public class GameItem
         this.count = count;
         this.maxCount = maxCount;
         this.slot = slot;
+        this.placeable = placeable;
     }
 
     //copy constructor
@@ -40,5 +43,6 @@ public class GameItem
         this.count = item.count;
         this.maxCount = item.maxCount;
         this.slot = item.slot;
+        this.placeable = item.placeable;
     }
 }
