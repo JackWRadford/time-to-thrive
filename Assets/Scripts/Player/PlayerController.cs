@@ -16,12 +16,14 @@ public class PlayerController : MonoBehaviour
     Vector2 move = new Vector2(1,0);
     private UIInventory uiInventory;
     private GameItem heldItem;
+    private ObjectManager objectManager;
 
     private static bool allowedToMove = true;
 
     void Awake()
     {
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
+        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
@@ -123,9 +125,19 @@ public class PlayerController : MonoBehaviour
         }
         if((Input.GetMouseButtonDown(1))&&(this.heldItem.placeable))
         {
+            //place object
             GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-            Vector3 itemToPlacePos = new Vector3((float)Math.Round(this.transform.position.x + 0.5f),(float)Math.Round(this.transform.position.y + 0.5f),0);
-            Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+            //position to place object
+            float x = (float)Math.Round(this.transform.position.x + 0.5f) + 0.5f;
+            float y = (float)Math.Round(this.transform.position.y + 0.5f) + 0.5f;
+            //check space is free
+            if(objectManager.IsSpaceFree(x,y))
+            {
+                Vector3 itemToPlacePos = new Vector3(x,y,0);
+                Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                objectManager.AddObject(x,y,this.heldItem.title);
+            }
+            //add object to gameManager list of objects 
         }
         this.heldItem = uiInventory.GetSelectedItem();
         UpdateStats();
