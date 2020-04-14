@@ -123,21 +123,23 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if((Input.GetMouseButtonDown(1))&&(this.heldItem.placeable))
+        if((Input.GetMouseButtonDown(1))&&(this.heldItem != null))
         {
-            //place object
-            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-            //position to place object
-            float x = (float)Math.Round(this.transform.position.x + 0.5f) + 0.5f;
-            float y = (float)Math.Round(this.transform.position.y + 0.5f) + 0.5f;
-            //check space is free
-            if(objectManager.IsSpaceFree(x,y))
+            if(this.heldItem.placeable)
             {
-                Vector3 itemToPlacePos = new Vector3(x,y,0);
-                Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
-                objectManager.AddObject(x,y,this.heldItem.title);
+                //place object
+                GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                //position to place object
+                float x = (float)Math.Round(this.transform.position.x + 0.5f) + 0.5f;
+                float y = (float)Math.Round(this.transform.position.y + 0.5f) + 0.5f;
+                //check space is free
+                if(objectManager.IsSpaceFree(x,y))
+                {
+                    Vector3 itemToPlacePos = new Vector3(x,y,0);
+                    Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                    objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
+                }
             }
-            //add object to gameManager list of objects 
         }
         this.heldItem = uiInventory.GetSelectedItem();
         UpdateStats();
