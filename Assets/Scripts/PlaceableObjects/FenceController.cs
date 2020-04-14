@@ -78,7 +78,7 @@ public class FenceController : MonoBehaviour
 
     public Sprite CalcSprite()
     {
-        string sprt = "simpleFence_0";
+        //string sprt = "simpleFence_0";
         int f = 0;
         if((!up)&&(!down)&&(!left)&&(!right))
         {
@@ -121,6 +121,43 @@ public class FenceController : MonoBehaviour
             //sprt = "simpleFence_2";
             f = 6;
         }
+        else if((up)&&(down)&&(left)&&(right))
+        {
+            f = 7;
+        }
+        else if((up)&&(!down)&&(left)&&(!right))
+        {
+            f = 8;
+        }
+        else if((up)&&(!down)&&(!left)&&(right))
+        {
+            f = 9;
+        }
+        else if((!up)&&(down)&&(left)&&(!right))
+        {
+            f = 10;
+        }
+        else if((!up)&&(down)&&(!left)&&(right))
+        {
+            f = 11;
+        }
+        else if((!up)&&(down)&&(left)&&(right))
+        {
+            f = 12;
+        }
+        else if((up)&&(!down)&&(left)&&(right))
+        {
+            f = 13;
+        }
+        else if((up)&&(down)&&(left)&&(!right))
+        {
+            f = 14;
+        }
+        else if((up)&&(down)&&(!left)&&(right))
+        {
+            f = 15;
+        }
+
         Sprite[] allFences = Resources.LoadAll<Sprite>("Sprites/Placeable/FenceWood");
 
         //return allFences.Single(s => s.name == sprt);

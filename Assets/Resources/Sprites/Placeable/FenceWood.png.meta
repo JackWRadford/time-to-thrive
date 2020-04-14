@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1cd9cac7e9844814aa6dae9d102b45bc
+guid: 38de744c728f71443abab8746efa6ddf
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -23,6 +23,33 @@ TextureImporter:
   - first:
       213: 7897077996948171226
     second: FenceWood_6
+  - first:
+      213: 8769218949786260100
+    second: FenceWood_7
+  - first:
+      213: -5494725591259106215
+    second: FenceWood_8
+  - first:
+      213: 1780139358371410717
+    second: FenceWood_9
+  - first:
+      213: -8368497315911271240
+    second: FenceWood_10
+  - first:
+      213: -7880615920268815669
+    second: FenceWood_11
+  - first:
+      213: -7218878568268592973
+    second: FenceWood_12
+  - first:
+      213: -7904742430153617386
+    second: FenceWood_13
+  - first:
+      213: 7119412313826370107
+    second: FenceWood_14
+  - first:
+      213: -2233709581514151471
+    second: FenceWood_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -286,6 +313,195 @@ TextureImporter:
       bones: []
       spriteID: ad926a3099e089d60800000000000000
       internalID: 7897077996948171226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48252ab6c2682b970800000000000000
+      internalID: 8769218949786260100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954b0c2ef20deb3b0800000000000000
+      internalID: -5494725591259106215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d137b6a905354b810800000000000000
+      internalID: 1780139358371410717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc7c4587002ddb80800000000000000
+      internalID: -8368497315911271240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2d615e29d62a290800000000000000
+      internalID: -7880615920268815669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b88bad703461db90800000000000000
+      internalID: -7218878568268592973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6105cb114a6bc4290800000000000000
+      internalID: -7904742430153617386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b32a92777cb3dc260800000000000000
+      internalID: 7119412313826370107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceWood_15
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9667668f44001e0800000000000000
+      internalID: -2233709581514151471
       vertices: []
       indices: 
       edges: []
