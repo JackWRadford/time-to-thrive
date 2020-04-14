@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FenceController : MonoBehaviour
 {
+
+    public bool up = false;
+    public bool down = false;
+    public bool left = false;
+    public bool right = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +36,7 @@ public class FenceController : MonoBehaviour
                 if(hit.collider.GetComponent<FenceController>())
                 {
                     Debug.Log("Fence Down");
+                    
                 }
             }
         }
@@ -41,6 +48,9 @@ public class FenceController : MonoBehaviour
                 if(hit.collider.GetComponent<FenceController>())
                 {
                     Debug.Log("Fence Left");
+                    hit.collider.GetComponent<FenceController>().right = true;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    this.left = true;
                 }
             }
         }
@@ -52,9 +62,46 @@ public class FenceController : MonoBehaviour
                 if(hit.collider.GetComponent<FenceController>())
                 {
                     Debug.Log("Fence Right");
+                    hit.collider.GetComponent<FenceController>().left = true;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    this.right = true;
                 }
             }
         }
+        UpdateConnections();
     }
 
+    public Sprite CalcSprite()
+    {
+        string sprt = "simpleFence_0";
+        if((!up)&&(!down)&&(!left)&&(!right))
+        {
+            //no connections
+            sprt = "simpleFence_0";
+        }else if((!up)&&(!down)&&(left)&&(!right))
+        {
+            //left connection
+            sprt = "simpleFence_3";
+        }
+        else if((!up)&&(!down)&&(!left)&&(right))
+        {
+            //right connection
+            sprt = "simpleFence_1";
+        }
+        else if((!up)&&(!down)&&(left)&&(right))
+        {
+            //left and right connection
+            sprt = "simpleFence_2";
+        }
+        Sprite[] allFences = Resources.LoadAll<Sprite>("Sprites/Placeable/WoodFence");
+
+        return allFences.Single(s => s.name == sprt);
+    }
+
+    public void UpdateConnections()
+    {
+        //update sprite
+        GetComponent<SpriteRenderer>().sprite = CalcSprite();
+    }
+    
 }
