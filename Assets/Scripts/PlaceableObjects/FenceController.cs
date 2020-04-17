@@ -76,49 +76,51 @@ public class FenceController : MonoBehaviour
         UpdateConnections();
     }
 
-    public Sprite CalcSprite()
-    {
-        //string sprt = "simpleFence_0";
+    public int GetFenceType(){
+
+        float offsetX = 0f;
+        float offsetY = 0.09f;
+
+        float sizeX = 0.25f;
+        float sizeY = 0.17f;
+
         int f = 0;
+
         if((!up)&&(!down)&&(!left)&&(!right))
         {
-            //no connections
-            //sprt = "simpleFence_0";
             f = 0;
         }else if((!up)&&(!down)&&(left)&&(!right))
         {
-            //left connection
-            //sprt = "simpleFence_3";
+            sizeX = 1f;
+            offsetX = -0.37f;
             f = 3;
         }
         else if((!up)&&(!down)&&(!left)&&(right))
         {
-            //right connection
-            //sprt = "simpleFence_1";
+            sizeX = 1f;
+            offsetX = 0.37f;
             f = 1;
         }
         else if((!up)&&(!down)&&(left)&&(right))
         {
-            //left and right connection
-            //sprt = "simpleFence_2";
+            sizeX = 1.7f;
             f = 2;
         }
         else if((up)&&(!down)&&(!left)&&(!right))
         {
-            //up connection
-            //sprt = "simpleFence_2";
+            offsetY = 0.3f;
+            sizeY = 1f;
             f = 5;
         }
         else if((!up)&&(down)&&(!left)&&(!right))
         {
-            //down connection
-            //sprt = "simpleFence_2";
+            offsetY = -0.3f;
+            sizeY = 1f;
             f = 4;
         }
         else if((up)&&(down)&&(!left)&&(!right))
         {
-            //up and down connection
-            //sprt = "simpleFence_2";
+            sizeY = 1.7f;
             f = 6;
         }
         else if((up)&&(down)&&(left)&&(right))
@@ -127,26 +129,38 @@ public class FenceController : MonoBehaviour
         }
         else if((up)&&(!down)&&(left)&&(!right))
         {
+            offsetY = 0.3f;
+            sizeY = 1f;
             f = 8;
         }
         else if((up)&&(!down)&&(!left)&&(right))
         {
+            offsetY = 0.3f;
+            sizeY = 1f;
             f = 9;
         }
         else if((!up)&&(down)&&(left)&&(!right))
         {
+            offsetY = -0.3f;
+            sizeY = 1f;
             f = 10;
         }
         else if((!up)&&(down)&&(!left)&&(right))
         {
+            offsetY = -0.3f;
+            sizeY = 1f;
             f = 11;
         }
         else if((!up)&&(down)&&(left)&&(right))
         {
+            offsetY = -0.3f;
+            sizeY = 1f;
             f = 12;
         }
         else if((up)&&(!down)&&(left)&&(right))
         {
+            offsetY = 0.3f;
+            sizeY = 1f;
             f = 13;
         }
         else if((up)&&(down)&&(left)&&(!right))
@@ -158,16 +172,31 @@ public class FenceController : MonoBehaviour
             f = 15;
         }
 
+        //set collision box offset and size
+        GetComponent<BoxCollider2D>().offset = new Vector2(offsetX, offsetY);
+        GetComponent<BoxCollider2D>().size = new Vector2(sizeX, sizeY);
+
+        return f;
+    }
+
+    public void CalcSprite()
+    {
         Sprite[] allFences = Resources.LoadAll<Sprite>("Sprites/Placeable/FenceWood");
 
         //return allFences.Single(s => s.name == sprt);
-        return allFences[f];
+        GetComponent<SpriteRenderer>().sprite = allFences[GetFenceType()];
+        //return allFences[f];
     }
 
+    public void CalcCollision(){
+        
+    }
     public void UpdateConnections()
     {
         //update sprite
-        GetComponent<SpriteRenderer>().sprite = CalcSprite();
+        //GetComponent<SpriteRenderer>().sprite = CalcSprite();
+        CalcSprite();
+        //update box collider 2D (done in GetFenceType())
     }
     
 }
