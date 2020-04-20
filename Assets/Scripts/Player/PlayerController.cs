@@ -129,9 +129,10 @@ public class PlayerController : MonoBehaviour
             {
                 //place object
                 GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                //position to place object
-                float x = (float)Math.Round(this.transform.position.x + 0.5f) + 0.5f;
-                float y = (float)Math.Round(this.transform.position.y + 0.5f) + 0.5f;
+                //position to place object (depending on look direction (infornt of plater))
+
+                float x = (float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f;
+                float y = (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f;
                 //check space is free
                 if(objectManager.IsSpaceFree(x,y))
                 {
@@ -148,6 +149,60 @@ public class PlayerController : MonoBehaviour
         //     Debug.Log("holding: " + heldItem.title);
         // }
     }
+
+    //calculate placement offset depending on look direction
+    public Vector2 PlaceOffset()
+    {
+        //default to right
+        Vector2 placeOffset = new Vector2(0.5f, -0.5f);
+
+        if((lookDirection.x == 0)&&(lookDirection.y == 1))
+        {
+            //up
+            placeOffset = new Vector2(-0.5f, 0.5f);
+        }else if((lookDirection.x == 0)&&(lookDirection.y == -1))
+        {
+            //down
+            placeOffset = new Vector2(-0.5f, -1f);
+        }else if((lookDirection.x == -1)&&(lookDirection.y == 0))
+        {
+            //left
+            placeOffset = new Vector2(-1f, -0.5f);
+        }else if((lookDirection.x == 1)&&(lookDirection.y == 0))
+        {
+            //right
+            placeOffset = new Vector2(0.5f, -0.5f);
+        }
+
+        // switch (lookDirection)
+        // {
+        //     case {x:0,y:1}:
+        //         //up
+        //         placeOffset = new Vector2(-0.5f, 0.5f);
+        //         break;
+
+        //     case {x:0,y:-1}:
+        //         //down
+        //         placeOffset = new Vector2(-0.5f, -1f);
+        //         break;
+
+        //     case {x:-1,y:0}:
+        //         //left
+        //         placeOffset = new Vector2(-1f, -0.5f);
+        //         break;
+
+        //     case {x:1,y:0}:
+        //         //right
+        //         placeOffset = new Vector2(0.5f, -0.5f);
+        //         break;
+            
+        //     default:
+        //         break;
+        // }
+
+        return placeOffset;
+    }
+
     //use to stop framerate issues
     void FixedUpdate()
     {
