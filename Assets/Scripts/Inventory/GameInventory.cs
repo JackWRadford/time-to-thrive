@@ -283,7 +283,8 @@ public class GameInventory : MonoBehaviour
 
                 //add new item to inventory
                 Debug.Log("Craft: " + itemToCraft.title);
-                GiveItem(itemToCraft.title);
+                //GiveItem(itemToCraft.title);
+                PickUpItem(itemToCraft.title);
             }
             else
             {
