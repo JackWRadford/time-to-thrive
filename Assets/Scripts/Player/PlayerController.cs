@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private UIInventory uiInventory;
     private GameItem heldItem;
     private ObjectManager objectManager;
+    private GameObject highlight;
 
     private static bool allowedToMove = true;
 
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     {
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        highlight = GameObject.Find("Highlight");
+        highlight.SetActive(false);
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
@@ -144,10 +147,23 @@ public class PlayerController : MonoBehaviour
         }
         this.heldItem = uiInventory.GetSelectedItem();
         UpdateStats();
-        // if(uiInventory.GetSelectedItem() != null)
-        // {
-        //     Debug.Log("holding: " + heldItem.title);
-        // }
+        if(this.heldItem != null)
+        {
+            //check if held item is placeable
+            if(this.heldItem.placeable)
+            {
+                //set highlight position
+                highlight.transform.position = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,(float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f,0);
+                //highlight.transform.position = this.transform.position;
+                //set highlight visible
+                highlight.SetActive(true);
+            }else{
+                //set highlight invisible
+                highlight.SetActive(false);
+            }
+        }else{
+            highlight.SetActive(false);
+        }
     }
 
     //calculate placement offset depending on look direction
@@ -163,42 +179,16 @@ public class PlayerController : MonoBehaviour
         }else if((lookDirection.x == 0)&&(lookDirection.y == -1))
         {
             //down
-            placeOffset = new Vector2(-0.5f, -1f);
+            placeOffset = new Vector2(-0.5f, -1.5f);
         }else if((lookDirection.x == -1)&&(lookDirection.y == 0))
         {
             //left
-            placeOffset = new Vector2(-1f, -0.5f);
+            placeOffset = new Vector2(-1.5f, -0.5f);
         }else if((lookDirection.x == 1)&&(lookDirection.y == 0))
         {
             //right
             placeOffset = new Vector2(0.5f, -0.5f);
         }
-
-        // switch (lookDirection)
-        // {
-        //     case {x:0,y:1}:
-        //         //up
-        //         placeOffset = new Vector2(-0.5f, 0.5f);
-        //         break;
-
-        //     case {x:0,y:-1}:
-        //         //down
-        //         placeOffset = new Vector2(-0.5f, -1f);
-        //         break;
-
-        //     case {x:-1,y:0}:
-        //         //left
-        //         placeOffset = new Vector2(-1f, -0.5f);
-        //         break;
-
-        //     case {x:1,y:0}:
-        //         //right
-        //         placeOffset = new Vector2(0.5f, -0.5f);
-        //         break;
-            
-        //     default:
-        //         break;
-        // }
 
         return placeOffset;
     }
