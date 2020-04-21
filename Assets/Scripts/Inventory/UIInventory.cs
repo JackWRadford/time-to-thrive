@@ -69,16 +69,19 @@ public class UIInventory : MonoBehaviour
     {
         if(!PauseMenu.GameIsPaused)
         {
+            Debug.Log("game not paused");
             //check for 1-9 input and set selected slot
             //if(!inventoryIsOpen)
             //{
                 if((Input.GetKeyDown(KeyCode.Alpha1))&&(selectedSlot != 0))
                 {
                     SetSlotSelected(0);
+                    Debug.Log("0");
                 }
                 else if((Input.GetKeyDown(KeyCode.Alpha2))&&(selectedSlot != 1))
                 {
                     SetSlotSelected(1);
+                    Debug.Log("1");
                 }
                 else if((Input.GetKeyDown(KeyCode.Alpha3))&&(selectedSlot != 2))
                 {

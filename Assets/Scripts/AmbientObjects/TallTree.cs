@@ -11,7 +11,7 @@ public class TallTree : Interactable
     public GameObject apple;
     public GameObject log;
 
-    int health = 10;
+    int health = 1;
 
     // Start is called before the first frame update
     void Start()

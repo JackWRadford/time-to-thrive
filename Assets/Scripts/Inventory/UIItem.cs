@@ -17,7 +17,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private UIInventory uIInventory;
     //private Image slotBackground;
 
-    private Vector3 scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
+    private Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
 
     void Awake()
     {

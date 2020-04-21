@@ -34,8 +34,6 @@ public class GameInventory : MonoBehaviour
         GameEvents.SaveInitiated += Save;
         //GameEvents.LoadInitiated += Load;
         Load();
-
-        GiveItem("Fence");
     }
 
     public void RemoveSelectedItemIfExists()
