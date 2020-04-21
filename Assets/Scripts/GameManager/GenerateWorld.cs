@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class GenerateWorld : MonoBehaviour
 {
+
+    public ObjectManager objectManager;
     public GameObject tree;
     
-    
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        // //spawn trees in random positions
-        // for(int i = 0; i < 18; i++){
-        //     Instantiate(tree, new Vector3(Random.Range(-10, 11) + 0.5f,Random.Range(-10, 11)+0.5f,0), Quaternion.identity);
-        // }
-        
+        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Generate()
     {
-        
+        GenerateTrees(16);
+    }
+    
+    public void GenerateTrees(int numberOfTrees)
+    {
+        for(int i = 0; i < numberOfTrees; i++){
+            float x = Random.Range(-10, 11) + 0.5f;
+            float y = Random.Range(-10, 11) + 0.5f;
+            //float[] randPos = {x,y,0};
+            if(objectManager.IsSpaceFree(x,y))
+            {
+                GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
+                objectManager.AddObject(x,y,"Tree", t);
+            }
+            else
+            {
+                Debug.Log("Stopped duplicate");
+                i--;
+            }
+        }
     }
 }

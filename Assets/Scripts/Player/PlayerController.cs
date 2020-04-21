@@ -147,10 +147,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if(uiInventory.GetSelectedItem() != null)
-        {
-            this.heldItem = uiInventory.GetSelectedItem();
-        }
+        // if(uiInventory.GetSelectedItem() != null)
+        // {
+        //     this.heldItem = uiInventory.GetSelectedItem();
+        // }
+        
+        this.heldItem = uiInventory.GetSelectedItem();
+        
         UpdateStats();
         if(this.heldItem != null)
         {

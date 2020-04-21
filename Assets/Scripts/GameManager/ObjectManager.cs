@@ -5,17 +5,26 @@ using System.Linq;
 
 public class ObjectManager : MonoBehaviour
 {
-    Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
+    public GenerateWorld generateWorld;
+
+    private Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
     //Dictionary<List<float>, GameObject> objectsGO = new Dictionary<List<float>, GameObject>();
 
     void Awake()
     {
+        generateWorld = GetComponent<GenerateWorld>();
+
         GameEvents.SaveInitiated += Save;
     }
 
     void Start()
     {
         Load();
+    }
+
+    public Dictionary<List<float>, string> GetObjects()
+    {
+        return this.objectsString;
     }
 
     public void AddObject(float x, float y, string title, GameObject go)
@@ -27,7 +36,16 @@ public class ObjectManager : MonoBehaviour
 
     public void RemoveObject(float x, float y)
     {
-        
+        List<float> pos = new List<float>{x,y};
+        foreach (var objPos in objectsString.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                Debug.Log("remove from dictionary:" + objectsString[objPos]);
+                objectsString.Remove(objPos);
+                return;
+            }
+        }
     }
 
     public bool IsSpaceFree(float x, float y)
@@ -43,12 +61,6 @@ public class ObjectManager : MonoBehaviour
         }
         Debug.Log("space free");
         return true;
-    }
-
-    public bool IsFenceAdjacent(float x, float y)
-    {
-        
-        return false;
     }
 
     public void SpawnSavedObjects(Dictionary<List<float>, string> objects)
@@ -75,6 +87,11 @@ public class ObjectManager : MonoBehaviour
         {
             Debug.Log("Save Exists");
             SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, string>>("Objects"));
+        }
+        else
+        {
+            //generate world
+            generateWorld.Generate();
         }
     }
 }

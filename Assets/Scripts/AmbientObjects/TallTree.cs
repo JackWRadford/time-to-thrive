@@ -7,6 +7,7 @@ public class TallTree : Interactable
 {
     EdgeCollider2D edgeCollider2D;
     public TreeController treeController;
+    public ObjectManager objectManager;
     public GameObject stick;
     public GameObject apple;
     public GameObject log;
@@ -18,6 +19,7 @@ public class TallTree : Interactable
     {
         edgeCollider2D = GetComponent<EdgeCollider2D>();
         treeController = GameObject.Find("GameManager").GetComponent<TreeController>();
+        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
     }
 
     // Update is called once per frame
@@ -78,7 +80,9 @@ public class TallTree : Interactable
         }
         //remove from treeController list of tree positions
         TreeData td = new TreeData(this);
-        treeController.RemoveTree(td.position);
+        Debug.Log("Remove tree");
+        objectManager.RemoveObject(td.position[0], td.position[1]);
+        //treeController.RemoveTree(td.position);
         Destroy(gameObject);
         }
     }
