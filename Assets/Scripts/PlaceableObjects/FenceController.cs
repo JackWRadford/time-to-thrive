@@ -11,7 +11,7 @@ public class FenceController : MonoBehaviour
     public bool left = false;
     public bool right = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Debug.Log("Place fence");
         //on placement raycast UDLR to check for adjacent fences
