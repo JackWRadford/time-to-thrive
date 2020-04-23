@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private ObjectManager objectManager;
     private GameObject highlight;
 
+    public Sprite greenHighlight;
+    public Sprite redHighlight;
+
     private static bool allowedToMove = true;
 
     void Awake()
@@ -162,7 +165,18 @@ public class PlayerController : MonoBehaviour
             {
                 //set highlight position
                 highlight.transform.position = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,(float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f,0);
-                //highlight.transform.position = this.transform.position;
+                
+                //check if highlight position is free
+                if(objectManager.IsSpaceFree((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,(float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f))
+                {
+                    //space free (green)
+                    highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                }
+                else{
+                    //space not free (red)
+                    highlight.GetComponent<SpriteRenderer>().sprite = redHighlight;
+                }
+
                 //set highlight visible
                 highlight.SetActive(true);
             }else{

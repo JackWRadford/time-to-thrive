@@ -114,11 +114,11 @@ public class ObjectManager : MonoBehaviour
         {
             if(objPos.SequenceEqual(pos))
             {
-                Debug.Log("space filled");
+                //Debug.Log("space filled");
                 return false;
             }
         }
-        Debug.Log("space free");
+        //Debug.Log("space free");
         return true;
     }
 

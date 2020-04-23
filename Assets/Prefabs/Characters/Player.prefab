@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  highlight: {fileID: 333745949630972147, guid: 427a167e1a2bac74e9c538bfc83007d6,
-    type: 3}
+  greenHighlight: {fileID: 21300000, guid: 92c08de2417970c478889f814d591c0b, type: 3}
+  redHighlight: {fileID: 21300000, guid: 9bcac203e9448fc4db38432d0a6269c6, type: 3}
 --- !u!95 &2744648002022792907
 Animator:
   serializedVersion: 3
