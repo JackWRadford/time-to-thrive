@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TallTree : Interactable
+public class TallTree : Interactable, ILoadState
 {
     EdgeCollider2D edgeCollider2D;
     public TreeController treeController;
@@ -12,7 +12,7 @@ public class TallTree : Interactable
     public GameObject apple;
     public GameObject log;
 
-    int health = 1;
+    public int health = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,28 @@ public class TallTree : Interactable
     void Update()
     {
         
+    }
+
+    //set state from saved state
+    public void LoadState(dynamic data)
+    {
+        Debug.Log(data.health);
+        this.health = data.health;
+        Debug.Log(this.health);
+    }
+
+    public void UpdateState()
+    {
+        //find and remove data from objects list
+        objectManager.RemoveObject(this.transform.position.x,this.transform.position.y);
+        //add updated data to objects list
+        TreeData td = new TreeData(GetComponent<TallTree>());
+        objectManager.AddObject(this.transform.position.x,this.transform.position.y,"Tree",td);
+    }
+
+    public int GetHealth()
+    {
+        return this.health;
     }
 
     public override void Interact(GameObject go)
@@ -84,7 +106,10 @@ public class TallTree : Interactable
         objectManager.RemoveObject(td.position[0], td.position[1]);
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);
+        return;
         }
+        //update state to be saved
+        UpdateState();
     }
 
     //check if player is behind tree

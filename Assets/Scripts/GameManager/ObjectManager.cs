@@ -138,7 +138,15 @@ public class ObjectManager : MonoBehaviour
         foreach (var obj in objects)
         {
             GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
-            Instantiate(go, new Vector3(obj.Key[0], obj.Key[1], 0), Quaternion.identity);
+            GameObject goi = Instantiate(go, new Vector3(obj.Key[0], obj.Key[1], 0), Quaternion.identity);
+            goi.GetComponent<ILoadState>().LoadState(obj.Value);
+            //load state from save onto instantiated gameObject
+            // ILoadState script = goi.GetComponent<ILoadState>();
+            // //print(obj.Value.health);
+            // script.LoadState(obj.Value);
+
+            
+
             //populate list of objects
             objectsGO.Add(obj.Key, obj.Value);
         }

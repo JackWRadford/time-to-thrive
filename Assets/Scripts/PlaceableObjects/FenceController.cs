@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 [System.Serializable]
-public class FenceController : Interactable
+public class FenceController : Interactable, ILoadState
 {
 
     private ObjectManager objectManager;
@@ -86,11 +86,11 @@ public class FenceController : Interactable
     void Start()
     {
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
-        UpdateState();
+        SaveState();
     }
 
     //update state to be saved
-    public void UpdateState()
+    public void SaveState()
     {
         FenceData fd = new FenceData(this);
         //check object not already in that position (double save in same position)
@@ -99,6 +99,12 @@ public class FenceController : Interactable
             Debug.Log("Add fence");
             objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Fence", fd);
         }
+    }
+
+    //set state from saved state
+    public void LoadState(dynamic data)
+    {
+        
     }
 
     public int GetFenceType(){

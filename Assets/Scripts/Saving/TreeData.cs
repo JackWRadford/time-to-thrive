@@ -8,6 +8,8 @@ public class TreeData
     public float[] position;
     public string title = "Tree";
 
+    public int health = 10;
+
     public string GetTitle()
     {
         return this.title;
@@ -19,5 +21,7 @@ public class TreeData
         position[0] = tree.transform.position.x;
         position[1] = tree.transform.position.y;
         position[2] = tree.transform.position.z;
+
+        this.health = tree.GetHealth();
     }
 }
