@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce687c962911c2545954e42506a21863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  fence: {fileID: 531452904732949613, guid: fff99a6d254e96544a172b262c9f3f7b, type: 3}
   up: 0
   down: 0
   left: 0

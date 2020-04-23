@@ -6,8 +6,10 @@ using System.Linq;
 [System.Serializable]
 public class FenceController : Interactable, ILoadState
 {
-
+    public int health = 10;
     private ObjectManager objectManager;
+
+    public GameObject fence;
 
     public bool up = false;
     public bool down = false;
@@ -18,6 +20,14 @@ public class FenceController : Interactable, ILoadState
     {
 
         Debug.Log("Place fence");
+        checkConnections();
+
+        // objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        // UpdateState();
+    }
+
+    public void checkConnections()
+    {
         //on placement raycast UDLR to check for adjacent fences
         //RaycastHit2D[] hitsU = Physics2D.RaycastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
         Debug.Log(this.transform.position);
@@ -78,9 +88,70 @@ public class FenceController : Interactable, ILoadState
             }
         }
         UpdateConnections();
+    }
 
-        // objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
-        // UpdateState();
+    public void checkConnectionsRemove()
+    {
+        //on placement raycast UDLR to check for adjacent fences
+        //RaycastHit2D[] hitsU = Physics2D.RaycastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
+        Debug.Log(this.transform.position);
+        RaycastHit2D[] hitsU = Physics2D.RaycastAll(this.transform.position + new Vector3(0, 0.3f, 0), new Vector2(0,1), 0.7f, LayerMask.GetMask("InteractiveObjects"));
+        foreach (var hit in hitsU)
+        {
+            if(hit.collider != null)
+            { 
+                if(hit.collider.GetComponent<FenceController>())
+                {
+                    Debug.Log("Fence Up");
+                    hit.collider.GetComponent<FenceController>().down = false;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    //this.up = false;
+                }
+            }
+        }
+        RaycastHit2D[] hitsD = Physics2D.RaycastAll(this.transform.position + new Vector3(0, -0.3f, 0), new Vector2(0,-1), 0.7f, LayerMask.GetMask("InteractiveObjects"));
+        foreach (var hit in hitsD)
+        {
+            if(hit.collider != null)
+            { 
+                if(hit.collider.GetComponent<FenceController>())
+                {
+                    Debug.Log("Fence Down");
+                    hit.collider.GetComponent<FenceController>().up = false;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    //this.down = false;
+                }
+            }
+        }
+        RaycastHit2D[] hitsL = Physics2D.RaycastAll(this.transform.position + new Vector3(-0.3f, 0.1f, 0), new Vector2(-1,0), 0.7f, LayerMask.GetMask("InteractiveObjects"));
+        foreach (var hit in hitsL)
+        {
+            if(hit.collider != null)
+            { 
+                if(hit.collider.GetComponent<FenceController>())
+                {
+                    Debug.Log("Fence Left");
+                    hit.collider.GetComponent<FenceController>().right = false;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    //this.left = false;
+                }
+            }
+        }
+        RaycastHit2D[] hitsR = Physics2D.RaycastAll(this.transform.position + new Vector3(0.3f, 0.1f, 0), new Vector2(1,0), 0.7f, LayerMask.GetMask("InteractiveObjects"));
+        foreach (var hit in hitsR)
+        {
+            if(hit.collider != null)
+            { 
+                if(hit.collider.GetComponent<FenceController>())
+                {
+                    Debug.Log("Fence Right");
+                    hit.collider.GetComponent<FenceController>().left = false;
+                    hit.collider.GetComponent<FenceController>().UpdateConnections();
+                    //this.right = false;
+                }
+            }
+        }
+        UpdateConnections();
     }
 
     void Start()
@@ -105,6 +176,50 @@ public class FenceController : Interactable, ILoadState
     public void LoadState(dynamic data)
     {
         
+    }
+
+    public override void Interact(GameObject go)
+    {
+        base.Interact(go);
+        
+        //Debug.Log("Cutting down " + transform.name + " with health: " + health);
+        //check playerController exists
+        if(go.GetComponent<PlayerController>() != null)
+        {
+            //check player is holding an item
+            if(go.GetComponent<PlayerController>().GetHeldItem() != null)
+            {
+                //check for WoodCutting stat
+                if(go.GetComponent<PlayerController>().GetHeldItem().stats.ContainsKey("WoodCutting"))
+                {
+                    health-=go.GetComponent<PlayerController>().GetHeldItem().stats["WoodCutting"];
+                }
+                else
+                {
+                    health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+                }
+            }
+            else
+            {
+                health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+            }
+
+        }
+        if(health<=0)
+        {
+            //drop fence
+            Instantiate(fence,transform.position, Quaternion.identity);
+            
+            //remove from objectManager list
+            FenceData fd = new FenceData(this);
+            Debug.Log("Remove fence");
+            objectManager.RemoveObject(fd.position[0], fd.position[1]);
+            //treeController.RemoveTree(td.position);
+            //remove any connections
+            checkConnectionsRemove();
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public int GetFenceType(){
