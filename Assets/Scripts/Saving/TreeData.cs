@@ -6,6 +6,12 @@ using UnityEngine;
 public class TreeData
 {
     public float[] position;
+    public string title = "Tree";
+
+    public string GetTitle()
+    {
+        return this.title;
+    }
 
     public TreeData(TallTree tree)
     {

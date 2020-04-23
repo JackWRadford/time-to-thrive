@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class FenceController : MonoBehaviour
+[System.Serializable]
+public class FenceController : Interactable
 {
+
+    private ObjectManager objectManager;
 
     public bool up = false;
     public bool down = false;
@@ -13,6 +16,7 @@ public class FenceController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         Debug.Log("Place fence");
         //on placement raycast UDLR to check for adjacent fences
         //RaycastHit2D[] hitsU = Physics2D.RaycastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
@@ -74,6 +78,27 @@ public class FenceController : MonoBehaviour
             }
         }
         UpdateConnections();
+
+        // objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        // UpdateState();
+    }
+
+    void Start()
+    {
+        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        UpdateState();
+    }
+
+    //update state to be saved
+    public void UpdateState()
+    {
+        FenceData fd = new FenceData(this);
+        //check object not already in that position (double save in same position)
+        if(objectManager.IsSpaceFree(this.transform.position.x,this.transform.position.y))
+        {
+            Debug.Log("Add fence");
+            objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Fence", fd);
+        }
     }
 
     public int GetFenceType(){

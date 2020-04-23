@@ -141,9 +141,9 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector3 itemToPlacePos = new Vector3(x,y,0);
                     Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
-                    objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
-                    //remove a fence from inventory
-                    GameInventory.instance.RemoveAmountOfItem("Fence", 1);
+                    //objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
+                    //remove item from inventory
+                    GameInventory.instance.RemoveAmountOfItem(this.heldItem.title, 1);
                 }
             }
         }

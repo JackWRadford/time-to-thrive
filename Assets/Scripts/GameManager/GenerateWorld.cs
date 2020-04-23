@@ -26,8 +26,12 @@ public class GenerateWorld : MonoBehaviour
             //float[] randPos = {x,y,0};
             if(objectManager.IsSpaceFree(x,y))
             {
+                //GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
+                //objectManager.AddObject(x,y,"Tree", t);
+
                 GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
-                objectManager.AddObject(x,y,"Tree", t);
+                TreeData td = new TreeData(t.GetComponent<TallTree>());
+                objectManager.AddObject(x,y,"Tree",td);
             }
             else
             {
