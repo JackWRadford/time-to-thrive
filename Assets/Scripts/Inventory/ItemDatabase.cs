@@ -41,7 +41,7 @@ public class ItemDatabase : MonoBehaviour
             },
             1,16,-1, false),
             //Log
-            new GameItem(2, "Log", "Building",
+            new GameItem(2, "Log", "Material",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
@@ -66,7 +66,33 @@ public class ItemDatabase : MonoBehaviour
                 {"Stick", 1},
                 {"Log", 1}
             },
-            1,16,-1, true)
+            1,16,-1, true),
+            //WoodSword
+            new GameItem(5, "WoodSword", "Weapon",
+            new Dictionary<string, int>{
+                {"Attack", 3},
+            },
+            new Dictionary<string, int>{
+                {"Stick", 2},
+                {"Log", 1}
+            },
+            1,1,-1, false),
+            //RawBeef
+            new GameItem(6, "RawBeef", "Food",
+            new Dictionary<string, int>{
+                {"Nutrition", 2},
+                {"Poison", 4}
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false),
+            //Leather
+            new GameItem(7, "Leather", "Material",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false),
         };
     }
 }

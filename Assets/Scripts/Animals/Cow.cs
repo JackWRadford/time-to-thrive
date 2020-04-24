@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Cow : Interactable, ILoadState
 {
     public ObjectManager objectManager;
@@ -12,6 +13,9 @@ public class Cow : Interactable, ILoadState
     private float speed = 0.7f;
     private int timer = 0;
     private Vector2 lastPosition;
+
+    public GameObject rawBeef;
+    public GameObject leather;
 
     void Awake()
     {
@@ -56,6 +60,57 @@ public class Cow : Interactable, ILoadState
     public int GetHealth()
     {
         return this.health;
+    }
+
+    public override void Interact(GameObject go)
+    {
+        base.Interact(go);
+        
+        //Debug.Log("Cutting down " + transform.name + " with health: " + health);
+        //check playerController exists
+        if(go.GetComponent<PlayerController>() != null)
+        {
+            //check player is holding an item
+            if(go.GetComponent<PlayerController>().GetHeldItem() != null)
+            {
+                //check for WoodCutting stat
+                if(go.GetComponent<PlayerController>().GetHeldItem().stats.ContainsKey("Attack"))
+                {
+                    health-=go.GetComponent<PlayerController>().GetHeldItem().stats["Attack"];
+                }
+                else
+                {
+                    health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+                }
+            }
+            else
+            {
+                health-=go.GetComponent<PlayerController>().GetDefaultAttack();
+            }
+
+        }
+        if(health<=0)
+        {
+            //drop rawbeef
+            int randNumRawBeef = Random.Range(1,3);
+            for(int i = 0; i < randNumRawBeef; i++ )
+            {
+                Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+                Instantiate(rawBeef,transform.position + randDist, Quaternion.identity);
+            }
+            //drop leather
+            int randNumLeather = Random.Range(0,2);
+            for(int i = 0; i < randNumLeather; i++ )
+            {
+                Vector3 randDist = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+                Instantiate(leather,transform.position + randDist, Quaternion.identity);
+            }
+            
+            //remove from objectManager list
+            objectManager.RemoveObject(lastPosition.x, lastPosition.y);
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void GenerateMovement()

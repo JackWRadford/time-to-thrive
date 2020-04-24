@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9171338151524664243}
   - component: {fileID: -5200494453420034006}
   - component: {fileID: 3841886635640250555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adc23a892ca55149b0eedc5ec70b730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  objectManager: {fileID: 0}
+  rawBeef: {fileID: 4255589409656946441, guid: 2f51ee84baa86d148bfda3d7e80f2967, type: 3}
+  leather: {fileID: 5933289846554748662, guid: bc904af66719eb44c804f75fbe79266b, type: 3}
