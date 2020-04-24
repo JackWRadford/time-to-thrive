@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Cow : Interactable, ILoadState
 {
+
+    Animator animator;
     public ObjectManager objectManager;
     Rigidbody2D rb2D;
     Vector2 lookDirection = new Vector2(1,0);//direction player is looking
@@ -20,7 +22,7 @@ public class Cow : Interactable, ILoadState
     void Awake()
     {
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
-        // animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
         GameEvents.PreSaveInitiated += Save;
@@ -44,9 +46,9 @@ public class Cow : Interactable, ILoadState
             lookDirection.Normalize();
         }
 
-        // animator.SetFloat("Horizontal", lookDirection.x);
-        // animator.SetFloat("Vertical", lookDirection.y);
-        // animator.SetFloat("Speed", move.magnitude);
+        animator.SetFloat("Horizontal", lookDirection.x);
+        animator.SetFloat("Vertical", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
     }
 
     //use to stop framerate issues
