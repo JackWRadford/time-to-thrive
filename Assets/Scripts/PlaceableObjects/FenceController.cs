@@ -6,7 +6,7 @@ using System.Linq;
 [System.Serializable]
 public class FenceController : Interactable, ILoadState
 {
-    public int health = 10;
+    public int health = 1;
     private ObjectManager objectManager;
 
     public GameObject fence;

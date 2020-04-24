@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
+     <Compile Include="Assets\Scripts\Animals\Cow.cs" />
      <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
      <Compile Include="Assets\Scripts\Crafting\UICrafting.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
