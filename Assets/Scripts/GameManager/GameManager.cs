@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
+        GameEvents.OnPreSaveInitiated();
         GameEvents.OnSaveInitiated();
     }
 

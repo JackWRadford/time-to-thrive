@@ -31,9 +31,7 @@ public class TallTree : Interactable, ILoadState
     //set state from saved state
     public void LoadState(dynamic data)
     {
-        Debug.Log(data.health);
         this.health = data.health;
-        Debug.Log(this.health);
     }
 
     public void UpdateState()

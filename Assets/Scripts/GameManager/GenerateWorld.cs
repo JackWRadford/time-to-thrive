@@ -54,9 +54,9 @@ public class GenerateWorld : MonoBehaviour
                 //GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
                 //objectManager.AddObject(x,y,"Tree", t);
 
-                GameObject t = Instantiate(cow, new Vector3(x,y,0), Quaternion.identity);
-                // TreeData td = new TreeData(t.GetComponent<TallTree>());
-                // objectManager.AddObject(x,y,"Tree",td);
+                GameObject c = Instantiate(cow, new Vector3(x,y,0), Quaternion.identity);
+                CowData cd = new CowData(c.GetComponent<Cow>());
+                objectManager.AddObject(x,y,"Cow",cd);
             }
             else
             {
