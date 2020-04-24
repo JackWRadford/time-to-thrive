@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9171338151524664243}
   - component: {fileID: -5200494453420034006}
   - component: {fileID: 3841886635640250555}
+  - component: {fileID: 6031667109714052618}
   m_Layer: 8
   m_Name: Cow
   m_TagString: Untagged
@@ -147,3 +148,22 @@ MonoBehaviour:
   objectManager: {fileID: 0}
   rawBeef: {fileID: 4255589409656946441, guid: 2f51ee84baa86d148bfda3d7e80f2967, type: 3}
   leather: {fileID: 5933289846554748662, guid: bc904af66719eb44c804f75fbe79266b, type: 3}
+--- !u!95 &6031667109714052618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9171338151524664240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d8b5d1d7077c624e92edb9732920652, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
