@@ -17,7 +17,7 @@ public class GenerateWorld : MonoBehaviour
     public void Generate()
     {
         GenerateTrees(16);
-        SpawnAnimals(5);
+        SpawnAnimals(10);
     }
     
     public void GenerateTrees(int numberOfTrees)

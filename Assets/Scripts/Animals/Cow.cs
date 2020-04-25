@@ -120,7 +120,7 @@ public class Cow : Interactable, ILoadState
 
         if(timer <= 0)
         {
-            timer = Random.Range(100, 500);
+            timer = Random.Range(500, 1000);
             //new random direction
             int randX = Random.Range(-1,2);
             int randY = Random.Range(-1,2);
