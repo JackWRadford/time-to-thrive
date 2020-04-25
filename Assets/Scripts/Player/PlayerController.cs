@@ -8,6 +8,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;//speed of player
     private int attack = 1;//player attack damage
     private int defaultAttack = 1;
+    private int health = 10;//player health
+    private int maxHealth = 10;
+    private int hunger = 10;//player hunger
+    private int maxHunger = 10;
+    private int thurst = 10;//player thurst
+    private int maxThurst = 10;
+
+    private Vector2 spawn;
 
     Animator animator;
     //hiding inherited rigidbody2D fix?
@@ -33,6 +41,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
 
+        spawn = new Vector2(0,0);
+
         GameEvents.SaveInitiated += Save;
         GameEvents.LoadInitiated += Load;
     }
@@ -41,6 +51,135 @@ public class PlayerController : MonoBehaviour
     {
         
 
+    }
+
+    public int GetHealth()
+    {
+        return this.health;
+    }
+    public int GetThurst()
+    {
+        return this.thurst;
+    }
+    public int GetHunger()
+    {
+        return this.hunger;
+    }
+
+    //add health to player
+    public void IncrementHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.health + 1 <= this.maxHealth)
+            {
+                this.health++;
+            }
+            else
+            {
+                //health full
+                return;
+            }
+        }
+    }
+
+    //remove health from player
+    public void DecrementHealth(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.health - 1 > 0)
+            {
+                this.health--;
+            }
+            else
+            {
+                //health empty (player dies)
+                this.health = 0;
+                //Kill player (set position to spawn (0,0,0))
+                this.transform.position = spawn;
+                //reset hunger, thurst and health
+                ResetHTH();
+                return;
+            }
+        }
+    }
+
+    //add thurst to player
+    public void IncrementThurst(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.thurst + 1 <= this.maxThurst)
+            {
+                this.thurst++;
+            }
+            else
+            {
+                //thurst full
+                return;
+            }
+        }
+    }
+
+    //remove thurst from player
+    public void DecrementThurst(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.thurst - 1 > 0)
+            {
+                this.thurst--;
+            }
+            else
+            {
+                //thurst empty (player takes damage)
+                this.thurst = 0;
+                return;
+            }
+        }
+    }
+
+    //add hunger to player
+    public void IncrementHunger(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.hunger + 1 <= this.maxHunger)
+            {
+                this.hunger++;
+            }
+            else
+            {
+                //hunger full
+                return;
+            }
+        }
+    }
+
+    //remove hunger from player
+    public void DecrementHunger(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if(this.hunger - 1 > 0)
+            {
+                this.hunger--;
+            }
+            else
+            {
+                //hunger empty (player takes damage)
+                this.hunger = 0;
+                return;
+            }
+        }
+    }
+
+    public void ResetHTH()
+    {
+        this.health = maxHealth;
+        this.hunger = maxHunger;
+        this.thurst = maxThurst;
     }
 
     public static void SetAllowedToMove(bool tof)
