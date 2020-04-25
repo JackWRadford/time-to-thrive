@@ -188,7 +188,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                         }
                     }
                 }
-                else if(selectedItem != null)
+                else if(selectedItem.item != null)
                 {
                     //check enough to split
                     if(selectedItem.item.count > 1)
