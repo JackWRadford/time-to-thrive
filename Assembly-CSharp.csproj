@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Saving\TreeData.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\UI\PlayerHTH.cs" />
      <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Color Picker\G_CUIColorPicker.cs" />
      <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\CustomizeGraphy.cs" />
      <Compile Include="Assets\Tayx\Graphy - Ultimate Stats Monitor\Scene\Customization Scripts\ForceSliderToMultipleOf3.cs" />

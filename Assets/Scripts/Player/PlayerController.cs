@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private int maxHunger = 10;
     private int thurst = 10;//player thurst
     private int maxThurst = 10;
-
     private Vector2 spawn;
 
     Animator animator;
@@ -26,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private GameItem heldItem;
     private ObjectManager objectManager;
     private GameObject highlight;
+    private PlayerHTH playerHTH;
 
     public Sprite greenHighlight;
     public Sprite redHighlight;
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         highlight = GameObject.Find("Highlight");
+        playerHTH = GameObject.Find("PlayerHTH").GetComponent<PlayerHTH>();
         highlight.SetActive(false);
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
@@ -49,8 +50,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
-
+        this.health = 5;
+        playerHTH.UpdateHealth(this.health);
     }
 
     public int GetHealth()
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateHealth(this.health);
     }
 
     //remove health from player
