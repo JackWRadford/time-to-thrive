@@ -51,8 +51,17 @@ public class ItemButtons : MonoBehaviour
     public void ConsumeItem()
     {
         //Add effects to player health/thurst/hunger
-        print(this.gameItem.stats["Nutrition"]);
-        playerController.IncrementHunger(this.gameItem.stats["Nutrition"]);
+        if(this.gameItem.stats != null)
+        {
+            if(this.gameItem.stats.ContainsKey("Nutrition"))
+            {
+                playerController.IncrementHunger(this.gameItem.stats["Nutrition"]);
+            }
+            if(this.gameItem.stats.ContainsKey("Hydration"))
+            {
+                playerController.IncrementThurst(this.gameItem.stats["Hydration"]);
+            }
+        }
 
         //remove item from game inventory
         if(this.gameItem.count < 2)
