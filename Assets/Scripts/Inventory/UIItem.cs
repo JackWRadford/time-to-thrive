@@ -15,6 +15,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private bool selected = false;
     private bool scaledUp = false;
     private UIInventory uIInventory;
+    private ItemButtons itemButtons;
     //private Image slotBackground;
 
     private Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
@@ -24,6 +25,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         selectedItem = GameObject.Find("SelectedItem").GetComponent<UIItem>();
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
         uIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
+        itemButtons = GameObject.Find("ItemButtons").GetComponent<ItemButtons>();
         //slotBackground = transform.GetComponent<Image>();
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
@@ -204,6 +206,22 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                         selectedItem.UpdateItem(selectedItem.item);
                     }
                 }
+                else if((this.item != null)&&(this.selectedItem.item == null))
+                {
+                    //set tooltip to not active if active
+                    if(tooltip.gameObject.activeInHierarchy)
+                    {
+                        tooltip.gameObject.SetActive(false);
+                    }
+                    //if buttons already active, make non active
+                    if(itemButtons.gameObject.activeInHierarchy)
+                    {
+                        itemButtons.gameObject.SetActive(false);
+                    }
+                    //show itemButtons
+                    itemButtons.gameObject.SetActive(true);
+                    itemButtons.SetGameItem(this.item);
+                }
             }
         
     }
@@ -212,6 +230,12 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     {
         if((this.item != null)&&(selectedItem.item == null))
         {
+            //if buttons already active, make non active
+            if(itemButtons.gameObject.activeInHierarchy)
+            {
+                itemButtons.gameObject.SetActive(false);
+            }
+
             tooltip.GenerateTooltip(this.item);
         }
     }
