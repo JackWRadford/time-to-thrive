@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateHealth(this.health);
     }
 
     //add thurst to player
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateThurst(this.thurst);
     }
 
     //remove thurst from player
@@ -142,6 +144,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateThurst(this.thurst);
     }
 
     //add hunger to player
@@ -159,6 +162,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateHunger(this.hunger);
     }
 
     //remove hunger from player
@@ -177,6 +181,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        playerHTH.UpdateHunger(this.hunger);
     }
 
     public void ResetHTH()
