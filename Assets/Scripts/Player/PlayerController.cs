@@ -280,8 +280,10 @@ public class PlayerController : MonoBehaviour
                 GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
                 //position to place object (depending on look direction (infornt of plater))
 
-                float x = (float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f;
-                float y = (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f;
+                // float x = (float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f;
+                // float y = (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f;
+                float x = GetPosInfrontOfPlayer().x;
+                float y = GetPosInfrontOfPlayer().y;
                 //check space is free
                 if(objectManager.IsSpaceFree(x,y))
                 {
@@ -330,6 +332,13 @@ public class PlayerController : MonoBehaviour
             highlight.SetActive(false);
         }
     }
+
+    //get vector3 of tile infrom of player
+    public Vector3 GetPosInfrontOfPlayer()
+    {
+        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f, (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f, 0);
+        return pos;
+    } 
 
     //calculate placement offset depending on look direction
     public Vector2 PlaceOffset()

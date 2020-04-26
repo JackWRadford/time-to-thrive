@@ -5,9 +5,16 @@ using UnityEngine;
 public class ItemButtons : MonoBehaviour
 {
     private GameItem gameItem;
+    private PlayerController playerController;
+
+    void Awake()
+    {
+        
+    }
 
     void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         gameObject.SetActive(false);
     }
 
@@ -30,7 +37,11 @@ public class ItemButtons : MonoBehaviour
     public void DropItem()
     {
         //Instantiate item infront of player
-
+        GameObject drop = Resources.Load<GameObject>("PickUpItems/" + this.gameItem.title);
+        for(int i = 0; i < this.gameItem.count; i++)
+        {
+            Instantiate(drop, playerController.GetPosInfrontOfPlayer(), Quaternion.identity);
+        }
         //remove item from game inventory
         GameInventory.instance.RemoveItem(this.gameItem);
 
