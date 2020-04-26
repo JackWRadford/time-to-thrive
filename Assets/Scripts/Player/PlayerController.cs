@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;//speed of player
     private int attack = 1;//player attack damage
     private int defaultAttack = 1;
-    private int health = 10;//player health
-    private int maxHealth = 10;
-    private int hunger = 10;//player hunger
-    private int maxHunger = 10;
-    private int thurst = 10;//player thurst
-    private int maxThurst = 10;
+    private int health = 20;//player health
+    private int maxHealth = 20;
+    private int hunger = 20;//player hunger
+    private int maxHunger = 20;
+    private int thurst = 20;//player thurst
+    private int maxThurst = 20;
     private Vector2 spawn;
 
     Animator animator;
@@ -50,8 +50,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        this.health = 5;
-        playerHTH.UpdateHealth(this.health);
+        this.health = 3;
+        this.thurst = 12;
+        this.hunger = 7;
+        playerHTH.UpdateAll(this.health, this.thurst, this.hunger);
     }
 
     public int GetHealth()
