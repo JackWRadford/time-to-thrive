@@ -249,6 +249,37 @@ public class GameInventory : MonoBehaviour
         }
     }
 
+    //remove certain amount of an item
+    public void RemoveAmountOfItem(GameItem itemToRemove, int amount)
+    {
+        int amountToRemove = amount;
+        foreach (var item in this.characterItems)
+        {
+            if(item == itemToRemove)
+            {
+                int t = item.count;
+                for (int i = 0; i < t; i++)
+                {
+                    item.count--;
+                    amountToRemove--;
+                    if(item.count <= 0)
+                    {
+                        RemoveItem(item);
+                    }
+                    else
+                    {
+                        inventoryUI.UpdateItemCount(item);
+                    }
+                    if(amountToRemove <= 0)
+                    {
+                        return;
+                    }
+                }
+                inventoryUI.UpdateItemCount(item);
+            }
+        }
+    }
+
 
     //check if item can be crafted from items in inventory
     public bool CanCraftItem(Dictionary<string,int> recipe)

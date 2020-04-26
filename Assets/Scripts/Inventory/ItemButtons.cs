@@ -53,7 +53,15 @@ public class ItemButtons : MonoBehaviour
         //Add effects to player health/thurst/hunger
 
         //remove item from game inventory
-        GameInventory.instance.RemoveItem(this.gameItem);
+        if(this.gameItem.count < 2)
+        {
+            GameInventory.instance.RemoveItem(this.gameItem);
+        }
+        else if(this.gameItem.count > 1)
+        {
+            //decrement count of item by 1
+            GameInventory.instance.RemoveAmountOfItem(this.gameItem, 1);
+        }
 
         gameObject.SetActive(false);
     }
