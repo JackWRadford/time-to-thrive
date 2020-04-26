@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;//speed of player
     private int attack = 1;//player attack damage
     private int defaultAttack = 1;
-    private int health = 20;//player health
+    private int health = 10;//player health
     private int maxHealth = 20;
-    private int hunger = 20;//player hunger
+    private int hunger = 10;//player hunger
     private int maxHunger = 20;
-    private int thurst = 20;//player thurst
+    private int thurst = 10;//player thurst
     private int maxThurst = 20;
     private Vector2 spawn;
 
@@ -50,9 +50,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        this.health = 3;
-        this.thurst = 12;
-        this.hunger = 7;
         playerHTH.UpdateAll(this.health, this.thurst, this.hunger);
     }
 
@@ -214,24 +211,41 @@ public class PlayerController : MonoBehaviour
     void Save()
     {
         PlayerData pd = new PlayerData(this);
-        SaveSystem.Save<float[]>(pd.position, "player");
+        // SaveSystem.Save<float[]>(pd.position, "player");
+        SaveSystem.Save<dynamic>(pd, "player");
     }
 
     void Load()
     {
         if(SaveSystem.SaveExists("player"))
         {
-            float[] data = SaveSystem.Load<float[]>("player");
+            //float[] data = SaveSystem.Load<float[]>("player");
             //load and set player position
+            // Vector3 position;
+            // position.x = data[0];
+            // position.y = data[1];
+            // position.z = data[2];
+            // this.transform.position = position;
+
+            PlayerData data = SaveSystem.Load<dynamic>("player");
+
+            //load player position
             Vector3 position;
-            position.x = data[0];
-            position.y = data[1];
-            position.z = data[2];
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
             this.transform.position = position;
 
             //make player look down
             lookDirection.Set(0, -1);
             lookDirection.Normalize();
+
+            //load player health, thurst, hunger
+            print(data.hunger);
+            this.health = data.health;
+            this.thurst = data.thurst;
+            this.hunger = data.hunger;
+            playerHTH.UpdateAll(this.hunger, this.thurst, this.health);
         }
     }
 
