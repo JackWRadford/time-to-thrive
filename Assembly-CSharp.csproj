@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\GameManager\ObjectManager.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameItem.cs" />
+     <Compile Include="Assets\Scripts\Inventory\ItemButtons.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemFollowMouse.cs" />
      <Compile Include="Assets\Scripts\Inventory\Old\Inventory.cs" />
