@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 spawn;
 
     private bool isRunning = false;
+    private float hungerTimer = 3.0f;
 
     Animator animator;
     //hiding inherited rigidbody2D fix?
@@ -189,7 +190,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.hunger - 1 > 0)
+            if(this.hunger > 0)
             {
                 this.hunger--;
             }
@@ -205,9 +206,9 @@ public class PlayerController : MonoBehaviour
 
     public void ResetHTH()
     {
-        this.health = maxHealth;
-        this.hunger = maxHunger;
-        this.thurst = maxThurst;
+        this.health = maxHealth/2;
+        this.hunger = maxHunger/2;
+        this.thurst = maxThurst/2;
     }
 
     public static void SetAllowedToMove(bool tof)
@@ -271,9 +272,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //check if hunger should be decremented when running
+    public void RunningHunger()
+    {
+        this.hungerTimer -= Time.deltaTime;
+        if(this.hungerTimer <= 0.0f)
+        {
+            DecrementHunger(5);
+            //reset timer
+            this.hungerTimer = 3.0f;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //see if the player should be running
         if(Input.GetKey(KeyCode.LeftControl))
         {
             //increase player speed
@@ -283,6 +297,12 @@ public class PlayerController : MonoBehaviour
         {
             //normal player speed
             IsRunning(false);
+        }
+
+        //check if should decrement hunger
+        if(this.isRunning)
+        {
+            RunningHunger();
         }
 
         float horizontal = Input.GetAxis("Horizontal");
