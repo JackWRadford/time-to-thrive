@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private int maxThurst = 20;
     private Vector2 spawn;
 
+    private bool isRunning = false;
+
     Animator animator;
     //hiding inherited rigidbody2D fix?
     Rigidbody2D rb2D;
@@ -51,6 +53,26 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerHTH.UpdateAll(this.health, this.thurst, this.hunger);
+    }
+
+    public void IsRunning(bool tof)
+    {
+        this.isRunning = tof;
+        if(tof)
+        {
+            //make player run
+            SetSpeed(5);
+        }
+        else
+        {
+            //make player walk
+            SetSpeed(3);
+        }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
     public int GetHealth()
@@ -252,6 +274,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.LeftControl))
+        {
+            //increase player speed
+            IsRunning(true);
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            //normal player speed
+            IsRunning(false);
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
