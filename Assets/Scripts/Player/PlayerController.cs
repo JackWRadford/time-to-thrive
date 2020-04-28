@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 spawn;
 
     private bool isRunning = false;
-    private float hungerTimer = 3.0f;
+    private float effectsTimer = 3.0f;
+    private float healthTimer = 3.0f;
 
     Animator animator;
     //hiding inherited rigidbody2D fix?
@@ -89,6 +90,15 @@ public class PlayerController : MonoBehaviour
         return this.hunger;
     }
 
+    //kill player
+    public void KillPlayer()
+    {
+        //set players position to spawn 
+        this.transform.position = spawn;
+        //reset hunger, thurst and health
+        ResetHTH();
+    }
+
     //add health to player
     public void IncrementHealth(int amount)
     {
@@ -112,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.health - 1 > 0)
+            if(this.health > 0)
             {
                 this.health--;
             }
@@ -120,10 +130,8 @@ public class PlayerController : MonoBehaviour
             {
                 //health empty (player dies)
                 this.health = 0;
-                //Kill player (set position to spawn (0,0,0))
-                this.transform.position = spawn;
-                //reset hunger, thurst and health
-                ResetHTH();
+                //Kill player
+                KillPlayer();
                 return;
             }
         }
@@ -153,7 +161,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.thurst - 1 > 0)
+            if(this.thurst > 0)
             {
                 this.thurst--;
             }
@@ -198,6 +206,7 @@ public class PlayerController : MonoBehaviour
             {
                 //hunger empty (player takes damage)
                 this.hunger = 0;
+                playerHTH.UpdateHunger(this.hunger);
                 return;
             }
         }
@@ -209,6 +218,8 @@ public class PlayerController : MonoBehaviour
         this.health = maxHealth/2;
         this.hunger = maxHunger/2;
         this.thurst = maxThurst/2;
+
+        playerHTH.UpdateAll(this.health, this.thurst, this.hunger);
     }
 
     public static void SetAllowedToMove(bool tof)
@@ -273,14 +284,28 @@ public class PlayerController : MonoBehaviour
     }
 
     //check if hunger should be decremented when running
-    public void RunningHunger()
+    public void RunningEffects()
     {
-        this.hungerTimer -= Time.deltaTime;
-        if(this.hungerTimer <= 0.0f)
+        this.effectsTimer -= Time.deltaTime;
+        if(this.effectsTimer <= 0.0f)
         {
-            DecrementHunger(5);
+            DecrementHunger(3);
+            DecrementThurst(1);
             //reset timer
-            this.hungerTimer = 3.0f;
+            this.effectsTimer = 3.0f;
+        }
+    }
+
+    //deplete health if hunger and thurst empty
+    public void DamageOverTime()
+    {
+        this.healthTimer -= Time.deltaTime;
+        if(this.healthTimer <= 0.0f)
+        {
+            //damage player
+            DecrementHealth(2);
+            //reset timer
+            this.healthTimer = 3.0f;
         }
     }
 
@@ -302,7 +327,13 @@ public class PlayerController : MonoBehaviour
         //check if should decrement hunger
         if(this.isRunning)
         {
-            RunningHunger();
+            RunningEffects();
+        }
+
+        //check if hunger and thurst depleted (if so damage player)
+        if((this.hunger == 0)&&(this.thurst == 0))
+        {
+            DamageOverTime();
         }
 
         float horizontal = Input.GetAxis("Horizontal");
