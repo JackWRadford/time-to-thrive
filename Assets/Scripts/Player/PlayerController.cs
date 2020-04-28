@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private int maxThurst = 20;
     private Vector2 spawn;
 
+    private bool allowedToRun = true;
     private bool isRunning = false;
     private float effectsTimer = 3.0f;
     private float healthTimer = 3.0f;
@@ -107,11 +108,12 @@ public class PlayerController : MonoBehaviour
             if(this.health + 1 <= this.maxHealth)
             {
                 this.health++;
+                SetAllowedToRun();
             }
             else
             {
                 //health full
-                return;
+                break;
             }
         }
         playerHTH.UpdateHealth(this.health);
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour
             if(this.health > 0)
             {
                 this.health--;
+                SetAllowedToRun();
             }
             else
             {
@@ -132,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 this.health = 0;
                 //Kill player
                 KillPlayer();
-                return;
+                break;
             }
         }
         playerHTH.UpdateHealth(this.health);
@@ -146,11 +149,12 @@ public class PlayerController : MonoBehaviour
             if(this.thurst + 1 <= this.maxThurst)
             {
                 this.thurst++;
+                SetAllowedToRun();
             }
             else
             {
                 //thurst full
-                return;
+                break;
             }
         }
         playerHTH.UpdateThurst(this.thurst);
@@ -164,12 +168,13 @@ public class PlayerController : MonoBehaviour
             if(this.thurst > 0)
             {
                 this.thurst--;
+                SetAllowedToRun();
             }
             else
             {
                 //thurst empty (player takes damage)
                 this.thurst = 0;
-                return;
+                break;
             }
         }
         playerHTH.UpdateThurst(this.thurst);
@@ -183,11 +188,12 @@ public class PlayerController : MonoBehaviour
             if(this.hunger + 1 <= this.maxHunger)
             {
                 this.hunger++;
+                SetAllowedToRun();
             }
             else
             {
                 //hunger full
-                return;
+                break;
             }
         }
         playerHTH.UpdateHunger(this.hunger);
@@ -201,13 +207,14 @@ public class PlayerController : MonoBehaviour
             if(this.hunger > 0)
             {
                 this.hunger--;
+                SetAllowedToRun();
             }
             else
             {
                 //hunger empty (player takes damage)
                 this.hunger = 0;
-                playerHTH.UpdateHunger(this.hunger);
-                return;
+                //playerHTH.UpdateHunger(this.hunger);
+                break;
             }
         }
         playerHTH.UpdateHunger(this.hunger);
@@ -309,18 +316,53 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //restore health if hunger and thurst are full
+    public void RecoverOverTime()
+    {
+        this.healthTimer -= Time.deltaTime;
+        if(this.healthTimer <= 0.0f)
+        {
+            //restore player health
+            IncrementHealth(2);
+            //reset timer
+            this.healthTimer = 3.0f;
+        }
+    }
+
+    //check if player is allowed to run
+    public void SetAllowedToRun()
+    {
+        if((this.hunger < this.maxHunger/4)||(this.thurst < this.maxThurst/4)||(this.health < this.maxHealth/4))
+        {
+            this.allowedToRun = false;
+        }
+        else{
+            this.allowedToRun = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         //see if the player should be running
         if(Input.GetKey(KeyCode.LeftControl))
         {
-            //increase player speed
-            IsRunning(true);
+            //check if player allowed to run
+            if(this.allowedToRun)
+            {
+                //increase player speed
+                IsRunning(true);
+            }
         }
         else if(Input.GetKeyUp(KeyCode.LeftControl))
         {
             //normal player speed
+            IsRunning(false);
+        }
+
+        //check if should stop player from running
+        if(!this.allowedToRun)
+        {
             IsRunning(false);
         }
 
@@ -331,9 +373,13 @@ public class PlayerController : MonoBehaviour
         }
 
         //check if hunger and thurst depleted (if so damage player)
+        //check if hunger and thurst are full (if so recover player health)
         if((this.hunger == 0)&&(this.thurst == 0))
         {
             DamageOverTime();
+        }else if((this.hunger == this.maxHunger)&&(this.thurst == this.maxThurst)&&(this.health != this.maxHealth))
+        {
+            RecoverOverTime();
         }
 
         float horizontal = Input.GetAxis("Horizontal");
