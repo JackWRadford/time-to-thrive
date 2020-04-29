@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Tent : MonoBehaviour
 {
-    private Vector3 entrancePos = new Vector3(0,-4,0);
+    private Vector3 entrancePos = new Vector3(0,-3.5f,0);
     //private GameObject player;
 
     void Start()

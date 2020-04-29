@@ -19,7 +19,7 @@ public class FenceController : Interactable, ILoadState
     void Awake()
     {
 
-        Debug.Log("Place fence");
+        //Debug.Log("Place fence");
         checkConnections();
 
         // objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
@@ -30,7 +30,7 @@ public class FenceController : Interactable, ILoadState
     {
         //on placement raycast UDLR to check for adjacent fences
         //RaycastHit2D[] hitsU = Physics2D.RaycastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
-        Debug.Log(this.transform.position);
+        //Debug.Log(this.transform.position);
         RaycastHit2D[] hitsU = Physics2D.RaycastAll(this.transform.position + new Vector3(0, 0.3f, 0), new Vector2(0,1), 1f, LayerMask.GetMask("InteractiveObjects"));
         foreach (var hit in hitsU)
         {
@@ -38,7 +38,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Up");
+                    //Debug.Log("Fence Up");
                     hit.collider.GetComponent<FenceController>().down = true;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     this.up = true;
@@ -52,7 +52,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Down");
+                    //Debug.Log("Fence Down");
                     hit.collider.GetComponent<FenceController>().up = true;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     this.down = true;
@@ -66,7 +66,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Left");
+                    //Debug.Log("Fence Left");
                     hit.collider.GetComponent<FenceController>().right = true;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     this.left = true;
@@ -80,7 +80,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Right");
+                    //Debug.Log("Fence Right");
                     hit.collider.GetComponent<FenceController>().left = true;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     this.right = true;
@@ -94,7 +94,7 @@ public class FenceController : Interactable, ILoadState
     {
         //on placement raycast UDLR to check for adjacent fences
         //RaycastHit2D[] hitsU = Physics2D.RaycastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
-        Debug.Log(this.transform.position);
+        //Debug.Log(this.transform.position);
         RaycastHit2D[] hitsU = Physics2D.RaycastAll(this.transform.position + new Vector3(0, 0.3f, 0), new Vector2(0,1), 0.7f, LayerMask.GetMask("InteractiveObjects"));
         foreach (var hit in hitsU)
         {
@@ -102,7 +102,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Up");
+                    //Debug.Log("Fence Up");
                     hit.collider.GetComponent<FenceController>().down = false;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     //this.up = false;
@@ -116,7 +116,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Down");
+                    //Debug.Log("Fence Down");
                     hit.collider.GetComponent<FenceController>().up = false;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     //this.down = false;
@@ -130,7 +130,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Left");
+                    //Debug.Log("Fence Left");
                     hit.collider.GetComponent<FenceController>().right = false;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     //this.left = false;
@@ -144,7 +144,7 @@ public class FenceController : Interactable, ILoadState
             { 
                 if(hit.collider.GetComponent<FenceController>())
                 {
-                    Debug.Log("Fence Right");
+                    //Debug.Log("Fence Right");
                     hit.collider.GetComponent<FenceController>().left = false;
                     hit.collider.GetComponent<FenceController>().UpdateConnections();
                     //this.right = false;
@@ -167,7 +167,7 @@ public class FenceController : Interactable, ILoadState
         //check object not already in that position (double save in same position)
         if(objectManager.IsSpaceFree(this.transform.position.x,this.transform.position.y))
         {
-            Debug.Log("Add fence");
+            //Debug.Log("Add fence");
             objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Fence", fd);
         }
     }
@@ -212,7 +212,7 @@ public class FenceController : Interactable, ILoadState
             
             //remove from objectManager list
             FenceData fd = new FenceData(this);
-            Debug.Log("Remove fence");
+            //Debug.Log("Remove fence");
             objectManager.RemoveObject(fd.position[0], fd.position[1]);
             //treeController.RemoveTree(td.position);
             //remove any connections

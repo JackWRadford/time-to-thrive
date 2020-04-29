@@ -75,12 +75,12 @@ public class UIInventory : MonoBehaviour
                 if((Input.GetKeyDown(KeyCode.Alpha1))&&(selectedSlot != 0))
                 {
                     SetSlotSelected(0);
-                    Debug.Log("0");
+                    //Debug.Log("0");
                 }
                 else if((Input.GetKeyDown(KeyCode.Alpha2))&&(selectedSlot != 1))
                 {
                     SetSlotSelected(1);
-                    Debug.Log("1");
+                    //Debug.Log("1");
                 }
                 else if((Input.GetKeyDown(KeyCode.Alpha3))&&(selectedSlot != 2))
                 {
@@ -118,7 +118,7 @@ public class UIInventory : MonoBehaviour
 
     public void OpenBag()
     {
-        Debug.Log("Open Inventory");
+        //Debug.Log("Open Inventory");
         bagUI.SetActive(true);
         //PlayerController.SetAllowedToMove(false);
         inventoryIsOpen = true;
@@ -126,7 +126,7 @@ public class UIInventory : MonoBehaviour
 
     public void CloseBag()
     {
-        Debug.Log("Close Inventory");
+        //Debug.Log("Close Inventory");
         tooltip.gameObject.SetActive(false);
         bagUI.SetActive(false);
         //PlayerController.SetAllowedToMove(true);
@@ -145,7 +145,7 @@ public class UIInventory : MonoBehaviour
         if(item != null)
         {
             item.slot = slot;
-            Debug.Log(item.title + " is in " + item.slot);
+            //Debug.Log(item.title + " is in " + item.slot);
         }
     }
 

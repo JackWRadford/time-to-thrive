@@ -180,10 +180,10 @@ public class ObjectManager : MonoBehaviour
 
     void Load()
     {
-        Debug.Log("try to objects");
+        //Debug.Log("try to objects");
         if(SaveSystem.SaveExists("Objects"))
         {
-            Debug.Log("Save Exists");
+            Debug.Log("Objects Save Exists");
             SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
             //SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
         }

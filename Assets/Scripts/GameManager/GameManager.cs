@@ -11,9 +11,23 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public GameObject player;
 
+    //private static GameManager gameManagerInstance;
+
     void Awake()
     {
         Instantiate(player);
+
+        // //keep between scenes
+        
+        // if(gameManagerInstance == null)
+        // {
+        //     DontDestroyOnLoad(gameObject);
+        //     gameManagerInstance = this;
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
     }
     void Start()
     {

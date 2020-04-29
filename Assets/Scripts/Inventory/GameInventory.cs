@@ -60,7 +60,7 @@ public class GameInventory : MonoBehaviour
                     characterItems[i].count++;
                     //update UI for increase in stack count
                     inventoryUI.UpdateItemCount(characterItems[i]);
-                    Debug.Log(characterItems[i].title + " " + characterItems[i].count);
+                    //Debug.Log(characterItems[i].title + " " + characterItems[i].count);
                     return true;
                 }
             }
@@ -84,7 +84,7 @@ public class GameInventory : MonoBehaviour
         GameItem itemToAdd = new GameItem(itemDatabase.GetItem(id));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
-        Debug.Log("Added item: " + itemToAdd.title);
+        //Debug.Log("Added item: " + itemToAdd.title);
     }
     public void GiveItem(string itemName)
     {
@@ -92,7 +92,7 @@ public class GameInventory : MonoBehaviour
         GameItem itemToAdd = new GameItem(itemDatabase.GetItem(itemName));
         characterItems.Add(itemToAdd);
         inventoryUI.AddNewItem(itemToAdd);
-        Debug.Log("Added item: " + itemToAdd.title);
+        //Debug.Log("Added item: " + itemToAdd.title);
     }
 
     public bool PickUpItem(string itemName)
@@ -100,12 +100,12 @@ public class GameInventory : MonoBehaviour
         //Add item to inventory if enough space
         if(GameInventory.instance.IsStackable(itemName))
         {
-            Debug.Log("stack");
+            //Debug.Log("stack");
             return true;
         }
         else if(!GameInventory.instance.IsFull())
         {
-            Debug.Log("don't stack");
+            //Debug.Log("don't stack");
             GameInventory.instance.GiveItem(itemName);
             return true;
         }
@@ -174,7 +174,7 @@ public class GameInventory : MonoBehaviour
         {
             characterItems.Remove(itemToRemove);
             inventoryUI.RemoveItem(itemToRemove);
-            Debug.Log("Removed item: " + itemToRemove.title);
+            //Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
     public void RemoveItem(string itemName)
@@ -185,7 +185,7 @@ public class GameInventory : MonoBehaviour
         {
             characterItems.Remove(itemToRemove);
             inventoryUI.RemoveItem(itemToRemove);
-            Debug.Log("Removed item: " + itemToRemove.title);
+            //Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
     public void RemoveItem(GameItem i)
@@ -196,7 +196,7 @@ public class GameInventory : MonoBehaviour
         {
             characterItems.Remove(itemToRemove);
             inventoryUI.RemoveItem(itemToRemove);
-            Debug.Log("Removed item: " + itemToRemove.title);
+            //Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
     public void RemoveSelectedItem(GameItem i)
@@ -206,7 +206,7 @@ public class GameInventory : MonoBehaviour
         if(itemToRemove != null)
         {
             characterItems.Remove(itemToRemove);
-            Debug.Log("Removed item: " + itemToRemove.title);
+            //Debug.Log("Removed item: " + itemToRemove.title);
         }
     }
 
@@ -286,7 +286,7 @@ public class GameInventory : MonoBehaviour
     {
         foreach (var i in recipe)
         {
-            Debug.Log(i.Value + " " + i.Key);
+            //Debug.Log(i.Value + " " + i.Key);
             //check for specified amount of an item
             if(!CheckForAmountOfItem(i.Key, i.Value))
             {
@@ -311,7 +311,7 @@ public class GameInventory : MonoBehaviour
                 }
 
                 //add new item to inventory
-                Debug.Log("Craft: " + itemToCraft.title);
+                //Debug.Log("Craft: " + itemToCraft.title);
                 //GiveItem(itemToCraft.title);
                 PickUpItem(itemToCraft.title);
             }
@@ -331,7 +331,7 @@ public class GameInventory : MonoBehaviour
     {
         if(SaveSystem.SaveExists("Inventory"))
         {
-            Debug.Log("Save Exists");
+            Debug.Log("Inventory Save Exists");
             GiveItems(SaveSystem.Load<List<GameItem>>("Inventory"));
         }
     }

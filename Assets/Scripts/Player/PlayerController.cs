@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     private static bool allowedToMove = true;
 
+    //instance for dont destroy
+    //private static PlayerController playerInstance;
+
     void Awake()
     {
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
@@ -51,6 +54,17 @@ public class PlayerController : MonoBehaviour
 
         GameEvents.SaveInitiated += Save;
         GameEvents.LoadInitiated += Load;
+
+        // //keep between scenes
+        // if(playerInstance == null)
+        // {
+        //     DontDestroyOnLoad(gameObject);
+        //     playerInstance = this;
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
     }
 
     void Start()
@@ -265,6 +279,7 @@ public class PlayerController : MonoBehaviour
     {
         if(SaveSystem.SaveExists("player"))
         {
+            Debug.Log("Player Save Exists");
             //float[] data = SaveSystem.Load<float[]>("player");
             //load and set player position
             // Vector3 position;
@@ -287,7 +302,7 @@ public class PlayerController : MonoBehaviour
             lookDirection.Normalize();
 
             //load player health, thurst, hunger
-            print(data.hunger);
+            //print(data.hunger);
             this.health = data.health;
             this.thurst = data.thurst;
             this.hunger = data.hunger;
