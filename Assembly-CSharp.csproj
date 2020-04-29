@@ -76,10 +76,12 @@
      <Compile Include="Assets\Scripts\Inventory\Tooltip.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIItem.cs" />
+     <Compile Include="Assets\Scripts\Other\DoNotDestroy.cs" />
      <Compile Include="Assets\Scripts\Other\FollowPlayerCam.cs" />
      <Compile Include="Assets\Scripts\Other\ILoadState.cs" />
      <Compile Include="Assets\Scripts\Other\Interactable.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\FenceController.cs" />
+     <Compile Include="Assets\Scripts\PlaceableObjects\Tent.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Saving\CowData.cs" />
      <Compile Include="Assets\Scripts\Saving\FenceData.cs" />
