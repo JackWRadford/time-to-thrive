@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour
         playerHTH.UpdateAll(this.health, this.thurst, this.hunger);
     }
 
+    public void SetPosition(Vector3 pos)
+    {
+        this.transform.position = pos;
+    }
+
     public void IsRunning(bool tof)
     {
         this.isRunning = tof;
