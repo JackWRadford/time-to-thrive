@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManager\GenerateWorld.cs" />
      <Compile Include="Assets\Scripts\GameManager\ObjectManager.cs" />
+     <Compile Include="Assets\Scripts\GameManager\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameItem.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemButtons.cs" />

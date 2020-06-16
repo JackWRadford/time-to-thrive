@@ -77,6 +77,11 @@ public class PlayerController : MonoBehaviour
         this.transform.position = pos;
     }
 
+    public Vector3 GetPosition()
+    {
+        return this.transform.position;
+    }
+
     public void IsRunning(bool tof)
     {
         this.isRunning = tof;
