@@ -8,13 +8,14 @@ public class TerrainGen : MonoBehaviour
     public Tilemap tilemap;
     public Tile dirtTile;
     public Tile waterTile;
+    public Tile grassTile;
     private GameObject player;
 
     [SerializeField]
     NoiseMapGeneration noiseMapGeneration;
 
     [SerializeField]
-    private float mapScale = 5;
+    private float mapScale = 0;
 
     void Awake()
     {
@@ -30,7 +31,7 @@ public class TerrainGen : MonoBehaviour
 
     void GenerateTile()
     {
-        int tileDepth = 64;
+        int tileDepth = 32;
         int tileWidth = tileDepth;
 
         float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale);
@@ -52,14 +53,18 @@ public class TerrainGen : MonoBehaviour
                 float height = heightMap[zIndex, xIndex];
 
                 //render tiles depending on height
-                if(height < 0.5)
+                if(height <= 0.4)
                 {
-                    //low
-                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), dirtTile);
-                }else if(height >= 0.5)
-                {
-                    //high
+                    //water
                     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), waterTile);
+                }else if(height <= 0.7)
+                {
+                    //grass
+                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), grassTile);
+                }else if(height <= 1)
+                {
+                    //mountain
+                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), dirtTile);
                 }
             }
         }

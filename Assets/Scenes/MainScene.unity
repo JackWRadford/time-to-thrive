@@ -6091,10 +6091,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
-  dirtTile: {fileID: 11400000, guid: 22b11b388e98a47d495fce65cf5f8568, type: 2}
+  dirtTile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
   waterTile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
+  grassTile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
   noiseMapGeneration: {fileID: 1461756159}
-  mapScale: 10
+  mapScale: 30
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
