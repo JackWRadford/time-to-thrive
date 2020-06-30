@@ -56,22 +56,40 @@ public class TerrainGen : MonoBehaviour
                 int colorIndex = zIndex * tileWidth + xIndex;
                 float height = heightMap[zIndex, xIndex];
 
+                //get tarrain type for given height and add it to the tilemap
+                tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), GetTerrainTypeForHeight(height).tile);
+                
                 //render tiles depending on height
-                if(height <= 0.4)
-                {
-                    //water
-                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[0].tile);
-                }else if(height <= 0.7)
-                {
-                    //grass
-                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[1].tile);
-                }else if(height <= 1)
-                {
-                    //mountain
-                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[2].tile);
-                }
+                // if(height <= 0.4)
+                // {
+                //     //water
+                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[0].tile);
+                // }else if(height <= 0.7)
+                // {
+                //     //grass
+                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[1].tile);
+                // }else if(height <= 1)
+                // {
+                //     //mountain
+                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[2].tile);
+                // }
             }
         }
+    }
+
+    //method to return terrainType depending on the height input
+    TerrainType GetTerrainTypeForHeight(float height)
+    {
+        foreach(TerrainType terrainType in terrainTypes)
+        {
+            if(height < terrainType.height)
+            {
+                //correct height
+                return terrainType;
+            }
+        }
+        //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
+        return terrainTypes[terrainTypes.Length -1];
     }
 }
 
