@@ -5913,6 +5913,7 @@ GameObject:
   - component: {fileID: 1461756156}
   - component: {fileID: 1461756157}
   - component: {fileID: 1461756158}
+  - component: {fileID: 1461756159}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6091,7 +6092,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
   dirtTile: {fileID: 11400000, guid: 22b11b388e98a47d495fce65cf5f8568, type: 2}
-  player: {fileID: 5374468306012557043, guid: 6a1658fe8f0a19a4493a87b001a2afae, type: 3}
+  waterTile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
+  noiseMapGeneration: {fileID: 1461756159}
+  mapScale: 10
+--- !u!114 &1461756159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e089ef209fddea4a98a017584db7663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1502635970
 GameObject:
   m_ObjectHideFlags: 0

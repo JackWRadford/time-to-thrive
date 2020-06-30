@@ -7,30 +7,70 @@ public class TerrainGen : MonoBehaviour
 {
     public Tilemap tilemap;
     public Tile dirtTile;
+    public Tile waterTile;
     private GameObject player;
+
+    [SerializeField]
+    NoiseMapGeneration noiseMapGeneration;
+
+    [SerializeField]
+    private float mapScale = 5;
+
+    void Awake()
+    {
+        noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
+    }
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        print("generate init terrain");
-        //tilemap.SetTile(player.GetPos)
-        //tilemap.BoxFill(new Vector3Int(0,0,0), dirtTile, 0, 0, 16, 16);
+
+        GenerateTile();
+    }
+
+    void GenerateTile()
+    {
+        int tileDepth = 64;
+        int tileWidth = tileDepth;
+
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale);
+
+        RenderTiles(heightMap);
+    }
+
+    void RenderTiles(float[,] heightMap)
+    {
+        int tileDepth = heightMap.GetLength(0);
+        int tileWidth = heightMap.GetLength(1);
+
+        Color[] colorMap = new Color[tileDepth * tileWidth];
+        for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        {
+            for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+            {
+                int colorIndex = zIndex * tileWidth + xIndex;
+                float height = heightMap[zIndex, xIndex];
+
+                //render tiles depending on height
+                if(height < 0.5)
+                {
+                    //low
+                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), dirtTile);
+                }else if(height >= 0.5)
+                {
+                    //high
+                    tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), waterTile);
+                }
+            }
+        }
     }
 
     void Update()
     {
-        //tilemap.BoxFill(toV3Int(player.GetComponent<PlayerController>().GetPosition()), dirtTile, 0, 0, 8, 8);
-        //tilemap.SetTile(toV3Int(player.GetComponent<PlayerController>().GetPosition()), dirtTile);
-        //tilemap.SetTile(tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()), dirtTile);
-        tilemap.BoxFill(tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()), dirtTile, 
-        tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).x - 4,
-        tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).y - 4,
-        tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).x + 4,
-        tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).y + 4);
+        // tilemap.BoxFill(tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()), dirtTile, 
+        // tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).x - 4,
+        // tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).y - 4,
+        // tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).x + 4,
+        // tilemap.WorldToCell(player.GetComponent<PlayerController>().GetPosition()).y + 4);
     }
-
-    // Vector3Int toV3Int(Vector3 v3)
-    // {
-    //     return new Vector3Int((int)v3.x, (int)v3.y, (int)v3.z);
-    // }
 }
