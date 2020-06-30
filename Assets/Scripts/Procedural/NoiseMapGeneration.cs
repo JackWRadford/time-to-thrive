@@ -22,7 +22,6 @@ public class NoiseMapGeneration : MonoBehaviour
                 noiseMap [zIndex, xIndex] = noise;
             }
         }
-
         return noiseMap;
     }
 }

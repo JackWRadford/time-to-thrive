@@ -53,7 +53,6 @@
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManager\GenerateWorld.cs" />
      <Compile Include="Assets\Scripts\GameManager\ObjectManager.cs" />
-     <Compile Include="Assets\Scripts\GameManager\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameItem.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemButtons.cs" />
@@ -78,6 +77,7 @@
      <Compile Include="Assets\Scripts\PlaceableObjects\Tent.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Procedural\NoiseMapGeneration.cs" />
+     <Compile Include="Assets\Scripts\Procedural\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Saving\CowData.cs" />
      <Compile Include="Assets\Scripts\Saving\FenceData.cs" />
      <Compile Include="Assets\Scripts\Saving\GameEvents.cs" />
