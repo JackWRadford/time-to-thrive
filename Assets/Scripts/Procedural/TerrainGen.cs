@@ -24,6 +24,9 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private TerrainType[] terrainTypes = null;
 
+    [SerializeField]
+    private Wave[] waves = null;
+
     void Awake()
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
@@ -33,9 +36,10 @@ public class TerrainGen : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        for (int i = 0; i < 15; i++)
+        //test chunk generation
+        for (int i = -20; i < 20; i++)
         {
-            for (int j = 0; j < 15; j++)
+            for (int j = -20; j < 20; j++)
             {
                 GenerateTile(i, j);
             }
@@ -51,7 +55,7 @@ public class TerrainGen : MonoBehaviour
         float offsetX = oX * chunkSize;
         float offsetZ = oZ * chunkSize;
 
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ);
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, waves);
 
         RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
     }
@@ -112,4 +116,12 @@ public class TerrainType
     public string name;
     public float height;
     public Tile tile;
+}
+
+[System.Serializable]
+public class Wave
+{
+    public float seed;
+    public float amplitude;
+    public float frequency;
 }
