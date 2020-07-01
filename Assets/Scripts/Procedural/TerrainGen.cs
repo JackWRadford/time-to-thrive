@@ -18,8 +18,11 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private float mapScale = 0;
 
+    //size of tiles made with perlin noise
+    private int chunkSize = 32;
+
     [SerializeField]
-    private TerrainType[] terrainTypes;
+    private TerrainType[] terrainTypes = null;
 
     void Awake()
     {
@@ -30,20 +33,30 @@ public class TerrainGen : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        GenerateTile();
+        for (int i = 0; i < 15; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                GenerateTile(i, j);
+            }
+        }
     }
 
-    void GenerateTile()
+    void GenerateTile(int oX, int oZ)
     {
-        int tileDepth = 32;
+        int tileDepth = chunkSize;
         int tileWidth = tileDepth;
 
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale);
+        //offset passed into function
+        float offsetX = oX * chunkSize;
+        float offsetZ = oZ * chunkSize;
 
-        RenderTiles(heightMap);
+        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ);
+
+        RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
     }
 
-    void RenderTiles(float[,] heightMap)
+    void RenderTiles(float[,] heightMap, int oX, int oZ)
     {
         int tileDepth = heightMap.GetLength(0);
         int tileWidth = heightMap.GetLength(1);
@@ -57,7 +70,7 @@ public class TerrainGen : MonoBehaviour
                 float height = heightMap[zIndex, xIndex];
 
                 //get tarrain type for given height and add it to the tilemap
-                tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), GetTerrainTypeForHeight(height).tile);
+                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForHeight(height).tile);
                 
                 //render tiles depending on height
                 // if(height <= 0.4)
