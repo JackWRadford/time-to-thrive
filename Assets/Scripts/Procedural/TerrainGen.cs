@@ -79,9 +79,25 @@ public class TerrainGen : MonoBehaviour
 
         //generate heatMap using Perlin Noise
         float[,] heatMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, this.heatWaves);
+        //add height values to heat map values to make higher regions colder
+        for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        {
+            for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+            {
+                heatMap[zIndex, xIndex] += this.heatCurve.Evaluate(heightMap[zIndex, xIndex]) * heightMap[zIndex, xIndex];
+            }
+        }
 
         //generate moistureMap using Perlin Noise
         float[,] moistureMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, this.moistureWaves);
+        //subtract height values to moisture map values to make higher regions dryer
+        for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        {
+            for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+            {
+                heatMap[zIndex, xIndex] -= this.moistureCurve.Evaluate(heightMap[zIndex, xIndex]) * heightMap[zIndex, xIndex];
+            }
+        }
 
         //render tile(s) depending on visualization mode specified
         switch (this.visualizationmode)
@@ -132,7 +148,30 @@ public class TerrainGen : MonoBehaviour
     //method to return terrainType depending on the height, heat, moisture input
     TerrainType GetTerrainTypeForParameter(float param)
     {
-        foreach(TerrainType terrainType in heatTerrainTypes)
+        TerrainType[] terrainArray = null;
+        //pick tile set to use depending on visualization input
+        switch (this.visualizationmode)
+        {
+            case Visualizationmode.Height:
+            // height map
+            terrainArray = heightTerrainTypes;
+            break;
+            // heat map
+            case Visualizationmode.Heat:
+            terrainArray = heatTerrainTypes;
+            break;
+            // moisture map
+            case Visualizationmode.Moisture:
+            terrainArray = moistureTerrainTypes;
+            break;
+
+            default:
+            //default to height map
+            terrainArray = heightTerrainTypes;
+            break;
+        }
+
+        foreach(TerrainType terrainType in terrainArray)
         {
             if(param < terrainType.threshold)
             {
@@ -141,7 +180,7 @@ public class TerrainGen : MonoBehaviour
             }
         }
         //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
-        return heatTerrainTypes[heatTerrainTypes.Length -1];
+        return terrainArray[terrainArray.Length -1];
     }
 }
 

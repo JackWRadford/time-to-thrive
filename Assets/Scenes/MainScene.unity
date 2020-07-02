@@ -6116,27 +6116,72 @@ MonoBehaviour:
   - name: cold
     threshold: 1
     tile: {fileID: 11400000, guid: 69a8c7296612b9d47a41666620a0bc8e, type: 2}
-  moistureTerrainTypes: []
+  moistureTerrainTypes:
+  - name: dry
+    threshold: 0.3
+    tile: {fileID: 11400000, guid: 236de52a8fba13540b3ed2503553284d, type: 2}
+  - name: average
+    threshold: 0.7
+    tile: {fileID: 11400000, guid: 61cdd0460de77824bbf102afb89701ef, type: 2}
+  - name: wet
+    threshold: 1
+    tile: {fileID: 11400000, guid: 4b0f96b0b792e7e4d9ce8fd279535e9d, type: 2}
   moistureCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   heatCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   moistureWaves:
   - seed: 4769
     amplitude: 1
-    frequency: 1
+    frequency: 0.25
   heatWaves:
   - seed: 5432
     amplitude: 1
-    frequency: 1
+    frequency: 0.25
   heightWaves:
   - seed: 4523
     amplitude: 1
@@ -6147,7 +6192,7 @@ MonoBehaviour:
   - seed: 5634
     amplitude: 0.5
     frequency: 1
-  visualizationmode: 0
+  visualizationmode: 2
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
