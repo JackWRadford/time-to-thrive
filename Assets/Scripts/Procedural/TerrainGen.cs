@@ -7,9 +7,7 @@ using UnityEngine.Tilemaps;
 public class TerrainGen : MonoBehaviour
 {
     public Tilemap tilemap;
-    public Tile dirtTile;
-    public Tile waterTile;
-    public Tile grassTile;
+
     private GameObject player;
 
     [SerializeField]
@@ -22,10 +20,31 @@ public class TerrainGen : MonoBehaviour
     private int chunkSize = 32;
 
     [SerializeField]
-    private TerrainType[] terrainTypes = null;
+    private TerrainType[] heightTerrainTypes = null;
 
     [SerializeField]
-    private Wave[] waves = null;
+    private TerrainType[] heatTerrainTypes = null;
+
+    [SerializeField]
+    private TerrainType[] moistureTerrainTypes = null;
+
+    [SerializeField]
+    private AnimationCurve moistureCurve;
+
+    [SerializeField]
+    private AnimationCurve heatCurve;
+
+    [SerializeField]
+    private Wave[] moistureWaves = null;
+
+    [SerializeField]
+    private Wave[] heatWaves = null;
+
+    [SerializeField]
+    private Wave[] heightWaves = null;
+
+    [SerializeField]
+    private Visualizationmode visualizationmode = Visualizationmode.Height;
 
     void Awake()
     {
@@ -37,9 +56,9 @@ public class TerrainGen : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //test chunk generation
-        for (int i = -20; i < 20; i++)
+        for (int i = -10; i < 10; i++)
         {
-            for (int j = -20; j < 20; j++)
+            for (int j = -10; j < 10; j++)
             {
                 GenerateTile(i, j);
             }
@@ -55,9 +74,38 @@ public class TerrainGen : MonoBehaviour
         float offsetX = oX * chunkSize;
         float offsetZ = oZ * chunkSize;
 
-        float[,] heightMap = this.noiseMapGeneration.GenerateNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, waves);
+        //generate heightMap using Perlin Noise
+        float[,] heightMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, this.heightWaves);
 
-        RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+        //generate heatMap using Perlin Noise
+        float[,] heatMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, this.heatWaves);
+
+        //generate moistureMap using Perlin Noise
+        float[,] moistureMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(tileDepth, tileWidth, this.mapScale, offsetX, offsetZ, this.moistureWaves);
+
+        //render tile(s) depending on visualization mode specified
+        switch (this.visualizationmode)
+        {
+            case Visualizationmode.Height:
+            //render height map
+            RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            break;
+            //render heat map
+            case Visualizationmode.Heat:
+            RenderTiles(heatMap, (int)offsetX, (int)offsetZ);
+            break;
+            //render moisture map
+            case Visualizationmode.Moisture:
+            RenderTiles(moistureMap, (int)offsetX, (int)offsetZ);
+            break;
+
+            default:
+            //default to height map
+            RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            break;
+        }
+
+        
     }
 
     void RenderTiles(float[,] heightMap, int oX, int oZ)
@@ -76,20 +124,6 @@ public class TerrainGen : MonoBehaviour
                 //get tarrain type for given height and add it to the tilemap
                 tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForHeight(height).tile);
                 
-                //render tiles depending on height
-                // if(height <= 0.4)
-                // {
-                //     //water
-                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[0].tile);
-                // }else if(height <= 0.7)
-                // {
-                //     //grass
-                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[1].tile);
-                // }else if(height <= 1)
-                // {
-                //     //mountain
-                //     tilemap.SetTile(new Vector3Int(xIndex, zIndex, 0), terrainTypes[2].tile);
-                // }
             }
         }
     }
@@ -97,16 +131,16 @@ public class TerrainGen : MonoBehaviour
     //method to return terrainType depending on the height input
     TerrainType GetTerrainTypeForHeight(float height)
     {
-        foreach(TerrainType terrainType in terrainTypes)
+        foreach(TerrainType terrainType in heightTerrainTypes)
         {
-            if(height < terrainType.height)
+            if(height < terrainType.threshold)
             {
                 //correct height
                 return terrainType;
             }
         }
         //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
-        return terrainTypes[terrainTypes.Length -1];
+        return heightTerrainTypes[heightTerrainTypes.Length -1];
     }
 }
 
@@ -114,7 +148,8 @@ public class TerrainGen : MonoBehaviour
 public class TerrainType
 {
     public string name;
-    public float height;
+    //height, heat, moisture
+    public float threshold;
     public Tile tile;
 }
 
@@ -125,3 +160,6 @@ public class Wave
     public float amplitude;
     public float frequency;
 }
+
+//enum visualization mode for height, heat, moisture maps
+enum Visualizationmode {Height, Heat, Moisture}

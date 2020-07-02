@@ -6095,20 +6095,20 @@ MonoBehaviour:
   waterTile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
   grassTile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
   noiseMapGeneration: {fileID: 1461756159}
-  mapScale: 30
+  mapScale: 40
   terrainTypes:
   - name: water
-    height: 0.4
+    height: 0.3
     tile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
+  - name: sand
+    height: 0.35
+    tile: {fileID: 11400000, guid: f51280ad9942fec42b75cec26790d17c, type: 2}
   - name: grass
-    height: 0.45
-    tile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
-  - name: mountain
     height: 0.7
-    tile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
-  - name: beach
+    tile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
+  - name: stone
     height: 1
-    tile: {fileID: 11400000, guid: ffea95a67e9e99c4ca8730d5c973db7b, type: 2}
+    tile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
   waves:
   - seed: 4356
     amplitude: 1
@@ -6117,8 +6117,8 @@ MonoBehaviour:
     amplitude: 4
     frequency: 0.25
   - seed: 4378
-    amplitude: 1
-    frequency: 1
+    amplitude: 0.5
+    frequency: 0.5
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
