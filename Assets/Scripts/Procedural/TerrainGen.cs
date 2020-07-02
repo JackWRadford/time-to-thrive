@@ -56,9 +56,9 @@ public class TerrainGen : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //test chunk generation
-        for (int i = -10; i < 10; i++)
+        for (int i = -4; i < 4; i++)
         {
-            for (int j = -10; j < 10; j++)
+            for (int j = -4; j < 4; j++)
             {
                 GenerateTile(i, j);
             }
@@ -108,10 +108,10 @@ public class TerrainGen : MonoBehaviour
         
     }
 
-    void RenderTiles(float[,] heightMap, int oX, int oZ)
+    void RenderTiles(float[,] selectedMap, int oX, int oZ)
     {
-        int tileDepth = heightMap.GetLength(0);
-        int tileWidth = heightMap.GetLength(1);
+        int tileDepth = selectedMap.GetLength(0);
+        int tileWidth = selectedMap.GetLength(1);
 
         Color[] colorMap = new Color[tileDepth * tileWidth];
         for (int zIndex = 0; zIndex < tileDepth; zIndex++)
@@ -119,28 +119,29 @@ public class TerrainGen : MonoBehaviour
             for (int xIndex = 0; xIndex < tileWidth; xIndex++)
             {
                 int colorIndex = zIndex * tileWidth + xIndex;
-                float height = heightMap[zIndex, xIndex];
+                //parameter = height, heat, moisture
+                float parameter = selectedMap[zIndex, xIndex];
 
-                //get tarrain type for given height and add it to the tilemap
-                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForHeight(height).tile);
+                //get terrain type for given height and add it to the tilemap
+                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForParameter(parameter).tile);
                 
             }
         }
     }
 
-    //method to return terrainType depending on the height input
-    TerrainType GetTerrainTypeForHeight(float height)
+    //method to return terrainType depending on the height, heat, moisture input
+    TerrainType GetTerrainTypeForParameter(float param)
     {
-        foreach(TerrainType terrainType in heightTerrainTypes)
+        foreach(TerrainType terrainType in heatTerrainTypes)
         {
-            if(height < terrainType.threshold)
+            if(param < terrainType.threshold)
             {
                 //correct height
                 return terrainType;
             }
         }
         //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
-        return heightTerrainTypes[heightTerrainTypes.Length -1];
+        return heatTerrainTypes[heatTerrainTypes.Length -1];
     }
 }
 
