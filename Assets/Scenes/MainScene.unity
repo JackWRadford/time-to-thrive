@@ -6091,34 +6091,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
-  dirtTile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
-  waterTile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
-  grassTile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
   noiseMapGeneration: {fileID: 1461756159}
   mapScale: 40
-  terrainTypes:
+  heightTerrainTypes:
   - name: water
-    height: 0.3
-    tile: {fileID: 11400000, guid: 404389f59e12c48558155e457c93c1d7, type: 2}
+    threshold: 0
+    tile: {fileID: 11400000, guid: 8bf4ff4e08baa5e4bb875873ae4134ff, type: 2}
   - name: sand
-    height: 0.35
-    tile: {fileID: 11400000, guid: f51280ad9942fec42b75cec26790d17c, type: 2}
+    threshold: 0
+    tile: {fileID: 11400000, guid: ffea95a67e9e99c4ca8730d5c973db7b, type: 2}
   - name: grass
-    height: 0.7
+    threshold: 0
     tile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
-  - name: stone
-    height: 1
+  - name: dirt
+    threshold: 0
     tile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
-  waves:
-  - seed: 4356
+  heatTerrainTypes:
+  - name: 
+    threshold: 0
+    tile: {fileID: 0}
+  - name: 
+    threshold: 0
+    tile: {fileID: 0}
+  - name: 
+    threshold: 0
+    tile: {fileID: 0}
+  moistureTerrainTypes: []
+  moistureCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heatCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  moistureWaves:
+  - seed: 4769
     amplitude: 1
     frequency: 1
-  - seed: 1278
-    amplitude: 4
+  heatWaves:
+  - seed: 5432
+    amplitude: 1
+    frequency: 1
+  heightWaves:
+  - seed: 4523
+    amplitude: 1
+    frequency: 1
+  - seed: 6432
+    amplitude: 2
     frequency: 0.25
-  - seed: 4378
+  - seed: 5634
     amplitude: 0.5
-    frequency: 0.5
+    frequency: 1
+  visualizationmode: 0
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
