@@ -6092,46 +6092,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
   noiseMapGeneration: {fileID: 1461756159}
-  mapScale: 40
+  mapScale: 10
   heightTerrainTypes:
   - name: water
     threshold: 0.4
     tile: {fileID: 11400000, guid: 481716caea80c3d4c8db22084811d200, type: 2}
+    index: 0
   - name: sand
     threshold: 0.45
     tile: {fileID: 11400000, guid: f51280ad9942fec42b75cec26790d17c, type: 2}
+    index: 1
   - name: grass
     threshold: 0.7
     tile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
+    index: 2
   - name: dirt
     threshold: 1
     tile: {fileID: 11400000, guid: 65028a6787d568d42be14ea757a88f35, type: 2}
+    index: 3
   heatTerrainTypes:
   - name: hottest
     threshold: 0.25
     tile: {fileID: 11400000, guid: a1ba2171922f07e4196a694633d54d22, type: 2}
+    index: 0
   - name: hot
     threshold: 0.5
     tile: {fileID: 11400000, guid: 11f549c38bba694438ea759697f9c150, type: 2}
+    index: 1
   - name: cold
     threshold: 0.75
     tile: {fileID: 11400000, guid: 69a8c7296612b9d47a41666620a0bc8e, type: 2}
+    index: 2
   - name: coldest
     threshold: 1
     tile: {fileID: 11400000, guid: 0377b763080798c4e8e337e4fe573605, type: 2}
+    index: 3
   moistureTerrainTypes:
   - name: dryest
     threshold: 0.25
     tile: {fileID: 11400000, guid: 236de52a8fba13540b3ed2503553284d, type: 2}
+    index: 0
   - name: dry
     threshold: 0.5
     tile: {fileID: 11400000, guid: 61cdd0460de77824bbf102afb89701ef, type: 2}
+    index: 1
   - name: wet
     threshold: 0.75
     tile: {fileID: 11400000, guid: 4b0f96b0b792e7e4d9ce8fd279535e9d, type: 2}
+    index: 2
   - name: wettest
     threshold: 1
     tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+    index: 3
   moistureCurve:
     serializedVersion: 2
     m_Curve:
@@ -6198,7 +6210,44 @@ MonoBehaviour:
   - seed: 5634
     amplitude: 0.5
     frequency: 1
-  visualizationmode: 2
+  visualizationmode: 3
+  biomes:
+  - biomes:
+    - name: desert
+      tile: {fileID: 11400000, guid: f51280ad9942fec42b75cec26790d17c, type: 2}
+    - name: grassland
+      tile: {fileID: 11400000, guid: 389fa7fec3f32954f9f904938e33c42b, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+  - biomes:
+    - name: savanna
+      tile: {fileID: 11400000, guid: a02e40f06f7247643abb05f41e3ccd80, type: 2}
+    - name: savanna
+      tile: {fileID: 11400000, guid: a02e40f06f7247643abb05f41e3ccd80, type: 2}
+    - name: boreal forest
+      tile: {fileID: 11400000, guid: 151c441568d94c44283cdce485cb4cb4, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+  - biomes:
+    - name: tropical rainforest
+      tile: {fileID: 11400000, guid: 01a58bebcbf12bd4f90b6aae030d1837, type: 2}
+    - name: boreal forest
+      tile: {fileID: 11400000, guid: 151c441568d94c44283cdce485cb4cb4, type: 2}
+    - name: boreal forest
+      tile: {fileID: 11400000, guid: 151c441568d94c44283cdce485cb4cb4, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+  - biomes:
+    - name: tropical rainforest
+      tile: {fileID: 11400000, guid: 01a58bebcbf12bd4f90b6aae030d1837, type: 2}
+    - name: tropical rainforest
+      tile: {fileID: 11400000, guid: 01a58bebcbf12bd4f90b6aae030d1837, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+    - name: tundra
+      tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
