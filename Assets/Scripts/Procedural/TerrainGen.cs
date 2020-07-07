@@ -120,8 +120,10 @@ public class TerrainGen : MonoBehaviour
             break;
             //render biomes map
             case Visualizationmode.Biome:
+            //build new chosenBiomes matrix for (chunk)
+            Biome[,] chosenBiomes = new Biome[tileDepth, tileWidth];
             //build biomes from heat, height and moisture maps
-            CalculateBiomes(heightMap, heatMap, moistureMap, (int)offsetX, (int)offsetZ);
+            CalculateBiomes(heightMap, heatMap, moistureMap, (int)offsetX, (int)offsetZ, chosenBiomes);
             break;
 
             default:
@@ -129,6 +131,9 @@ public class TerrainGen : MonoBehaviour
             RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
             break;
         }
+
+        //build tileData for (chunk)
+        
 
         
     }
@@ -209,7 +214,7 @@ public class TerrainGen : MonoBehaviour
 
 
     //method to build biome texture dependent on heat, moisture and height
-    private void CalculateBiomes(float[,] heightMap, float[,] heatMap, float[,] moistureMap, int oX, int oZ)
+    private void CalculateBiomes(float[,] heightMap, float[,] heatMap, float[,] moistureMap, int oX, int oZ, Biome[,] chosenBiomes)
     {
         int tileDepth = heightMap.GetLength(0);
         int tileWidth = heightMap.GetLength(1);
@@ -233,6 +238,9 @@ public class TerrainGen : MonoBehaviour
 
                     //use biomes table to calculate correct biome for respective heat and moisture values
                     Biome biome = this.biomes [moistureTerrainType.index].biomes [heatTerrainType.index];
+
+                    //save biome in chosenBiomes matrix when not water
+                    chosenBiomes[zIndex, xIndex] = biome;
                     
                     tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), biome.tile);
                 }
@@ -287,4 +295,29 @@ public class Biome
 public class BiomeRow
 {
      public Biome[] biomes;
+}
+
+//class to store a (chunk's) data
+public class TileData
+{
+    public float[,] heightMap;
+    public float[,] heatMap;
+    public float[,] moistureMap;
+    public TerrainType[,] chosenHeightTerrainTypes;
+    public TerrainType[,] chosenHeatTerrainTypes;
+    public TerrainType[,] chosenMoistureTerrainTypes;
+    public Biome[,] chosenBiomes;
+
+    public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
+    TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, Biome[,] chosenBiomes)
+    {
+        this.heightMap = heightMap;
+        this.heatMap = heatMap;
+        this.moistureMap = moistureMap;
+        this.chosenHeightTerrainTypes = chosenHeightTerrainTypes;
+        this.chosenHeatTerrainTypes = chosenHeatTerrainTypes;
+        this.chosenMoistureTerrainTypes = chosenMoistureTerrainTypes;
+        this.chosenBiomes = chosenBiomes;
+    }
+
 }
