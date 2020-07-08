@@ -59,17 +59,21 @@ public class TerrainGen : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        //empty level data object to be filled as chunks are generated / updated
+        LevelData levelData = new LevelData();
+
         //test chunk generation
-        for (int i = -4; i < 4; i++)
+        for (int i = 0; i < 10; i++)
         {
-            for (int j = -4; j < 4; j++)
+            for (int j = 0; j < 10; j++)
             {
-                GenerateTile(i, j);
+                TileData tileData = GenerateTile(i, j);
+                levelData.AddTileData(tileData, i, j);
             }
         }
     }
 
-    void GenerateTile(int oX, int oZ)
+    private TileData GenerateTile(int oX, int oZ)
     {
         int tileDepth = chunkSize;
         int tileWidth = tileDepth;
@@ -155,8 +159,9 @@ public class TerrainGen : MonoBehaviour
             break;
         }
         //build tileData for (chunk)
-        
+        TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes);
 
+        return tileData;
     }
 
     //method to render tiles from pre-calculated TerrainType matrix (more efficient)
@@ -382,4 +387,23 @@ public class TileData
         this.chosenBiomes = chosenBiomes;
     }
 
+}
+
+//class to store all the merged tiles data
+public class LevelData
+{
+     private int tileDepthInVertices;
+     private int tileWidthInVertices;
+
+     public TileData[,] tilesData;
+
+     public LevelData()
+     {
+         tilesData = new TileData[200,200];
+     }
+
+     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
+     {
+         tilesData[tileZIndex, tileXIndex] = tileData;
+     }
 }
