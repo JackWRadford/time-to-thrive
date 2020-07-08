@@ -68,7 +68,7 @@ public class TerrainGen : MonoBehaviour
             for (int j = -5; j < 5; j++)
             {
                 TileData tileData = GenerateTile(i, j);
-                levelData.AddTileData(tileData, System.Math.Abs(i), System.Math.Abs(j), (i < 0) ? true:false,(j < 0) ? true:false);
+                levelData.AddTileData(tileData, i, j);
             }
         }
     }
@@ -408,23 +408,47 @@ public class LevelData
         negativeJTilesData = new TileData[200,200];
      }
 
-     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex, bool negativeI, bool negativeJ)
+     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
      {
-         if(negativeI && negativeJ)
+         if(tileZIndex < 0 && tileXIndex < 0)
          {
-            negativeIJTilesData[tileZIndex, tileXIndex] = tileData;
+            negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
          }
-         else if(negativeI && !negativeJ)
+         else if(tileZIndex < 0 && tileXIndex >= 0)
          {
-             negativeITilesData[tileZIndex, tileXIndex] = tileData;
+             negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
          }
-         else if(!negativeI && negativeJ)
+         else if(tileZIndex >= 0 && tileXIndex < 0)
          {
-             negativeJTilesData[tileZIndex, tileXIndex] = tileData;
+             negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
          }
          else
          {
-            positiveTilesData[tileZIndex, tileXIndex] = tileData;
+            positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
          }
+     }
+
+     //method to find chunk from correct data structure depending on coordinates
+     public TileData FindChunk(int tileZIndex, int tileXIndex)
+     {
+         TileData tileData = null;
+
+         if(tileZIndex < 0 && tileXIndex < 0)
+         {
+            tileData = negativeIJTilesData[tileZIndex, tileXIndex];
+         }
+         else if(tileZIndex < 0 && tileXIndex >= 0)
+         {
+             tileData = negativeITilesData[tileZIndex, tileXIndex];
+         }
+         else if(tileZIndex >= 0 && tileXIndex < 0)
+         {
+             tileData = negativeJTilesData[tileZIndex, tileXIndex];
+         }
+         else
+         {
+            tileData = positiveTilesData[tileZIndex, tileXIndex];
+         }
+         return tileData;
      }
 }
