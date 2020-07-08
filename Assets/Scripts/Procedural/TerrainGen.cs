@@ -103,100 +103,138 @@ public class TerrainGen : MonoBehaviour
             }
         }
 
+        //calculate terrainTypes for each map
+        TerrainType[,] chosenHeightTerrainTypes = new TerrainType[tileDepth, tileWidth];
+        TerrainType[,] chosenHeatTerrainTypes = new TerrainType[tileDepth, tileWidth];
+        TerrainType[,] chosenMoistureTerrainTypes = new TerrainType[tileDepth, tileWidth];
+        for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        {
+            for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+            {
+                //height
+                chosenHeightTerrainTypes[zIndex, xIndex] = GetTerrainTypeForParameter(heightMap[zIndex,xIndex], heightTerrainTypes);
+                //heat
+                chosenHeatTerrainTypes[zIndex, xIndex] = GetTerrainTypeForParameter(heatMap[zIndex,xIndex], heatTerrainTypes);
+                //moisture
+                chosenMoistureTerrainTypes[zIndex, xIndex] = GetTerrainTypeForParameter(moistureMap[zIndex,xIndex], moistureTerrainTypes);
+            }
+        }
+
+        //build new chosenBiomes matrix for (chunk)
+        Biome[,] chosenBiomes = new Biome[tileDepth, tileWidth];
+        
         //render tile(s) depending on visualization mode specified
         switch (this.visualizationmode)
         {
             case Visualizationmode.Height:
             //render height map
-            RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            //RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            RenderTiles(chosenHeightTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
             //render heat map
             case Visualizationmode.Heat:
-            RenderTiles(heatMap, (int)offsetX, (int)offsetZ);
+            //RenderTiles(heatMap, (int)offsetX, (int)offsetZ);
+            RenderTiles(chosenHeatTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
             //render moisture map
             case Visualizationmode.Moisture:
-            RenderTiles(moistureMap, (int)offsetX, (int)offsetZ);
+            //RenderTiles(moistureMap, (int)offsetX, (int)offsetZ);
+            RenderTiles(chosenMoistureTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
             //render biomes map
             case Visualizationmode.Biome:
-            //build new chosenBiomes matrix for (chunk)
-            Biome[,] chosenBiomes = new Biome[tileDepth, tileWidth];
             //build biomes from heat, height and moisture maps
-            CalculateBiomes(heightMap, heatMap, moistureMap, (int)offsetX, (int)offsetZ, chosenBiomes);
+            //CalculateBiomes(heightMap, heatMap, moistureMap, (int)offsetX, (int)offsetZ, chosenBiomes);
+            CalculateBiomes(chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, (int)offsetX, (int)offsetZ, chosenBiomes);
             break;
 
             default:
             //default to height map
-            RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            //RenderTiles(heightMap, (int)offsetX, (int)offsetZ);
+            RenderTiles(chosenHeightTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
         }
-
         //build tileData for (chunk)
         
 
-        
     }
 
-    //method to calculate correct Tile (height, heat, moisture)
-    void RenderTiles(float[,] selectedMap, int oX, int oZ)
+    //method to render tiles from pre-calculated TerrainType matrix (more efficient)
+    void RenderTiles(TerrainType[,] chosenTerrainTypes, int oX, int oZ)
     {
-        int tileDepth = selectedMap.GetLength(0);
-        int tileWidth = selectedMap.GetLength(1);
+        int tileDepth = chosenTerrainTypes.GetLength(0);
+        int tileWidth = chosenTerrainTypes.GetLength(1);
 
-        //Color[] colorMap = new Color[tileDepth * tileWidth];
         for (int zIndex = 0; zIndex < tileDepth; zIndex++)
         {
             for (int xIndex = 0; xIndex < tileWidth; xIndex++)
             {
-                //int colorIndex = zIndex * tileWidth + xIndex;
-                //parameter = height, heat, moisture
-                float parameter = selectedMap[zIndex, xIndex];
-
-                //get terrain type for given height and add it to the tilemap
-                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForParameter(parameter).tile);
+                //render tile from terraintype matrix
+                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenTerrainTypes[zIndex, xIndex].tile);
                 
             }
         }
     }
 
+    //method to calculate correct Tile (height, heat, moisture)
+    // void RenderTiles(float[,] selectedMap, int oX, int oZ)
+    // {
+    //     int tileDepth = selectedMap.GetLength(0);
+    //     int tileWidth = selectedMap.GetLength(1);
+
+    //     //Color[] colorMap = new Color[tileDepth * tileWidth];
+    //     for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+    //     {
+    //         for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+    //         {
+    //             //int colorIndex = zIndex * tileWidth + xIndex;
+    //             //parameter = height, heat, moisture
+    //             float parameter = selectedMap[zIndex, xIndex];
+
+    //             //get terrain type for given height and add it to the tilemap
+    //             tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForParameter(parameter).tile);
+                
+    //         }
+    //     }
+    // }
+
     //method to return terrainType depending on the height, heat, moisture input
-    TerrainType GetTerrainTypeForParameter(float param)
-    {
-        TerrainType[] terrainArray = null;
-        //pick tile set to use depending on visualization input
-        switch (this.visualizationmode)
-        {
-            case Visualizationmode.Height:
-            // height map
-            terrainArray = heightTerrainTypes;
-            break;
-            // heat map
-            case Visualizationmode.Heat:
-            terrainArray = heatTerrainTypes;
-            break;
-            // moisture map
-            case Visualizationmode.Moisture:
-            terrainArray = moistureTerrainTypes;
-            break;
+    // TerrainType GetTerrainTypeForParameter(float param)
+    // {
+    //     TerrainType[] terrainArray = null;
+    //     //pick tile set to use depending on visualization input
+    //     switch (this.visualizationmode)
+    //     {
+    //         case Visualizationmode.Height:
+    //         // height map
+    //         terrainArray = heightTerrainTypes;
+    //         break;
+    //         // heat map
+    //         case Visualizationmode.Heat:
+    //         terrainArray = heatTerrainTypes;
+    //         break;
+    //         // moisture map
+    //         case Visualizationmode.Moisture:
+    //         terrainArray = moistureTerrainTypes;
+    //         break;
 
-            default:
-            //default to height map
-            terrainArray = heightTerrainTypes;
-            break;
-        }
+    //         default:
+    //         //default to height map
+    //         terrainArray = heightTerrainTypes;
+    //         break;
+    //     }
 
-        foreach(TerrainType terrainType in terrainArray)
-        {
-            if(param < terrainType.threshold)
-            {
-                //correct height
-                return terrainType;
-            }
-        }
-        //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
-        return terrainArray[terrainArray.Length -1];
-    }
+    //     foreach(TerrainType terrainType in terrainArray)
+    //     {
+    //         if(param < terrainType.threshold)
+    //         {
+    //             //correct height
+    //             return terrainType;
+    //         }
+    //     }
+    //     //if no terrainTypes apply return the last (highest) one (sometimes perlinNoise return > 1 (or < 0))
+    //     return terrainArray[terrainArray.Length -1];
+    // }
 
     TerrainType GetTerrainTypeForParameter(float param, TerrainType[] terrainTypes)
     {
@@ -214,30 +252,60 @@ public class TerrainGen : MonoBehaviour
 
 
     //method to build biome texture dependent on heat, moisture and height
-    private void CalculateBiomes(float[,] heightMap, float[,] heatMap, float[,] moistureMap, int oX, int oZ, Biome[,] chosenBiomes)
+    // private void CalculateBiomes(float[,] heightMap, float[,] heatMap, float[,] moistureMap, int oX, int oZ, Biome[,] chosenBiomes)
+    // {
+    //     int tileDepth = heightMap.GetLength(0);
+    //     int tileWidth = heightMap.GetLength(1);
+
+    //     for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+    //     {
+    //         for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+    //         {
+    //             //get height terrain type for point
+    //             float heightValue = heightMap[zIndex, xIndex];
+    //             TerrainType heightTerrainType = GetTerrainTypeForParameter(heightValue, heightTerrainTypes);
+    //             //if water region render water tile (water not conform to biomes atm), else calculate correct biome Tile
+    //             if(heightTerrainType.name != "water")
+    //             {
+    //                 //define biome by heat and moisture terrain types
+    //                 float heatValue = heatMap[zIndex, xIndex];
+    //                 TerrainType heatTerrainType = GetTerrainTypeForParameter(heatValue, heatTerrainTypes);
+                    
+    //                 float moistureValue = moistureMap[zIndex, xIndex];
+    //                 TerrainType moistureTerrainType = GetTerrainTypeForParameter(moistureValue, moistureTerrainTypes);
+
+    //                 //use biomes table to calculate correct biome for respective heat and moisture values
+    //                 Biome biome = this.biomes [moistureTerrainType.index].biomes [heatTerrainType.index];
+
+    //                 //save biome in chosenBiomes matrix when not water
+    //                 chosenBiomes[zIndex, xIndex] = biome;
+                    
+    //                 tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), biome.tile);
+    //             }
+    //             else
+    //             {
+    //                 //render normal water Tile (height value)
+    //                 tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForParameter(heightValue, heightTerrainTypes).tile);
+    //             }
+    //         }
+    //     }
+    // }
+
+    //method to build biome texture dependent on heat, moisture and height
+    private void CalculateBiomes(TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, int oX, int oZ, Biome[,] chosenBiomes)
     {
-        int tileDepth = heightMap.GetLength(0);
-        int tileWidth = heightMap.GetLength(1);
+        int tileDepth = chosenHeightTerrainTypes.GetLength(0);
+        int tileWidth = chosenHeightTerrainTypes.GetLength(1);
 
         for (int zIndex = 0; zIndex < tileDepth; zIndex++)
         {
             for (int xIndex = 0; xIndex < tileWidth; xIndex++)
             {
-                //get height terrain type for point
-                float heightValue = heightMap[zIndex, xIndex];
-                TerrainType heightTerrainType = GetTerrainTypeForParameter(heightValue, heightTerrainTypes);
                 //if water region render water tile (water not conform to biomes atm), else calculate correct biome Tile
-                if(heightTerrainType.name != "water")
+                if(chosenHeightTerrainTypes[zIndex,xIndex].name != "water")
                 {
-                    //define biome by heat and moisture terrain types
-                    float heatValue = heatMap[zIndex, xIndex];
-                    TerrainType heatTerrainType = GetTerrainTypeForParameter(heatValue, heatTerrainTypes);
-                    
-                    float moistureValue = moistureMap[zIndex, xIndex];
-                    TerrainType moistureTerrainType = GetTerrainTypeForParameter(moistureValue, moistureTerrainTypes);
-
                     //use biomes table to calculate correct biome for respective heat and moisture values
-                    Biome biome = this.biomes [moistureTerrainType.index].biomes [heatTerrainType.index];
+                    Biome biome = this.biomes [chosenMoistureTerrainTypes[zIndex,xIndex].index].biomes [chosenHeatTerrainTypes[zIndex,xIndex].index];
 
                     //save biome in chosenBiomes matrix when not water
                     chosenBiomes[zIndex, xIndex] = biome;
@@ -247,17 +315,11 @@ public class TerrainGen : MonoBehaviour
                 else
                 {
                     //render normal water Tile (height value)
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), GetTerrainTypeForParameter(heightValue).tile);
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenHeightTerrainTypes[zIndex,xIndex].tile);
                 }
-
-
-        
             }
         }
-
-        
     }
-
 }
 
 [System.Serializable]
