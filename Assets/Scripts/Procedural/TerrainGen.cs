@@ -63,12 +63,12 @@ public class TerrainGen : MonoBehaviour
         LevelData levelData = new LevelData();
 
         //test chunk generation
-        for (int i = 0; i < 10; i++)
+        for (int i = -5; i < 5; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = -5; j < 5; j++)
             {
                 TileData tileData = GenerateTile(i, j);
-                levelData.AddTileData(tileData, i, j);
+                levelData.AddTileData(tileData, System.Math.Abs(i), System.Math.Abs(j), (i < 0) ? true:false,(j < 0) ? true:false);
             }
         }
     }
@@ -395,15 +395,36 @@ public class LevelData
      private int tileDepthInVertices;
      private int tileWidthInVertices;
 
-     public TileData[,] tilesData;
+     public TileData[,] positiveTilesData;
+     public TileData[,] negativeIJTilesData;
+     public TileData[,] negativeITilesData;
+     public TileData[,] negativeJTilesData;
 
      public LevelData()
      {
-         tilesData = new TileData[200,200];
+        positiveTilesData = new TileData[200,200];
+        negativeIJTilesData = new TileData[200,200];
+        negativeITilesData = new TileData[200,200];
+        negativeJTilesData = new TileData[200,200];
      }
 
-     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
+     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex, bool negativeI, bool negativeJ)
      {
-         tilesData[tileZIndex, tileXIndex] = tileData;
+         if(negativeI && negativeJ)
+         {
+            negativeIJTilesData[tileZIndex, tileXIndex] = tileData;
+         }
+         else if(negativeI && !negativeJ)
+         {
+             negativeITilesData[tileZIndex, tileXIndex] = tileData;
+         }
+         else if(!negativeI && negativeJ)
+         {
+             negativeJTilesData[tileZIndex, tileXIndex] = tileData;
+         }
+         else
+         {
+            positiveTilesData[tileZIndex, tileXIndex] = tileData;
+         }
      }
 }
