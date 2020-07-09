@@ -17,7 +17,7 @@ public class TerrainGen : MonoBehaviour
     private float mapScale = 0;
 
     //size of tiles made with perlin noise
-    private int chunkSize = 32;
+    public static int chunkSize = 32;
 
     [SerializeField]
     private TerrainType[] heightTerrainTypes = null;
@@ -159,7 +159,7 @@ public class TerrainGen : MonoBehaviour
             break;
         }
         //build tileData for (chunk)
-        TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes);
+        TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes, oX, oZ);
 
         return tileData;
     }
@@ -374,9 +374,12 @@ public class TileData
     public TerrainType[,] chosenHeatTerrainTypes;
     public TerrainType[,] chosenMoistureTerrainTypes;
     public Biome[,] chosenBiomes;
+    public int offsetX;
+    public int offsetZ;
+
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
-    TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, Biome[,] chosenBiomes)
+    TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, Biome[,] chosenBiomes, int oX, int oZ)
     {
         this.heightMap = heightMap;
         this.heatMap = heatMap;
@@ -385,6 +388,18 @@ public class TileData
         this.chosenHeatTerrainTypes = chosenHeatTerrainTypes;
         this.chosenMoistureTerrainTypes = chosenMoistureTerrainTypes;
         this.chosenBiomes = chosenBiomes;
+        this.offsetX = oX;
+        this.offsetZ = oZ;
+    }
+
+    //method to get world coords for chunk
+    public int[] GetWorldCoordsForChunk()
+    {
+        int[] coords = new int[2];
+        coords[0] = offsetX*TerrainGen.chunkSize;
+        coords[1] = offsetZ*TerrainGen.chunkSize;
+
+        return coords;
     }
 
 }
@@ -412,17 +427,17 @@ public class LevelData
      }
 
      //method to convert coordinates
-     public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex)
-     {
-        int tileZIndex = (int)Mathf.Floor((float)zIndex/(float)this.tileDepthInVertices);
-        int tileXIndex = (int)Mathf.Floor((float)xIndex/(float)this.tileWidthInVertices);
+    //  public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex)
+    //  {
+    //     int tileZIndex = (int)Mathf.Floor((float)zIndex/(float)this.tileDepthInVertices);
+    //     int tileXIndex = (int)Mathf.Floor((float)xIndex/(float)this.tileWidthInVertices);
 
-        int coordinateZIndex = (zIndex % this.tileDepthInVertices);
-        int coordinateXIndex = (xIndex % this.tileWidthInVertices);
+    //     int coordinateZIndex = (zIndex % this.tileDepthInVertices);
+    //     int coordinateXIndex = (xIndex % this.tileWidthInVertices);
 
-        TileCoordinate tileCoordinate = new TileCoordinate(tileZIndex, tileXIndex, coordinateZIndex, coordinateXIndex);
-        return tileCoordinate;
-     }
+    //     TileCoordinate tileCoordinate = new TileCoordinate(tileZIndex, tileXIndex, coordinateZIndex, coordinateXIndex);
+    //     return tileCoordinate;
+    //  }
 
      public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
      {
@@ -470,18 +485,18 @@ public class LevelData
 }
 
 //class to represent a coordinate in the Tile coordinate system
-public class TileCoordinate
-{
-    public int tileZIndex;
-    public int tileXIndex;
-    public int coordinateZIndex;
-    public int coordinateXIndex;
+// public class TileCoordinate
+// {
+//     public int tileZIndex;
+//     public int tileXIndex;
+//     public int coordinateZIndex;
+//     public int coordinateXIndex;
 
-    public TileCoordinate(int tileZIndex, int tileXIndex, int coordinateZIndex, int coordinateXIndex)
-    {
-        this.tileZIndex = tileZIndex;
-        this.tileXIndex = tileXIndex;
-        this.coordinateZIndex = coordinateZIndex;
-        this.coordinateXIndex = coordinateXIndex;
-    }
-}
+//     public TileCoordinate(int tileZIndex, int tileXIndex, int coordinateZIndex, int coordinateXIndex)
+//     {
+//         this.tileZIndex = tileZIndex;
+//         this.tileXIndex = tileXIndex;
+//         this.coordinateZIndex = coordinateZIndex;
+//         this.coordinateXIndex = coordinateXIndex;
+//     }
+// }

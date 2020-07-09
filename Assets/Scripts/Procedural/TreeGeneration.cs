@@ -11,19 +11,19 @@ public class TreeGeneration : MonoBehaviour
     private Wave[] waves;
 
     [SerializeField]
-    private float levelScale;
-
-    [SerializeField]
     private float neightbourRadius;
 
     [SerializeField]
     private GameObject treePrefab;
 
-    
-
-
     void Awake()
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
+    }
+
+    //method to generate trees for given chunk
+    public void GenerateTrees(TileData tileData)
+    {
+
     }
 }
