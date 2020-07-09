@@ -50,7 +50,7 @@ public class TreeGeneration : MonoBehaviour
                 
 
                 //check if water, if so don't place tree
-                if(terrainType.name != "water")
+                if((terrainType.name != "water")&&(biome.name != "savanna")&&(biome.name != "desert"))
                 {
                     float treeValue = treeMap[zIndex, xIndex];
 

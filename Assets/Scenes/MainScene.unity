@@ -6303,9 +6303,9 @@ MonoBehaviour:
     frequency: 4
   levelScale: 10
   neighbourRadius:
-  - 1000
-  - 1000
-  - 1
+  - 100
+  - 100
+  - 100
   - 5
   - 1
   - 10
