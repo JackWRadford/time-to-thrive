@@ -60,7 +60,7 @@ public class TerrainGen : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //empty level data object to be filled as chunks are generated / updated
-        LevelData levelData = new LevelData();
+        LevelData levelData = new LevelData(chunkSize, chunkSize);
 
         //test chunk generation
         for (int i = -5; i < 5; i++)
@@ -400,12 +400,28 @@ public class LevelData
      public TileData[,] negativeITilesData;
      public TileData[,] negativeJTilesData;
 
-     public LevelData()
+     public LevelData(int tileDepthInVertices, int tileWidthInVertices)
      {
         positiveTilesData = new TileData[200,200];
         negativeIJTilesData = new TileData[200,200];
         negativeITilesData = new TileData[200,200];
         negativeJTilesData = new TileData[200,200];
+
+        this.tileDepthInVertices = tileDepthInVertices;
+        this.tileWidthInVertices = tileWidthInVertices;
+     }
+
+     //method to convert coordinates
+     public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex)
+     {
+        int tileZIndex = (int)Mathf.Floor((float)zIndex/(float)this.tileDepthInVertices);
+        int tileXIndex = (int)Mathf.Floor((float)xIndex/(float)this.tileWidthInVertices);
+
+        int coordinateZIndex = (zIndex % this.tileDepthInVertices);
+        int coordinateXIndex = (xIndex % this.tileWidthInVertices);
+
+        TileCoordinate tileCoordinate = new TileCoordinate(tileZIndex, tileXIndex, coordinateZIndex, coordinateXIndex);
+        return tileCoordinate;
      }
 
      public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
@@ -451,4 +467,21 @@ public class LevelData
          }
          return tileData;
      }
+}
+
+//class to represent a coordinate in the Tile coordinate system
+public class TileCoordinate
+{
+    public int tileZIndex;
+    public int tileXIndex;
+    public int coordinateZIndex;
+    public int coordinateXIndex;
+
+    public TileCoordinate(int tileZIndex, int tileXIndex, int coordinateZIndex, int coordinateXIndex)
+    {
+        this.tileZIndex = tileZIndex;
+        this.tileXIndex = tileXIndex;
+        this.coordinateZIndex = coordinateZIndex;
+        this.coordinateXIndex = coordinateXIndex;
+    }
 }
