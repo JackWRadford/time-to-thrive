@@ -8,16 +8,16 @@ public class TreeGeneration : MonoBehaviour
     private NoiseMapGeneration noiseMapGeneration;
     
     [SerializeField]
-    private Wave[] waves;
+    private Wave[] waves = null;
 
     [SerializeField]
-    private float levelScale;
+    private float levelScale = 0;
 
     [SerializeField]
-    private float neighbourRadius;
+    private float[] neighbourRadius = null;
 
     [SerializeField]
-    private GameObject treePrefab;
+    private GameObject treePrefab = null;
 
     void Awake()
     {
@@ -45,6 +45,10 @@ public class TreeGeneration : MonoBehaviour
                 //get terrain type of the coordinate
                 TerrainType terrainType = tileData.chosenHeightTerrainTypes[zIndex, xIndex];
 
+                //get biome type of the coordinate
+                Biome biome = tileData.chosenBiomes[zIndex, xIndex];
+                
+
                 //check if water, if so don't place tree
                 if(terrainType.name != "water")
                 {
@@ -52,11 +56,13 @@ public class TreeGeneration : MonoBehaviour
 
                     int terrainTypeIndex = terrainType.index;
 
+                    print(biome.index);
+
                     //compare current tree noise value to neighbours'
-                    int neighborZBegin = (int)Mathf.Max (0, zIndex - this.neighbourRadius);
-                    int neighborZEnd = (int)Mathf.Min (chunkDepth-1, zIndex + this.neighbourRadius);
-                    int neighborXBegin = (int)Mathf.Max (0, xIndex - this.neighbourRadius);
-                    int neighborXEnd = (int)Mathf.Min (chunkWidth-1, xIndex + this.neighbourRadius);
+                    int neighborZBegin = (int)Mathf.Max (0, zIndex - this.neighbourRadius[biome.index]);
+                    int neighborZEnd = (int)Mathf.Min (chunkDepth-1, zIndex + this.neighbourRadius[biome.index]);
+                    int neighborXBegin = (int)Mathf.Max (0, xIndex - this.neighbourRadius[biome.index]);
+                    int neighborXEnd = (int)Mathf.Min (chunkWidth-1, xIndex + this.neighbourRadius[biome.index]);
                     float maxValue = 0f;
 
                     for (int neighborZ = neighborZBegin; neighborZ <= neighborZEnd; neighborZ++) {

@@ -361,6 +361,7 @@ public class Biome
 {
     public string name;
     public Tile tile;
+    public int index;
 }
 
 
