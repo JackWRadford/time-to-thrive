@@ -49,10 +49,14 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private BiomeRow[] biomes = null;
 
+    [SerializeField]
+    private TreeGeneration treeGeneration;
+
 
     void Awake()
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
+        treeGeneration = this.GetComponent<TreeGeneration>();
     }
 
     void Start()
@@ -69,6 +73,9 @@ public class TerrainGen : MonoBehaviour
             {
                 TileData tileData = GenerateTile(i, j);
                 levelData.AddTileData(tileData, i, j);
+
+                //generate trees for chunk
+                treeGeneration.GenerateTrees(tileData);
             }
         }
     }

@@ -5914,6 +5914,7 @@ GameObject:
   - component: {fileID: 1461756157}
   - component: {fileID: 1461756158}
   - component: {fileID: 1461756159}
+  - component: {fileID: 1461756160}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6248,6 +6249,7 @@ MonoBehaviour:
       tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
     - name: tundra
       tile: {fileID: 11400000, guid: b996d9cdc6eca5f45a206bf06753bf3d, type: 2}
+  treeGeneration: {fileID: 1461756160}
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6260,6 +6262,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e089ef209fddea4a98a017584db7663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1461756160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2510d029605aece4ab93be05c5220b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseMapGeneration: {fileID: 1461756159}
+  waves:
+  - seed: 7831
+    amplitude: 1
+    frequency: 1
+  - seed: 4367
+    amplitude: 2
+    frequency: 2
+  - seed: 5753
+    amplitude: 4
+    frequency: 4
+  levelScale: 10
+  neighbourRadius: 1
+  treePrefab: {fileID: 2455665606651421210, guid: 83af72a05c6010d438e2d33378bb7cba,
+    type: 3}
 --- !u!1 &1502635970
 GameObject:
   m_ObjectHideFlags: 0
