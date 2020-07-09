@@ -6303,12 +6303,12 @@ MonoBehaviour:
     frequency: 4
   levelScale: 10
   neighbourRadius:
-  - 10
-  - 7
-  - 10
-  - 2
+  - 1000
+  - 1000
   - 1
-  - 3
+  - 5
+  - 1
+  - 10
   treePrefab: {fileID: 2455665606651421210, guid: 83af72a05c6010d438e2d33378bb7cba,
     type: 3}
 --- !u!1 &1502635970

@@ -31,12 +31,12 @@ public class TreeGeneration : MonoBehaviour
         int oZ = tileData.offsetZ;
         int chunkDepth = TerrainGen.chunkSize;
         int chunkWidth = TerrainGen.chunkSize;
-        int worldX = tileData.GetWorldCoordsForChunk()[0];
-        int worldZ = tileData.GetWorldCoordsForChunk()[1];
+        int worldXoffset = tileData.GetWorldCoordsForChunk()[0];
+        int worldZoffset = tileData.GetWorldCoordsForChunk()[1];
 
 
         //generate Perlin Noise tree map
-        float[,] treeMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(chunkDepth, chunkWidth, this.levelScale, oX, oZ, this.waves);
+        float[,] treeMap = this.noiseMapGeneration.GeneratePerlinNoiseMap(chunkDepth, chunkWidth, this.levelScale, worldXoffset, worldZoffset, this.waves);
 
         for (int zIndex = 0; zIndex < chunkDepth; zIndex++)
         {
@@ -55,8 +55,6 @@ public class TreeGeneration : MonoBehaviour
                     float treeValue = treeMap[zIndex, xIndex];
 
                     int terrainTypeIndex = terrainType.index;
-
-                    print(biome.index);
 
                     //compare current tree noise value to neighbours'
                     int neighborZBegin = (int)Mathf.Max (0, zIndex - this.neighbourRadius[biome.index]);
@@ -78,7 +76,7 @@ public class TreeGeneration : MonoBehaviour
                     //if current tree noise value is the maximum, place tree at that location
                     if(treeValue == maxValue)
                     {
-                        Vector3 treePosition = new Vector3(xIndex + worldX + 0.5f, zIndex + worldZ + 0.5f, 0);
+                        Vector3 treePosition = new Vector3(xIndex + worldXoffset + 0.5f, zIndex + worldZoffset + 0.5f, 0);
                         GameObject tree = Instantiate(this.treePrefab, treePosition, Quaternion.identity) as GameObject;
                         //tree.transform.localScale = new Vector3(0.5f, 0.5f, 0f);
                     }
