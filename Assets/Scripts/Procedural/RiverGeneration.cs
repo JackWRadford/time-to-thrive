@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RiverGeneration : MonoBehaviour
 {
     [SerializeField]
-    private float heightThreshold;
+    private float heightThreshold = 0;
 
     [SerializeField]
-    private Color riverColor;
+    private Tile riverTile = null;
+
+    public Tilemap tilemap = null;
 
     public void GenerateRivers(int tileDepth, int tileWidth, TileData tileData)
     {
@@ -41,11 +44,15 @@ public class RiverGeneration : MonoBehaviour
             if(heightValue >= this.heightThreshold)
             {
                 found = true;
+                //debug
+                print("found river source");
             }
             //make sure not infinite loop (???)
             else if(tries >= 1024)
             {
                 found = true;
+                //debug
+                print("tried to find river source");
             }
             tries++;
         }
@@ -54,6 +61,70 @@ public class RiverGeneration : MonoBehaviour
 
     private void BuildRiver(int tileDepth, int tileWidth, Vector3 riverOrigin, TileData tileData)
     {
-        
+        HashSet<Vector3> visitedCoordinates = new HashSet<Vector3>();
+
+        //river origin is the first coordinate
+        Vector3 currentCoordinate = riverOrigin;
+        int tries = 0;
+
+        bool foundWater = false;
+        while((!foundWater)&&(tries < 100))
+        {
+           //save current coordinate as visited
+           visitedCoordinates.Add(currentCoordinate);
+
+           //check if found water
+           if(tileData.chosenHeightTerrainTypes[(int)currentCoordinate.x, (int)currentCoordinate.y].name == "water")
+           {
+               //stop if found water
+               foundWater = true;
+               //debug
+               print("found water");
+           }
+           else
+           {
+                //find world position of tile to be changed to river
+                Vector3Int riverTilePos = new Vector3Int((int)currentCoordinate.x + tileData.GetWorldCoordsForChunk()[0], (int)currentCoordinate.y + tileData.GetWorldCoordsForChunk()[1], 0);
+
+                //change texture of tileDate to show a river
+                tilemap.SetTile(riverTilePos, this.riverTile);
+
+                //pick neightbour coordinates if they  exist
+                List<Vector3> neighbours = new List<Vector3>();
+                if(currentCoordinate.y > 0)
+                {
+                    neighbours.Add(new Vector3(currentCoordinate.x, currentCoordinate.y -1, 0));
+                }
+                if(currentCoordinate.y < tileDepth - 1)
+                {
+                    neighbours.Add(new Vector3(currentCoordinate.x, currentCoordinate.y +1, 0));
+                }
+                if(currentCoordinate.x > 0)
+                {
+                    neighbours.Add(new Vector3(currentCoordinate.x - 1, currentCoordinate.y, 0));
+                }
+                if(currentCoordinate.x < tileWidth - 1)
+                {
+                    neighbours.Add(new Vector3(currentCoordinate.x + 1, currentCoordinate.y, 0));
+                }
+
+                //find minimum neightbour not yet visited and flow to it
+                float minHeight = float.MaxValue;
+                Vector3 minNeighbour = new Vector3(0,0,0);
+                foreach (Vector3 neighbour in neighbours)
+                {
+                    //if neighbour is lowest and has not been visited, save it
+                    float neighbourHeight = tileData.heightMap[(int)neighbour.x, (int)neighbour.y];
+                    if(neighbourHeight < minHeight && !visitedCoordinates.Contains(neighbour))
+                    {
+                        minHeight = neighbourHeight;
+                        minNeighbour = neighbour;
+                    }
+                }
+                //flow to lowest neighbour
+                currentCoordinate = minNeighbour;
+           }
+           tries++;
+        }
     }
 }

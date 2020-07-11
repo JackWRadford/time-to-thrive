@@ -52,11 +52,15 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private TreeGeneration treeGeneration;
 
+    [SerializeField]
+    private RiverGeneration riverGeneration;
+
 
     void Awake()
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
         treeGeneration = this.GetComponent<TreeGeneration>();
+        riverGeneration = this.GetComponent<RiverGeneration>();
     }
 
     void Start()
@@ -76,6 +80,9 @@ public class TerrainGen : MonoBehaviour
 
                 //generate trees for chunk
                 treeGeneration.GenerateTrees(tileData);
+
+                //generate rivers for chunk
+                riverGeneration.GenerateRivers(TerrainGen.chunkSize, TerrainGen.chunkSize, tileData);
             }
         }
     }
