@@ -71,20 +71,41 @@ public class TerrainGen : MonoBehaviour
         LevelData levelData = new LevelData(chunkSize, chunkSize);
 
         //test chunk generation
-        for (int i = -5; i < 5; i++)
-        {
-            for (int j = -5; j < 5; j++)
-            {
-                TileData tileData = GenerateTile(i, j);
-                levelData.AddTileData(tileData, i, j);
+        // for (int i = -5; i < 5; i++)
+        // {
+        //     for (int j = -5; j < 5; j++)
+        //     {
+        //         TileData tileData = GenerateTile(i, j);
+        //         levelData.AddTileData(tileData, i, j);
 
-                //generate trees for chunk
-                treeGeneration.GenerateTrees(tileData);
+        //         //generate trees for chunk
+        //         treeGeneration.GenerateTrees(tileData);
 
-                //generate rivers for chunk
-                riverGeneration.GenerateRivers(TerrainGen.chunkSize, TerrainGen.chunkSize, tileData);
-            }
-        }
+        //         //generate rivers for chunk
+        //         //riverGeneration.GenerateRivers(TerrainGen.chunkSize, TerrainGen.chunkSize, tileData);
+        //     }
+        // }
+    }
+
+    void Update()
+    {
+        //check if should generate/load more chunks depending on players position and loaded chunks
+        
+
+    }
+
+    //method to check if new chunk needs to be generated/ loaded
+    private bool NeedNewChunk(int i, int j)
+    {
+
+
+        return false;
+    }
+
+    //method to generate new chunk at given coordinates
+    private void GenerateChunk(int i, int j)
+    {
+
     }
 
     private TileData GenerateTile(int oX, int oZ)
