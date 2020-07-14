@@ -55,6 +55,8 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private RiverGeneration riverGeneration;
 
+    private LevelData levelData = null;
+
 
     void Awake()
     {
@@ -68,7 +70,7 @@ public class TerrainGen : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //empty level data object to be filled as chunks are generated / updated
-        LevelData levelData = new LevelData(chunkSize, chunkSize);
+        levelData = new LevelData(chunkSize, chunkSize);
 
         //test chunk generation
         // for (int i = -5; i < 5; i++)
@@ -90,22 +92,51 @@ public class TerrainGen : MonoBehaviour
     void Update()
     {
         //check if should generate/load more chunks depending on players position and loaded chunks
-        
-
+        NeedNewChunk();
     }
 
     //method to check if new chunk needs to be generated/ loaded
-    private bool NeedNewChunk(int i, int j)
+    private void NeedNewChunk()
     {
+        Vector3Int playerPos = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, 0);
 
+        //find coordinates of chunk that player is in
+        int chunkX = (int)(playerPos.x / TerrainGen.chunkSize);
+        int chunkY = (int)(playerPos.y / TerrainGen.chunkSize);
 
-        return false;
+        //loop through all chunk coordinates that should be loaded dependant on player's position
+        for (int i = chunkX - 2; i < chunkX + 2; i++)
+        {
+            for (int j = chunkY -2; j < chunkY +2; j++)
+            {
+                if(levelData.FindChunk(i,j) != null)
+                {
+                    //chunk exists, load it
+                    LoadChunk(i,j);
+                }else{
+                    //chunk doesn't exist, generate it
+                    GenerateChunk(i,j);
+                }
+            }
+        }
     }
 
     //method to generate new chunk at given coordinates
     private void GenerateChunk(int i, int j)
     {
+        print("generate chunk:" + i.ToString() + ", " + j.ToString());
+        //generate tileData (chunkData) and generate tile (chunk)
+        TileData tileData = GenerateTile(i, j);
+        levelData.AddTileData(tileData, i, j);
 
+        //generate trees for chunk
+        treeGeneration.GenerateTrees(tileData);
+    }
+
+    //mehtod to load saved chunk
+    private void LoadChunk(int i, int j)
+    {
+        print("load chunk:" + i.ToString() + ", " + j.ToString());
     }
 
     private TileData GenerateTile(int oX, int oZ)
@@ -502,19 +533,19 @@ public class LevelData
 
          if(tileZIndex < 0 && tileXIndex < 0)
          {
-            tileData = negativeIJTilesData[tileZIndex, tileXIndex];
+            tileData = negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
          }
          else if(tileZIndex < 0 && tileXIndex >= 0)
          {
-             tileData = negativeITilesData[tileZIndex, tileXIndex];
+             tileData = negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
          }
          else if(tileZIndex >= 0 && tileXIndex < 0)
          {
-             tileData = negativeJTilesData[tileZIndex, tileXIndex];
+             tileData = negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
          }
          else
          {
-            tileData = positiveTilesData[tileZIndex, tileXIndex];
+            tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
          }
          return tileData;
      }
