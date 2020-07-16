@@ -111,8 +111,13 @@ public class TerrainGen : MonoBehaviour
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
-                    //chunk exists, load it
-                    LoadChunk(i,j);
+                    //if chunk not rendered load/generate the relevent chunk
+                    if(levelData.FindChunk(i,j).rendered != true)
+                    {
+                        //chunk exists, load it
+                        LoadChunk(i,j);
+                    }
+                    
                 }else{
                     //chunk doesn't exist, generate it
                     GenerateChunk(i,j);
@@ -124,19 +129,35 @@ public class TerrainGen : MonoBehaviour
     //method to generate new chunk at given coordinates
     private void GenerateChunk(int i, int j)
     {
-        print("generate chunk:" + i.ToString() + ", " + j.ToString());
+        //print("generate chunk:" + i.ToString() + ", " + j.ToString());
+        print("generate");
+
         //generate tileData (chunkData) and generate tile (chunk)
         TileData tileData = GenerateTile(i, j);
         levelData.AddTileData(tileData, i, j);
 
         //generate trees for chunk
         treeGeneration.GenerateTrees(tileData);
+        //TODO: save trees in tileData in levelData tileData array (and other enetities created)
+
+        tileData.rendered = true;
     }
 
-    //mehtod to load saved chunk
+    //mehtod to load specified chunk from tilesData (levelData)
     private void LoadChunk(int i, int j)
     {
-        print("load chunk:" + i.ToString() + ", " + j.ToString());
+        //print("load chunk:" + i.ToString() + ", " + j.ToString());
+        print("load");
+
+        //find specified chunk in level data and render the chunk
+        TileData td = levelData.FindChunk(i, j);
+        if(td != null)
+        {
+            CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX, td.offsetZ, td.chosenBiomes);
+            //load trees (and other entities)
+
+            td.rendered = true;
+        }
     }
 
     private TileData GenerateTile(int oX, int oZ)
@@ -443,6 +464,8 @@ public class TileData
     public Biome[,] chosenBiomes;
     public int offsetX;
     public int offsetZ;
+
+    public bool rendered = false;
 
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
