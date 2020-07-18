@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Procedural\RiverGeneration.cs" />
      <Compile Include="Assets\Scripts\Procedural\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Procedural\TreeGeneration.cs" />
+     <Compile Include="Assets\Scripts\Saving\ChunkData.cs" />
      <Compile Include="Assets\Scripts\Saving\CowData.cs" />
      <Compile Include="Assets\Scripts\Saving\FenceData.cs" />
      <Compile Include="Assets\Scripts\Saving\GameEvents.cs" />

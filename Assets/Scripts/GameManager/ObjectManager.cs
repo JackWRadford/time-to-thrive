@@ -190,7 +190,8 @@ public class ObjectManager : MonoBehaviour
         else
         {
             //generate world
-            generateWorld.Generate();
+            Debug.Log("No Objects Save");
+            //generateWorld.Generate();
         }
     }
 }

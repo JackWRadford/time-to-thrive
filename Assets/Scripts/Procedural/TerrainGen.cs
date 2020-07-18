@@ -55,6 +55,9 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private RiverGeneration riverGeneration;
 
+    [SerializeField]
+    private Tile waterTile;
+
     private LevelData levelData = null;
 
 
@@ -153,7 +156,8 @@ public class TerrainGen : MonoBehaviour
         TileData td = levelData.FindChunk(i, j);
         if(td != null)
         {
-            CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX, td.offsetZ, td.chosenBiomes);
+            //CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX, td.offsetZ, td.chosenBiomes);
+            LoadBiomes(td.offsetX, td.offsetZ, td.chosenBiomes);
             //load trees (and other entities)
 
             td.rendered = true;
@@ -411,6 +415,46 @@ public class TerrainGen : MonoBehaviour
                 }
             }
         }
+    }
+
+    //method to render saved biomes for a given chunk
+    private void LoadBiomes(int oX, int oZ, Biome[,] chosenBiomes)
+    {
+        int tileDepth = chosenBiomes.GetLength(0);
+        int tileWidth = chosenBiomes.GetLength(1);
+
+        for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        {
+            for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+            {
+                //if water region render water tile (water not conform to biomes atm), else calculate correct biome Tile
+                if(chosenBiomes != null)
+                {
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenBiomes[zIndex, xIndex].tile);
+                }
+                else
+                {
+                    //render normal water Tile 
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), waterTile);
+                }
+            }
+        }
+    }
+
+    private Tile GetTileFromName(string name) //---------------------------------------------------------------------------------------------------
+    {
+        Tile tile = null;
+
+        switch (name)
+        {
+            
+            default:
+            //water
+
+            break;
+        }
+
+        return tile;
     }
 }
 
