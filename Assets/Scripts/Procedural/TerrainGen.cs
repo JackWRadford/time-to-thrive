@@ -77,27 +77,18 @@ public class TerrainGen : MonoBehaviour
         //empty level data object to be filled as chunks are generated / updated
         levelData = new LevelData(chunkSize, chunkSize);
 
-        //test chunk generation
-        // for (int i = -5; i < 5; i++)
-        // {
-        //     for (int j = -5; j < 5; j++)
-        //     {
-        //         TileData tileData = GenerateTile(i, j);
-        //         levelData.AddTileData(tileData, i, j);
-
-        //         //generate trees for chunk
-        //         treeGeneration.GenerateTrees(tileData);
-
-        //         //generate rivers for chunk
-        //         //riverGeneration.GenerateRivers(TerrainGen.chunkSize, TerrainGen.chunkSize, tileData);
-        //     }
-        // }
+        Load();
     }
 
     //prepare and save level data
     void Save()
     {
         levelData.SaveChunkData();
+    }
+
+    void Load()
+    {
+        levelData.LoadChunkData(levelData);
     }
 
     void Update()
@@ -127,6 +118,8 @@ public class TerrainGen : MonoBehaviour
                     {
                         //chunk exists, load it
                         LoadChunk(i,j);
+                    }else{
+                        Debug.Log("Chunk already rendered");
                     }
                     
                 }else{
@@ -167,8 +160,9 @@ public class TerrainGen : MonoBehaviour
         TileData td = levelData.FindChunk(i, j);
         if(td != null)
         {
-            //CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX, td.offsetZ, td.chosenBiomes);
-            LoadBiomes(td.offsetX, td.offsetZ, td.chosenBiomes);
+            //print(td.offsetX.ToString() + " " + td.offsetZ.ToString());
+            //CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
+            LoadBiomes(td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
             //load trees (and other entities)
 
             td.rendered = true;
@@ -251,7 +245,7 @@ public class TerrainGen : MonoBehaviour
             case Visualizationmode.Biome:
             //build biomes from heat, height and moisture maps
             //CalculateBiomes(heightMap, heatMap, moistureMap, (int)offsetX, (int)offsetZ, chosenBiomes);
-            CalculateBiomes(chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, (int)offsetX, (int)offsetZ, chosenBiomes);
+            chosenBiomes = CalculateBiomes(chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
 
             default:
@@ -260,6 +254,20 @@ public class TerrainGen : MonoBehaviour
             RenderTiles(chosenHeightTerrainTypes, (int)offsetX, (int)offsetZ);
             break;
         }
+        
+        // for (int zIndex = 0; zIndex < tileDepth; zIndex++)
+        // {
+        //     for (int xIndex = 0; xIndex < tileWidth; xIndex++)
+        //     {
+        //         if(chosenBiomes[zIndex,xIndex] != null)
+        //         {
+        //             print(chosenBiomes[zIndex, xIndex].name.ToString());
+        //         }else{
+        //             print("water");
+        //         }
+        //     }
+        // }
+
         //build tileData for (chunk)
         TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes, oX, oZ);
 
@@ -399,10 +407,12 @@ public class TerrainGen : MonoBehaviour
     // }
 
     //method to build biome texture dependent on heat, moisture and height
-    private void CalculateBiomes(TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, int oX, int oZ, Biome[,] chosenBiomes)
+    private Biome[,] CalculateBiomes(TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, int oX, int oZ)
     {
         int tileDepth = chosenHeightTerrainTypes.GetLength(0);
         int tileWidth = chosenHeightTerrainTypes.GetLength(1);
+
+        Biome[,] chosenBiomes = new Biome[tileDepth,tileWidth];
 
         for (int zIndex = 0; zIndex < tileDepth; zIndex++)
         {
@@ -415,6 +425,7 @@ public class TerrainGen : MonoBehaviour
                     Biome biome = this.biomes [chosenMoistureTerrainTypes[zIndex,xIndex].index].biomes [chosenHeatTerrainTypes[zIndex,xIndex].index];
 
                     //save biome in chosenBiomes matrix when not water
+                    //print(biome.name.ToString() + " : " + zIndex.ToString() + " : " + xIndex.ToString());
                     chosenBiomes[zIndex, xIndex] = biome;
                     
                     // tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), biome.tile);
@@ -428,6 +439,7 @@ public class TerrainGen : MonoBehaviour
                 }
             }
         }
+        return chosenBiomes;
     }
 
     //method to render saved biomes for a given chunk
@@ -441,9 +453,10 @@ public class TerrainGen : MonoBehaviour
             for (int xIndex = 0; xIndex < tileWidth; xIndex++)
             {
                 //if water region render water tile (water not conform to biomes atm), else calculate correct biome Tile
-                if(chosenBiomes != null)
+                if(chosenBiomes[zIndex, xIndex] != null)
                 {
                     //tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),chosenBiomes[zIndex, xIndex].tile);
+                    print(chosenBiomes[zIndex, xIndex].name);
                     tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),Resources.Load<Tile>("Tiles/" + chosenBiomes[zIndex, xIndex].name));
                 }
                 else
@@ -526,6 +539,7 @@ public class TileData
     public int offsetX;
     public int offsetZ;
 
+    [System.NonSerialized]
     public bool rendered = false;
 
 
@@ -592,20 +606,6 @@ public class LevelData
     this.tileWidthInVertices = tileWidthInVertices;
     }
 
-    void Load()
-    {
-        if(SaveSystem.SaveExists("Chunks"))
-        {
-            Debug.Log("Chunks Save Exists");
-            // chunkDataMatricies = SaveSystem.Load<Dictionary<string, ChunkData[,]>>("Chunks");
-            //tileDataMatricies = SaveSystem.Load<Dictionary<string, TileData[,]>>("Chunks");
-        }
-        else
-        {
-            Debug.Log("No Chunks Save");
-        }
-    }
-
     public void SaveChunkData()
     {
         //prepare data to be saved
@@ -631,6 +631,60 @@ public class LevelData
         Debug.Log("saved chunks");
     }
 
+    public void LoadChunkData(LevelData levelData)
+    {
+        if(SaveSystem.SaveExists("Chunks"))
+        {
+            Debug.Log("Chunks Save Exists");
+            //unload saved tileData into 4 tilesData matricies
+            Dictionary<string, TileData[,]> tileDataMatricies = SaveSystem.Load<Dictionary<string, TileData[,]>>("Chunks");
+            //this.positiveTilesData = tileDataMatricies["positive"];
+            foreach (TileData d in tileDataMatricies["positive"])
+            {
+                if(d != null)
+                {
+                    TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                } 
+            }
+            //this.negativeIJTilesData = tileDataMatricies["negativeIJ"];
+            foreach (TileData d in tileDataMatricies["negativeIJ"])
+            {
+                if(d != null)
+                {
+                    TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                } 
+            }
+            //this.negativeITilesData = tileDataMatricies["negativeI"];
+            foreach (TileData d in tileDataMatricies["negativeI"])
+            {
+                if(d != null)
+                {
+                    TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                } 
+            }
+            //this.negativeJTilesData = tileDataMatricies["negativeJ"];
+            foreach (TileData d in tileDataMatricies["negativeJ"])
+            {
+                if(d != null)
+                {
+                    TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                } 
+            }
+        }
+        else
+        {
+            Debug.Log("No Chunks Save");
+        }
+    }
+
      //method to convert coordinates
     //  public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex)
     //  {
@@ -644,7 +698,7 @@ public class LevelData
     //     return tileCoordinate;
     //  }
 
-    public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
+    public void AddTileData(TileData tileData, int tileXIndex, int tileZIndex)
     {
         if(tileZIndex < 0 && tileXIndex < 0)
         {
@@ -677,7 +731,7 @@ public class LevelData
     }
 
      //method to find chunk from correct data structure depending on coordinates
-    public TileData FindChunk(int tileZIndex, int tileXIndex)
+    public TileData FindChunk(int tileXIndex, int tileZIndex)
     {
         TileData tileData = null;
 
@@ -695,7 +749,7 @@ public class LevelData
         }
         else
         {
-        tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+            tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
         }
         return tileData;
     }
