@@ -14,12 +14,12 @@ public class ObjectManager : MonoBehaviour
     {
         generateWorld = GetComponent<GenerateWorld>();
 
-        GameEvents.SaveInitiated += Save;
+        //GameEvents.SaveInitiated += Save;
     }
 
     void Start()
     {
-        Load();
+        //Load();
     }
 
     // public Dictionary<List<float>, string> GetObjects()

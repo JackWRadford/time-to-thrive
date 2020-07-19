@@ -55,8 +55,8 @@ public class TerrainGen : MonoBehaviour
     [SerializeField]
     private RiverGeneration riverGeneration;
 
-    [SerializeField]
-    private Tile waterTile;
+    //[SerializeField]
+    //private Tile waterTile = null;
 
     private LevelData levelData = null;
 
@@ -66,6 +66,8 @@ public class TerrainGen : MonoBehaviour
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
         treeGeneration = this.GetComponent<TreeGeneration>();
         riverGeneration = this.GetComponent<RiverGeneration>();
+
+        GameEvents.SaveInitiated += Save;
     }
 
     void Start()
@@ -90,6 +92,12 @@ public class TerrainGen : MonoBehaviour
         //         //riverGeneration.GenerateRivers(TerrainGen.chunkSize, TerrainGen.chunkSize, tileData);
         //     }
         // }
+    }
+
+    //prepare and save level data
+    void Save()
+    {
+        levelData.SaveChunkData();
     }
 
     void Update()
@@ -136,8 +144,11 @@ public class TerrainGen : MonoBehaviour
         print("generate");
 
         //generate tileData (chunkData) and generate tile (chunk)
-        TileData tileData = GenerateTile(i, j);
+        TileData tileData =  GenerateTile(i, j);
         levelData.AddTileData(tileData, i, j);
+        //create chunkData and add to array of chunkData
+        //ChunkData chunkData = new ChunkData(tileData);
+        
 
         //generate trees for chunk
         treeGeneration.GenerateTrees(tileData);
@@ -266,8 +277,8 @@ public class TerrainGen : MonoBehaviour
             for (int xIndex = 0; xIndex < tileWidth; xIndex++)
             {
                 //render tile from terraintype matrix
-                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenTerrainTypes[zIndex, xIndex].tile);
-                
+                //tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenTerrainTypes[zIndex, xIndex].tile);
+                tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + chosenTerrainTypes[zIndex, xIndex].name));
             }
         }
     }
@@ -406,12 +417,14 @@ public class TerrainGen : MonoBehaviour
                     //save biome in chosenBiomes matrix when not water
                     chosenBiomes[zIndex, xIndex] = biome;
                     
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), biome.tile);
+                    // tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), biome.tile);
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + biome.name));
                 }
                 else
                 {
                     //render normal water Tile (height value)
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenHeightTerrainTypes[zIndex,xIndex].tile);
+                    // tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenHeightTerrainTypes[zIndex,xIndex].tile);
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + "water"));
                 }
             }
         }
@@ -430,32 +443,35 @@ public class TerrainGen : MonoBehaviour
                 //if water region render water tile (water not conform to biomes atm), else calculate correct biome Tile
                 if(chosenBiomes != null)
                 {
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenBiomes[zIndex, xIndex].tile);
+                    //tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),chosenBiomes[zIndex, xIndex].tile);
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),Resources.Load<Tile>("Tiles/" + chosenBiomes[zIndex, xIndex].name));
                 }
                 else
                 {
                     //render normal water Tile 
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), waterTile);
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + "water"));
                 }
             }
         }
     }
 
-    private Tile GetTileFromName(string name) //---------------------------------------------------------------------------------------------------
-    {
-        Tile tile = null;
+    // private Tile GetTileFromName(string name)
+    // {
+    //     Tile tile = null;
 
-        switch (name)
-        {
-            
-            default:
-            //water
+    //     switch (name)
+    //     {
+    //         case "desert":
+    //         tile = 
 
-            break;
-        }
+    //         default:
+    //         //water
 
-        return tile;
-    }
+    //         break;
+    //     }
+
+    //     return tile;
+    // }
 }
 
 [System.Serializable]
@@ -464,7 +480,7 @@ public class TerrainType
     public string name;
     //height, heat, moisture
     public float threshold;
-    public Tile tile;
+    //public Tile tile;
     public int index;
 }
 
@@ -484,7 +500,7 @@ enum Visualizationmode {Height, Heat, Moisture, Biome}
 public class Biome
 {
     public string name;
-    public Tile tile;
+    //public Tile tile;
     public int index;
 }
 
@@ -497,6 +513,7 @@ public class BiomeRow
 }
 
 //class to store a (chunk's) data
+[System.Serializable]
 public class TileData
 {
     public float[,] heightMap;
@@ -541,24 +558,78 @@ public class TileData
 //class to store all the merged tiles data
 public class LevelData
 {
-     private int tileDepthInVertices;
-     private int tileWidthInVertices;
+    private int tileDepthInVertices;
+    private int tileWidthInVertices;
 
-     public TileData[,] positiveTilesData;
-     public TileData[,] negativeIJTilesData;
-     public TileData[,] negativeITilesData;
-     public TileData[,] negativeJTilesData;
+    public TileData[,] positiveTilesData;
+    public TileData[,] negativeIJTilesData;
+    public TileData[,] negativeITilesData;
+    public TileData[,] negativeJTilesData;
 
-     public LevelData(int tileDepthInVertices, int tileWidthInVertices)
-     {
-        positiveTilesData = new TileData[200,200];
-        negativeIJTilesData = new TileData[200,200];
-        negativeITilesData = new TileData[200,200];
-        negativeJTilesData = new TileData[200,200];
+    //to save chunkData
+    public ChunkData[,] positiveChunkData;
+    public ChunkData[,] negativeIJChunkData;
+    public ChunkData[,] negativeIChunkData;
+    public ChunkData[,] negativeJChunkData;
 
-        this.tileDepthInVertices = tileDepthInVertices;
-        this.tileWidthInVertices = tileWidthInVertices;
-     }
+    //private Dictionary<string, ChunkData[,]> chunkDataMatricies;
+    
+
+    public LevelData(int tileDepthInVertices, int tileWidthInVertices)
+    {
+    positiveTilesData = new TileData[200,200];
+    negativeIJTilesData = new TileData[200,200];
+    negativeITilesData = new TileData[200,200];
+    negativeJTilesData = new TileData[200,200];
+
+    //for saving chunk data
+    positiveChunkData = new ChunkData[200,200];
+    negativeIJChunkData = new ChunkData[200,200];
+    negativeIChunkData = new ChunkData[200,200];
+    negativeJChunkData = new ChunkData[200,200];
+
+    this.tileDepthInVertices = tileDepthInVertices;
+    this.tileWidthInVertices = tileWidthInVertices;
+    }
+
+    void Load()
+    {
+        if(SaveSystem.SaveExists("Chunks"))
+        {
+            Debug.Log("Chunks Save Exists");
+            // chunkDataMatricies = SaveSystem.Load<Dictionary<string, ChunkData[,]>>("Chunks");
+            //tileDataMatricies = SaveSystem.Load<Dictionary<string, TileData[,]>>("Chunks");
+        }
+        else
+        {
+            Debug.Log("No Chunks Save");
+        }
+    }
+
+    public void SaveChunkData()
+    {
+        //prepare data to be saved
+        // chunkDataMatricies = new Dictionary<string, ChunkData[,]>();
+
+        // chunkDataMatricies.Add("positive", positiveChunkData);
+        // chunkDataMatricies.Add("negativeIJ", negativeIJChunkData);
+        // chunkDataMatricies.Add("negativeI", negativeIChunkData);
+        // chunkDataMatricies.Add("negativeJ", negativeJChunkData);
+
+        // SaveSystem.Save<Dictionary<string, ChunkData[,]>>(chunkDataMatricies, "Chunks");
+
+        Dictionary<string, TileData[,]> tileDataMatricies = new Dictionary<string, TileData[,]>();
+
+        tileDataMatricies.Add("positive", positiveTilesData);
+        tileDataMatricies.Add("negativeIJ", negativeIJTilesData);
+        tileDataMatricies.Add("negativeI", negativeITilesData);
+        tileDataMatricies.Add("negativeJ", negativeJTilesData);
+
+        SaveSystem.Save<Dictionary<string, TileData[,]>>(tileDataMatricies, "Chunks");
+
+
+        Debug.Log("saved chunks");
+    }
 
      //method to convert coordinates
     //  public TileCoordinate ConvertToTileCoordinate(int zIndex, int xIndex)
@@ -573,49 +644,61 @@ public class LevelData
     //     return tileCoordinate;
     //  }
 
-     public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
-     {
-         if(tileZIndex < 0 && tileXIndex < 0)
-         {
+    public void AddTileData(TileData tileData, int tileZIndex, int tileXIndex)
+    {
+        if(tileZIndex < 0 && tileXIndex < 0)
+        {
             negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
-         }
-         else if(tileZIndex < 0 && tileXIndex >= 0)
-         {
-             negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
-         }
-         else if(tileZIndex >= 0 && tileXIndex < 0)
-         {
-             negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
-         }
-         else
-         {
+
+            //ChunkData chunkData = new ChunkData(tileData);
+            //negativeIJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
+        }
+        else if(tileZIndex < 0 && tileXIndex >= 0)
+        {
+            negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+
+            //ChunkData chunkData = new ChunkData(tileData);
+            //negativeIChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
+        }
+        else if(tileZIndex >= 0 && tileXIndex < 0)
+        {
+            negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+
+            //ChunkData chunkData = new ChunkData(tileData);
+            //negativeJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
+        }
+        else
+        {
             positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
-         }
-     }
+
+            //ChunkData chunkData = new ChunkData(tileData);
+            //positiveChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
+        }
+    }
 
      //method to find chunk from correct data structure depending on coordinates
-     public TileData FindChunk(int tileZIndex, int tileXIndex)
-     {
-         TileData tileData = null;
+    public TileData FindChunk(int tileZIndex, int tileXIndex)
+    {
+        TileData tileData = null;
 
-         if(tileZIndex < 0 && tileXIndex < 0)
-         {
-            tileData = negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
-         }
-         else if(tileZIndex < 0 && tileXIndex >= 0)
-         {
-             tileData = negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
-         }
-         else if(tileZIndex >= 0 && tileXIndex < 0)
-         {
-             tileData = negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
-         }
-         else
-         {
-            tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
-         }
-         return tileData;
-     }
+        if(tileZIndex < 0 && tileXIndex < 0)
+        {
+        tileData = negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+        }
+        else if(tileZIndex < 0 && tileXIndex >= 0)
+        {
+            tileData = negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+        }
+        else if(tileZIndex >= 0 && tileXIndex < 0)
+        {
+            tileData = negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+        }
+        else
+        {
+        tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+        }
+        return tileData;
+    }
 }
 
 //class to represent a coordinate in the Tile coordinate system

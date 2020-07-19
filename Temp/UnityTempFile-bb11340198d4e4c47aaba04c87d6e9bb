@@ -342,6 +342,8 @@ Assets\Scripts\Procedural\NoiseMapGeneration.cs
 Assets\Scripts\Procedural\RiverGeneration.cs
 Assets\Scripts\Procedural\TerrainGen.cs
 Assets\Scripts\Procedural\TreeGeneration.cs
+Assets\Scripts\Saving\BiomeData.cs
+Assets\Scripts\Saving\ChunkData.cs
 Assets\Scripts\Saving\CowData.cs
 Assets\Scripts\Saving\FenceData.cs
 Assets\Scripts\Saving\GameEvents.cs

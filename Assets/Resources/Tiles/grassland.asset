@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: groundTilesSheets_35
+  m_Name: grassland
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7511156445164144587, guid: 2db23cdafed08dc4da5fb495ebd4299d,
     type: 3}

@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Procedural\RiverGeneration.cs" />
      <Compile Include="Assets\Scripts\Procedural\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Procedural\TreeGeneration.cs" />
+     <Compile Include="Assets\Scripts\Saving\BiomeData.cs" />
      <Compile Include="Assets\Scripts\Saving\ChunkData.cs" />
      <Compile Include="Assets\Scripts\Saving\CowData.cs" />
      <Compile Include="Assets\Scripts\Saving\FenceData.cs" />
@@ -78,6 +79,7 @@
      <Compile Include="Assets\Scripts\Saving\LoadGame.cs" />
      <Compile Include="Assets\Scripts\Saving\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveSystem.cs" />
+     <Compile Include="Assets\Scripts\Saving\TerrainTypeData.cs" />
      <Compile Include="Assets\Scripts\Saving\TreeData.cs" />
      <Compile Include="Assets\Scripts\UI\CanvasScript.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
