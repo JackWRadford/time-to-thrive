@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: New Piskel_3
+  m_Name: water
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -4309738878335270719, guid: bd31953d4e1816b47bb2553f7432a2f9,
     type: 3}

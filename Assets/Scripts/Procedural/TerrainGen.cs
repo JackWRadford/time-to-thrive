@@ -113,6 +113,7 @@ public class TerrainGen : MonoBehaviour
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
+                    Debug.Log("found" + levelData.FindChunk(i,j).offsetX + "," + levelData.FindChunk(i,j).offsetZ);
                     //if chunk not rendered load/generate the relevent chunk
                     if(levelData.FindChunk(i,j).rendered != true)
                     {
@@ -125,6 +126,7 @@ public class TerrainGen : MonoBehaviour
                 }else{
                     //chunk doesn't exist, generate it
                     GenerateChunk(i,j);
+                    Debug.Log("Generate:" + i + ":" + j);
                 }
             }
         }
@@ -134,7 +136,6 @@ public class TerrainGen : MonoBehaviour
     private void GenerateChunk(int i, int j)
     {
         //print("generate chunk:" + i.ToString() + ", " + j.ToString());
-        print("generate");
 
         //generate tileData (chunkData) and generate tile (chunk)
         TileData tileData =  GenerateTile(i, j);
@@ -154,15 +155,16 @@ public class TerrainGen : MonoBehaviour
     private void LoadChunk(int i, int j)
     {
         //print("load chunk:" + i.ToString() + ", " + j.ToString());
-        print("load");
+        
 
         //find specified chunk in level data and render the chunk
-        TileData td = levelData.FindChunk(i, j);
+        TileData td = levelData.FindChunk(i,j);
         if(td != null)
         {
             //print(td.offsetX.ToString() + " " + td.offsetZ.ToString());
             //CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
             LoadBiomes(td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
+            Debug.Log("load: " + i + ":" + j);
             //load trees (and other entities)
 
             td.rendered = true;
@@ -456,7 +458,7 @@ public class TerrainGen : MonoBehaviour
                 if(chosenBiomes[zIndex, xIndex] != null)
                 {
                     //tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),chosenBiomes[zIndex, xIndex].tile);
-                    print(chosenBiomes[zIndex, xIndex].name);
+                    //print(chosenBiomes[zIndex, xIndex].name);
                     tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0),Resources.Load<Tile>("Tiles/" + chosenBiomes[zIndex, xIndex].name));
                 }
                 else
@@ -643,9 +645,10 @@ public class LevelData
             {
                 if(d != null)
                 {
+                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
-                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                    levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
             //this.negativeIJTilesData = tileDataMatricies["negativeIJ"];
@@ -653,9 +656,10 @@ public class LevelData
             {
                 if(d != null)
                 {
+                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
-                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                    levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
             //this.negativeITilesData = tileDataMatricies["negativeI"];
@@ -663,9 +667,10 @@ public class LevelData
             {
                 if(d != null)
                 {
+                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
-                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                    levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
             //this.negativeJTilesData = tileDataMatricies["negativeJ"];
@@ -673,9 +678,10 @@ public class LevelData
             {
                 if(d != null)
                 {
+                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
-                    levelData.AddTileData(td, td.offsetZ, td.offsetX);
+                    levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
         }
@@ -702,28 +708,28 @@ public class LevelData
     {
         if(tileZIndex < 0 && tileXIndex < 0)
         {
-            negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+            negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeIJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else if(tileZIndex < 0 && tileXIndex >= 0)
         {
-            negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+            negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeIChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else if(tileZIndex >= 0 && tileXIndex < 0)
         {
-            negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+            negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else
         {
-            positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = tileData;
+            positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
 
             //ChunkData chunkData = new ChunkData(tileData);
             //positiveChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
@@ -733,24 +739,29 @@ public class LevelData
      //method to find chunk from correct data structure depending on coordinates
     public TileData FindChunk(int tileXIndex, int tileZIndex)
     {
-        TileData tileData = null;
+        TileData tileData;
 
         if(tileZIndex < 0 && tileXIndex < 0)
         {
-        tileData = negativeIJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+            tileData = negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else if(tileZIndex < 0 && tileXIndex >= 0)
         {
-            tileData = negativeITilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+            tileData = negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else if(tileZIndex >= 0 && tileXIndex < 0)
         {
-            tileData = negativeJTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+            tileData = negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else
         {
-            tileData = positiveTilesData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)];
+            tileData = positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
+        // Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         return tileData;
     }
 }
