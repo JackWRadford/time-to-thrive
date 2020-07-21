@@ -111,13 +111,18 @@ public class TerrainGen : MonoBehaviour
         Vector3Int playerPos = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, 0);
 
         //find coordinates of chunk that player is in
-        int chunkX = (int)(playerPos.x / TerrainGen.chunkSize);
-        int chunkY = (int)(playerPos.y / TerrainGen.chunkSize);
+        // int chunkX = (int)(playerPos.x / TerrainGen.chunkSize);
+        // int chunkY = (int)(playerPos.y / TerrainGen.chunkSize);
+        int chunkX = GetChunkCoordsFromWorld(playerPos.x, playerPos.y)[0];
+        int chunkY = GetChunkCoordsFromWorld(playerPos.x, playerPos.y)[1];;
+
+
+        Debug.Log("player in: " + chunkX + ", " + chunkY);
 
         //loop through all chunk coordinates that should be loaded dependant on player's position
-        for (int i = chunkX - 2; i < chunkX + 2; i++)
+        for (int i = chunkX - 1; i < chunkX + 1; i++)
         {
-            for (int j = chunkY - 2; j < chunkY + 2; j++)
+            for (int j = chunkY - 1; j < chunkY + 1; j++)
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
@@ -129,6 +134,7 @@ public class TerrainGen : MonoBehaviour
                         LoadChunk(i,j);
                         //spawn chunk objects
                         SpawnSavedObjects(levelData.FindChunk(i,j));
+                        Debug.Log("load: " + i + ", " + j);
                     }else{
                         //Debug.Log("Chunk already rendered");
                     }
@@ -136,10 +142,29 @@ public class TerrainGen : MonoBehaviour
                 }else{
                     //chunk doesn't exist, generate it
                     GenerateChunk(i,j);
-                    //Debug.Log("Generate:" + i + ":" + j);
+                    Debug.Log("Generate:" + i + ":" + j);
                 }
             }
         }
+    }
+
+    //method to get chunk coordinated from world coordinates
+    public int[] GetChunkCoordsFromWorld(float x, float y)
+    {
+        int[] coords = new int[2];
+
+        if(x < 0)
+        {
+            x-=1*TerrainGen.chunkSize;
+        }
+        if(y < 0)
+        {
+            y-=1*TerrainGen.chunkSize;
+        }
+        coords[0] = (int)(x / TerrainGen.chunkSize);
+        coords[1] = (int)(y / TerrainGen.chunkSize);
+
+        return coords;
     }
 
     //method to spawn saved objects in chunk

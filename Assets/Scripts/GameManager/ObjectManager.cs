@@ -57,8 +57,8 @@ public class ObjectManager : MonoBehaviour
     {
         TileData tileData = null;
         //get chunk that coordinates are in
-        int offsetX = (int)(x / TerrainGen.chunkSize);
-        int offsetY = (int)(y / TerrainGen.chunkSize);
+        int offsetX = terrainGen.GetChunkCoordsFromWorld(x, y)[0];
+        int offsetY = terrainGen.GetChunkCoordsFromWorld(x, y)[1];
 
         //find chunk from levelData
         tileData = terrainGen.GetLevelData().FindChunk(offsetX, offsetY);
