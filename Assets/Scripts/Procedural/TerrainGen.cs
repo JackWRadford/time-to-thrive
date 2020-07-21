@@ -120,9 +120,9 @@ public class TerrainGen : MonoBehaviour
         Debug.Log("player in: " + chunkX + ", " + chunkY);
 
         //loop through all chunk coordinates that should be loaded dependant on player's position
-        for (int i = chunkX - 1; i < chunkX + 1; i++)
+        for (int i = chunkX - 1; i < chunkX + 2; i++)
         {
-            for (int j = chunkY - 1; j < chunkY + 1; j++)
+            for (int j = chunkY - 1; j < chunkY + 2; j++)
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
