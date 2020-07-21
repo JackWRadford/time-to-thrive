@@ -76,9 +76,12 @@ public class TreeGeneration : MonoBehaviour
                     //if current tree noise value is the maximum, place tree at that location
                     if(treeValue == maxValue)
                     {
-                        Vector3 treePosition = new Vector3(xIndex + worldXoffset + 0.5f, zIndex + worldZoffset + 0.5f, 0);
+                        float x = xIndex + worldXoffset + 0.5f;
+                        float y = zIndex + worldZoffset + 0.5f;
+                        Vector3 treePosition = new Vector3(x, y, 0);
                         GameObject tree = Instantiate(this.treePrefab, treePosition, Quaternion.identity) as GameObject;
-                        //tree.transform.localScale = new Vector3(0.5f, 0.5f, 0f);
+                        TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                        tileData.AddObject(x,y,"Tree",td);
                     }
 
                 }
