@@ -89,6 +89,7 @@ public class TerrainGen : MonoBehaviour
 
     void Load()
     {
+        //load saved chunkData into matrix
         levelData.LoadChunkData(levelData);
     }
 
@@ -126,6 +127,8 @@ public class TerrainGen : MonoBehaviour
                     {
                         //chunk exists, load it
                         LoadChunk(i,j);
+                        //spawn chunk objects
+                        SpawnSavedObjects(levelData.FindChunk(i,j));
                     }else{
                         //Debug.Log("Chunk already rendered");
                     }
@@ -136,6 +139,23 @@ public class TerrainGen : MonoBehaviour
                     //Debug.Log("Generate:" + i + ":" + j);
                 }
             }
+        }
+    }
+
+    //method to spawn saved objects in chunk
+    public void SpawnSavedObjects(TileData tileData)
+    {
+        Dictionary<List<float>, dynamic> objects = tileData.GetObjectGOs();
+        Debug.Log("loaded objects: " + objects.Count.ToString());
+        foreach (var obj in objects)
+        {
+            GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
+            GameObject goi = Instantiate(go, new Vector3(obj.Key[0], obj.Key[1], 0), Quaternion.identity);
+            goi.GetComponent<ILoadState>().LoadState(obj.Value);
+            //load state from save onto instantiated gameObject
+            
+            //populate list of objects for chunk
+            //tileData.AddObject(obj.Key[0], obj.Key[1], obj.Value.GetTitle(), obj.Value);
         }
     }
 
@@ -277,8 +297,11 @@ public class TerrainGen : MonoBehaviour
         //     }
         // }
 
+        Dictionary<List<float>, dynamic> chunkObjects = new Dictionary<List<float>, dynamic>();
+
         //build tileData for (chunk)
-        TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes, chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes, oX, oZ);
+        TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes,
+        chosenHeatTerrainTypes, chosenMoistureTerrainTypes, chosenBiomes, oX, oZ, chunkObjects);
 
         return tileData;
     }
@@ -553,11 +576,12 @@ public class TileData
     public bool rendered = false;
 
     //object data in chunk
-    private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
+    public Dictionary<List<float>, dynamic> objectsGO;
 
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
-    TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes, Biome[,] chosenBiomes, int oX, int oZ)
+    TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes,
+    Biome[,] chosenBiomes, int oX, int oZ, Dictionary<List<float>, dynamic> chunkObjects)
     {
         this.heightMap = heightMap;
         this.heatMap = heatMap;
@@ -568,6 +592,13 @@ public class TileData
         this.chosenBiomes = chosenBiomes;
         this.offsetX = oX;
         this.offsetZ = oZ;
+        this.objectsGO = chunkObjects;
+    }
+
+    //method to get objects in chunk
+    public Dictionary<List<float>, dynamic> GetObjectGOs()
+    {
+        return this.objectsGO;
     }
 
     //method to add object to chunk 
@@ -582,6 +613,7 @@ public class TileData
     //method to remove object from chunk
     public void RemoveObject(float x, float y)
     {
+        Debug.Log("Remove Tree From:" + this.offsetX + ", " + this.offsetZ);
         List<float> pos = new List<float>{x,y};
         foreach (var objPos in objectsGO.Keys)
         {
@@ -619,7 +651,6 @@ public class TileData
 
         return coords;
     }
-
 }
 
 //class to store all the merged tiles data
@@ -680,6 +711,8 @@ public class LevelData
         tileDataMatricies.Add("negativeI", negativeITilesData);
         tileDataMatricies.Add("negativeJ", negativeJTilesData);
 
+        //Debug.Log("Saving objects: " + positiveTilesData[0,0].GetObjectGOs().Count.ToString());
+
         SaveSystem.Save<Dictionary<string, TileData[,]>>(tileDataMatricies, "Chunks");
 
 
@@ -700,7 +733,7 @@ public class LevelData
                 {
                     Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
-                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
@@ -711,7 +744,7 @@ public class LevelData
                 {
                     Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
-                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
@@ -722,7 +755,7 @@ public class LevelData
                 {
                     Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
-                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
@@ -733,7 +766,7 @@ public class LevelData
                 {
                     Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
-                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ);
+                    d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
                 } 
             }
