@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 [System.Serializable]
 public class TerrainGen : MonoBehaviour
@@ -97,6 +98,12 @@ public class TerrainGen : MonoBehaviour
         NeedNewChunk();
     }
 
+    //method to get level data
+    public LevelData GetLevelData()
+    {
+        return this.levelData;
+    }
+
     //method to check if new chunk needs to be generated/ loaded
     private void NeedNewChunk()
     {
@@ -113,20 +120,20 @@ public class TerrainGen : MonoBehaviour
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
-                    Debug.Log("found" + levelData.FindChunk(i,j).offsetX + "," + levelData.FindChunk(i,j).offsetZ);
+                    //Debug.Log("found" + levelData.FindChunk(i,j).offsetX + "," + levelData.FindChunk(i,j).offsetZ);
                     //if chunk not rendered load/generate the relevent chunk
                     if(levelData.FindChunk(i,j).rendered != true)
                     {
                         //chunk exists, load it
                         LoadChunk(i,j);
                     }else{
-                        Debug.Log("Chunk already rendered");
+                        //Debug.Log("Chunk already rendered");
                     }
                     
                 }else{
                     //chunk doesn't exist, generate it
                     GenerateChunk(i,j);
-                    Debug.Log("Generate:" + i + ":" + j);
+                    //Debug.Log("Generate:" + i + ":" + j);
                 }
             }
         }
@@ -531,6 +538,7 @@ public class BiomeRow
 [System.Serializable]
 public class TileData
 {
+    //terrain data in chunk
     public float[,] heightMap;
     public float[,] heatMap;
     public float[,] moistureMap;
@@ -543,6 +551,9 @@ public class TileData
 
     [System.NonSerialized]
     public bool rendered = false;
+
+    //object data in chunk
+    private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
 
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
@@ -557,6 +568,46 @@ public class TileData
         this.chosenBiomes = chosenBiomes;
         this.offsetX = oX;
         this.offsetZ = oZ;
+    }
+
+    //method to add object to chunk 
+    public void AddObject(float x, float y, string title, dynamic data)
+    {
+        List<float> pos = new List<float>{x,y};
+
+        //add object data and position to matrix to be saved
+        objectsGO.Add(pos, data);
+    }
+
+    //method to remove object from chunk
+    public void RemoveObject(float x, float y)
+    {
+        List<float> pos = new List<float>{x,y};
+        foreach (var objPos in objectsGO.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                Debug.Log("remove from dictionary:" + objectsGO[objPos]);
+                objectsGO.Remove(objPos);
+                return;
+            }
+        }
+    }
+
+    //method to check if space is free in chunk
+    public bool IsSpaceFree(float x, float y)
+    {
+        List<float> pos = new List<float>{x,y};
+        foreach (var objPos in objectsGO.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("space filled");
+                return false;
+            }
+        }
+        //Debug.Log("space free");
+        return true;
     }
 
     //method to get world coords for chunk
@@ -589,20 +640,22 @@ public class LevelData
     public ChunkData[,] negativeJChunkData;
 
     //private Dictionary<string, ChunkData[,]> chunkDataMatricies;
+
+    private int chunkArraySize = 1000; //extend when player walks furthur
     
 
     public LevelData(int tileDepthInVertices, int tileWidthInVertices)
     {
-    positiveTilesData = new TileData[200,200];
-    negativeIJTilesData = new TileData[200,200];
-    negativeITilesData = new TileData[200,200];
-    negativeJTilesData = new TileData[200,200];
+    positiveTilesData = new TileData[chunkArraySize,chunkArraySize];
+    negativeIJTilesData = new TileData[chunkArraySize,chunkArraySize];
+    negativeITilesData = new TileData[chunkArraySize,chunkArraySize];
+    negativeJTilesData = new TileData[chunkArraySize,chunkArraySize];
 
     //for saving chunk data
-    positiveChunkData = new ChunkData[200,200];
-    negativeIJChunkData = new ChunkData[200,200];
-    negativeIChunkData = new ChunkData[200,200];
-    negativeJChunkData = new ChunkData[200,200];
+    // positiveChunkData = new ChunkData[200,200];
+    // negativeIJChunkData = new ChunkData[200,200];
+    // negativeIChunkData = new ChunkData[200,200];
+    // negativeJChunkData = new ChunkData[200,200];
 
     this.tileDepthInVertices = tileDepthInVertices;
     this.tileWidthInVertices = tileWidthInVertices;

@@ -6,6 +6,7 @@ using System.Linq;
 public class ObjectManager : MonoBehaviour
 {
     public GenerateWorld generateWorld;
+    public TerrainGen terrainGen;
 
     //private Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
     private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
@@ -13,13 +14,21 @@ public class ObjectManager : MonoBehaviour
     void Awake()
     {
         generateWorld = GetComponent<GenerateWorld>();
+        terrainGen = GetComponent<TerrainGen>();
 
+        //un-comment
         //GameEvents.SaveInitiated += Save;
     }
 
     void Start()
     {
+        //un-comment
         //Load();
+    }
+
+    public Dictionary<List<float>, dynamic> GetObjectGOs()
+    {
+        return this.objectsGO;
     }
 
     // public Dictionary<List<float>, string> GetObjects()
@@ -43,15 +52,34 @@ public class ObjectManager : MonoBehaviour
         
     // }
 
+    //method to find chunk from world coordinates
+    public TileData FindChunkFromCoords(float x, float y)
+    {
+        TileData tileData = null;
+        //get chunk that coordinates are in
+        int offsetX = (int)(x / TerrainGen.chunkSize);
+        int offsetY = (int)(y / TerrainGen.chunkSize);
+
+        //find chunk from levelData
+        tileData = terrainGen.GetLevelData().FindChunk(offsetX, offsetY);
+
+        return tileData;
+
+    }
+
     public void AddObject(float x, float y, string title, dynamic data)
     {
-        List<float> pos = new List<float>{x,y};
+        //List<float> pos = new List<float>{x,y};
 
-        //convert to save data for that object
-        objectsGO.Add(pos, data);
+        //convert to save data for that object (?already done)
+
+        //add object data and position to matrix to be saved
+        //objectsGO.Add(pos, data);
 
         //objectsString.Add(pos, title);
-        
+
+        //call relevant chunk addObject method
+        FindChunkFromCoords(x, y).AddObject(x, y, title, data);
     }
 
     // public void UpdateObject(float x, float y, string title, dynamic data)
@@ -80,16 +108,19 @@ public class ObjectManager : MonoBehaviour
 
     public void RemoveObject(float x, float y)
     {
-        List<float> pos = new List<float>{x,y};
-        foreach (var objPos in objectsGO.Keys)
-        {
-            if(objPos.SequenceEqual(pos))
-            {
-                Debug.Log("remove from dictionary:" + objectsGO[objPos]);
-                objectsGO.Remove(objPos);
-                return;
-            }
-        }
+        // List<float> pos = new List<float>{x,y};
+        // foreach (var objPos in objectsGO.Keys)
+        // {
+        //     if(objPos.SequenceEqual(pos))
+        //     {
+        //         Debug.Log("remove from dictionary:" + objectsGO[objPos]);
+        //         objectsGO.Remove(objPos);
+        //         return;
+        //     }
+        // }
+
+        //call relevant chunk removeObject method
+        FindChunkFromCoords(x, y).RemoveObject(x, y);
     }
 
     // public bool IsSpaceFree(float x, float y)
@@ -109,17 +140,20 @@ public class ObjectManager : MonoBehaviour
 
     public bool IsSpaceFree(float x, float y)
     {
-        List<float> pos = new List<float>{x,y};
-        foreach (var objPos in objectsGO.Keys)
-        {
-            if(objPos.SequenceEqual(pos))
-            {
-                //Debug.Log("space filled");
-                return false;
-            }
-        }
-        //Debug.Log("space free");
-        return true;
+        // List<float> pos = new List<float>{x,y};
+        // foreach (var objPos in objectsGO.Keys)
+        // {
+        //     if(objPos.SequenceEqual(pos))
+        //     {
+        //         //Debug.Log("space filled");
+        //         return false;
+        //     }
+        // }
+        // //Debug.Log("space free");
+        // return true;
+
+        //call relevant chunk isSpaceFree method
+        return FindChunkFromCoords(x, y).IsSpaceFree(x, y);
     }
 
     // public void SpawnSavedObjects(Dictionary<List<float>, string> objects)
