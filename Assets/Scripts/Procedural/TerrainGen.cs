@@ -684,16 +684,21 @@ public class LevelData
     private int tileDepthInVertices;
     private int tileWidthInVertices;
 
-    public TileData[,] positiveTilesData;
-    public TileData[,] negativeIJTilesData;
-    public TileData[,] negativeITilesData;
-    public TileData[,] negativeJTilesData;
+    // public TileData[,] positiveTilesData;
+    // public TileData[,] negativeIJTilesData;
+    // public TileData[,] negativeITilesData;
+    // public TileData[,] negativeJTilesData;
+
+    public List<TileData> positiveTilesData;
+    public List<TileData> negativeIJTilesData;
+    public List<TileData> negativeITilesData;
+    public List<TileData> negativeJTilesData;
 
     //to save chunkData
-    public ChunkData[,] positiveChunkData;
-    public ChunkData[,] negativeIJChunkData;
-    public ChunkData[,] negativeIChunkData;
-    public ChunkData[,] negativeJChunkData;
+    // public ChunkData[,] positiveChunkData;
+    // public ChunkData[,] negativeIJChunkData;
+    // public ChunkData[,] negativeIChunkData;
+    // public ChunkData[,] negativeJChunkData;
 
     //private Dictionary<string, ChunkData[,]> chunkDataMatricies;
 
@@ -702,10 +707,14 @@ public class LevelData
 
     public LevelData(int tileDepthInVertices, int tileWidthInVertices)
     {
-    positiveTilesData = new TileData[chunkArraySize,chunkArraySize];
-    negativeIJTilesData = new TileData[chunkArraySize,chunkArraySize];
-    negativeITilesData = new TileData[chunkArraySize,chunkArraySize];
-    negativeJTilesData = new TileData[chunkArraySize,chunkArraySize];
+    // positiveTilesData = new TileData[chunkArraySize,chunkArraySize];
+    // negativeIJTilesData = new TileData[chunkArraySize,chunkArraySize];
+    // negativeITilesData = new TileData[chunkArraySize,chunkArraySize];
+    // negativeJTilesData = new TileData[chunkArraySize,chunkArraySize];
+    positiveTilesData = new List<TileData>();
+    negativeIJTilesData = new List<TileData>();
+    negativeITilesData = new List<TileData>();
+    negativeJTilesData = new List<TileData>();
 
     //for saving chunk data
     // positiveChunkData = new ChunkData[200,200];
@@ -729,7 +738,8 @@ public class LevelData
 
         // SaveSystem.Save<Dictionary<string, ChunkData[,]>>(chunkDataMatricies, "Chunks");
 
-        Dictionary<string, TileData[,]> tileDataMatricies = new Dictionary<string, TileData[,]>();
+        // Dictionary<string, TileData[,]> tileDataMatricies = new Dictionary<string, TileData[,]>();
+        Dictionary<string, List<TileData>> tileDataMatricies = new Dictionary<string, List<TileData>>();
 
         tileDataMatricies.Add("positive", positiveTilesData);
         tileDataMatricies.Add("negativeIJ", negativeIJTilesData);
@@ -738,7 +748,8 @@ public class LevelData
 
         //Debug.Log("Saving objects: " + positiveTilesData[0,0].GetObjectGOs().Count.ToString());
 
-        SaveSystem.Save<Dictionary<string, TileData[,]>>(tileDataMatricies, "Chunks");
+        // SaveSystem.Save<Dictionary<string, TileData[,]>>(tileDataMatricies, "Chunks");
+        SaveSystem.Save<Dictionary<string, List<TileData>>>(tileDataMatricies, "Chunks");
 
 
         Debug.Log("saved chunks");
@@ -750,7 +761,8 @@ public class LevelData
         {
             Debug.Log("Chunks Save Exists");
             //unload saved tileData into 4 tilesData matricies
-            Dictionary<string, TileData[,]> tileDataMatricies = SaveSystem.Load<Dictionary<string, TileData[,]>>("Chunks");
+            // Dictionary<string, TileData[,]> tileDataMatricies = SaveSystem.Load<Dictionary<string, TileData[,]>>("Chunks");
+            Dictionary<string, List<TileData>> tileDataMatricies = SaveSystem.Load<Dictionary<string, List<TileData>>>("Chunks");
             //this.positiveTilesData = tileDataMatricies["positive"];
             foreach (TileData d in tileDataMatricies["positive"])
             {
@@ -819,28 +831,36 @@ public class LevelData
     {
         if(tileZIndex < 0 && tileXIndex < 0)
         {
-            negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            //negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            negativeIJTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeIJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else if(tileZIndex < 0 && tileXIndex >= 0)
         {
-            negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            //negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            negativeITilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeIChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else if(tileZIndex >= 0 && tileXIndex < 0)
         {
-            negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            //negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            negativeJTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
             //negativeJChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
         }
         else
         {
-            positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            //positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
+            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            positiveTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
             //positiveChunkData[System.Math.Abs(tileZIndex), System.Math.Abs(tileXIndex)] = chunkData;
@@ -850,26 +870,75 @@ public class LevelData
      //method to find chunk from correct data structure depending on coordinates
     public TileData FindChunk(int tileXIndex, int tileZIndex)
     {
-        TileData tileData;
+        TileData tileData = null;
 
         if(tileZIndex < 0 && tileXIndex < 0)
         {
-            tileData = negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //tileData = negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            foreach (TileData td in negativeIJTilesData)
+            {
+                if(td != null)
+                {
+                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
+                    {
+                        tileData =  td;
+                    }
+                }
+            }
+            
+
             //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else if(tileZIndex < 0 && tileXIndex >= 0)
         {
-            tileData = negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //tileData = negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            foreach (TileData td in negativeITilesData)
+            {
+                if(td != null)
+                {
+                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
+                    {
+                        tileData = td;
+                    }
+                }
+            }
+
             //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else if(tileZIndex >= 0 && tileXIndex < 0)
         {
-            tileData = negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //tileData = negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            foreach (TileData td in negativeJTilesData)
+            {
+                if(td != null)
+                {
+                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
+                    {
+                        tileData = td;
+                    }
+                }
+            }
+
             //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         else
         {
-            tileData = positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            //tileData = positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)];
+            foreach (TileData td in positiveTilesData)
+            {
+                if(td != null)
+                {
+                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
+                    {
+                        tileData = td;
+                    }
+                }
+            }
+
             //Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
         }
         // Debug.Log("found" + tileData.offsetX + "," + tileData.offsetZ);
