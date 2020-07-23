@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: savanna
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -216871086496329653, guid: d80580543008a9b4798f222affdf88a7,
+  m_Sprite: {fileID: 5415655305509394681, guid: 51d8ab0509af6ca46ac879e02d62af62,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
@@ -34,4 +34,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: tundra
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4479222289217462045, guid: c9aac0e651390e746b8445c486684bd5,
-    type: 3}
+  m_Sprite: {fileID: 927811278677141336, guid: 51d8ab0509af6ca46ac879e02d62af62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
