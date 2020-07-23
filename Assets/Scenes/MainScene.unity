@@ -6289,6 +6289,7 @@ MonoBehaviour:
       index: 1
   treeGeneration: {fileID: 1461756160}
   riverGeneration: {fileID: 0}
+  renderDistance: 1
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,14 +6325,14 @@ MonoBehaviour:
   - seed: 5753
     amplitude: 4
     frequency: 4
-  levelScale: 10
+  levelScale: 2
   neighbourRadius:
-  - 7
   - 5
-  - 50
-  - 5
-  - 1
   - 10
+  - 10
+  - 1
+  - 1
+  - 7
   treePrefab:
   - {fileID: 3466515846988768851, guid: d44ebd32aaa87d245a22cd76dcf4c7d9, type: 3}
   - {fileID: 6823617234609881137, guid: ae91c5146e9debb4cafeac753038de5e, type: 3}

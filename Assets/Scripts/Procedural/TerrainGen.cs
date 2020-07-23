@@ -61,6 +61,10 @@ public class TerrainGen : MonoBehaviour
 
     private LevelData levelData = null;
 
+    //test render distance (player setting)
+    [SerializeField]
+    private int renderDistance = 3;
+
 
     void Awake()
     {
@@ -120,9 +124,9 @@ public class TerrainGen : MonoBehaviour
         //Debug.Log("player in: " + chunkX + ", " + chunkY);
 
         //loop through all chunk coordinates that should be loaded dependant on player's position
-        for (int i = chunkX - 1; i < chunkX + 2; i++)
+        for (int i = chunkX - renderDistance; i < chunkX + (renderDistance + 1); i++)
         {
-            for (int j = chunkY - 1; j < chunkY + 2; j++)
+            for (int j = chunkY - renderDistance; j < chunkY + (renderDistance + 1); j++)
             {
                 if(levelData.FindChunk(i,j) != null)
                 {
