@@ -26,26 +26,50 @@ public class UIInventory : MonoBehaviour
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
 
         //populate slotPanel (hotbar inventory)
-        for(int i = 0; i < 9; i++)
+        // for(int i = 0; i < 9; i++)
+        // {
+        //     GameObject instance = Instantiate(slotPrefab);
+        //     instance.transform.SetParent(slotPanel);
+        //     uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        // }
+
+        //add inventorySlots in slotPanel (hotbar) to uiItems
+        foreach (Transform invSlot in slotPanel)
         {
-            GameObject instance = Instantiate(slotPrefab);
-            instance.transform.SetParent(slotPanel);
-            uiItems.Add(instance.GetComponentInChildren<UIItem>());
+            uiItems.Add(invSlot.GetComponentInChildren<UIItem>());
         }
+
         //populate bagSlotPanel (bag inventory)
-        for(int i = 0; i < 21; i++)
+        // for(int i = 0; i < 21; i++)
+        // {
+        //     GameObject instance = Instantiate(slotPrefab);
+        //     instance.transform.SetParent(bagSlotPanel);
+        //     uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        // }
+
+        //add inventorySlots in bagSlotPanel (bag inventory) to uiItems
+        foreach (Transform invSlot in bagSlotPanel)
         {
-            GameObject instance = Instantiate(slotPrefab);
-            instance.transform.SetParent(bagSlotPanel);
-            uiItems.Add(instance.GetComponentInChildren<UIItem>());
+            uiItems.Add(invSlot.GetComponentInChildren<UIItem>());
         }
-        //populate equipSlotPanel (player equipment)
-        for(int i = 0; i < 3; i++)
-        {
-            GameObject instance = Instantiate(slotPrefab);
-            instance.transform.SetParent(equipSlotPanel);
-            //uiItems.Add(instance.GetComponentInChildren<UIItem>());
-        }
+
+        // //populate equipSlotPanel (player equipment)
+        // for(int i = 0; i < 3; i++)
+        // {
+        //     GameObject instance = Instantiate(slotPrefab);
+        //     instance.transform.SetParent(equipSlotPanel);
+        //     //uiItems.Add(instance.GetComponentInChildren<UIItem>());
+        // }
+
+        //add inventorySlots in bagSlotPanel (player equipment) to uiItems KEEP
+        // foreach (Transform invSlot in equipSlotPanel)
+        // {
+        //     uiItems.Add(invSlot.GetComponentInChildren<UIItem>());
+        // }
+
+        //close bag UI (needs to be open initially to run Awake)
+        //CloseBag();
+        bagUI.SetActive(false);
     }
 
     public void SetSlotSelected(int s)
