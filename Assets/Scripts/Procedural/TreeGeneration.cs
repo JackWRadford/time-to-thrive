@@ -80,6 +80,8 @@ public class TreeGeneration : MonoBehaviour
                         float y = zIndex + worldZoffset + 0.5f;
                         Vector3 treePosition = new Vector3(x, y, 0);
                         GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
+                        //make sure new gameObject name doesn't have (clone)
+                        tree.name = this.treePrefab[biome.index].name;
                         TreeData td = new TreeData(tree.GetComponent<TallTree>());
                         tileData.AddObject(x,y,"Tree",td);
                     }

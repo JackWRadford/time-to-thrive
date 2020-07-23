@@ -23,5 +23,6 @@ public class TreeData
         position[2] = tree.transform.position.z;
 
         this.health = tree.GetHealth();
+        this.title = tree.gameObject.name;
     }
 }
