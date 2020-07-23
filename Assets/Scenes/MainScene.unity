@@ -6326,14 +6326,19 @@ MonoBehaviour:
     frequency: 4
   levelScale: 10
   neighbourRadius:
-  - 100
-  - 100
-  - 100
+  - 7
+  - 5
+  - 50
   - 5
   - 1
   - 10
-  treePrefab: {fileID: 2455665606651421210, guid: 83af72a05c6010d438e2d33378bb7cba,
-    type: 3}
+  treePrefab:
+  - {fileID: 3466515846988768851, guid: d44ebd32aaa87d245a22cd76dcf4c7d9, type: 3}
+  - {fileID: 6823617234609881137, guid: ae91c5146e9debb4cafeac753038de5e, type: 3}
+  - {fileID: 507243399205105229, guid: 2391e74beb77f8a4ea5c3b0aa01be061, type: 3}
+  - {fileID: 7806885434134285501, guid: eed93c5c38557644c8ca5ea0bb686fa4, type: 3}
+  - {fileID: 1585659700632514333, guid: a0d4c25333d17e1419e8e21b1ce6e409, type: 3}
+  - {fileID: 1094225645926197080, guid: e110aa8435710994bb0221ed92df703a, type: 3}
 --- !u!114 &1461756161
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -117,7 +117,7 @@ public class TerrainGen : MonoBehaviour
         int chunkY = GetChunkCoordsFromWorld(playerPos.x, playerPos.y)[1];;
 
 
-        Debug.Log("player in: " + chunkX + ", " + chunkY);
+        //Debug.Log("player in: " + chunkX + ", " + chunkY);
 
         //loop through all chunk coordinates that should be loaded dependant on player's position
         for (int i = chunkX - 1; i < chunkX + 2; i++)
@@ -702,7 +702,7 @@ public class LevelData
 
     //private Dictionary<string, ChunkData[,]> chunkDataMatricies;
 
-    private int chunkArraySize = 1000; //extend when player walks furthur
+    //private int chunkArraySize = 1000; //extend when player walks furthur
     
 
     public LevelData(int tileDepthInVertices, int tileWidthInVertices)
@@ -768,7 +768,7 @@ public class LevelData
             {
                 if(d != null)
                 {
-                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
+                    //Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
@@ -779,7 +779,7 @@ public class LevelData
             {
                 if(d != null)
                 {
-                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
+                    //Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
@@ -790,7 +790,7 @@ public class LevelData
             {
                 if(d != null)
                 {
-                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
+                    //Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
@@ -801,7 +801,7 @@ public class LevelData
             {
                 if(d != null)
                 {
-                    Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
+                    //Debug.Log("loaded:" + d.offsetX + "," + d.offsetZ);
                     TileData td = new TileData(d.heightMap, d.heatMap, d.moistureMap, d.chosenHeightTerrainTypes,
                     d.chosenHeatTerrainTypes, d.chosenMoistureTerrainTypes, d.chosenBiomes, d.offsetX, d.offsetZ, d.objectsGO);
                     levelData.AddTileData(td, td.offsetX, td.offsetZ);
@@ -832,7 +832,7 @@ public class LevelData
         if(tileZIndex < 0 && tileXIndex < 0)
         {
             //negativeIJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
-            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            //Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
             negativeIJTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
@@ -841,7 +841,7 @@ public class LevelData
         else if(tileZIndex < 0 && tileXIndex >= 0)
         {
             //negativeITilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
-            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            //Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
             negativeITilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
@@ -850,7 +850,7 @@ public class LevelData
         else if(tileZIndex >= 0 && tileXIndex < 0)
         {
             //negativeJTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
-            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            //Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
             negativeJTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
@@ -859,7 +859,7 @@ public class LevelData
         else
         {
             //positiveTilesData[System.Math.Abs(tileXIndex), System.Math.Abs(tileZIndex)] = tileData;
-            Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
+            //Debug.Log("add" + tileData.offsetX + ", " + tileData.offsetZ);
             positiveTilesData.Add(tileData);
 
             //ChunkData chunkData = new ChunkData(tileData);
@@ -879,7 +879,7 @@ public class LevelData
             {
                 if(td != null)
                 {
-                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    //Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
                     if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
                     {
                         tileData =  td;
@@ -897,7 +897,7 @@ public class LevelData
             {
                 if(td != null)
                 {
-                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    //Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
                     if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
                     {
                         tileData = td;
@@ -914,7 +914,7 @@ public class LevelData
             {
                 if(td != null)
                 {
-                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    //Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
                     if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
                     {
                         tileData = td;
@@ -931,7 +931,7 @@ public class LevelData
             {
                 if(td != null)
                 {
-                    Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
+                    //Debug.Log(td.offsetX + ":" + tileXIndex + ", " + td.offsetZ + ":" + tileZIndex);
                     if((td.offsetX == tileXIndex)&&(td.offsetZ == tileZIndex))
                     {
                         tileData = td;

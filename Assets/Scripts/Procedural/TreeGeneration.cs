@@ -17,7 +17,7 @@ public class TreeGeneration : MonoBehaviour
     private float[] neighbourRadius = null;
 
     [SerializeField]
-    private GameObject treePrefab = null;
+    private GameObject[] treePrefab = null;
 
     void Awake()
     {
@@ -50,7 +50,7 @@ public class TreeGeneration : MonoBehaviour
                 
 
                 //check if water, if so don't place tree
-                if((terrainType.name != "water")&&(biome.name != "savanna")&&(biome.name != "desert"))
+                if((terrainType.name != "water"))
                 {
                     float treeValue = treeMap[zIndex, xIndex];
 
@@ -79,7 +79,7 @@ public class TreeGeneration : MonoBehaviour
                         float x = xIndex + worldXoffset + 0.5f;
                         float y = zIndex + worldZoffset + 0.5f;
                         Vector3 treePosition = new Vector3(x, y, 0);
-                        GameObject tree = Instantiate(this.treePrefab, treePosition, Quaternion.identity) as GameObject;
+                        GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
                         TreeData td = new TreeData(tree.GetComponent<TallTree>());
                         tileData.AddObject(x,y,"Tree",td);
                     }
