@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public GameObject player;
 
+    public bool bagOpen = false;
+    public bool craftingOpen = false;
+
     //private static GameManager gameManagerInstance;
 
     void Awake()
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 //close bag
                 inventory.GetComponent<UIInventory>().CloseBag();
+                this.bagOpen = false;
                 if(!craftingUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
             {
                 //close crafting
                 canvas.GetComponent<UICrafting>().CloseCrafting();
+                this.craftingOpen = false;
                 if(!bagUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -82,12 +87,14 @@ public class GameManager : MonoBehaviour
             {
                 //open bag
                 inventory.GetComponent<UIInventory>().OpenBag();
+                this.bagOpen = true;
                 PlayerController.SetAllowedToMove(false);
             }
             else
             {
                 //close bag
                 inventory.GetComponent<UIInventory>().CloseBag();
+                this.bagOpen = false;
                 if(!craftingUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -101,18 +108,29 @@ public class GameManager : MonoBehaviour
             {
                 //open crafting
                 canvas.GetComponent<UICrafting>().OpenCrafting();
+                this.craftingOpen = true;
                 PlayerController.SetAllowedToMove(false);
             }
             else
             {
                 //close crafting
                 canvas.GetComponent<UICrafting>().CloseCrafting();
+                this.craftingOpen = false;
                 if(!bagUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
                 }
             }
         }
+    }
+
+    public bool IsUIOpen()
+    {
+        if((this.bagOpen)||(this.craftingOpen))
+        {
+            return true;
+        }
+        return false;
     }
 
     public void Save()

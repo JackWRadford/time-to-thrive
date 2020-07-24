@@ -138,7 +138,7 @@ public class TerrainGen : MonoBehaviour
                         LoadChunk(i,j);
                         //spawn chunk objects
                         SpawnSavedObjects(levelData.FindChunk(i,j));
-                        Debug.Log("load: " + i + ", " + j);
+                        //Debug.Log("load: " + i + ", " + j);
                     }else{
                         //Debug.Log("Chunk already rendered");
                     }
@@ -146,7 +146,7 @@ public class TerrainGen : MonoBehaviour
                 }else{
                     //chunk doesn't exist, generate it
                     GenerateChunk(i,j);
-                    Debug.Log("Generate:" + i + ":" + j);
+                    //Debug.Log("Generate:" + i + ":" + j);
                 }
             }
         }
@@ -175,7 +175,7 @@ public class TerrainGen : MonoBehaviour
     public void SpawnSavedObjects(TileData tileData)
     {
         Dictionary<List<float>, dynamic> objects = tileData.GetObjectGOs();
-        Debug.Log("loaded objects: " + objects.Count.ToString());
+        //Debug.Log("loaded objects: " + objects.Count.ToString());
         foreach (var obj in objects)
         {
             GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
@@ -220,7 +220,7 @@ public class TerrainGen : MonoBehaviour
             //print(td.offsetX.ToString() + " " + td.offsetZ.ToString());
             //CalculateBiomes(td.chosenHeightTerrainTypes, td.chosenHeatTerrainTypes, td.chosenMoistureTerrainTypes, td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
             LoadBiomes(td.offsetX * chunkSize, td.offsetZ * chunkSize, td.chosenBiomes);
-            Debug.Log("load: " + i + ":" + j);
+            //Debug.Log("load: " + i + ":" + j);
             //load trees (and other entities)
 
             td.rendered = true;

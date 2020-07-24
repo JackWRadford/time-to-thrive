@@ -16,6 +16,8 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private bool scaledUp = false;
     private UIInventory uIInventory;
     private ItemButtons itemButtons;
+    private GameManager gameManager;
+
     //private Image slotBackground;
 
     private Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
@@ -26,6 +28,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
         uIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         itemButtons = GameObject.Find("ItemButtons").GetComponent<ItemButtons>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //slotBackground = transform.GetComponent<Image>();
         spriteImage = GetComponent<Image>();
         stackCount = transform.GetChild(0).GetComponent<Text>();
@@ -67,7 +70,10 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //check for parent (don't allow click if in hotbar slotParent) (allow in actual inventory)
+        //check UI is open
+        if(gameManager.IsUIOpen())
+        {
+            //check for parent (don't allow click if in hotbar slotParent) (allow in actual inventory)
         //if(UIInventory.inventoryIsOpen)
         
             //debug
@@ -223,7 +229,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                     itemButtons.SetGameItem(this.item);
                 }
             }
-        
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
