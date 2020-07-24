@@ -15,7 +15,7 @@ public class UIInventory : MonoBehaviour
     private int prevSelectedSlot = -1;
     
 
-    public static bool inventoryIsOpen = false;
+    public static bool inventoryIsOpen = true;
 
     private UIItem selectedItem; 
     private Tooltip tooltip;
@@ -66,10 +66,12 @@ public class UIInventory : MonoBehaviour
         // {
         //     uiItems.Add(invSlot.GetComponentInChildren<UIItem>());
         // }
+    }
 
+    void Start()
+    {
         //close bag UI (needs to be open initially to run Awake)
-        //CloseBag();
-        bagUI.SetActive(false);
+        CloseBag();
     }
 
     public void SetSlotSelected(int s)

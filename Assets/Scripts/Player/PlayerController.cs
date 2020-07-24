@@ -448,6 +448,7 @@ public class PlayerController : MonoBehaviour
         }
         if((Input.GetMouseButtonDown(1))&&(this.heldItem != null))
         {
+            //check no itemSelected in UI ------------------------------------------------------------------------------
             if(this.heldItem.placeable)
             {
                 //place object
