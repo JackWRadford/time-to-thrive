@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private UIInventory uiInventory;
     private GameItem heldItem;
     private ObjectManager objectManager;
+    private GameManager gameManager;
     private GameObject highlight;
     private PlayerHTH playerHTH;
 
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         highlight = GameObject.Find("Highlight");
         playerHTH = GameObject.Find("PlayerHTH").GetComponent<PlayerHTH>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         highlight.SetActive(false);
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
@@ -446,7 +448,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if((Input.GetMouseButtonDown(1))&&(this.heldItem != null)&&(allowedToMove))
+        if((Input.GetMouseButtonDown(1))&&(this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
         {
             //check no itemSelected in UI ------------------------------------------------------------------------------
             if(this.heldItem.placeable)

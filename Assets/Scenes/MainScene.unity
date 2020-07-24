@@ -8739,6 +8739,9 @@ MonoBehaviour:
   inventory: {fileID: 1989796565}
   canvas: {fileID: 78750564}
   player: {fileID: 5374468306012557043, guid: 6a1658fe8f0a19a4493a87b001a2afae, type: 3}
+  bagOpen: 0
+  craftingOpen: 0
+  mouseOverUi: 0
 --- !u!4 &1461756149
 Transform:
   m_ObjectHideFlags: 0
@@ -10871,6 +10874,7 @@ GameObject:
   - component: {fileID: 1723272032}
   - component: {fileID: 1723272031}
   - component: {fileID: 1723272033}
+  - component: {fileID: 1723272034}
   m_Layer: 5
   m_Name: ItemsParent
   m_TagString: itemsParent
@@ -10967,6 +10971,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1723272034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723272029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9aeecef07f3276469bee41fee3366a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727762921
 GameObject:
   m_ObjectHideFlags: 0
@@ -12820,6 +12836,7 @@ GameObject:
   - component: {fileID: 2008832461}
   - component: {fileID: 2008832463}
   - component: {fileID: 2008832462}
+  - component: {fileID: 2008832464}
   m_Layer: 5
   m_Name: Bag
   m_TagString: Untagged
@@ -12885,6 +12902,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008832460}
   m_CullTransparentMesh: 0
+--- !u!114 &2008832464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008832460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50964405037a7440816c744500ae11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2058775030
 PrefabInstance:
   m_ObjectHideFlags: 0

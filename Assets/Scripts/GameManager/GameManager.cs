@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     public bool bagOpen = false;
     public bool craftingOpen = false;
 
+    //attribute to state if player is hovering over UI or not
+    public bool mouseOverMenuUi = false;
+    public bool mouseOverHotBarUI = false;
+    public bool mouseOverBagUI = false;
+    public bool mouseOverCraftUI = false;
+
     //private static GameManager gameManagerInstance;
 
     void Awake()
@@ -52,11 +58,13 @@ public class GameManager : MonoBehaviour
                 {
                     //pause game
                     GetComponent<PauseMenu>().Pause();
+                    this.mouseOverMenuUi = true;
                 }
                 else
                 {
                     //resume game
                     GetComponent<PauseMenu>().Resume();
+                    this.mouseOverMenuUi = false;
                 }
             }
             if((!pauseMenuUI.activeInHierarchy)&&(bagUI.activeInHierarchy))
@@ -64,6 +72,8 @@ public class GameManager : MonoBehaviour
                 //close bag
                 inventory.GetComponent<UIInventory>().CloseBag();
                 this.bagOpen = false;
+                this.mouseOverBagUI = false;
+                
                 if(!craftingUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -74,6 +84,7 @@ public class GameManager : MonoBehaviour
                 //close crafting
                 canvas.GetComponent<UICrafting>().CloseCrafting();
                 this.craftingOpen = false;
+                this.mouseOverCraftUI = false;
                 if(!bagUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -95,6 +106,7 @@ public class GameManager : MonoBehaviour
                 //close bag
                 inventory.GetComponent<UIInventory>().CloseBag();
                 this.bagOpen = false;
+                this.mouseOverBagUI = false;
                 if(!craftingUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -116,6 +128,7 @@ public class GameManager : MonoBehaviour
                 //close crafting
                 canvas.GetComponent<UICrafting>().CloseCrafting();
                 this.craftingOpen = false;
+                this.mouseOverCraftUI = false;
                 if(!bagUI.activeInHierarchy)
                 {
                     PlayerController.SetAllowedToMove(true);
@@ -127,6 +140,15 @@ public class GameManager : MonoBehaviour
     public bool IsUIOpen()
     {
         if((this.bagOpen)||(this.craftingOpen))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsMouseOverUI()
+    {
+        if((this.mouseOverHotBarUI)||(this.mouseOverBagUI)||(this.mouseOverCraftUI)||(this.mouseOverMenuUi))
         {
             return true;
         }

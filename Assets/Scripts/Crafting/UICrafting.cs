@@ -17,9 +17,11 @@ public class UICrafting : MonoBehaviour
 
     public GameObject buildSection;
 
-    void Update()
+    private GameManager gameManager;
+
+    void Awake()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void OpenCrafting()

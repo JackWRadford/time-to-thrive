@@ -40,12 +40,15 @@
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
      <Compile Include="Assets\Scripts\Animals\Cow.cs" />
      <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
+     <Compile Include="Assets\Scripts\Crafting\CraftingBar.cs" />
      <Compile Include="Assets\Scripts\Crafting\UICrafting.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManager\GenerateWorld.cs" />
      <Compile Include="Assets\Scripts\GameManager\ObjectManager.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Bag.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\GameItem.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Hotbar.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemButtons.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\Inventory\ItemFollowMouse.cs" />
