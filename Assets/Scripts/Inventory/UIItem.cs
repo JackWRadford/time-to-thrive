@@ -50,6 +50,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         if(this.item != null)
         {
             spriteImage.color = Color.white;
+            //Debug.Log("yes");
             // spriteImage.sprite = item.icon;
             spriteImage.sprite = Resources.Load<Sprite>("Sprites/Items/" + item.title);
             if(item.count > 1)
@@ -159,7 +160,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                     UpdateItem(selectedItem.item);
                     //update slot number
                     selectedItem.item.slot = uIInventory.uiItems.FindIndex(i=> i.item == selectedItem.item);
-                    Debug.Log(selectedItem.item.slot);
+                    //Debug.Log(selectedItem.item.slot);
                     selectedItem.UpdateItem(null);
                 }
             }
@@ -176,13 +177,13 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                     {
                         if((this.item.count < this.item.maxCount))
                         {
-                            Debug.Log("can stack");
+                            //Debug.Log("can stack");
                             
                             selectedItem.item.count--;
                             this.item.count++;
                             if(selectedItem.item.count <= 0)
                             {
-                                Debug.Log("ran out");
+                                //Debug.Log("ran out");
                                 UpdateItem(this.item);
                                 GameInventory.instance.RemoveSelectedItem(selectedItem.item);
                                 selectedItem.UpdateItem(null);

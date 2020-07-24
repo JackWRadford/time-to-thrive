@@ -642,13 +642,13 @@ public class TileData
     //method to remove object from chunk
     public void RemoveObject(float x, float y)
     {
-        Debug.Log("Remove Tree From:" + this.offsetX + ", " + this.offsetZ);
+        //Debug.Log("Remove Tree From:" + this.offsetX + ", " + this.offsetZ);
         List<float> pos = new List<float>{x,y};
         foreach (var objPos in objectsGO.Keys)
         {
             if(objPos.SequenceEqual(pos))
             {
-                Debug.Log("remove from dictionary:" + objectsGO[objPos]);
+                //Debug.Log("remove from dictionary:" + objectsGO[objPos]);
                 objectsGO.Remove(objPos);
                 return;
             }

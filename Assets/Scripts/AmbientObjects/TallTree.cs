@@ -100,7 +100,7 @@ public class TallTree : Interactable, ILoadState
         }
         //remove from treeController list of tree positions
         TreeData td = new TreeData(this);
-        Debug.Log("Remove tree");
+        //Debug.Log("Remove tree");
         objectManager.RemoveObject(td.position[0], td.position[1]);
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);

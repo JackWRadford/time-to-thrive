@@ -409,23 +409,26 @@ public class PlayerController : MonoBehaviour
             RecoverOverTime();
         }
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        //movement
 
-        move = new Vector2(horizontal, vertical);
-        move.Normalize();//stop increased speed diagonally
+        // float horizontal = Input.GetAxis("Horizontal");
+        // float vertical = Input.GetAxis("Vertical");
 
-        if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
-        if(allowedToMove)
-        {
-            animator.SetFloat("Horizontal", lookDirection.x);
-            animator.SetFloat("Vertical", lookDirection.y);
-            animator.SetFloat("Speed", move.magnitude);
-        }
+        // move = new Vector2(horizontal, vertical);
+        // move.Normalize();//stop increased speed diagonally
+
+        // if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
+        // {
+        //     lookDirection.Set(move.x, move.y);
+        //     lookDirection.Normalize();
+        // }
+        // if(allowedToMove)
+        // {
+        //     animator.SetFloat("Horizontal", lookDirection.x);
+        //     animator.SetFloat("Vertical", lookDirection.y);
+        //     animator.SetFloat("Speed", move.magnitude);
+        // }
+
         //interact with objects through raycast
         if((Input.GetKeyDown(KeyCode.Space)))
         {
@@ -556,6 +559,24 @@ public class PlayerController : MonoBehaviour
     //use to stop framerate issues
     void FixedUpdate()
     {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        move = new Vector2(horizontal, vertical);
+        move.Normalize();//stop increased speed diagonally
+
+        if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
+        if(allowedToMove)
+        {
+            animator.SetFloat("Horizontal", lookDirection.x);
+            animator.SetFloat("Vertical", lookDirection.y);
+            animator.SetFloat("Speed", move.magnitude);
+        }
+
         if(allowedToMove)
         {
             Vector2 position = rb2D.position;//change position

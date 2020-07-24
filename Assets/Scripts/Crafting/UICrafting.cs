@@ -97,7 +97,7 @@ public class UICrafting : MonoBehaviour
     //try to craft selected item
     public void CraftItem(string itemToCraft)
     {
-        Debug.Log("craft: " + itemToCraft);
+        //Debug.Log("craft: " + itemToCraft);
         //get gameItem from itemName
         GameItem item = itemDatabase.GetItem(itemToCraft);
 
@@ -107,7 +107,7 @@ public class UICrafting : MonoBehaviour
             //try to craft item
             GameInventory.instance.CraftItemIfPossible(item);
 
-            Debug.Log(GameInventory.instance.CanCraftItem(item.recipe));
+            //Debug.Log(GameInventory.instance.CanCraftItem(item.recipe));
         }
     }
 }
