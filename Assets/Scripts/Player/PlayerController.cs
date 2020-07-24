@@ -468,7 +468,16 @@ public class PlayerController : MonoBehaviour
                     Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
                     //objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
                     //remove item from inventory
-                    GameInventory.instance.RemoveAmountOfItem(this.heldItem.title, 1);
+                    //GameInventory.instance.RemoveAmountOfItem(this.heldItem.title, 1);
+                    if(this.heldItem.count < 2)
+                    {
+                        GameInventory.instance.RemoveItem(this.heldItem);
+                    }
+                    else if(this.heldItem.count > 1)
+                    {
+                        //decrement count of item by 1
+                        GameInventory.instance.RemoveAmountOfItem(this.heldItem, 1);
+                    }
                 }
             }
         }

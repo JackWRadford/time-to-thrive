@@ -6588,6 +6588,7 @@ GameObject:
   - component: {fileID: 1063234209}
   - component: {fileID: 1063234211}
   - component: {fileID: 1063234210}
+  - component: {fileID: 1063234212}
   m_Layer: 5
   m_Name: Crafting
   m_TagString: Untagged
@@ -6656,6 +6657,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063234208}
   m_CullTransparentMesh: 0
+--- !u!114 &1063234212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063234208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39b15ad1ee487f47a295054a7fcdc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1083891177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8741,7 +8754,10 @@ MonoBehaviour:
   player: {fileID: 5374468306012557043, guid: 6a1658fe8f0a19a4493a87b001a2afae, type: 3}
   bagOpen: 0
   craftingOpen: 0
-  mouseOverUi: 0
+  mouseOverMenuUi: 0
+  mouseOverHotBarUI: 0
+  mouseOverBagUI: 0
+  mouseOverCraftUI: 0
 --- !u!4 &1461756149
 Transform:
   m_ObjectHideFlags: 0
