@@ -93,6 +93,14 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             1,16,-1, false),
+            //Wall
+            new GameItem(8, "Wall", "Building",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+                {"Log", 4}
+            },
+            1,64,-1, true),
         };
     }
 }
