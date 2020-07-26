@@ -6,16 +6,15 @@ using System.Linq;
 [System.Serializable]
 public class FenceController : Interactable, ILoadState
 {
-    public int health = 1;
     private ObjectManager objectManager;
-
     public GameObject fence;
 
+    public int health = 1;
     public bool up = false;
     public bool down = false;
     public bool left = false;
     public bool right = false;
-    // Start is called before the first frame update
+    
     void Awake()
     {
 
@@ -24,6 +23,12 @@ public class FenceController : Interactable, ILoadState
 
         // objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         // UpdateState();
+    }
+
+    void Start()
+    {
+        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        SaveState();
     }
 
     public void checkConnections()
@@ -152,12 +157,6 @@ public class FenceController : Interactable, ILoadState
             }
         }
         UpdateConnections();
-    }
-
-    void Start()
-    {
-        objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
-        SaveState();
     }
 
     //update state to be saved

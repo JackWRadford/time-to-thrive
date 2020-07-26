@@ -280,6 +280,7 @@ public class PlayerController : MonoBehaviour
         PlayerData pd = new PlayerData(this);
         // SaveSystem.Save<float[]>(pd.position, "player");
         SaveSystem.Save<dynamic>(pd, "player");
+        Debug.Log("Saved Player");
     }
 
     void Load()
@@ -314,6 +315,10 @@ public class PlayerController : MonoBehaviour
             this.thurst = data.thurst;
             this.hunger = data.hunger;
             playerHTH.UpdateAll(this.hunger, this.thurst, this.health);
+        }
+        else
+        {
+            Debug.Log("Player Save Doesn't Exist");
         }
     }
 

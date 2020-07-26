@@ -63,8 +63,7 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
-                {"Stick", 1},
-                {"Log", 1}
+                {"Stick", 3},
             },
             1,16,-1, true),
             //WoodSword
@@ -98,7 +97,7 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
-                {"Log", 4}
+                {"Log", 3}
             },
             1,64,-1, true),
         };

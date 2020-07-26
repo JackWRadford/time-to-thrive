@@ -9,37 +9,37 @@ public class ObjectManager : MonoBehaviour
     public TerrainGen terrainGen;
 
     //private Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
-    private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
+    //private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
 
     void Awake()
     {
         generateWorld = GetComponent<GenerateWorld>();
         terrainGen = GetComponent<TerrainGen>();
 
-        //un-comment
+        //un-comment (whole world)
         //GameEvents.SaveInitiated += Save;
     }
 
     void Start()
     {
-        //un-comment
+        //un-comment (whole world)
         //Load();
     }
 
-    public Dictionary<List<float>, dynamic> GetObjectGOs()
-    {
-        return this.objectsGO;
-    }
-
-    // public Dictionary<List<float>, string> GetObjects()
+    // public Dictionary<List<float>, dynamic> GetObjectGOs()
     // {
-    //     return this.objectsString;
+    //     return this.objectsGO;
     // }
 
-    public Dictionary<List<float>, dynamic> GetObjects()
-    {
-        return this.objectsGO;
-    }
+    // // public Dictionary<List<float>, string> GetObjects()
+    // // {
+    // //     return this.objectsString;
+    // // }
+
+    // public Dictionary<List<float>, dynamic> GetObjects()
+    // {
+    //     return this.objectsGO;
+    // }
 
     // public void AddObject(float x, float y, string title, GameObject data)
     // {
@@ -167,24 +167,24 @@ public class ObjectManager : MonoBehaviour
     //     }
     // }
 
-    public void SpawnSavedObjects(Dictionary<List<float>, dynamic> objects)
-    {
-        foreach (var obj in objects)
-        {
-            GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
-            GameObject goi = Instantiate(go, new Vector3(obj.Key[0], obj.Key[1], 0), Quaternion.identity);
-            goi.GetComponent<ILoadState>().LoadState(obj.Value);
-            //load state from save onto instantiated gameObject
-            // ILoadState script = goi.GetComponent<ILoadState>();
-            // //print(obj.Value.health);
-            // script.LoadState(obj.Value);
+    // public void SpawnSavedObjects(Dictionary<List<float>, dynamic> objects)
+    // {
+    //     foreach (var obj in objects)
+    //     {
+    //         GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
+    //         GameObject goi = Instantiate(go, new Vector3(obj.Key[0], obj.Key[1], 0), Quaternion.identity);
+    //         goi.GetComponent<ILoadState>().LoadState(obj.Value);
+    //         //load state from save onto instantiated gameObject
+    //         // ILoadState script = goi.GetComponent<ILoadState>();
+    //         // //print(obj.Value.health);
+    //         // script.LoadState(obj.Value);
 
             
 
-            //populate list of objects
-            objectsGO.Add(obj.Key, obj.Value);
-        }
-    }
+    //         //populate list of objects
+    //         objectsGO.Add(obj.Key, obj.Value);
+    //     }
+    // }
 
     // public void SpawnSavedObjects(Dictionary<List<float>, dynamic> objects)
     // {
@@ -205,27 +205,27 @@ public class ObjectManager : MonoBehaviour
     //     Debug.Log("saved objects");
     // }
 
-    void Save()
-    {
-        SaveSystem.Save<Dictionary<List<float>, dynamic>>(objectsGO, "Objects");
-        //SaveSystem.Save<Dictionary<List<float>, dynamic>>(objectsGO, "Objects");
-        Debug.Log("saved objects");
-    }
+    // void Save()
+    // {
+    //     SaveSystem.Save<Dictionary<List<float>, dynamic>>(objectsGO, "Objects");
+    //     //SaveSystem.Save<Dictionary<List<float>, dynamic>>(objectsGO, "Objects");
+    //     Debug.Log("saved objects");
+    // }
 
-    void Load()
-    {
-        //Debug.Log("try to objects");
-        if(SaveSystem.SaveExists("Objects"))
-        {
-            Debug.Log("Objects Save Exists");
-            SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
-            //SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
-        }
-        else
-        {
-            //generate world
-            Debug.Log("No Objects Save");
-            //generateWorld.Generate();
-        }
-    }
+    // void Load()
+    // {
+    //     //Debug.Log("try to objects");
+    //     if(SaveSystem.SaveExists("Objects"))
+    //     {
+    //         Debug.Log("Objects Save Exists");
+    //         SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
+    //         //SpawnSavedObjects(SaveSystem.Load<Dictionary<List<float>, dynamic>>("Objects"));
+    //     }
+    //     else
+    //     {
+    //         //generate world
+    //         Debug.Log("No Objects Save");
+    //         //generateWorld.Generate();
+    //     }
+    // }
 }

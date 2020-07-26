@@ -218,70 +218,142 @@ public class GameInventory : MonoBehaviour
         return singleItem;
     }
 
+    // //remove certain amount of an item
+    // public void RemoveAmountOfItem(string itemName, int amount)
+    // {
+    //     int amountToRemove = amount;
+    //     foreach (var item in this.characterItems) //(replace with for loop)
+    //     {
+    //         if(item.title == itemName)
+    //         {
+    //             int t = item.count;
+    //             for (int i = 0; i < t; i++)
+    //             {
+    //                 item.count--;
+    //                 amountToRemove--;
+    //                 if(item.count <= 0)
+    //                 {
+    //                     RemoveItem(item);
+    //                 }
+    //                 else
+    //                 {
+    //                     inventoryUI.UpdateItemCount(item);
+    //                 }
+
+    //                 if(amountToRemove <= 0)
+    //                 {
+    //                     return;
+    //                 }
+    //             }
+    //             inventoryUI.UpdateItemCount(item);
+    //         }
+    //     }
+    // }
+
+    //remove certain amount of an item
+ 
     //remove certain amount of an item
     public void RemoveAmountOfItem(string itemName, int amount)
     {
         int amountToRemove = amount;
-        foreach (var item in this.characterItems)
+        for (int k = this.characterItems.Count - 1; k >= 0; k--)
         {
-            if(item.title == itemName)
+            if(this.characterItems[k].title == itemName)
             {
-                int t = item.count;
+                Debug.Log("amount to remove: " + amountToRemove);
+                Debug.Log("found " + this.characterItems[k].slot);
+                int t = this.characterItems[k].count;
                 for (int i = 0; i < t; i++)
                 {
-                    item.count--;
+                    this.characterItems[k].count--;
                     amountToRemove--;
-                    if(item.count <= 0)
+                    if(this.characterItems[k].count <= 0)
                     {
-                        RemoveItem(item);
+                        Debug.Log("remove item in "  + this.characterItems[k].slot);
+                        RemoveItem(this.characterItems[k]);
                     }
                     else
                     {
-                        inventoryUI.UpdateItemCount(item);
+                        inventoryUI.UpdateItemCount(this.characterItems[k]);
+                        Debug.Log("update count of "  + this.characterItems[k].slot);
                     }
-                    if(amountToRemove <= 0)
-                    {
-                        return;
-                    }
-                }
-                inventoryUI.UpdateItemCount(item);
-            }
-        }
-    }
 
-    //remove certain amount of an item
-    public void RemoveAmountOfItem(GameItem itemToRemove, int amount)
-    {
-        int amountToRemove = amount;
-        foreach (var item in this.characterItems)
-        {
-            if(item == itemToRemove)
-            {
-                int t = item.count;
-                for (int i = 0; i < t; i++)
-                {
-                    item.count--;
-                    amountToRemove--;
-                    if(item.count <= 0)
-                    {
-                        RemoveItem(item);
-                    }
-                    else
-                    {
-                        inventoryUI.UpdateItemCount(item);
-                    }
                     if(amountToRemove <= 0)
                     {
+                        Debug.Log("done");
                         return;
                     }
                 }
-                inventoryUI.UpdateItemCount(item);
+                //inventoryUI.UpdateItemCount(this.characterItems[k]);
             }
         }
     }
+ 
+    // public void RemoveAmountOfItem(GameItem itemToRemove, int amount)
+    // {
+    //     int amountToRemove = amount;
+    //     foreach (var item in this.characterItems)
+    //     {
+    //         if(item == itemToRemove)
+    //         {
+    //             int t = item.count;
+    //             for (int i = 0; i < t; i++)
+    //             {
+    //                 item.count--;
+    //                 amountToRemove--;
+    //                 if(item.count <= 0)
+    //                 {
+    //                     RemoveItem(item);
+    //                 }
+    //                 else
+    //                 {
+    //                     inventoryUI.UpdateItemCount(item);
+    //                 }
+
+    //                 if(amountToRemove <= 0)
+    //                 {
+    //                     return;
+    //                 }
+    //             }
+    //             inventoryUI.UpdateItemCount(item);
+    //         }
+    //     }
+    // }
 
 
     //check if item can be crafted from items in inventory
+   
+   public void RemoveAmountOfItem(GameItem itemToRemove, int amount)
+    {
+        int amountToRemove = amount;
+        for (int k = this.characterItems.Count - 1; k >= 0; k--)
+        {
+            if(this.characterItems[k] == itemToRemove)
+            {
+                int t = this.characterItems[k].count;
+                for (int i = 0; i < t; i++)
+                {
+                    this.characterItems[k].count--;
+                    amountToRemove--;
+                    if(this.characterItems[k].count <= 0)
+                    {
+                        RemoveItem(this.characterItems[k]);
+                    }
+                    else
+                    {
+                        inventoryUI.UpdateItemCount(this.characterItems[k]);
+                    }
+
+                    if(amountToRemove <= 0)
+                    {
+                        return;
+                    }
+                }
+                //inventoryUI.UpdateItemCount(this.characterItems[k]);
+            }
+        }
+    }
+   
     public bool CanCraftItem(Dictionary<string,int> recipe)
     {
         foreach (var i in recipe)
@@ -325,6 +397,7 @@ public class GameInventory : MonoBehaviour
     void Save()
     {
         SaveSystem.Save<List<GameItem>>(characterItems, "Inventory");
+        Debug.Log("Saved Inventory");
     }
 
     void Load()
@@ -333,6 +406,10 @@ public class GameInventory : MonoBehaviour
         {
             Debug.Log("Inventory Save Exists");
             GiveItems(SaveSystem.Load<List<GameItem>>("Inventory"));
+        }
+        else
+        {
+            Debug.Log("Inventory Save Doesn't Exist");
         }
     }
 }

@@ -23,6 +23,7 @@ public class TreeData
         position[2] = tree.transform.position.z;
 
         this.health = tree.GetHealth();
+        //set title to name of tree being saved (oak, savanna, spruce)
         this.title = tree.gameObject.name;
     }
 }

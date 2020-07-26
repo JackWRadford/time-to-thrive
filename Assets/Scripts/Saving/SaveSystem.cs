@@ -18,7 +18,7 @@ public class SaveSystem
         {
             formatter.Serialize(stream, objectToSave);
         }
-        Debug.Log("Saved");
+        //Debug.Log("Saved");
 
     }
 
