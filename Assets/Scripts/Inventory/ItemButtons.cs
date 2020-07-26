@@ -51,7 +51,7 @@ public class ItemButtons : MonoBehaviour
     public void ConsumeItem()
     {
         //Add effects to player health/thurst/hunger
-        if(this.gameItem.stats != null)
+        if((this.gameItem.stats != null)&&(this.gameItem.consumable))
         {
             if(this.gameItem.stats.ContainsKey("Nutrition"))
             {
@@ -61,19 +61,19 @@ public class ItemButtons : MonoBehaviour
             {
                 playerController.IncrementThurst(this.gameItem.stats["Hydration"]);
             }
-        }
 
-        //remove item from game inventory
-        if(this.gameItem.count < 2)
-        {
-            GameInventory.instance.RemoveItem(this.gameItem);
-        }
-        else if(this.gameItem.count > 1)
-        {
-            //decrement count of item by 1
-            GameInventory.instance.RemoveAmountOfItem(this.gameItem, 1);
-        }
+                //remove item from game inventory
+            if(this.gameItem.count < 2)
+            {
+                GameInventory.instance.RemoveItem(this.gameItem);
+            }
+            else if(this.gameItem.count > 1)
+            {
+                //decrement count of item by 1
+                GameInventory.instance.RemoveAmountOfItem(this.gameItem, 1);
+            }
 
-        gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        } 
     }
 }
