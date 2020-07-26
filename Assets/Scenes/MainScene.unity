@@ -1349,6 +1349,7 @@ MonoBehaviour:
     maxCount: 0
     slot: 0
     placeable: 0
+    consumable: 0
 --- !u!114 &163029875
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ItemButtons : MonoBehaviour
+public class ItemButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private GameItem gameItem;
     private PlayerController playerController;
+
+    //offset to make pointer start inside box
+    private Vector3 offset = new Vector3(-15,5,0);
 
     void Awake()
     {
@@ -21,7 +25,7 @@ public class ItemButtons : MonoBehaviour
     void OnEnable()
     {
         //set position to mouse position on right click event
-        this.transform.position = Input.mousePosition;
+        this.transform.position = Input.mousePosition + offset;
     }
 
     public void SetGameItem(GameItem gameItem)
@@ -75,5 +79,15 @@ public class ItemButtons : MonoBehaviour
 
             gameObject.SetActive(false);
         } 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        gameObject.SetActive(false);
     }
 }
