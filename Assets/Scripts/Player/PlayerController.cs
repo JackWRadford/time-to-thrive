@@ -564,8 +564,8 @@ public class PlayerController : MonoBehaviour
     //use to stop framerate issues
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
         move = new Vector2(horizontal, vertical);
         move.Normalize();//stop increased speed diagonally

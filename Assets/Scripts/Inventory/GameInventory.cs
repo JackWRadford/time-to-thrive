@@ -260,8 +260,8 @@ public class GameInventory : MonoBehaviour
         {
             if(this.characterItems[k].title == itemName)
             {
-                Debug.Log("amount to remove: " + amountToRemove);
-                Debug.Log("found " + this.characterItems[k].slot);
+                //Debug.Log("amount to remove: " + amountToRemove);
+                //Debug.Log("found " + this.characterItems[k].slot);
                 int t = this.characterItems[k].count;
                 for (int i = 0; i < t; i++)
                 {
@@ -269,18 +269,18 @@ public class GameInventory : MonoBehaviour
                     amountToRemove--;
                     if(this.characterItems[k].count <= 0)
                     {
-                        Debug.Log("remove item in "  + this.characterItems[k].slot);
+                        //Debug.Log("remove item in "  + this.characterItems[k].slot);
                         RemoveItem(this.characterItems[k]);
                     }
                     else
                     {
                         inventoryUI.UpdateItemCount(this.characterItems[k]);
-                        Debug.Log("update count of "  + this.characterItems[k].slot);
+                        //Debug.Log("update count of "  + this.characterItems[k].slot);
                     }
 
                     if(amountToRemove <= 0)
                     {
-                        Debug.Log("done");
+                        //Debug.Log("done");
                         return;
                     }
                 }
