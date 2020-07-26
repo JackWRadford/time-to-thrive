@@ -570,24 +570,41 @@ public class PlayerController : MonoBehaviour
         move = new Vector2(horizontal, vertical);
         move.Normalize();//stop increased speed diagonally
 
-        if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
         if(allowedToMove)
         {
+            if(!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))//if moving
+            {
+                lookDirection.Set(move.x, move.y);
+                lookDirection.Normalize();
+            }
+
             animator.SetFloat("Horizontal", lookDirection.x);
             animator.SetFloat("Vertical", lookDirection.y);
             animator.SetFloat("Speed", move.magnitude);
-        }
 
-        if(allowedToMove)
-        {
             Vector2 position = rb2D.position;//change position
             position = position + move*speed*Time.fixedDeltaTime;
             rb2D.MovePosition(position);
         }
+
+        // if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
+        // {
+        //     lookDirection.Set(move.x, move.y);
+        //     lookDirection.Normalize();
+        // }
+        // if(allowedToMove)
+        // {
+        //     animator.SetFloat("Horizontal", lookDirection.x);
+        //     animator.SetFloat("Vertical", lookDirection.y);
+        //     animator.SetFloat("Speed", move.magnitude);
+        // }
+
+        // if(allowedToMove)
+        // {
+        //     Vector2 position = rb2D.position;//change position
+        //     position = position + move*speed*Time.fixedDeltaTime;
+        //     rb2D.MovePosition(position);
+        // }
     }
 
     void UpdateStats()
