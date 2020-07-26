@@ -586,6 +586,11 @@ public class PlayerController : MonoBehaviour
             position = position + move*speed*Time.fixedDeltaTime;
             rb2D.MovePosition(position);
         }
+        else
+        {
+            //player speed set to 0 when not allowed to move
+            animator.SetFloat("Speed", 0);
+        }
 
         // if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
         // {
