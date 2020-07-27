@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
 
     private static bool allowedToMove = true;
 
+    private GameObject itemToPlace;
+    private Vector3 itemToPlacePos;
+
     //instance for dont destroy
     //private static PlayerController playerInstance;
 
@@ -468,19 +471,28 @@ public class PlayerController : MonoBehaviour
         {
             if(this.heldItem.placeable)
             {
-                //set highlight position
-                highlight.transform.position = GetPosInfrontOfPlayer();
+                //set highlight/placement position
+                //Vector3 itemToPlacePos = GetPosInfrontOfPlayer();
+                //highlight.transform.position = itemToPlacePos;
+
+                //highlight.transform.position = GetPosInfrontOfPlayer();
 
                 //check if highlight position is free
                 if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y))
                 {
                     if(this.heldItem.rotatable)
                     {
+                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                        highlight.transform.position = itemToPlacePos;
                         //set highlight sprite depending on object selected
                         highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
                     }
                     else
                     {
+                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                        highlight.transform.position = itemToPlacePos;
                         //space free (green)
                         highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
                     }
@@ -489,19 +501,23 @@ public class PlayerController : MonoBehaviour
                     //place object on mouse 2
                     if(Input.GetMouseButtonDown(1))
                     {
-                        Vector3 itemToPlacePos = new Vector3(GetPosInfrontOfPlayer().x,GetPosInfrontOfPlayer().y,0);
+                        //itemToPlace offset
+                        // Vector3 itemToPlaceOffset = new Vector3(this.itemToPlace.GetComponent<PlacementOffset>().offsetX,
+                        // this.itemToPlace.GetComponent<PlacementOffset>().offsetY,0);
 
                         if(this.heldItem.rotatable)
                         {
-                            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
                             //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
-                            GameObject placedItem = Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
                             placedItem.name = itemToPlace.name;
                         }
                         else
                         {
-                            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                            GameObject placedItem = Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                            // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
                             placedItem.name = itemToPlace.name;
                         }
                         //remove object
@@ -558,8 +574,16 @@ public class PlayerController : MonoBehaviour
     //get vector3 of tile infrom of player
     public Vector3 GetPosInfrontOfPlayer()
     {
-        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
-        (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f, 0);
+        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x),
+        (float)Math.Round(this.transform.position.y + PlaceOffset().y), 0);
+        return pos;
+    } 
+
+    //get vector3 of tile infrom of player accounting for PlacementOffset of itemToPlace
+    public Vector3 GetPosInfrontOfPlayerPlusOffset()
+    {
+        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + this.itemToPlace.GetComponent<PlacementOffset>().GetOffsetX(),
+        (float)Math.Round(this.transform.position.y + PlaceOffset().y) + this.itemToPlace.GetComponent<PlacementOffset>().GetOffsetY(), 0);
         return pos;
     } 
 
