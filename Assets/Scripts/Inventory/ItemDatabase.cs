@@ -30,7 +30,7 @@ public class ItemDatabase : MonoBehaviour
             },
             new Dictionary<string, int>{
             },
-            1,16,-1, false, false),
+            1,16,-1, false, false, false),
             //Apple
             new GameItem(1, "Apple", "Food",
             new Dictionary<string, int>{
@@ -39,14 +39,14 @@ public class ItemDatabase : MonoBehaviour
             },
             new Dictionary<string, int>{
             },
-            1,16,-1, false, true),
+            1,16,-1, false, true, false),
             //Log
             new GameItem(2, "Log", "Material",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
             },
-            1,8,-1, false, false),
+            1,8,-1, false, false, false),
             //WoodAxe
             new GameItem(3, "WoodAxe", "Tool",
             new Dictionary<string, int>{
@@ -57,7 +57,7 @@ public class ItemDatabase : MonoBehaviour
                 {"Stick", 2},
                 {"Log", 1}
             },
-            1,1,-1, false, false),
+            1,1,-1, false, false, false),
             //Fence
             new GameItem(4, "Fence", "Building",
             new Dictionary<string, int>{
@@ -65,7 +65,7 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
                 {"Stick", 3},
             },
-            1,16,-1, true, false),
+            1,16,-1, true, false, false),
             //WoodSword
             new GameItem(5, "WoodSword", "Weapon",
             new Dictionary<string, int>{
@@ -75,7 +75,7 @@ public class ItemDatabase : MonoBehaviour
                 {"Stick", 2},
                 {"Log", 1}
             },
-            1,1,-1, false, false),
+            1,1,-1, false, false, false),
             //RawBeef
             new GameItem(6, "RawBeef", "Food",
             new Dictionary<string, int>{
@@ -84,22 +84,22 @@ public class ItemDatabase : MonoBehaviour
             },
             new Dictionary<string, int>{
             },
-            1,16,-1, false, true),
+            1,16,-1, false, true, false),
             //Leather
             new GameItem(7, "Leather", "Material",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
             },
-            1,16,-1, false, false),
+            1,16,-1, false, false, false),
             //Wall
             new GameItem(8, "Wall", "Building",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
-                {"Log", 3}
+                
             },
-            1,64,-1, true, false),
+            1,64,-1, true, false, true),
         };
     }
 }

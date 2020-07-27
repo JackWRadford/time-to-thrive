@@ -10,6 +10,13 @@ public class WallController : Interactable, ILoadState
 
     public int health = 1;
 
+    //0123 = NESW
+    // public enum orientation {
+    //     north, east, south, west
+    // }
+
+    public int orientation = 0;
+
     void Start()
     {   
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
@@ -73,5 +80,41 @@ public class WallController : Interactable, ILoadState
 
             return;
         }
+    }
+    
+    //rotate funtion to increment or decrement orientation
+    public void Rotate(bool clockWise)
+    {
+        if(clockWise)
+        {
+            if(this.orientation < 3)
+            {
+                this.orientation++;
+            }
+            else
+            {
+                this.orientation = 0;
+            }
+        }
+        else if(!clockWise)
+        {
+            if(this.orientation > 0)
+            {
+                this.orientation--;
+            }
+            else
+            {
+                this.orientation = 3;
+            }
+        }
+        updateWall();
+    }
+
+    //method to update sprite and bo collider (prefab ?)
+    public void updateWall()
+    {
+        Sprite[] allWoodWalls = Resources.LoadAll<Sprite>("Sprites/Placeable/Wall");
+
+        GetComponent<SpriteRenderer>().sprite = allWoodWalls[this.orientation];
     }
 }

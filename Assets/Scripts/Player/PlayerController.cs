@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public Sprite greenHighlight;
     public Sprite redHighlight;
+    //orientation of object to be placed
+    public int orientation = 0;
 
     private static bool allowedToMove = true;
 
@@ -456,13 +458,37 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        //rotate object with (Z,X)
+        if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
+        {
+            if(this.heldItem.placeable)
+            {
+                if(Input.GetKeyDown(KeyCode.Z))
+                {
+                    //ani-clockwise
+                    Debug.Log("AC");
+                    Rotate(false);
+                    
+                }
+                if(Input.GetKeyDown(KeyCode.X))
+                {
+                    //clockwise
+                    Debug.Log("C");
+                    Rotate(true);
+                }
+            }
+        }
+
+
+        //place item with mouse 2
         if((Input.GetMouseButtonDown(1))&&(this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
         {
             //check no itemSelected in UI ------------------------------------------------------------------------------
             if(this.heldItem.placeable)
             {
                 //place object
-                GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
                 //position to place object (depending on look direction (infornt of plater))
 
                 // float x = (float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f;
@@ -473,7 +499,17 @@ public class PlayerController : MonoBehaviour
                 if(objectManager.IsSpaceFree(x,y))
                 {
                     Vector3 itemToPlacePos = new Vector3(x,y,0);
-                    Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+
+                    if(this.heldItem.rotatable)
+                    {
+                        GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "/" + this.heldItem.title + "_" + this.orientation);
+                        Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                    }
+                    else
+                    {
+                        GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                    }
                     //objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
                     //remove item from inventory
                     //GameInventory.instance.RemoveAmountOfItem(this.heldItem.title, 1);
@@ -503,17 +539,34 @@ public class PlayerController : MonoBehaviour
             if(this.heldItem.placeable)
             {
                 //set highlight position
-                highlight.transform.position = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,(float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f,0);
-                
-                //check if highlight position is free
-                if(objectManager.IsSpaceFree((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,(float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f))
+                // Vector3 highlightPosition = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
+                //                                         (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f,0);
+
+                // //instantiate highlight of placeable object
+
+                //removed + 0.5f
+                highlight.transform.position = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x),
+                                                            (float)Math.Round(this.transform.position.y + PlaceOffset().y),0);
+
+                //if it is rotatabe show correct rotation highlight
+                if(this.heldItem.rotatable)
                 {
-                    //space free (green)
-                    highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                    //set highlight sprite depending on opbject selected
+                    highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
                 }
-                else{
-                    //space not free (red)
-                    highlight.GetComponent<SpriteRenderer>().sprite = redHighlight;
+                else
+                {
+                    //check if highlight position is free
+                    if(objectManager.IsSpaceFree((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
+                        (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f))
+                    {
+                        //space free (green)
+                        highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                    }
+                    else{
+                        //space not free (red)
+                        highlight.GetComponent<SpriteRenderer>().sprite = redHighlight;
+                    }
                 }
 
                 //set highlight visible
@@ -530,7 +583,9 @@ public class PlayerController : MonoBehaviour
     //get vector3 of tile infrom of player
     public Vector3 GetPosInfrontOfPlayer()
     {
-        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f, (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f, 0);
+        //removed + 0.5f
+        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x),
+                                    (float)Math.Round(this.transform.position.y + PlaceOffset().y), 0);
         return pos;
     } 
 
@@ -610,6 +665,33 @@ public class PlayerController : MonoBehaviour
         //     position = position + move*speed*Time.fixedDeltaTime;
         //     rb2D.MovePosition(position);
         // }
+    }
+
+    //rotate funtion to increment or decrement orientation
+    public void Rotate(bool clockWise)
+    {
+        if(clockWise)
+        {
+            if(this.orientation < 3)
+            {
+                this.orientation++;
+            }
+            else
+            {
+                this.orientation = 0;
+            }
+        }
+        else if(!clockWise)
+        {
+            if(this.orientation > 0)
+            {
+                this.orientation--;
+            }
+            else
+            {
+                this.orientation = 3;
+            }
+        }
     }
 
     void UpdateStats()
