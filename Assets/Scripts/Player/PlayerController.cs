@@ -411,30 +411,11 @@ public class PlayerController : MonoBehaviour
         if((this.hunger == 0)&&(this.thurst == 0))
         {
             DamageOverTime();
-        }else if((this.hunger == this.maxHunger)&&(this.thurst == this.maxThurst)&&(this.health != this.maxHealth))
+        }
+        else if((this.hunger == this.maxHunger)&&(this.thurst == this.maxThurst)&&(this.health != this.maxHealth))
         {
             RecoverOverTime();
         }
-
-        //movement
-
-        // float horizontal = Input.GetAxis("Horizontal");
-        // float vertical = Input.GetAxis("Vertical");
-
-        // move = new Vector2(horizontal, vertical);
-        // move.Normalize();//stop increased speed diagonally
-
-        // if((!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))&&(allowedToMove))//if moving
-        // {
-        //     lookDirection.Set(move.x, move.y);
-        //     lookDirection.Normalize();
-        // }
-        // if(allowedToMove)
-        // {
-        //     animator.SetFloat("Horizontal", lookDirection.x);
-        //     animator.SetFloat("Vertical", lookDirection.y);
-        //     animator.SetFloat("Speed", move.magnitude);
-        // }
 
         //interact with objects through raycast
         if((Input.GetKeyDown(KeyCode.Space)))
@@ -467,77 +448,23 @@ public class PlayerController : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.Z))
                 {
                     //ani-clockwise
-                    Debug.Log("AC");
                     Rotate(false);
                     
                 }
                 if(Input.GetKeyDown(KeyCode.X))
                 {
                     //clockwise
-                    Debug.Log("C");
                     Rotate(true);
                 }
             }
         }
-
-
-        //place item with mouse 2
-        if((Input.GetMouseButtonDown(1))&&(this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
-        {
-            //check no itemSelected in UI ------------------------------------------------------------------------------
-            if(this.heldItem.placeable)
-            {
-                //place object
-                // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                //position to place object (depending on look direction (infornt of plater))
-
-                // float x = (float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f;
-                // float y = (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f;
-                float x = GetPosInfrontOfPlayer().x;
-                float y = GetPosInfrontOfPlayer().y;
-                //check space is free
-                if(objectManager.IsSpaceFree(x,y))
-                {
-                    Vector3 itemToPlacePos = new Vector3(x,y,0);
-
-                    if(this.heldItem.rotatable)
-                    {
-                        GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "/" + this.heldItem.title + "_" + this.orientation);
-                        //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
-                        Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
-                        
-                    }
-                    else
-                    {
-                        GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                        Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
-                    }
-                    //objectManager.AddObject(x,y,this.heldItem.title, itemToPlace);
-                    //remove item from inventory
-                    //GameInventory.instance.RemoveAmountOfItem(this.heldItem.title, 1);
-                    if(this.heldItem.count < 2)
-                    {
-                        GameInventory.instance.RemoveItem(this.heldItem);
-                    }
-                    else if(this.heldItem.count > 1)
-                    {
-                        //decrement count of item by 1
-                        GameInventory.instance.RemoveAmountOfItem(this.heldItem, 1);
-                    }
-                }
-            }
-        }
-        // if(uiInventory.GetSelectedItem() != null)
-        // {
-        //     this.heldItem = uiInventory.GetSelectedItem();
-        // }
         
+        //update player stats based on heldItem
         this.heldItem = uiInventory.GetSelectedItem();
-        
         UpdateStats();
 
-        //set correct highlight
-        if(this.heldItem != null)
+        //set correct highlight and place on mouse 2 if space
+        if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
         {
             if(this.heldItem.placeable)
             {
@@ -558,6 +485,36 @@ public class PlayerController : MonoBehaviour
                         highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
                     }
                     SetHighlightColor(Color.green);
+
+                    //place object on mouse 2
+                    if(Input.GetMouseButtonDown(1))
+                    {
+                        Vector3 itemToPlacePos = new Vector3(GetPosInfrontOfPlayer().x,GetPosInfrontOfPlayer().y,0);
+
+                        if(this.heldItem.rotatable)
+                        {
+                            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
+                            GameObject placedItem = Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                            placedItem.name = itemToPlace.name;
+                        }
+                        else
+                        {
+                            GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                            GameObject placedItem = Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                            placedItem.name = itemToPlace.name;
+                        }
+                        //remove object
+                        if(this.heldItem.count < 2)
+                        {
+                            GameInventory.instance.RemoveItem(this.heldItem);
+                        }
+                        else if(this.heldItem.count > 1)
+                        {
+                            //decrement count of item by 1
+                            GameInventory.instance.RemoveAmountOfItem(this.heldItem, 1);
+                        }
+                    }
                 }
                 else
                 {

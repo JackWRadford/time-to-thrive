@@ -24,7 +24,6 @@ public class WallController : Interactable, ILoadState
         //check object not already in that position (double save in same position)
         if(objectManager.IsSpaceFree(this.transform.position.x,this.transform.position.y))
         {
-            //Debug.Log("Add fence");
             objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Wall", wd);
         }
     }

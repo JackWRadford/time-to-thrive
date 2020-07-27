@@ -6,7 +6,7 @@ using UnityEngine;
 public class WallData
 {
     public float[] position;
-    public string title = "Wall";
+    public string title = "Wall_0";
 
     public string GetTitle()
     {
@@ -19,5 +19,7 @@ public class WallData
         position[0] = wall.transform.position.x;
         position[1] = wall.transform.position.y;
         position[2] = wall.transform.position.z;
+        
+        this.title = wall.gameObject.name;
     }
 }
