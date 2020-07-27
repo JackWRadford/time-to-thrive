@@ -9,12 +9,6 @@ public class WallController : Interactable, ILoadState
     public GameObject wall;
 
     public int health = 1;
-
-    //0123 = NESW
-    // public enum orientation {
-    //     north, east, south, west
-    // }
-
     public int orientation = 0;
 
     void Start()

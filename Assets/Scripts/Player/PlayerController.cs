@@ -462,7 +462,7 @@ public class PlayerController : MonoBehaviour
         //rotate object with (Z,X)
         if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
         {
-            if(this.heldItem.placeable)
+            if((this.heldItem.placeable)&&(this.heldItem.rotatable))
             {
                 if(Input.GetKeyDown(KeyCode.Z))
                 {
@@ -503,7 +503,9 @@ public class PlayerController : MonoBehaviour
                     if(this.heldItem.rotatable)
                     {
                         GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "/" + this.heldItem.title + "_" + this.orientation);
+                        //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
                         Instantiate(itemToPlace, itemToPlacePos, Quaternion.identity);
+                        
                     }
                     else
                     {
@@ -533,59 +535,74 @@ public class PlayerController : MonoBehaviour
         this.heldItem = uiInventory.GetSelectedItem();
         
         UpdateStats();
+
+        //set correct highlight
         if(this.heldItem != null)
         {
-            //check if held item is placeable
             if(this.heldItem.placeable)
             {
                 //set highlight position
-                // Vector3 highlightPosition = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
-                //                                         (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f,0);
+                highlight.transform.position = GetPosInfrontOfPlayer();
 
-                // //instantiate highlight of placeable object
-
-                //removed + 0.5f
-                highlight.transform.position = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x),
-                                                            (float)Math.Round(this.transform.position.y + PlaceOffset().y),0);
-
-                //if it is rotatabe show correct rotation highlight
-                if(this.heldItem.rotatable)
+                //check if highlight position is free
+                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y))
                 {
-                    //set highlight sprite depending on opbject selected
-                    highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
-                }
-                else
-                {
-                    //check if highlight position is free
-                    if(objectManager.IsSpaceFree((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
-                        (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f))
+                    if(this.heldItem.rotatable)
+                    {
+                        //set highlight sprite depending on object selected
+                        highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
+                    }
+                    else
                     {
                         //space free (green)
                         highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
                     }
-                    else{
-                        //space not free (red)
-                        highlight.GetComponent<SpriteRenderer>().sprite = redHighlight;
-                    }
+                    SetHighlightColor(Color.green);
                 }
-
+                else
+                {
+                    if(this.heldItem.rotatable)
+                    {
+                        //set highlight sprite depending on object selected
+                        highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
+                    }
+                    else
+                    {
+                        //space not free (red)
+                        highlight.GetComponent<SpriteRenderer>().sprite = redHighlight; 
+                    }
+                    SetHighlightColor(Color.red);
+                }
+            
                 //set highlight visible
                 highlight.SetActive(true);
-            }else{
+            }
+            else
+            {
                 //set highlight invisible
                 highlight.SetActive(false);
             }
-        }else{
+        }
+        else
+        {
             highlight.SetActive(false);
         }
+    }
+
+    //set color of highlight (green/red)
+    public void SetHighlightColor(Color color)
+    {
+        Color tmp = highlight.GetComponent<SpriteRenderer>().color;
+        tmp = color;
+        tmp.a = 0.3f;
+        highlight.GetComponent<SpriteRenderer>().color = tmp;
     }
 
     //get vector3 of tile infrom of player
     public Vector3 GetPosInfrontOfPlayer()
     {
-        //removed + 0.5f
-        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x),
-                                    (float)Math.Round(this.transform.position.y + PlaceOffset().y), 0);
+        Vector3 pos = new Vector3((float)Math.Round(this.transform.position.x + PlaceOffset().x) + 0.5f,
+        (float)Math.Round(this.transform.position.y + PlaceOffset().y) + 0.5f, 0);
         return pos;
     } 
 

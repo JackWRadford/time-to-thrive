@@ -63,7 +63,7 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
-                {"Stick", 3},
+                
             },
             1,16,-1, true, false, false),
             //WoodSword
