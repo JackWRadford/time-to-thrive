@@ -76,14 +76,21 @@ public class TreeGeneration : MonoBehaviour
                     //if current tree noise value is the maximum, place tree at that location
                     if(treeValue == maxValue)
                     {
-                        float x = xIndex + worldXoffset + 0.5f;
-                        float y = zIndex + worldZoffset + 0.5f;
-                        Vector3 treePosition = new Vector3(x, y, 0);
+                        //position including placement offset
+                        float x = xIndex + worldXoffset;
+                        float y = zIndex + worldZoffset;
+                        float xWithOffset = x + this.treePrefab[biome.index].GetComponent<PlacementOffset>().GetOffsetX();
+                        float yWithOffset = y + this.treePrefab[biome.index].GetComponent<PlacementOffset>().GetOffsetY();
+
+                        Vector3 treePosition = new Vector3(xWithOffset, yWithOffset, 0);
                         GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
                         //make sure new gameObject name doesn't have (clone)
                         tree.name = this.treePrefab[biome.index].name;
                         TreeData td = new TreeData(tree.GetComponent<TallTree>());
-                        tileData.AddObject(x,y,"Tree",td);
+                        if(tileData.IsSpaceFree(x, y))
+                        {
+                            tileData.AddObject(x,y,"Tree",td);
+                        }
                     }
 
                 }

@@ -511,6 +511,7 @@ public class PlayerController : MonoBehaviour
                             //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
+                            //make sure no (clone) tag on object instatiated
                             placedItem.name = itemToPlace.name;
                         }
                         else
@@ -518,6 +519,7 @@ public class PlayerController : MonoBehaviour
                             // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
+                            //make sure no (clone) tag on object instatiated
                             placedItem.name = itemToPlace.name;
                         }
                         //remove object

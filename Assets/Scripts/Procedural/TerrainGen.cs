@@ -180,7 +180,7 @@ public class TerrainGen : MonoBehaviour
         {
             GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
             //spawn at position saved in data (including offset)
-            GameObject goi = Instantiate(go, new Vector3(obj.Value.transform.position.x, obj.Value.transform.position.y, 0), Quaternion.identity);
+            GameObject goi = Instantiate(go, new Vector3(obj.Value.position[0], obj.Value.position[1], 0), Quaternion.identity);
             goi.GetComponent<ILoadState>().LoadState(obj.Value);
             //load state from save onto instantiated gameObject
             

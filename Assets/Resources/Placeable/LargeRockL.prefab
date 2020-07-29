@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3125560677443024312}
   - component: {fileID: 8981898819834142704}
   - component: {fileID: 9168411129509430651}
+  - component: {fileID: -1850126935286839803}
   m_Layer: 8
   m_Name: LargeRockL
   m_TagString: Untagged
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_Offset: {x: 0.0027150512, y: 0.13275963}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.15}
+    pivot: {x: 0.5, y: 0.15625}
     oldSize: {x: 1, y: 2}
     newSize: {x: 3, y: 5}
     adaptiveTilingThreshold: 0.5
@@ -124,6 +125,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeController: {fileID: 0}
   objectManager: {fileID: 0}
+  placementOffset: {fileID: 0}
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
+--- !u!114 &-1850126935286839803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823617234609881137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c6f558b662dfc47893c263f95ee3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 8
+  offsetY: 5

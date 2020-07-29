@@ -8,11 +8,15 @@ public class TallTree : Interactable, ILoadState
     EdgeCollider2D edgeCollider2D;
     public TreeController treeController;
     public ObjectManager objectManager;
+    public PlacementOffset placementOffset;
     public GameObject stick;
     public GameObject apple;
     public GameObject log;
 
     private int health = 1;
+
+    private float positionMinusOffsetX;
+    private float positionMinusOffsetY;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,11 @@ public class TallTree : Interactable, ILoadState
         edgeCollider2D = GetComponent<EdgeCollider2D>();
         treeController = GameObject.Find("GameManager").GetComponent<TreeController>();
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        placementOffset = this.gameObject.GetComponent<PlacementOffset>();
+        //SaveState();
+
+        this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
+        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
     }
 
     // Update is called once per frame
@@ -28,6 +37,20 @@ public class TallTree : Interactable, ILoadState
         
     }
 
+    //update state to be saved
+    // public void SaveState()
+    // {
+    //     this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
+    //     this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+
+    //     TreeData td = new TreeData(this);
+    //     //check object not already in that position (double save in same position)
+    //     //if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY))
+    //     //{
+    //         objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Tree", td);
+    //     //}
+    // }
+    
     //set state from saved state
     public void LoadState(dynamic data)
     {
@@ -37,10 +60,10 @@ public class TallTree : Interactable, ILoadState
     public void UpdateState()
     {
         //find and remove data from objects list
-        objectManager.RemoveObject(this.transform.position.x,this.transform.position.y);
+        objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         //add updated data to objects list
         TreeData td = new TreeData(GetComponent<TallTree>());
-        objectManager.AddObject(this.transform.position.x,this.transform.position.y,"Tree",td);
+        objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY,"Tree",td);
     }
 
     public int GetHealth()
@@ -101,7 +124,7 @@ public class TallTree : Interactable, ILoadState
         //remove from treeController list of tree positions
         TreeData td = new TreeData(this);
         //Debug.Log("Remove tree");
-        objectManager.RemoveObject(td.position[0], td.position[1]);
+        objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);
         return;

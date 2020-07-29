@@ -220,7 +220,7 @@ public class FenceController : Interactable, ILoadState
             //remove from objectManager list
             FenceData fd = new FenceData(this);
             //Debug.Log("Remove fence");
-            objectManager.RemoveObject(fd.position[0], fd.position[1]);
+            objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
             //treeController.RemoveTree(td.position);
             //remove any connections
             checkConnectionsRemove();

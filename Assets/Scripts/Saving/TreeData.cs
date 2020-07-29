@@ -17,6 +17,7 @@ public class TreeData
 
     public TreeData(TallTree tree)
     {
+        //position including offset
         position = new float[3];
         position[0] = tree.transform.position.x;
         position[1] = tree.transform.position.y;
