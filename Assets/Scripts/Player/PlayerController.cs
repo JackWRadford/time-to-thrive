@@ -478,7 +478,7 @@ public class PlayerController : MonoBehaviour
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
                 //check if highlight position is free (not including placementOffset)
-                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y))
+                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x  + 0.5f, GetPosInfrontOfPlayer().y  + 0.5f))
                 {
                     if(this.heldItem.rotatable)
                     {

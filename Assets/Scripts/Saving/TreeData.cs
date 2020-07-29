@@ -8,7 +8,7 @@ public class TreeData
     public float[] position;
     public string title = "Tree";
 
-    public int health = 10;
+    //public int health = 10;
 
     public string GetTitle()
     {
@@ -23,7 +23,7 @@ public class TreeData
         position[1] = tree.transform.position.y;
         position[2] = tree.transform.position.z;
 
-        this.health = tree.GetHealth();
+        //this.health = tree.GetHealth();
         //set title to name of tree being saved (oak, savanna, spruce)
         this.title = tree.gameObject.name;
     }

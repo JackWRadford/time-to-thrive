@@ -30,9 +30,9 @@ public class WallController : Interactable, ILoadState
 
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f))
         {
-            objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);
+            objectManager.AddObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f, "Wall", wd);
         }
     }
 
@@ -75,7 +75,7 @@ public class WallController : Interactable, ILoadState
             
             //remove from objectManager list
             WallData wd = new WallData(this);
-            objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f);
 
             Destroy(gameObject);
 

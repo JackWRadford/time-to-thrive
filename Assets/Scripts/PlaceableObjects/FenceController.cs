@@ -172,10 +172,10 @@ public class FenceController : Interactable, ILoadState
 
         FenceData fd = new FenceData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f))
         {
             //Debug.Log("Add fence");
-            objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY, "Fence", fd);
+            objectManager.AddObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f, "Fence", fd);
         }
     }
 
@@ -220,7 +220,7 @@ public class FenceController : Interactable, ILoadState
             //remove from objectManager list
             FenceData fd = new FenceData(this);
             //Debug.Log("Remove fence");
-            objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f);
             //treeController.RemoveTree(td.position);
             //remove any connections
             checkConnectionsRemove();

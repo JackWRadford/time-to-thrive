@@ -248,6 +248,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13298}
     - Class: 114
+      Script: {instanceID: 13390}
+    - Class: 114
       Script: {instanceID: 13454}
     - Class: 114
       Script: {instanceID: 13486}
@@ -1028,7 +1030,7 @@ ScriptsOnlyBuild:
     className: Tooltip
   - hash:
       serializedVersion: 2
-      Hash: 4fa62b920a8202365a8ad0cb1f28a6be
+      Hash: b14283af9eb5f6ef0bbadc25810c80d1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WallController
@@ -1154,7 +1156,7 @@ ScriptsOnlyBuild:
     className: InventoryUI
   - hash:
       serializedVersion: 2
-      Hash: 321cf2f099b5c70cfb46be0831273f33
+      Hash: 1e17a3e8b269e963e329794d4b863314
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FenceController
@@ -1190,7 +1192,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 41745fb59ced502ba4a03ed551e9438c
+      Hash: 6829220d8d6afeec9472040285930eeb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TallTree

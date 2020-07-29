@@ -28,7 +28,7 @@ public class TallTree : Interactable, ILoadState
         //SaveState();
 
         this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
-        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+        this.positionMinusOffsetY = this.transform.position.y - placementOffset.GetOffsetY();
     }
 
     // Update is called once per frame
@@ -54,16 +54,16 @@ public class TallTree : Interactable, ILoadState
     //set state from saved state
     public void LoadState(dynamic data)
     {
-        this.health = data.health;
+        //this.health = data.health;
     }
 
     public void UpdateState()
     {
         //find and remove data from objects list
-        objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
+        objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f);
         //add updated data to objects list
         TreeData td = new TreeData(GetComponent<TallTree>());
-        objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY,"Tree",td);
+        objectManager.AddObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f,"Tree",td);
     }
 
     public int GetHealth()
@@ -124,13 +124,13 @@ public class TallTree : Interactable, ILoadState
         //remove from treeController list of tree positions
         TreeData td = new TreeData(this);
         //Debug.Log("Remove tree");
-        objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
+        objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f);
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);
         return;
         }
         //update state to be saved
-        UpdateState();
+        //UpdateState();
     }
 
     //check if player is behind tree
