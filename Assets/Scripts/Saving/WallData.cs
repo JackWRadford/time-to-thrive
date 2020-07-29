@@ -15,6 +15,7 @@ public class WallData
 
     public WallData(WallController wall)
     {
+        //position including offset
         position = new float[3];
         position[0] = wall.transform.position.x;
         position[1] = wall.transform.position.y;

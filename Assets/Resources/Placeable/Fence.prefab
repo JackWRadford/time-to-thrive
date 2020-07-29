@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4009590754627887204}
   - component: {fileID: 4009590754627887203}
   - component: {fileID: -2746180441490042586}
+  - component: {fileID: -3296132095518577860}
   m_Layer: 8
   m_Name: Fence
   m_TagString: Untagged
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.09}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.185}
+    pivot: {x: 0.5, y: 0.1875}
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -128,3 +129,17 @@ MonoBehaviour:
   down: 0
   left: 0
   right: 0
+--- !u!114 &-3296132095518577860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009590754627887202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c6f558b662dfc47893c263f95ee3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 8
+  offsetY: 6

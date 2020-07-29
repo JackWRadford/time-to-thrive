@@ -8,12 +8,16 @@ public class FenceController : Interactable, ILoadState
 {
     private ObjectManager objectManager;
     public GameObject fence;
+    public PlacementOffset placementOffset;
 
     public int health = 1;
     public bool up = false;
     public bool down = false;
     public bool left = false;
     public bool right = false;
+
+    private float positionMinusOffsetX;
+    private float positionMinusOffsetY;
     
     void Awake()
     {
@@ -28,6 +32,7 @@ public class FenceController : Interactable, ILoadState
     void Start()
     {
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        placementOffset = this.gameObject.GetComponent<PlacementOffset>();
         SaveState();
     }
 
@@ -162,12 +167,15 @@ public class FenceController : Interactable, ILoadState
     //update state to be saved
     public void SaveState()
     {
+        this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
+        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+
         FenceData fd = new FenceData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.transform.position.x,this.transform.position.y))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY))
         {
             //Debug.Log("Add fence");
-            objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Fence", fd);
+            objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY, "Fence", fd);
         }
     }
 

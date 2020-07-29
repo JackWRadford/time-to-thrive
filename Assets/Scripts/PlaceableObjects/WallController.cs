@@ -7,24 +7,32 @@ public class WallController : Interactable, ILoadState
 {
     private ObjectManager objectManager;
     public GameObject wall;
+    public PlacementOffset placementOffset;
 
     public int health = 1;
     public int orientation = 0;
 
+    private float positionMinusOffsetX;
+    private float positionMinusOffsetY;
+
     void Start()
     {   
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
+        placementOffset = this.gameObject.GetComponent<PlacementOffset>();
         SaveState();
     }
 
     //update state to be saved
     public void SaveState()
     {
+        this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
+        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.transform.position.x,this.transform.position.y))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY))
         {
-            objectManager.AddObject(this.transform.position.x, this.transform.position.y, "Wall", wd);
+            objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);
         }
     }
 

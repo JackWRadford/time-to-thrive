@@ -16,6 +16,7 @@ public class FenceData
 
     public FenceData(FenceController fence)
     {
+        //position including offset
         position = new float[3];
         position[0] = fence.transform.position.x;
         position[1] = fence.transform.position.y;

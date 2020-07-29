@@ -477,7 +477,7 @@ public class PlayerController : MonoBehaviour
 
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
-                //check if highlight position is free
+                //check if highlight position is free (not including placementOffset)
                 if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y))
                 {
                     if(this.heldItem.rotatable)
@@ -536,11 +536,19 @@ public class PlayerController : MonoBehaviour
                 {
                     if(this.heldItem.rotatable)
                     {
+                        //set correct highlight position
+                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                        highlight.transform.position = itemToPlacePos;
                         //set highlight sprite depending on object selected
                         highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
                     }
                     else
                     {
+                        //set correct highlight position
+                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                        highlight.transform.position = itemToPlacePos;
                         //space not free (red)
                         highlight.GetComponent<SpriteRenderer>().sprite = redHighlight; 
                     }
