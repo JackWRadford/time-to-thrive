@@ -182,6 +182,7 @@ public class TerrainGen : MonoBehaviour
             foreach (var obj in objPos.Value)
             {
                 GameObject go = Resources.Load<GameObject>("Placeable/" + obj.GetTitle());
+                Debug.Log(obj.GetTitle().ToString());
                 //spawn at position saved in data (including offset)
                 GameObject goi = Instantiate(go, new Vector3(obj.position[0], obj.position[1], 0), Quaternion.identity);
                 goi.GetComponent<ILoadState>().LoadState(obj);
@@ -640,10 +641,24 @@ public class TileData
         List<float> pos = new List<float>{x,y};
 
         //add object data and position to matrix to be saved
-        //create new list of data for specified position
+        foreach (var objPos in objectsGO.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("NOT NULL");
+                //if list of objects already exists for specified position
+                //add new data to current list
+                objectsGO[objPos].Add(data);
+                return;
+            }
+        }    
+        //no objects saved in that location
+        //Debug.Log("NULL");
+        //if no list of objects for specified position
+        //create new list of data for specified position and add new data
         List<dynamic> dataList = new List<dynamic>();
         dataList.Add(data);
-        objectsGO.Add(pos, dataList);
+        objectsGO.Add(pos, dataList); 
     }
 
     //method to remove object from chunk
@@ -664,7 +679,7 @@ public class TileData
     }
 
     //method to check if space is free in chunk
-    public bool IsSpaceFree(float x, float y)
+    public bool IsSpaceFree(float x, float y, GameObject obj)
     {
         List<float> pos = new List<float>{x,y};
         foreach (var objPos in objectsGO.Keys)
@@ -673,6 +688,13 @@ public class TileData
             {
                 //Debug.Log("space filled");
                 //there is a list of data for specified position
+                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                {
+                    //object can be stacked
+                    return true;
+                }
+
                 return false;
             }
         }

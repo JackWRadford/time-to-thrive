@@ -26,7 +26,7 @@ public class GenerateWorld : MonoBehaviour
             float x = Random.Range(-10, 11) + 0.5f;
             float y = Random.Range(-10, 11) + 0.5f;
             //float[] randPos = {x,y,0};
-            if(objectManager.IsSpaceFree(x,y))
+            if(objectManager.IsSpaceFree(x,y, tree))
             {
                 //GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
                 //objectManager.AddObject(x,y,"Tree", t);
@@ -49,7 +49,7 @@ public class GenerateWorld : MonoBehaviour
             float x = Random.Range(-10, 11) + 0.5f;
             float y = Random.Range(-10, 11) + 0.5f;
             //float[] randPos = {x,y,0};
-            if(objectManager.IsSpaceFree(x,y))
+            if(objectManager.IsSpaceFree(x,y, cow))
             {
                 //GameObject t = Instantiate(tree, new Vector3(x,y,0), Quaternion.identity);
                 //objectManager.AddObject(x,y,"Tree", t);

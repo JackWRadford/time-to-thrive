@@ -8,6 +8,8 @@ public class FenceData
     public float[] position;
 
     public string title = "Fence";
+    public bool canBeUnder = false;
+    public bool canBeOver = false;
 
     public string GetTitle()
     {

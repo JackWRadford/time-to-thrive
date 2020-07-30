@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\PlaceableObjects\ExitTent.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\FenceController.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\PlacementOffset.cs" />
+     <Compile Include="Assets\Scripts\PlaceableObjects\StackDetails.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\Tent.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\WallController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />

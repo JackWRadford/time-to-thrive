@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2128729959851628064}
   - component: {fileID: 837072215612348232}
   - component: {fileID: -1826088919853607355}
+  - component: {fileID: 3358462189542462836}
   m_Layer: 8
   m_Name: Wall_1
   m_TagString: Untagged
@@ -124,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
+  placementOffset: {fileID: 0}
   health: 1
   orientation: 1
 --- !u!114 &-1826088919853607355
@@ -140,3 +142,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 14.5
   offsetY: 0
+--- !u!114 &3358462189542462836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128729959851628065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc97565ff3403734f94f1fc71cfa04fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeOver: 1
+  canBeUnder: 1

@@ -138,7 +138,7 @@ public class ObjectManager : MonoBehaviour
     //     return true;
     // }
 
-    public bool IsSpaceFree(float x, float y)
+    public bool IsSpaceFree(float x, float y, GameObject obj)
     {
         // List<float> pos = new List<float>{x,y};
         // foreach (var objPos in objectsGO.Keys)
@@ -153,7 +153,7 @@ public class ObjectManager : MonoBehaviour
         // return true;
 
         //call relevant chunk isSpaceFree method
-        return FindChunkFromCoords(x, y).IsSpaceFree(x, y);
+        return FindChunkFromCoords(x, y).IsSpaceFree(x, y, obj);
     }
 
     // public void SpawnSavedObjects(Dictionary<List<float>, string> objects)

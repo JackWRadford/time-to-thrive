@@ -477,12 +477,21 @@ public class PlayerController : MonoBehaviour
 
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
+                if(this.heldItem.rotatable)
+                {
+                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                }
+                else
+                {
+                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                }
+
                 //check if highlight position is free (not including placementOffset)
-                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x  + 0.5f, GetPosInfrontOfPlayer().y  + 0.5f))
+                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x  + 0.5f, GetPosInfrontOfPlayer().y  + 0.5f, this.itemToPlace))
                 {
                     if(this.heldItem.rotatable)
                     {
-                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
                         this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                         highlight.transform.position = itemToPlacePos;
                         //set highlight sprite depending on object selected
@@ -490,7 +499,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
                         this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                         highlight.transform.position = itemToPlacePos;
                         //space free (green)
@@ -507,7 +516,7 @@ public class PlayerController : MonoBehaviour
 
                         if(this.heldItem.rotatable)
                         {
-                            // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            //GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
                             //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);

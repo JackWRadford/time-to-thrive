@@ -15,6 +15,10 @@ public class WallController : Interactable, ILoadState
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;
 
+    //bools for if it canBeUnder / canbeOver (stacking)
+    // public bool canBeUnder = true;
+    // public bool canBeOver = true;
+
     void Start()
     {   
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
@@ -30,7 +34,7 @@ public class WallController : Interactable, ILoadState
 
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f, this.gameObject))
         {
             objectManager.AddObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f, "Wall", wd);
         }

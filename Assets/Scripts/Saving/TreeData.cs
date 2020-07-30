@@ -10,6 +10,9 @@ public class TreeData
 
     //public int health = 10;
 
+    public bool canBeUnder = false;
+    public bool canBeOver = false;
+
     public string GetTitle()
     {
         return this.title;

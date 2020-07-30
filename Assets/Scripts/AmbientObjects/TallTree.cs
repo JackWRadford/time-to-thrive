@@ -18,6 +18,10 @@ public class TallTree : Interactable, ILoadState
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;
 
+    //bools for if it canBeUnder / canbeOver (stacking)
+    // public bool canBeUnder = false;
+    // public bool canBeOver = false;
+
     // Start is called before the first frame update
     void Start()
     {

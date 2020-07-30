@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5845099652350344404}
   - component: {fileID: 5946817566459904507}
   - component: {fileID: 6107437160224227674}
+  - component: {fileID: -8151946588523018343}
   m_Layer: 8
   m_Name: SpruceTreeR
   m_TagString: Untagged
@@ -172,3 +173,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 8
   offsetY: 6
+--- !u!114 &-8151946588523018343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111846913610611102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc97565ff3403734f94f1fc71cfa04fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeOver: 0
+  canBeUnder: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2775609143762496263}
   - component: {fileID: 2674665339512854056}
   - component: {fileID: -8141073270037312343}
+  - component: {fileID: 8114522639915704321}
   m_Layer: 8
   m_Name: SavannaTreeR
   m_TagString: Untagged
@@ -168,3 +169,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 8
   offsetY: 6
+--- !u!114 &8114522639915704321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507243399205105229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc97565ff3403734f94f1fc71cfa04fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeOver: 0
+  canBeUnder: 0

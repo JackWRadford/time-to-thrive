@@ -87,7 +87,7 @@ public class TreeGeneration : MonoBehaviour
                         //make sure new gameObject name doesn't have (clone)
                         tree.name = this.treePrefab[biome.index].name;
                         TreeData td = new TreeData(tree.GetComponent<TallTree>());
-                        if(tileData.IsSpaceFree(x + 0.5f, y + 0.5f))
+                        if(tileData.IsSpaceFree(x + 0.5f, y + 0.5f, this.treePrefab[biome.index]))
                         {
                             tileData.AddObject(x + 0.5f,y + 0.5f,"Tree",td);
                         }

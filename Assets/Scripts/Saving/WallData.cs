@@ -7,6 +7,8 @@ public class WallData
 {
     public float[] position;
     public string title = "Wall_0";
+    public bool canBeUnder = true;
+    public bool canBeOver = true;
 
     public string GetTitle()
     {
