@@ -174,16 +174,19 @@ public class TerrainGen : MonoBehaviour
     //method to spawn saved objects in chunk
     public void SpawnSavedObjects(TileData tileData)
     {
-        Dictionary<List<float>, dynamic> objects = tileData.GetObjectGOs();
+        Dictionary<List<float>, List<dynamic>> objects = tileData.GetObjectGOs();
         //Debug.Log("loaded objects: " + objects.Count.ToString());
-        foreach (var obj in objects)
+        foreach (var objPos in objects)
         {
-            GameObject go = Resources.Load<GameObject>("Placeable/" + obj.Value.GetTitle());
-            //spawn at position saved in data (including offset)
-            GameObject goi = Instantiate(go, new Vector3(obj.Value.position[0], obj.Value.position[1], 0), Quaternion.identity);
-            goi.GetComponent<ILoadState>().LoadState(obj.Value);
-            //load state from save onto instantiated gameObject
-            
+            //loop through stacked objects at a position
+            foreach (var obj in objPos.Value)
+            {
+                GameObject go = Resources.Load<GameObject>("Placeable/" + obj.GetTitle());
+                //spawn at position saved in data (including offset)
+                GameObject goi = Instantiate(go, new Vector3(obj.position[0], obj.position[1], 0), Quaternion.identity);
+                goi.GetComponent<ILoadState>().LoadState(obj);
+                //load state from save onto instantiated gameObject
+            }
             //populate list of objects for chunk
             //tileData.AddObject(obj.Key[0], obj.Key[1], obj.Value.GetTitle(), obj.Value);
         }
@@ -327,7 +330,7 @@ public class TerrainGen : MonoBehaviour
         //     }
         // }
 
-        Dictionary<List<float>, dynamic> chunkObjects = new Dictionary<List<float>, dynamic>();
+        Dictionary<List<float>, List<dynamic>> chunkObjects = new Dictionary<List<float>, List<dynamic>>();
 
         //build tileData for (chunk)
         TileData tileData = new TileData(heightMap, heatMap, moistureMap, chosenHeightTerrainTypes,
@@ -606,12 +609,12 @@ public class TileData
     public bool rendered = false;
 
     //object data in chunk
-    public Dictionary<List<float>, dynamic> objectsGO;
+    public Dictionary<List<float>, List<dynamic>> objectsGO;
 
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
     TerrainType[,] chosenHeightTerrainTypes, TerrainType[,] chosenHeatTerrainTypes, TerrainType[,] chosenMoistureTerrainTypes,
-    Biome[,] chosenBiomes, int oX, int oZ, Dictionary<List<float>, dynamic> chunkObjects)
+    Biome[,] chosenBiomes, int oX, int oZ, Dictionary<List<float>, List<dynamic>> chunkObjects)
     {
         this.heightMap = heightMap;
         this.heatMap = heatMap;
@@ -626,7 +629,7 @@ public class TileData
     }
 
     //method to get objects in chunk
-    public Dictionary<List<float>, dynamic> GetObjectGOs()
+    public Dictionary<List<float>, List<dynamic>> GetObjectGOs()
     {
         return this.objectsGO;
     }
@@ -637,7 +640,10 @@ public class TileData
         List<float> pos = new List<float>{x,y};
 
         //add object data and position to matrix to be saved
-        objectsGO.Add(pos, data);
+        //create new list of data for specified position
+        List<dynamic> dataList = new List<dynamic>();
+        dataList.Add(data);
+        objectsGO.Add(pos, dataList);
     }
 
     //method to remove object from chunk
@@ -650,6 +656,7 @@ public class TileData
             if(objPos.SequenceEqual(pos))
             {
                 //Debug.Log("remove from dictionary:" + objectsGO[objPos]);
+                //remove whole list of data for specified position
                 objectsGO.Remove(objPos);
                 return;
             }
@@ -665,10 +672,12 @@ public class TileData
             if(objPos.SequenceEqual(pos))
             {
                 //Debug.Log("space filled");
+                //there is a list of data for specified position
                 return false;
             }
         }
         //Debug.Log("space free");
+        //there is no specified list of data for specified position
         return true;
     }
 
