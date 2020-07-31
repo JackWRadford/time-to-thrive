@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
   placementOffset: {fileID: 0}
+  stackDetails: {fileID: 0}
   health: 1
   orientation: 3
 --- !u!114 &1677897172800362785
@@ -156,3 +157,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 1
   canBeUnder: 1
+  placeing: 0
+  height: 1

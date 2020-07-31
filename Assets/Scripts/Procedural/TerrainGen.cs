@@ -182,9 +182,11 @@ public class TerrainGen : MonoBehaviour
             foreach (var obj in objPos.Value)
             {
                 GameObject go = Resources.Load<GameObject>("Placeable/" + obj.GetTitle());
-                Debug.Log(obj.GetTitle().ToString());
+                //Debug.Log(obj.GetTitle().ToString());
                 //spawn at position saved in data (including offset)
-                GameObject goi = Instantiate(go, new Vector3(obj.position[0], obj.position[1], 0), Quaternion.identity);
+                go.GetComponent<StackDetails>().SetPlaceing(false);
+                GameObject goi = Instantiate(go, new Vector3(obj.position[0], obj.position[1], 0), Quaternion.identity); //as GameObject;
+                //goi.name = obj.GetTitle();
                 goi.GetComponent<ILoadState>().LoadState(obj);
                 //load state from save onto instantiated gameObject
             }
@@ -638,7 +640,7 @@ public class TileData
     //method to add object to chunk 
     public void AddObject(float x, float y, string title, dynamic data)
     {
-        List<float> pos = new List<float>{x,y};
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
 
         //add object data and position to matrix to be saved
         foreach (var objPos in objectsGO.Keys)
@@ -664,14 +666,17 @@ public class TileData
     //method to remove object from chunk
     public void RemoveObject(float x, float y)
     {
-        //Debug.Log("Remove Tree From:" + this.offsetX + ", " + this.offsetZ);
-        List<float> pos = new List<float>{x,y};
+        //Debug.Log("Remove item From:" + this.offsetX + ", " + this.offsetZ);
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
         foreach (var objPos in objectsGO.Keys)
         {
+            //Debug.Log(objPos[0].ToString() + "," + objPos[1].ToString() + ":" + pos[0].ToString() + "," + pos[1].ToString());
             if(objPos.SequenceEqual(pos))
             {
+                Debug.Log("remove");
                 //Debug.Log("remove from dictionary:" + objectsGO[objPos]);
                 //remove whole list of data for specified position
+                //Debug.Log("remove: " + objPos.ToString());
                 objectsGO.Remove(objPos);
                 return;
             }
@@ -681,7 +686,7 @@ public class TileData
     //method to check if space is free in chunk
     public bool IsSpaceFree(float x, float y, GameObject obj)
     {
-        List<float> pos = new List<float>{x,y};
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
         foreach (var objPos in objectsGO.Keys)
         {
             if(objPos.SequenceEqual(pos))
@@ -701,6 +706,29 @@ public class TileData
         //Debug.Log("space free");
         //there is no specified list of data for specified position
         return true;
+    }
+
+    //method to check if object is to be placed above another
+    public bool IsAboveAnother(float x, float y, GameObject obj)
+    {
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
+        foreach (var objPos in objectsGO.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("space filled");
+                //there is a list of data for specified position
+                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                {
+                    //object can be stacked
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        return false;
     }
 
     //method to get world coords for chunk

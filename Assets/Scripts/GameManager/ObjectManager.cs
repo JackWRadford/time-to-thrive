@@ -82,6 +82,11 @@ public class ObjectManager : MonoBehaviour
         FindChunkFromCoords(x, y).AddObject(x, y, title, data);
     }
 
+    public bool IsAboveAnother(float x, float y, GameObject obj)
+    {
+        return FindChunkFromCoords(x, y).IsAboveAnother(x, y, obj);
+    }
+
     // public void UpdateObject(float x, float y, string title, dynamic data)
     // {
     //     List<float> pos = new List<float>{x,y};

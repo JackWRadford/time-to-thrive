@@ -64,10 +64,10 @@ public class TallTree : Interactable, ILoadState
     public void UpdateState()
     {
         //find and remove data from objects list
-        objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f);
+        objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         //add updated data to objects list
         TreeData td = new TreeData(GetComponent<TallTree>());
-        objectManager.AddObject(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f,"Tree",td);
+        objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY,"Tree",td);
     }
 
     public int GetHealth()

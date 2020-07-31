@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject itemToPlace;
     private Vector3 itemToPlacePos;
+    private bool placeingAbove = false;
 
     //instance for dont destroy
     //private static PlayerController playerInstance;
@@ -477,35 +478,63 @@ public class PlayerController : MonoBehaviour
 
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
-                if(this.heldItem.rotatable)
-                {
-                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
-                }
-                else
-                {
-                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                }
+                // if(this.heldItem.rotatable)
+                // {
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                // }
+                // else
+                // {
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                // }
 
                 //check if highlight position is free (not including placementOffset)
-                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x  + 0.5f, GetPosInfrontOfPlayer().y  + 0.5f, this.itemToPlace))
+                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                 {
-                    if(this.heldItem.rotatable)
+                    //check if object is to be placed above another
+                    if(objectManager.IsAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                     {
-                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
-                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
-                        highlight.transform.position = itemToPlacePos;
-                        //set highlight sprite depending on object selected
-                        highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
+                        this.placeingAbove = true;
+                        if(this.heldItem.rotatable)
+                        {
+                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation + "_above");
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlacePos.y += this.itemToPlace.GetComponent<StackDetails>().height;
+                            highlight.transform.position = itemToPlacePos;
+                            //set highlight sprite depending on object selected
+                            highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
+                        }
+                        else
+                        {
+                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_above");
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlacePos.y += this.itemToPlace.GetComponent<StackDetails>().height;
+                            highlight.transform.position = itemToPlacePos;
+                            //space free (green)
+                            highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                        }
+                        SetHighlightColor(Color.green);
                     }
                     else
                     {
-                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                        this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
-                        highlight.transform.position = itemToPlacePos;
-                        //space free (green)
-                        highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                        this.placeingAbove = false;
+                        if(this.heldItem.rotatable)
+                        {
+                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            highlight.transform.position = itemToPlacePos;
+                            //set highlight sprite depending on object selected
+                            highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
+                        }
+                        else
+                        {
+                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            highlight.transform.position = itemToPlacePos;
+                            //space free (green)
+                            highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                        }
+                        SetHighlightColor(Color.green);
                     }
-                    SetHighlightColor(Color.green);
 
                     //place object on mouse 2
                     if(Input.GetMouseButtonDown(1))
@@ -518,16 +547,18 @@ public class PlayerController : MonoBehaviour
                         {
                             //GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
                             //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
-                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
-                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
+                            //this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlace.GetComponent<StackDetails>().SetPlaceing(true);
+                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity); //as GameObject;
                             //make sure no (clone) tag on object instatiated
                             placedItem.name = itemToPlace.name;
                         }
                         else
                         {
                             // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
-                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity);
+                            //this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlace.GetComponent<StackDetails>().SetPlaceing(true);
+                            GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity); //as GameObject;
                             //make sure no (clone) tag on object instatiated
                             placedItem.name = itemToPlace.name;
                         }

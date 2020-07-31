@@ -8,6 +8,7 @@ public class WallController : Interactable, ILoadState
     private ObjectManager objectManager;
     public GameObject wall;
     public PlacementOffset placementOffset;
+    public StackDetails stackDetails;
 
     public int health = 1;
     public int orientation = 0;
@@ -23,20 +24,30 @@ public class WallController : Interactable, ILoadState
     {   
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         placementOffset = this.gameObject.GetComponent<PlacementOffset>();
-        SaveState();
+        stackDetails = this.gameObject.GetComponent<StackDetails>();
+
+        this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
+        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+        
+        //Debug.Log(stackDetails.placeing.ToString());
+        if(stackDetails.placeing)
+        {
+            stackDetails.SetPlaceing(false);
+            SaveState();
+        }
     }
 
     //update state to be saved
     public void SaveState()
     {
-        this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
-        this.positionMinusOffsetY = this.transform.position.y- placementOffset.GetOffsetY();
+        
 
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.positionMinusOffsetX + 0.5f,this.positionMinusOffsetY + 0.5f, this.gameObject))
+        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
-            objectManager.AddObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f, "Wall", wd);
+            Debug.Log("add" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);
         }
     }
 
@@ -79,7 +90,7 @@ public class WallController : Interactable, ILoadState
             
             //remove from objectManager list
             WallData wd = new WallData(this);
-            objectManager.RemoveObject(this.positionMinusOffsetX + 0.5f, this.positionMinusOffsetY + 0.5f);
+            objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
 
             Destroy(gameObject);
 
