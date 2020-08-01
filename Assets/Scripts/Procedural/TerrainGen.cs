@@ -717,6 +717,32 @@ public class TileData
             }
         }
     }
+    //method to remove GO list and destroy ones on top
+    public void RemoveObjectGO(float x, float y)
+    {
+        //Debug.Log("Remove item From:" + this.offsetX + ", " + this.offsetZ);
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
+        foreach (var objPos in gObjects.Keys)
+        {
+            //Debug.Log(objPos[0].ToString() + "," + objPos[1].ToString() + ":" + pos[0].ToString() + "," + pos[1].ToString());
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("remove");
+                //Debug.Log("remove from dictionary:" + objectsGO[objPos]);
+                //remove whole list of data for specified position
+                //Debug.Log("remove: " + objPos.ToString());
+
+                for (int i = gObjects[objPos].Count - 1; i > 0; i--)
+                {
+                    Debug.Log("remove");
+                    gObjects[objPos][i].GetComponent<StackDetails>().DestroyGO();
+                }
+
+                gObjects.Remove(objPos);
+                return;
+            }
+        }
+    }
 
     //method to check if space is free in chunk
     public bool IsSpaceFree(float x, float y, GameObject obj)

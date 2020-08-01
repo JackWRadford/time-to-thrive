@@ -107,6 +107,7 @@ public class WallController : Interactable, ILoadState
             //remove from objectManager list
             WallData wd = new WallData(this);
             objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
 
             Destroy(gameObject);
 

@@ -133,6 +133,12 @@ public class ObjectManager : MonoBehaviour
         FindChunkFromCoords(x, y).RemoveObject(x, y);
     }
 
+    public void RemoveObjectGO(float x, float y)
+    {
+        //call relevant chunk removeObject method
+        FindChunkFromCoords(x, y).RemoveObjectGO(x, y);
+    }
+
     // public bool IsSpaceFree(float x, float y)
     // {
     //     List<float> pos = new List<float>{x,y};

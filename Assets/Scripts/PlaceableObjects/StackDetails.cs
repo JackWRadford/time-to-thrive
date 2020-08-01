@@ -17,4 +17,9 @@ public class StackDetails : MonoBehaviour
     {
         this.placeing = tof;
     }
+
+    public void DestroyGO()
+    {
+        Destroy(this.gameObject);
+    }
 }
