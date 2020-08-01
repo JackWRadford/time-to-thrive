@@ -46,8 +46,15 @@ public class FenceController : Interactable, ILoadState
         //Debug.Log(stackDetails.placeing.ToString());
         if(stackDetails.placeing)
         {
+            //save to data and go list when placeing
             stackDetails.SetPlaceing(false);
             SaveState();
+            SaveGO();
+        }
+        else
+        {
+            //same to go array when loading from data (already have data from save)
+            SaveGO();
         }
     }
 
@@ -194,6 +201,17 @@ public class FenceController : Interactable, ILoadState
         }
     }
 
+    //save GO to list (data already saved and loaded)
+    public void SaveGO()
+    {
+        //check object not already in that position (double save in same position)
+        if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        {
+            Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Fence", this.gameObject);
+        }
+    }
+
     //set state from saved state
     public void LoadState(dynamic data)
     {
@@ -236,6 +254,7 @@ public class FenceController : Interactable, ILoadState
             FenceData fd = new FenceData(this);
             //Debug.Log("Remove fence");
             objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
             //treeController.RemoveTree(td.position);
             //remove any connections
             checkConnectionsRemove();

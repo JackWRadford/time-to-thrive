@@ -576,7 +576,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("space not free");
+                    //Debug.Log("space not free");
                     if(this.heldItem.rotatable)
                     {
                         //set correct highlight position

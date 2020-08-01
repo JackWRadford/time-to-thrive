@@ -129,6 +129,7 @@ public class TallTree : Interactable, ILoadState
         TreeData td = new TreeData(this);
         //Debug.Log("Remove tree");
         objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
+        objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);
         return;

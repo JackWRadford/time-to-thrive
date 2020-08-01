@@ -90,6 +90,7 @@ public class TreeGeneration : MonoBehaviour
                         if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
                         {
                             tileData.AddObjectData(x, y,"Tree",td);
+                            tileData.AddObjectGO(x, y, "tree", tree);
                         }
                     }
 

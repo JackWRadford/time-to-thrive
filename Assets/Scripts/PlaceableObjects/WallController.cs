@@ -56,7 +56,7 @@ public class WallController : Interactable, ILoadState
         }
     }
 
-    //sabe GO to list (data already saved and loaded)
+    //save GO to list (data already saved and loaded)
     public void SaveGO()
     {
         //check object not already in that position (double save in same position)
