@@ -4407,9 +4407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b0d2a960a844d918d3804a7bdad22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager: {fileID: 0}
-  tree: {fileID: 2455665606651421210, guid: 83af72a05c6010d438e2d33378bb7cba, type: 3}
-  cow: {fileID: 0}
 --- !u!114 &546173340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9180,9 +9177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b0d2a960a844d918d3804a7bdad22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager: {fileID: 0}
-  tree: {fileID: 2455665606651421210, guid: 83af72a05c6010d438e2d33378bb7cba, type: 3}
-  cow: {fileID: 9171338151524664240, guid: 7a9ff9fac92a4eb4aac0c9f07bb98710, type: 3}
 --- !u!114 &1461756158
 MonoBehaviour:
   m_ObjectHideFlags: 0

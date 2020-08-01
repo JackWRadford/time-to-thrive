@@ -67,7 +67,7 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    public void AddObject(float x, float y, string title, dynamic data)
+    public void AddObjectData(float x, float y, string title, dynamic data)
     {
         //List<float> pos = new List<float>{x,y};
 
@@ -79,7 +79,12 @@ public class ObjectManager : MonoBehaviour
         //objectsString.Add(pos, title);
 
         //call relevant chunk addObject method
-        FindChunkFromCoords(x, y).AddObject(x, y, title, data);
+        FindChunkFromCoords(x, y).AddObjectData(x, y, title, data);
+    }
+
+    public void AddObjectGO(float x, float y, string title, GameObject go)
+    {
+        FindChunkFromCoords(x, y).AddObjectGO(x, y, title, go);
     }
 
     public bool IsAboveAnother(float x, float y, GameObject obj)
@@ -159,6 +164,11 @@ public class ObjectManager : MonoBehaviour
 
         //call relevant chunk isSpaceFree method
         return FindChunkFromCoords(x, y).IsSpaceFree(x, y, obj);
+    }
+
+    public bool IsGOSpaceFree(float x, float y, GameObject obj)
+    {
+        return FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj);
     }
 
     // public void SpawnSavedObjects(Dictionary<List<float>, string> objects)

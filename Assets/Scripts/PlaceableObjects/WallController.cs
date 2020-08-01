@@ -32,22 +32,38 @@ public class WallController : Interactable, ILoadState
         //Debug.Log(stackDetails.placeing.ToString());
         if(stackDetails.placeing)
         {
+            //save to data and go list when placeing
             stackDetails.SetPlaceing(false);
             SaveState();
+            SaveGO();
+        }
+        else
+        {
+            //same to go array when loading from data (already have data from save)
+            SaveGO();
         }
     }
 
     //update state to be saved
     public void SaveState()
     {
-        
-
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
         if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
-            Debug.Log("add" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
-            objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);
+            Debug.Log("add DATA" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            objectManager.AddObjectData(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);
+        }
+    }
+
+    //sabe GO to list (data already saved and loaded)
+    public void SaveGO()
+    {
+        //check object not already in that position (double save in same position)
+        if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        {
+            Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", this.gameObject);
         }
     }
 

@@ -190,7 +190,7 @@ public class FenceController : Interactable, ILoadState
         {
             //Debug.Log("Add fence");
             Debug.Log("add" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
-            objectManager.AddObject(this.positionMinusOffsetX,this.positionMinusOffsetY, "Fence", fd);
+            objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "Fence", fd);
         }
     }
 

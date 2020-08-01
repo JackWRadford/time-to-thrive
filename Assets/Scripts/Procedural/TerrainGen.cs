@@ -190,7 +190,7 @@ public class TerrainGen : MonoBehaviour
                 goi.GetComponent<ILoadState>().LoadState(obj);
                 //load state from save onto instantiated gameObject
             }
-            //populate list of objects for chunk
+            //populate list of objects for chunk (GameObjects)
             //tileData.AddObject(obj.Key[0], obj.Key[1], obj.Value.GetTitle(), obj.Value);
         }
     }
@@ -613,6 +613,10 @@ public class TileData
 
     //object data in chunk
     public Dictionary<List<float>, List<dynamic>> objectsGO;
+    
+    //gameObjects in chunk
+    [System.NonSerialized]
+    public Dictionary<List<float>, List<GameObject>> gObjects = new Dictionary<List<float>, List<GameObject>>();
 
 
     public TileData(float[,] heightMap, float[,] heatMap, float[,] moistureMap,
@@ -638,7 +642,7 @@ public class TileData
     }
 
     //method to add object to chunk 
-    public void AddObject(float x, float y, string title, dynamic data)
+    public void AddObjectData(float x, float y, string title, dynamic data)
     {
         List<float> pos = new List<float>{x+0.5f,y+0.5f};
 
@@ -651,6 +655,7 @@ public class TileData
                 //if list of objects already exists for specified position
                 //add new data to current list
                 objectsGO[objPos].Add(data);
+                //gObjects[objPos].Add(go);
                 return;
             }
         }    
@@ -660,7 +665,37 @@ public class TileData
         //create new list of data for specified position and add new data
         List<dynamic> dataList = new List<dynamic>();
         dataList.Add(data);
-        objectsGO.Add(pos, dataList); 
+        objectsGO.Add(pos, dataList);
+
+        // List<GameObject> goList = new List<GameObject>();
+        // goList.Add(go);
+        // gObjects.Add(pos, goList);
+    }
+
+    //method to add object to chunk (just add GameObject not data)
+    public void AddObjectGO(float x, float y, string title, GameObject go)
+    {
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
+
+        //add object data and position to matrix to be saved
+        foreach (var objPos in gObjects.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("NOT NULL");
+                //if list of objects already exists for specified position
+                //add new data to current list
+                gObjects[objPos].Add(go);
+                return;
+            }
+        }    
+        //no objects saved in that location
+        //Debug.Log("NULL");
+        //if no list of objects for specified position
+        //create new list of data for specified position and add new data
+        List<GameObject> goList = new List<GameObject>();
+        goList.Add(go);
+        gObjects.Add(pos, goList);
     }
 
     //method to remove object from chunk
@@ -673,7 +708,7 @@ public class TileData
             //Debug.Log(objPos[0].ToString() + "," + objPos[1].ToString() + ":" + pos[0].ToString() + "," + pos[1].ToString());
             if(objPos.SequenceEqual(pos))
             {
-                Debug.Log("remove");
+                //Debug.Log("remove");
                 //Debug.Log("remove from dictionary:" + objectsGO[objPos]);
                 //remove whole list of data for specified position
                 //Debug.Log("remove: " + objPos.ToString());
@@ -694,7 +729,34 @@ public class TileData
                 //Debug.Log("space filled");
                 //there is a list of data for specified position
                 //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
                 if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                {
+                    //object can be stacked
+                    return true;
+                }
+
+                return false;
+            }
+        }
+        //Debug.Log("space free");
+        //there is no specified list of data for specified position
+        return true;
+    }
+
+    //method to check if space is free in chunk (GameObject list)
+    public bool IsGOSpaceFree(float x, float y, GameObject obj)
+    {
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
+        foreach (var objPos in gObjects.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("space filled");
+                //there is a list of data for specified position
+                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
+                if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                 {
                     //object can be stacked
                     return true;

@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject itemToPlace;
     private Vector3 itemToPlacePos;
-    private bool placeingAbove = false;
+    //private bool placeingAbove = false;
 
     //instance for dont destroy
     //private static PlayerController playerInstance;
@@ -493,7 +493,7 @@ public class PlayerController : MonoBehaviour
                     //check if object is to be placed above another
                     if(objectManager.IsAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                     {
-                        this.placeingAbove = true;
+                        //this.placeingAbove = true;
                         if(this.heldItem.rotatable)
                         {
                             this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation + "_above");
@@ -516,7 +516,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        this.placeingAbove = false;
+                        //this.placeingAbove = false;
                         if(this.heldItem.rotatable)
                         {
                             this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
@@ -547,7 +547,7 @@ public class PlayerController : MonoBehaviour
                         {
                             //GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
                             //Vector3 placementOffset = new Vector3(itemToPlace.GetComponent<PlacementOffset>().offsetX, itemToPlace.GetComponent<PlacementOffset>().offsetX, 0);
-                            //this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             this.itemToPlace.GetComponent<StackDetails>().SetPlaceing(true);
                             GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity); //as GameObject;
                             //make sure no (clone) tag on object instatiated
@@ -556,7 +556,7 @@ public class PlayerController : MonoBehaviour
                         else
                         {
                             // GameObject itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                            //this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             this.itemToPlace.GetComponent<StackDetails>().SetPlaceing(true);
                             GameObject placedItem = Instantiate(this.itemToPlace, itemToPlacePos, Quaternion.identity); //as GameObject;
                             //make sure no (clone) tag on object instatiated
@@ -576,6 +576,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("space not free");
                     if(this.heldItem.rotatable)
                     {
                         //set correct highlight position
