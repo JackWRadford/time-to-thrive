@@ -511,6 +511,7 @@ public class PlayerController : MonoBehaviour
                             highlight.transform.position = itemToPlacePos;
                             //space free (green)
                             highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                            //highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[0];
                         }
                         SetHighlightColor(Color.green);
                     }
@@ -618,7 +619,7 @@ public class PlayerController : MonoBehaviour
     {
         Color tmp = highlight.GetComponent<SpriteRenderer>().color;
         tmp = color;
-        tmp.a = 0.3f;
+        tmp.a = 0.5f;
         highlight.GetComponent<SpriteRenderer>().color = tmp;
     }
 
