@@ -13,6 +13,8 @@ public class StackDetails : MonoBehaviour
     //height in world coordinates
     public float height = 0;
 
+    public bool isWall = false;
+
     public void SetPlaceing(bool tof)
     {
         this.placeing = tof;

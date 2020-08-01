@@ -159,3 +159,4 @@ MonoBehaviour:
   canBeUnder: 1
   placeing: 0
   height: 1
+  isWall: 1

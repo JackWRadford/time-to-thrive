@@ -758,6 +758,12 @@ public class TileData
                 //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
                 if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                 {
+                    //object is a wall make sure not over max height of 2
+                    if((obj.GetComponent<StackDetails>().isWall)&&(objectsGO[objPos].Count >= 2))
+                    {
+                        return false;
+                    }
+
                     //object can be stacked
                     return true;
                 }
@@ -784,6 +790,11 @@ public class TileData
                 //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
                 if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                 {
+                    if((obj.GetComponent<StackDetails>().isWall)&&(gObjects[objPos].Count >= 2))
+                    {
+                        return false;
+                    }
+
                     //object can be stacked
                     return true;
                 }
