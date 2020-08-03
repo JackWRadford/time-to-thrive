@@ -797,7 +797,8 @@ public class TileData
                         //check if object to be placed is a wall
                         if(obj.GetComponent<StackDetails>().isWall)
                         {
-                            if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                            // REMOVE???
+                            if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))// REMOVE???
                             {
                                 //check either no walls or wall that is same orientation as one being placed
                                 // if(gObjects[objPos].Count > 2)
@@ -883,7 +884,7 @@ public class TileData
                 //Debug.Log("space filled");
                 //there is a list of data for specified position
                 //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver)) // REMOVE???
                 {
                     //object can be stacked
                     return true;
@@ -906,17 +907,33 @@ public class TileData
                 //Debug.Log("space filled");
                 //there is a list of data for specified position
                 //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                // if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                // {
+                //     //check if there is a foundation and no other walls (of the same orientation)
+                //     if((!gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count != 1))
+                //     {
+                //         return true;
+                //     }
+                //     else if((gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count > 1))
+                //     {
+                //         return true;
+                //     }
+                // }
+
+                //check that item to be placed can be on top
+                if(obj.GetComponent<StackDetails>().canBeOver)
                 {
-                    //check if there is a foundation and no other walls (of the same orientation)
-                    if((!gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count != 1))
+                   foreach (var placedObj in gObjects[objPos])
                     {
-                        return true;
-                    }
-                    else if((gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count > 1))
-                    {
-                        return true;
-                    }
+                        if(placedObj.GetComponent<StackDetails>().isWall)
+                        {
+                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                            {
+                                //found wall of same orientation being placed (place above)
+                                return true;
+                            }
+                        }
+                    } 
                 }
 
                 return false;
