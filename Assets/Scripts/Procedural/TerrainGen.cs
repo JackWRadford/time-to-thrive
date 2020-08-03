@@ -799,14 +799,27 @@ public class TileData
                         {
                             if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                             {
-                                if((gObjects[objPos].Count >= 2))
+                                //check either no walls or wall that is same orientation as one being placed
+                                if(gObjects[objPos].Count > 2)
                                 {
                                     return false;
                                 }
+                                if(gObjects[objPos].Count == 1)
+                                {
+                                    //just foundation
+                                    return true;
+                                }
+                                else if(gObjects[objPos][1].GetComponent<StackDetails>().isWall)
+                                {
+                                    //check wall is of same orientation
+                                    if(gObjects[objPos][1].GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                                    {
+                                        return true;
+                                    }
+                                }
                                 else
                                 {
-                                    //wall can be stacked
-                                    return true;
+                                    return false;
                                 }
                             }
                         }
