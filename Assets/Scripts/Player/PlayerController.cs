@@ -488,7 +488,7 @@ public class PlayerController : MonoBehaviour
                 // }
 
                 //check if highlight position is free (not including placementOffset)
-                if(objectManager.IsSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
+                if(objectManager.IsGOSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                 {
                     //check if object is to be placed above another
                     if(objectManager.IsAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))

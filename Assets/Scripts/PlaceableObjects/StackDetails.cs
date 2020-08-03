@@ -13,7 +13,10 @@ public class StackDetails : MonoBehaviour
     //height in world coordinates
     public float height = 0;
 
+    public bool isExternalConstruction = false;
     public bool isWall = false;
+    public bool isFoundation = false;
+    public bool isRoof = false;
 
     public void SetPlaceing(bool tof)
     {

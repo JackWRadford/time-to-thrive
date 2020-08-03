@@ -101,7 +101,7 @@ MonoBehaviour:
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
   health: 1
-  orientation: 0
+  orientation: 1
 --- !u!114 &3370850396949335716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,4 +132,7 @@ MonoBehaviour:
   canBeUnder: 1
   placeing: 1
   height: 1
+  isExternalConstruction: 1
   isWall: 1
+  isFoundation: 0
+  isRoof: 0

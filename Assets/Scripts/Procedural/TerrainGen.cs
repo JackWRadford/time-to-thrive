@@ -752,10 +752,14 @@ public class TileData
         {
             if(objPos.SequenceEqual(pos))
             {
-                //Debug.Log("space filled");
-                //there is a list of data for specified position
+                // //if heldItem is external construction check for foundation (if no foundation return false)
+                // if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
+                // {
+                //     //check for foundation
+                    
+                // }
+
                 //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
                 if((objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                 {
                     //object is a wall make sure not over max height of 2
@@ -784,25 +788,59 @@ public class TileData
         {
             if(objPos.SequenceEqual(pos))
             {
-                //Debug.Log("space filled");
-                //there is a list of data for specified position
-                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                //Debug.Log(objectsGO[objPos][objectsGO[objPos].Count-1].canBeUnder);
-                if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                //if heldItem is external construction check for foundation (if no foundation return false)
+                if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
                 {
-                    if((obj.GetComponent<StackDetails>().isWall)&&(gObjects[objPos].Count >= 2))
+                    //check for foundation in first position in list for specified position
+                    if(gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)
+                    {
+                        //check if object to be placed is a wall
+                        if(obj.GetComponent<StackDetails>().isWall)
+                        {
+                            if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                            {
+                                if((gObjects[objPos].Count >= 2))
+                                {
+                                    return false;
+                                }
+                                else
+                                {
+                                    //wall can be stacked
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    else
                     {
                         return false;
                     }
-
-                    //object can be stacked
-                    return true;
+                }
+                else
+                {
+                    return false;
                 }
 
+                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                // if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                // {
+                //     if((obj.GetComponent<StackDetails>().isWall)&&(gObjects[objPos].Count >= 2))
+                //     {
+                //         return false;
+                //     }
+                //     //object can be stacked
+                //     return true;
+                // }
+                //return false;
+            }
+        }
+        if(obj != null)
+        {
+            if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
+            {
                 return false;
             }
         }
-        //Debug.Log("space free");
         //there is no specified list of data for specified position
         return true;
     }

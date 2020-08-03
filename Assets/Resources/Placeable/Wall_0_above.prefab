@@ -132,4 +132,7 @@ MonoBehaviour:
   canBeUnder: 1
   placeing: 1
   height: 1
+  isExternalConstruction: 1
   isWall: 1
+  isFoundation: 0
+  isRoof: 0

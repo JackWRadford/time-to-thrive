@@ -108,6 +108,14 @@ public class ItemDatabase : MonoBehaviour
                 
             },
             1,64,-1, true, false, false),
+            //Foundation
+            new GameItem(8, "Foundation", "Building",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+                
+            },
+            1,64,-1, true, false, false),
         };
     }
 }
