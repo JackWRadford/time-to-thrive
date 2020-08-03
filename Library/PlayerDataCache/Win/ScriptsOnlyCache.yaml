@@ -3,7 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Bag
     - CanvasScript
-    - Cow
     - CraftingBar
     - EventSystem
     - ExitTent
@@ -29,6 +28,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - PlayerHTH
     - RiverGeneration
+    - StackDetails
     - TallTree
     - Tayx.Graphy.Advanced.G_AdvancedData
     - Tayx.Graphy.Audio.G_AudioGraph
@@ -254,8 +254,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13486}
     - Class: 114
-      Script: {instanceID: 13490}
-    - Class: 114
       Script: {instanceID: 13498}
     - Class: 114
       Script: {instanceID: 13556}
@@ -310,17 +308,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15298}
     - Class: 114
-      Script: {instanceID: 15324}
+      Script: {instanceID: 15304}
     - Class: 114
-      Script: {instanceID: 15358}
+      Script: {instanceID: 15326}
     - Class: 114
-      Script: {instanceID: 15366}
+      Script: {instanceID: 15360}
     - Class: 114
-      Script: {instanceID: 15384}
+      Script: {instanceID: 15368}
     - Class: 114
-      Script: {instanceID: 15436}
+      Script: {instanceID: 15386}
     - Class: 114
-      Script: {instanceID: 15450}
+      Script: {instanceID: 15438}
+    - Class: 114
+      Script: {instanceID: 15452}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -487,11 +487,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15298}
     - Class: 114
-      Script: {instanceID: 15326}
+      Script: {instanceID: 15304}
     - Class: 114
-      Script: {instanceID: 15454}
+      Script: {instanceID: 15328}
     - Class: 114
-      Script: {instanceID: 15460}
+      Script: {instanceID: 15456}
+    - Class: 114
+      Script: {instanceID: 15462}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1030,7 +1032,7 @@ ScriptsOnlyBuild:
     className: Tooltip
   - hash:
       serializedVersion: 2
-      Hash: b14283af9eb5f6ef0bbadc25810c80d1
+      Hash: e0d2136f3914cbf568feab64f8b701a6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WallController
@@ -1156,7 +1158,7 @@ ScriptsOnlyBuild:
     className: InventoryUI
   - hash:
       serializedVersion: 2
-      Hash: 1e17a3e8b269e963e329794d4b863314
+      Hash: 3442ba80fcf4c8c51d3d1d571acd41d0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FenceController
@@ -1294,12 +1296,6 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: be8046dda6bc6742757db2e2b3051904
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Cow
-  - hash:
-      serializedVersion: 2
       Hash: 8e3f7ac93323f15a1ba8c05805b395b8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1384,7 +1380,7 @@ ScriptsOnlyBuild:
     className: CinemachineImpulseListener
   - hash:
       serializedVersion: 2
-      Hash: 1621a616b45c2a0d0f4c8ee3dced25f6
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GenerateWorld
@@ -1898,6 +1894,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: a5e6d2151f5d83cc3d0fc3c2b73a827a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StackDetails
   - hash:
       serializedVersion: 2
       Hash: b5c3dbcb94925c8b595ad16a62b44788

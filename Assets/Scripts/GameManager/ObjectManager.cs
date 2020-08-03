@@ -56,6 +56,8 @@ public class ObjectManager : MonoBehaviour
     public TileData FindChunkFromCoords(float x, float y)
     {
         TileData tileData = null;
+        x += 0.5f;
+        y += 0.5f;
         //get chunk that coordinates are in
         int offsetX = terrainGen.GetChunkCoordsFromWorld(x, y)[0];
         int offsetY = terrainGen.GetChunkCoordsFromWorld(x, y)[1];

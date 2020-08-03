@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //[System.Serializable]
-// public class Cow : Interactable, ILoadState
-// {
+public class Cow : Interactable//, //ILoadState
+{
 
     // Animator animator;
     // public ObjectManager objectManager;
@@ -161,4 +161,4 @@ using UnityEngine;
     //     GameEvents.PreSaveInitiated -= Save;
     //     //GameEvents.LoadInitiated -= Load;
     // }
-//}
+}
