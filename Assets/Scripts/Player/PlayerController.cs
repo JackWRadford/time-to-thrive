@@ -478,14 +478,14 @@ public class PlayerController : MonoBehaviour
 
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
-                // if(this.heldItem.rotatable)
-                // {
-                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
-                // }
-                // else
-                // {
-                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                // }
+                if(this.heldItem.rotatable)
+                {
+                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                }
+                else
+                {
+                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                }
 
                 //check if highlight position is free (not including placementOffset)
                 if(objectManager.IsGOSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
