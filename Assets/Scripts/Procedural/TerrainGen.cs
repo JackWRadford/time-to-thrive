@@ -800,22 +800,36 @@ public class TileData
                             if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
                             {
                                 //check either no walls or wall that is same orientation as one being placed
-                                if(gObjects[objPos].Count > 2)
-                                {
-                                    return false;
-                                }
+                                // if(gObjects[objPos].Count > 2)
+                                // {
+                                //     return false;
+                                // }
                                 if(gObjects[objPos].Count == 1)
                                 {
                                     //just foundation
                                     return true;
                                 }
+                                //if there is a wall (on foundation)
                                 else if(gObjects[objPos][1].GetComponent<StackDetails>().isWall)
                                 {
-                                    //check wall is of same orientation
-                                    if(gObjects[objPos][1].GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                                    //check not more than two of the oreientation being placed
+                                    int c = 0;
+                                    foreach (var placedObj in gObjects[objPos])
                                     {
-                                        return true;
+                                        if(placedObj.GetComponent<StackDetails>().isWall)
+                                        {
+                                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                                            {
+                                                //found wall of same orientation being placed (increment)
+                                                c++;
+                                            }
+                                        }
+                                        if(c >=2)
+                                        {
+                                            return false;
+                                        }
                                     }
+                                    return true;
                                 }
                                 else
                                 {
