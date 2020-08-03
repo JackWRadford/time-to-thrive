@@ -732,7 +732,7 @@ public class TileData
                 //remove whole list of data for specified position
                 //Debug.Log("remove: " + objPos.ToString());
 
-                for (int i = gObjects[objPos].Count - 1; i > 0; i--)
+                for (int i = gObjects[objPos].Count - 1; i >= 0; i--)
                 {
                     Debug.Log("remove");
                     gObjects[objPos][i].GetComponent<StackDetails>().DestroyGO();
@@ -873,6 +873,36 @@ public class TileData
                 {
                     //object can be stacked
                     return true;
+                }
+
+                return false;
+            }
+        }
+        return false;
+    }
+
+    //method to check if object is to be placed above another (GOs)
+    public bool IsGOAboveAnother(float x, float y, GameObject obj)
+    {
+        List<float> pos = new List<float>{x+0.5f,y+0.5f};
+        foreach (var objPos in gObjects.Keys)
+        {
+            if(objPos.SequenceEqual(pos))
+            {
+                //Debug.Log("space filled");
+                //there is a list of data for specified position
+                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
+                if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
+                {
+                    //check if there is a foundation and no other walls (of the same orientation)
+                    if((!gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count != 1))
+                    {
+                        return true;
+                    }
+                    else if((gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count > 1))
+                    {
+                        return true;
+                    }
                 }
 
                 return false;

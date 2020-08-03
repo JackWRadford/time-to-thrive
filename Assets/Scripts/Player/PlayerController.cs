@@ -490,9 +490,10 @@ public class PlayerController : MonoBehaviour
                 //check if highlight position is free (not including placementOffset)
                 if(objectManager.IsGOSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                 {
-                    //check if object is to be placed above another
-                    if(objectManager.IsAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
+                    //check if object is to be placed above another (excluding foundations)
+                    if(objectManager.IsGOAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
                     {
+                        Debug.Log("above");
                         //this.placeingAbove = true;
                         if(this.heldItem.rotatable)
                         {

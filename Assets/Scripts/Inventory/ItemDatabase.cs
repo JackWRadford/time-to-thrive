@@ -101,7 +101,7 @@ public class ItemDatabase : MonoBehaviour
             },
             1,64,-1, true, false, true),
             //Roof
-            new GameItem(8, "Roof", "Building",
+            new GameItem(9, "Roof", "Building",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{
@@ -109,7 +109,7 @@ public class ItemDatabase : MonoBehaviour
             },
             1,64,-1, true, false, false),
             //Foundation
-            new GameItem(8, "Foundation", "Building",
+            new GameItem(10, "Foundation", "Building",
             new Dictionary<string, int>{
             },
             new Dictionary<string, int>{

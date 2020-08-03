@@ -49,7 +49,7 @@ public class WallController : Interactable, ILoadState
     {
         WallData wd = new WallData(this);
         //check object not already in that position (double save in same position)
-        if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
             Debug.Log("add DATA" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
             objectManager.AddObjectData(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", wd);

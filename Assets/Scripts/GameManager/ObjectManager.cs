@@ -94,6 +94,11 @@ public class ObjectManager : MonoBehaviour
         return FindChunkFromCoords(x, y).IsAboveAnother(x, y, obj);
     }
 
+    public bool IsGOAboveAnother(float x, float y, GameObject obj)
+    {
+        return FindChunkFromCoords(x, y).IsGOAboveAnother(x, y, obj);
+    }
+
     // public void UpdateObject(float x, float y, string title, dynamic data)
     // {
     //     List<float> pos = new List<float>{x,y};
