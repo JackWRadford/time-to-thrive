@@ -839,6 +839,61 @@ public class TileData
                                     return true;
                                 }
                             }
+
+                            //check if there is a roof in an adjacent position (NESW)
+                            List<float> offsetN = new List<float>{objPos[0]+0,objPos[1]+1};
+                            List<float> offsetE = new List<float>{objPos[0]+1,objPos[1]+0};
+                            List<float> offsetS = new List<float>{objPos[0]+0,objPos[1]-1};
+                            List<float> offsetW = new List<float>{objPos[0]-1,objPos[1]+0};
+
+                            //do sequence matching for each (if exists check for adjacent roof)
+                            foreach (var adjObjPos in gObjects.Keys)
+                            {
+                                Debug.Log(adjObjPos[0].ToString() + "," + adjObjPos[1].ToString());
+                                if((adjObjPos.SequenceEqual(offsetN))||(adjObjPos.SequenceEqual(offsetE))||(adjObjPos.SequenceEqual(offsetS))
+                                ||(adjObjPos.SequenceEqual(offsetW)))
+                                {
+                                    Debug.Log("Found adjacent GOs data");
+                                    //found adjacent list of GOs, check for roof
+                                    foreach (var adjacentObj in gObjects[adjObjPos])
+                                    {
+                                        if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                                        {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // foreach (var adjacentObj in gObjects[offsetN])
+                            // {
+                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                            //     {
+                            //         return true;
+                            //     }
+                            // }
+                            // foreach (var adjacentObj in gObjects[offsetE])
+                            // {
+                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                            //     {
+                            //         return true;
+                            //     }
+                            // }
+                            // foreach (var adjacentObj in gObjects[offsetS])
+                            // {
+                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                            //     {
+                            //         return true;
+                            //     }
+                            // }
+                            // foreach (var adjacentObj in gObjects[offsetW])
+                            // {
+                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                            //     {
+                            //         return true;
+                            //     }
+                            // }
+
                             return false;
                         }
 
@@ -968,6 +1023,12 @@ public class TileData
                 //         return true;
                 //     }
                 // }
+
+                //if roof being placed it will always be above
+                if(obj.GetComponent<StackDetails>().isRoof)
+                {
+                    return true;
+                }
 
                 //check that item to be placed can be on top
                 if(obj.GetComponent<StackDetails>().canBeOver)
