@@ -794,6 +794,55 @@ public class TileData
                     //check for foundation in first position in list for specified position
                     if(gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)
                     {
+                        //check if object to be placed is a roof
+                        if(obj.GetComponent<StackDetails>().isRoof)
+                        {
+                            //check there is not already a roof
+                            foreach (var placedObj in gObjects[objPos])
+                            {
+                                if(placedObj.GetComponent<StackDetails>().isRoof)
+                                {
+                                    return false;
+                                }
+                            }
+
+                            //check there are two walls in the same orientation (below)
+                            int r0c = 0;
+                            int r1c = 0;
+                            int r2c = 0;
+                            int r3c = 0;
+                            foreach (var placedObj in gObjects[objPos])
+                            {
+                                if(placedObj.GetComponent<StackDetails>().isWall)
+                                {
+                                    //save number of walls for each orientation and check for 2 of any orientation
+                                    switch(placedObj.GetComponent<WallController>().orientation)
+                                    {
+                                        case 0:
+                                            r0c++;
+                                            break;
+                                        case 1:
+                                            r1c++;
+                                            break;
+                                        case 2:
+                                            r2c++;
+                                            break;
+                                        case 3:
+                                            r3c++;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                if((r0c >=2)||(r1c >=2)||(r2c >=2)||(r3c >=2))
+                                {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        }
+
+
                         //check if object to be placed is a wall
                         if(obj.GetComponent<StackDetails>().isWall)
                         {

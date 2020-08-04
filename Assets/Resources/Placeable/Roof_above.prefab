@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9049922793683548853}
   - component: {fileID: 2390787524368378394}
   m_Layer: 8
-  m_Name: Roof_0_above
+  m_Name: Roof_above
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetX: 8
-  offsetY: 11
+  offsetY: -3
 --- !u!114 &2390787524368378394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeOver: 1
-  canBeUnder: 1
-  placeing: 1
+  canBeUnder: 0
+  placeing: 0
   height: 1
+  isExternalConstruction: 1
   isWall: 0
+  isFoundation: 0
+  isRoof: 1

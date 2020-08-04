@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Bag
     - CanvasScript
+    - Cow
     - CraftingBar
     - EventSystem
     - ExitTent
@@ -1296,6 +1297,12 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Cow
+  - hash:
+      serializedVersion: 2
       Hash: 8e3f7ac93323f15a1ba8c05805b395b8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1896,7 +1903,7 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: a5e6d2151f5d83cc3d0fc3c2b73a827a
+      Hash: b5ec144a89058efe3e8d852c2d5b5926
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StackDetails
