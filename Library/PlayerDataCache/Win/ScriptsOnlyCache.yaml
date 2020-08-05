@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - CanvasScript
     - Cow
     - CraftingBar
+    - DoorController
     - EventSystem
     - ExitTent
     - FenceController
@@ -495,6 +496,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15456}
     - Class: 114
       Script: {instanceID: 15462}
+    - Class: 114
+      Script: {instanceID: 70534}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1903,7 +1906,7 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: b5ec144a89058efe3e8d852c2d5b5926
+      Hash: 147427efb48be1303a79207e65f75b3a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StackDetails
@@ -2015,6 +2018,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DoorController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NDInteractable
   platform: 5
   scenePathNames:
   - Assets/Scenes/Menu.unity

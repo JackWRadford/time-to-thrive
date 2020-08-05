@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00021386147, y: 0.09306383}
+  m_Offset: {x: 0, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95894814, y: 0.15696478}
+  m_Size: {x: 1, y: 0.18}
   m_EdgeRadius: 0
 --- !u!114 &3703057856722838088
 MonoBehaviour:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 1
-  placeing: 0
+  placeing: 1
   height: 1
   isExternalConstruction: 1
   isWall: 0
@@ -177,3 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f7f1eb6e6f2f34daa6a944d5baf60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: 2
+  alternativeDoor: {fileID: 1970504920220010312, guid: ad18465c58032944b893480615a91cf6,
+    type: 3}
+  offsetOne: {x: 0, y: 0.1}
+  sizeOne: {x: 1, y: 0.18}
+  offsetTwo: {x: 0, y: 0.5}
+  sizeTwo: {x: 0.17, y: 1}
