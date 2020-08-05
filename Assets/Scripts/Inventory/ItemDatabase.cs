@@ -116,6 +116,14 @@ public class ItemDatabase : MonoBehaviour
                 
             },
             1,64,-1, true, false, false),
+            //Door
+            new GameItem(11, "Door", "Building",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+                
+            },
+            1,64,-1, true, false, true),
         };
     }
 }

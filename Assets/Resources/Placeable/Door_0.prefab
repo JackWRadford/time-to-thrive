@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da70ad84a5aa88f44832ad02f02201a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
+  wall: {fileID: 2486962872064254493, guid: 96c91e8fc4f64eb4d9c7066e38a346ed, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
   health: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetX: 8
-  offsetY: 29
+  offsetY: 13
 --- !u!114 &5586447798112562887
 MonoBehaviour:
   m_ObjectHideFlags: 0

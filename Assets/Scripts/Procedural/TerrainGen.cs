@@ -902,8 +902,8 @@ public class TileData
                         if(obj.GetComponent<StackDetails>().isWall)
                         {
                             // REMOVE???
-                            if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))// REMOVE???
-                            {
+                            //if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))// REMOVE???
+                            //{
                                 //check either no walls or wall that is same orientation as one being placed
                                 // if(gObjects[objPos].Count > 2)
                                 // {
@@ -915,8 +915,8 @@ public class TileData
                                     return true;
                                 }
                                 //if there is a wall (on foundation)
-                                else if(gObjects[objPos][1].GetComponent<StackDetails>().isWall)
-                                {
+                                //else if(gObjects[objPos][1].GetComponent<StackDetails>().isWall)
+                                //{
                                     //check not more than two of the oreientation being placed
                                     int c = 0;
                                     foreach (var placedObj in gObjects[objPos])
@@ -933,14 +933,46 @@ public class TileData
                                         {
                                             return false;
                                         }
+
+                                        //if door in same orientation (false)
+                                        if(placedObj.GetComponent<StackDetails>().isDoor)
+                                        {
+                                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                                            {
+                                                return false;
+                                            }
+                                        }
                                     }
                                     return true;
-                                }
-                                else
+                                //}
+                                //else
+                                //{
+                                    //return false;
+                                //}
+                            //}
+                        }
+
+                        //check if object to be placed is a door
+                        if(obj.GetComponent<StackDetails>().isDoor)
+                        {
+                            // if(gObjects[objPos].Count == 1)
+                            // {
+                            //     //just foundation
+                            //     return true;
+                            // }
+                            //if there are any walls in same orinetation then can not place
+                            foreach (var placedObj in gObjects[objPos])
+                            {
+                                if((placedObj.GetComponent<StackDetails>().isWall)||(placedObj.GetComponent<StackDetails>().isDoor))
                                 {
-                                    return false;
+                                    if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                                    {
+                                        //found wall of same orientation being placed
+                                        return false;
+                                    }
                                 }
                             }
+                            return true;
                         }
                     }
                     else
@@ -970,6 +1002,7 @@ public class TileData
         {
             if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
             {
+                //Debug.Log("no foundation");
                 return false;
             }
         }
