@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1683569679401326167}
   - component: {fileID: 1242163295605849704}
   - component: {fileID: 5586447798112562887}
+  - component: {fileID: -2103357986314612331}
   m_Layer: 8
   m_Name: Door_0
   m_TagString: Untagged
@@ -157,10 +158,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 1
-  placeing: 0
+  placeing: 1
   height: 1
   isExternalConstruction: 1
   isWall: 0
   isFoundation: 0
   isRoof: 0
   isDoor: 1
+--- !u!114 &-2103357986314612331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92914866264332094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f7f1eb6e6f2f34daa6a944d5baf60d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

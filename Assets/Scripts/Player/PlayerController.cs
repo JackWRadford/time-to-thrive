@@ -421,7 +421,7 @@ public class PlayerController : MonoBehaviour
             RecoverOverTime();
         }
 
-        //interact with objects through raycast
+        //interact with objects through raycast (destory/damage)
         if((Input.GetKeyDown(KeyCode.Space)))
         {
             //RaycastHit2D hit = Physics2D.CircleCast(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
@@ -443,6 +443,31 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        //interact with object through raycast (doors, chests, pick fruit etc)
+        if((Input.GetKeyDown(KeyCode.F)))
+        {
+            //Debug.Log("F");
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(rb2D.position + Vector2.up * 0.2f, 0.2f, lookDirection, 0.5f, LayerMask.GetMask("InteractiveObjects"));
+            foreach (var hit in hits)
+            {
+                if(hit.collider != null)
+                {
+                    //check not edge collider as is used for alpha change on objects
+                    if(hit.collider.GetType() != typeof(EdgeCollider2D))
+                    {
+                        //Debug.Log("InteractND");
+                        NDInteractable NDinteractable = hit.collider.GetComponent<NDInteractable>();
+                        if(NDinteractable != null)
+                        {
+                            NDinteractable.NDInteract(this.gameObject);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
 
         //rotate object with (Z,X)
         if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))

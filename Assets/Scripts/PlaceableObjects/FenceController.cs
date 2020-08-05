@@ -196,7 +196,7 @@ public class FenceController : Interactable, ILoadState
         if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
             //Debug.Log("Add fence");
-            Debug.Log("add" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            //Debug.Log("add" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
             objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "Fence", fd);
         }
     }
@@ -207,7 +207,7 @@ public class FenceController : Interactable, ILoadState
         //check object not already in that position (double save in same position)
         if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
-            Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            //Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
             objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Fence", this.gameObject);
         }
     }

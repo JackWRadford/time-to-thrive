@@ -66,6 +66,8 @@
      <Compile Include="Assets\Scripts\Other\Highlight.cs" />
      <Compile Include="Assets\Scripts\Other\ILoadState.cs" />
      <Compile Include="Assets\Scripts\Other\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Other\NDInteractable.cs" />
+     <Compile Include="Assets\Scripts\PlaceableObjects\DoorController.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\ExitTent.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\FenceController.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\PlacementOffset.cs" />

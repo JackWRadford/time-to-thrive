@@ -734,7 +734,7 @@ public class TileData
 
                 for (int i = gObjects[objPos].Count - 1; i >= 0; i--)
                 {
-                    Debug.Log("remove");
+                    //Debug.Log("remove");
                     gObjects[objPos][i].GetComponent<StackDetails>().DestroyGO();
                 }
 
@@ -805,65 +805,71 @@ public class TileData
                                     return false;
                                 }
                             }
+                            return true;
 
                             //check there are two walls in the same orientation (below)
-                            int r0c = 0;
-                            int r1c = 0;
-                            int r2c = 0;
-                            int r3c = 0;
-                            foreach (var placedObj in gObjects[objPos])
-                            {
-                                if(placedObj.GetComponent<StackDetails>().isWall)
-                                {
-                                    //save number of walls for each orientation and check for 2 of any orientation
-                                    switch(placedObj.GetComponent<WallController>().orientation)
-                                    {
-                                        case 0:
-                                            r0c++;
-                                            break;
-                                        case 1:
-                                            r1c++;
-                                            break;
-                                        case 2:
-                                            r2c++;
-                                            break;
-                                        case 3:
-                                            r3c++;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                if((r0c >=2)||(r1c >=2)||(r2c >=2)||(r3c >=2))
-                                {
-                                    return true;
-                                }
-                            }
+                            // int r0c = 0;
+                            // int r1c = 0;
+                            // int r2c = 0;
+                            // int r3c = 0;
+                            // foreach (var placedObj in gObjects[objPos])
+                            // {
+                            //     if(placedObj.GetComponent<StackDetails>().isWall)
+                            //     {
+                            //         //save number of walls for each orientation and check for 2 of any orientation
+                            //         switch(placedObj.GetComponent<WallController>().orientation)
+                            //         {
+                            //             case 0:
+                            //                 r0c++;
+                            //                 break;
+                            //             case 1:
+                            //                 r1c++;
+                            //                 break;
+                            //             case 2:
+                            //                 r2c++;
+                            //                 break;
+                            //             case 3:
+                            //                 r3c++;
+                            //                 break;
+                            //             default:
+                            //                 break;
+                            //         }
+                            //     }
+                            //     if((r0c >=2)||(r1c >=2)||(r2c >=2)||(r3c >=2))
+                            //     {
+                            //         return true;
+                            //     }
+                            // }
 
                             //check if there is a roof in an adjacent position (NESW)
-                            List<float> offsetN = new List<float>{objPos[0]+0,objPos[1]+1};
-                            List<float> offsetE = new List<float>{objPos[0]+1,objPos[1]+0};
-                            List<float> offsetS = new List<float>{objPos[0]+0,objPos[1]-1};
-                            List<float> offsetW = new List<float>{objPos[0]-1,objPos[1]+0};
+                            // List<float> offsetN = new List<float>{objPos[0]+0,objPos[1]+1};
+                            // List<float> offsetE = new List<float>{objPos[0]+1,objPos[1]+0};
+                            // List<float> offsetS = new List<float>{objPos[0]+0,objPos[1]-1};
+                            // List<float> offsetW = new List<float>{objPos[0]-1,objPos[1]+0};
+                            // // Debug.Log("Adjacent position N: " + offsetN[0] + "," + offsetN[1]);
+                            // // Debug.Log("Adjacent position E: " + offsetE[0] + "," + offsetE[1]);
+                            // // Debug.Log("Adjacent position S: " + offsetS[0] + "," + offsetS[1]);
+                            // // Debug.Log("Adjacent position W: " + offsetW[0] + "," + offsetW[1]);
 
-                            //do sequence matching for each (if exists check for adjacent roof)
-                            foreach (var adjObjPos in gObjects.Keys)
-                            {
-                                Debug.Log(adjObjPos[0].ToString() + "," + adjObjPos[1].ToString());
-                                if((adjObjPos.SequenceEqual(offsetN))||(adjObjPos.SequenceEqual(offsetE))||(adjObjPos.SequenceEqual(offsetS))
-                                ||(adjObjPos.SequenceEqual(offsetW)))
-                                {
-                                    Debug.Log("Found adjacent GOs data");
-                                    //found adjacent list of GOs, check for roof
-                                    foreach (var adjacentObj in gObjects[adjObjPos])
-                                    {
-                                        if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                                        {
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
+                            // //do sequence matching for each (if exists check for adjacent roof)
+                            // foreach (var adjObjPos in gObjects.Keys)
+                            // {
+                            //     //Debug.Log(adjObjPos[0].ToString() + "," + adjObjPos[1].ToString());
+                            //     if((adjObjPos.SequenceEqual(offsetN))||(adjObjPos.SequenceEqual(offsetE))||(adjObjPos.SequenceEqual(offsetS))
+                            //     ||(adjObjPos.SequenceEqual(offsetW)))
+                            //     {
+                            //         //Debug.Log("Found adjacent GOs data");
+                            //         //found adjacent list of GOs, check for roof
+                            //         foreach (var adjacentObj in gObjects[adjObjPos])
+                            //         {
+                            //             if(adjacentObj.GetComponent<StackDetails>().isRoof)
+                            //             {
+                            //                 return true;
+                            //             }
+                            //         }
+                            //     }
+                            // }
+
 
                             // foreach (var adjacentObj in gObjects[offsetN])
                             // {
@@ -893,8 +899,6 @@ public class TileData
                             //         return true;
                             //     }
                             // }
-
-                            return false;
                         }
 
 

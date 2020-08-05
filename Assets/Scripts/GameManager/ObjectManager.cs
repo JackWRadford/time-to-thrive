@@ -66,7 +66,6 @@ public class ObjectManager : MonoBehaviour
         tileData = terrainGen.GetLevelData().FindChunk(offsetX, offsetY);
 
         return tileData;
-
     }
 
     public void AddObjectData(float x, float y, string title, dynamic data)
@@ -183,6 +182,20 @@ public class ObjectManager : MonoBehaviour
     {
         return FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj);
     }
+
+    //method to check if space is free in position and surrounding positions (useful for multiTile objects?(size parameter))
+    // public bool IsGOSpaceFreeMultiChunk(float x, float y, GameObject obj)
+    // {
+    //     //if space is free in a surrounding possition (possibly in a different chunk)
+    //     bool ans = false;
+    //     if((FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj))||(FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj))
+    //     ||(FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj))||(FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj)))
+    //     {
+    //         ans = true;
+    //     }
+
+    //     return ans;
+    // }
 
     // public void SpawnSavedObjects(Dictionary<List<float>, string> objects)
     // {
