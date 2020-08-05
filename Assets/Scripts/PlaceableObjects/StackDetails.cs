@@ -17,6 +17,7 @@ public class StackDetails : MonoBehaviour
     public bool isWall = false;
     public bool isFoundation = false;
     public bool isRoof = false;
+    public bool isDoor = false;
 
     public void SetPlaceing(bool tof)
     {
