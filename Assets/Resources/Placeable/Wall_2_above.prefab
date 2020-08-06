@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8133181400763574154}
   - component: {fileID: 8556536100776791989}
   - component: {fileID: 3027804871043915546}
+  - component: {fileID: 6344220698874245342}
   m_Layer: 8
   m_Name: Wall_2_above
   m_TagString: Untagged
@@ -136,3 +137,29 @@ MonoBehaviour:
   isWall: 1
   isFoundation: 0
   isRoof: 0
+  isDoor: 0
+--- !u!68 &6344220698874245342
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406725134638114531}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 2.0625}
+  - {x: -0.36667705, y: 1.1234133}
+  - {x: -0.27315673, y: 2.014246}
+  - {x: -0.15661405, y: 1.1120241}
+  - {x: -0.02601459, y: 2.0214381}
+  - {x: 0.086879164, y: 1.1054198}
+  - {x: 0.20393422, y: 2.0138676}
+  - {x: 0.34793106, y: 1.102624}
+  - {x: 0.48180723, y: 2.0297527}

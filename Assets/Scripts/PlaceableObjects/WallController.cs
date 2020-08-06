@@ -150,4 +150,21 @@ public class WallController : Interactable, ILoadState
 
         GetComponent<SpriteRenderer>().sprite = allWoodWalls[this.orientation];
     }
+
+
+    //check if player is behind wall
+    private void OnTriggerStay2D(Collider2D other) {
+        //make tree transparent
+        Color tmp = transform.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.6f;
+        transform.GetComponent<SpriteRenderer>().color = tmp;
+    }
+
+    //check if player exists from behind tree
+    private void OnTriggerExit2D(Collider2D other) {
+        //make tree sprite alpha 1.0f
+        Color tmp = transform.GetComponent<SpriteRenderer>().color;
+        tmp.a = 1.0f;
+        transform.GetComponent<SpriteRenderer>().color = tmp;
+    }
 }
