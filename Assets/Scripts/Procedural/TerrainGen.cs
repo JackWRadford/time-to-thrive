@@ -1089,6 +1089,38 @@ public class TileData
         return false;
     }
 
+    //method to make any ExternalContruction objects seeThrough
+    public void MakeConstructionSeeThrough()
+    {
+        Debug.Log("see through");
+        foreach (var objList in this.gObjects.Values)
+        {
+            foreach (var obj in objList)
+            {
+                if(obj.GetComponent<StackDetails>().isExternalConstruction)
+                {
+                    obj.GetComponent<StackDetails>().SeeBehind();
+                }
+            }
+        }
+    }
+    //method to make any ExternalConstruction objects AntiSeeThrough
+    public void AntiMakeConstructionSeeThrough()
+    {
+        Debug.Log("not see through");
+        foreach (var objList in this.gObjects.Values)
+        {
+            foreach (var obj in objList)
+            {
+                if(obj.GetComponent<StackDetails>().isExternalConstruction)
+                {
+                    obj.GetComponent<StackDetails>().AntiSeeBehind();
+                }
+            }
+        }
+
+    }
+
     //method to get world coords for chunk
     public int[] GetWorldCoordsForChunk()
     {

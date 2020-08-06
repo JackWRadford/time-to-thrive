@@ -8,6 +8,8 @@ public class ObjectManager : MonoBehaviour
     public GenerateWorld generateWorld;
     public TerrainGen terrainGen;
 
+    public bool constructionIsSeeThrough = false;
+
     //private Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
     //private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
 
@@ -182,6 +184,45 @@ public class ObjectManager : MonoBehaviour
     {
         return FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj);
     }
+
+    //method to make ExternalContruction objects SeeThrough (check current chunk and surrounding chunks)
+    public void SeeBehindExternalContruction(float x, float y)
+    {
+        if(!this.constructionIsSeeThrough)
+        {
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
+
+            this.constructionIsSeeThrough = true;
+        } 
+    }
+
+    //method to make ExternalContruction objects AntiSeeThrough (check current chunk and surrounding chunks)
+    public void AntiSeeBehindExternalContruction(float x, float y)
+    {
+        if(this.constructionIsSeeThrough)
+        {
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x - TerrainGen.chunkSize, y - TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x, y - TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+            FindChunkFromCoords(x + TerrainGen.chunkSize, y - TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
+
+            this.constructionIsSeeThrough = false;
+        }
+    }
+
 
     //method to check if space is free in position and surrounding positions (useful for multiTile objects?(size parameter))
     // public bool IsGOSpaceFreeMultiChunk(float x, float y, GameObject obj)

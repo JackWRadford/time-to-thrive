@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1242163295605849704}
   - component: {fileID: 5586447798112562887}
   - component: {fileID: -2103357986314612331}
+  - component: {fileID: 2379486484224135285}
   m_Layer: 8
   m_Name: Door_0
   m_TagString: Untagged
@@ -177,5 +178,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f7f1eb6e6f2f34daa6a944d5baf60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: 0
   alternativeDoor: {fileID: 1970504920220010312, guid: ad18465c58032944b893480615a91cf6,
     type: 3}
+  offsetOne: {x: 0, y: 0.1}
+  sizeOne: {x: 1, y: 0.18}
+  offsetTwo: {x: 0, y: 0.5}
+  sizeTwo: {x: 0.17, y: 1}
+--- !u!68 &2379486484224135285
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92914866264332094}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0.1875}
+  - {x: -0.43821877, y: 1.9470652}
+  - {x: -0.22321008, y: 0.26180518}
+  - {x: -0.09398396, y: 1.9214389}
+  - {x: 0.059630096, y: 0.26996905}
+  - {x: 0.2230359, y: 1.8776792}
+  - {x: 0.40648717, y: 1.5516582}
+  - {x: 0.31316352, y: 0.46427923}
+  - {x: 0.5, y: 0.1875}
