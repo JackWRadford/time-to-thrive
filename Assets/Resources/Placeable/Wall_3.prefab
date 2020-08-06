@@ -163,3 +163,5 @@ MonoBehaviour:
   isWall: 1
   isFoundation: 0
   isRoof: 0
+  isDoor: 0
+  orientation: 3

@@ -166,6 +166,7 @@ MonoBehaviour:
   isFoundation: 0
   isRoof: 0
   isDoor: 1
+  orientation: 2
 --- !u!114 &4190573828190498730
 MonoBehaviour:
   m_ObjectHideFlags: 0

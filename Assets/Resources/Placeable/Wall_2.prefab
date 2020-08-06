@@ -165,6 +165,7 @@ MonoBehaviour:
   isFoundation: 0
   isRoof: 0
   isDoor: 0
+  orientation: 2
 --- !u!68 &2033660195496269658
 EdgeCollider2D:
   m_ObjectHideFlags: 0

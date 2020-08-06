@@ -21,6 +21,8 @@ public class StackDetails : MonoBehaviour
     public bool isRoof = false;
     public bool isDoor = false;
 
+    public int orientation = 0;
+
     Vector3 posMinusOffset = new Vector3();
 
     void Awake()
@@ -48,7 +50,14 @@ public class StackDetails : MonoBehaviour
     {
         //make object transparent
         Color tmp = transform.GetComponent<SpriteRenderer>().color;
-        tmp.a = 0.6f;
+        if((this.isRoof)||((this.isWall)&&(this.orientation == 2)))
+        {
+            tmp.a = 0f;
+        }
+        else
+        {
+            //tmp.a = 0.6f;
+        }
         transform.GetComponent<SpriteRenderer>().color = tmp;
     }
     public void AntiSeeBehind()
