@@ -9401,6 +9401,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateWorld: {fileID: 0}
   terrainGen: {fileID: 0}
+  constructionIsSeeThrough: 0
+  timer: 0
+  antiAllowed: 0
 --- !u!114 &1461756157
 MonoBehaviour:
   m_ObjectHideFlags: 0

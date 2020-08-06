@@ -20,6 +20,7 @@ public class StackDetails : MonoBehaviour
     public bool isFoundation = false;
     public bool isRoof = false;
     public bool isDoor = false;
+    public bool isGroundLevel = false;
 
     public int orientation = 0;
 
@@ -50,13 +51,22 @@ public class StackDetails : MonoBehaviour
     {
         //make object transparent
         Color tmp = transform.GetComponent<SpriteRenderer>().color;
-        if((this.isRoof)||((this.isWall)&&(this.orientation == 2)))
+        if((this.isRoof))
         {
             tmp.a = 0f;
         }
-        else
+        else if((this.isWall)&&(!this.isGroundLevel))
         {
-            //tmp.a = 0.6f;
+            tmp.a = 0f;
+        }
+        else if((this.isWall)&&(this.isGroundLevel))
+        {
+            //set sprite to alternative wall sprite
+            this.GetComponent<SpriteRenderer>().sprite = this.GetComponent<WallController>().alternativeSprite;
+        }
+        else if(this.isDoor)
+        {
+            tmp.a = 0.3f;
         }
         transform.GetComponent<SpriteRenderer>().color = tmp;
     }
@@ -64,6 +74,12 @@ public class StackDetails : MonoBehaviour
     {
         //make object sprite alpha 1.0f
         Color tmp = transform.GetComponent<SpriteRenderer>().color;
+        if((this.isWall)&&(this.isGroundLevel))
+        {
+            Debug.Log(this.orientation.ToString());
+            //set sprite to normal wall sprite
+            this.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + "Wall")[this.orientation];
+        }
         tmp.a = 1.0f;
         transform.GetComponent<SpriteRenderer>().color = tmp;
     }

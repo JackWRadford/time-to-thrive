@@ -10,6 +10,8 @@ public class WallController : Interactable, ILoadState
     public PlacementOffset placementOffset;
     public StackDetails stackDetails;
 
+    public Sprite alternativeSprite = null;
+
     public int health = 1;
     public int orientation = 0;
 
