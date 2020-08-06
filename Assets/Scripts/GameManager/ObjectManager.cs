@@ -9,6 +9,11 @@ public class ObjectManager : MonoBehaviour
     public TerrainGen terrainGen;
 
     public bool constructionIsSeeThrough = false;
+    private float timerLength = 5.0f;
+    public float timer = 0.0f;
+    public bool antiAllowed = false;
+    private float currentX = 0f;
+    private float currentY = 0f;
 
     //private Dictionary<List<float>, string> objectsString = new Dictionary<List<float>, string>();
     //private Dictionary<List<float>, dynamic> objectsGO = new Dictionary<List<float>, dynamic>();
@@ -18,6 +23,7 @@ public class ObjectManager : MonoBehaviour
         generateWorld = GetComponent<GenerateWorld>();
         terrainGen = GetComponent<TerrainGen>();
 
+        this.timer = timerLength;
         //un-comment (whole world)
         //GameEvents.SaveInitiated += Save;
     }
@@ -26,6 +32,19 @@ public class ObjectManager : MonoBehaviour
     {
         //un-comment (whole world)
         //Load();
+    }
+
+    void Update()
+    {
+        if(this.constructionIsSeeThrough)
+        {
+            timer -= Time.deltaTime;
+        }
+        
+        if(timer <= 0.0f)
+        {
+            TimerDone();
+        }
     }
 
     // public Dictionary<List<float>, dynamic> GetObjectGOs()
@@ -188,8 +207,12 @@ public class ObjectManager : MonoBehaviour
     //method to make ExternalContruction objects SeeThrough (check current chunk and surrounding chunks)
     public void SeeBehindExternalContruction(float x, float y)
     {
+        this.timer = this.timerLength;
         if(!this.constructionIsSeeThrough)
         {
+            this.currentX = x;
+            this.currentY = y;
+
             FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
             FindChunkFromCoords(x, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
             FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
@@ -207,8 +230,11 @@ public class ObjectManager : MonoBehaviour
     //method to make ExternalContruction objects AntiSeeThrough (check current chunk and surrounding chunks)
     public void AntiSeeBehindExternalContruction(float x, float y)
     {
-        if(this.constructionIsSeeThrough)
+        if((this.constructionIsSeeThrough)&&(this.antiAllowed))
         {
+            this.currentX = x;
+            this.currentY = y;
+
             FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
             FindChunkFromCoords(x, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
             FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
@@ -220,7 +246,16 @@ public class ObjectManager : MonoBehaviour
             FindChunkFromCoords(x + TerrainGen.chunkSize, y - TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
 
             this.constructionIsSeeThrough = false;
+            this.antiAllowed = false;
+            this.timer = this.timerLength;
         }
+    }
+
+    public void TimerDone()
+    {
+        Debug.Log("timer done");
+        AntiSeeBehindExternalContruction(this.currentX, this.currentY);
+        this.antiAllowed = true;
     }
 
 
