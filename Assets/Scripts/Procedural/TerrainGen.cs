@@ -986,6 +986,7 @@ public class TileData
                 }
                 else
                 {
+                    //Debug.Log("not ec");
                     return false;
                 }
 
@@ -1001,6 +1002,7 @@ public class TileData
                 // }
                 //return false;
             }
+            //return false;
         }
         if(obj != null)
         {
@@ -1010,6 +1012,7 @@ public class TileData
                 return false;
             }
         }
+        Debug.Log("no objects");
         //there is no specified list of data for specified position
         return true;
     }

@@ -129,6 +129,7 @@ MonoBehaviour:
   wall: {fileID: 2486962872064254493, guid: 96c91e8fc4f64eb4d9c7066e38a346ed, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
+  alternativeSprite: {fileID: 0}
   health: 1
   orientation: 2
 --- !u!114 &3820133149059828343
@@ -166,6 +167,8 @@ MonoBehaviour:
   isFoundation: 0
   isRoof: 0
   isDoor: 1
+  isGroundLevel: 1
+  extraPositions: []
   orientation: 2
 --- !u!114 &4190573828190498730
 MonoBehaviour:

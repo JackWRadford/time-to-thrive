@@ -22,6 +22,13 @@ public class StackDetails : MonoBehaviour
     public bool isDoor = false;
     public bool isGroundLevel = false;
 
+    //further tiles in each direction
+    public List<Vector3> extraPositions;
+
+    //fields for if objects can be placed in same tile as walls
+    public bool canBePlacedInside = false;
+    
+
     public int orientation = 0;
 
     Vector3 posMinusOffset = new Vector3();

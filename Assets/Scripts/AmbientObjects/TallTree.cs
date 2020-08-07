@@ -30,9 +30,12 @@ public class TallTree : Interactable, ILoadState
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         placementOffset = this.gameObject.GetComponent<PlacementOffset>();
         //SaveState();
+        
 
         this.positionMinusOffsetX = this.transform.position.x - placementOffset.GetOffsetX();
         this.positionMinusOffsetY = this.transform.position.y - placementOffset.GetOffsetY();
+
+        SaveGO();
     }
 
     // Update is called once per frame
@@ -54,6 +57,17 @@ public class TallTree : Interactable, ILoadState
     //         objectManager.AddObject(this.positionMinusOffsetX, this.positionMinusOffsetY, "Tree", td);
     //     //}
     // }
+
+    //save GO to list (data already saved and loaded)
+    public void SaveGO()
+    {
+        //check object not already in that position (double save in same position)
+        if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        {
+            //Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
+            objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Tree", this.gameObject);
+        }
+    }
     
     //set state from saved state
     public void LoadState(dynamic data)

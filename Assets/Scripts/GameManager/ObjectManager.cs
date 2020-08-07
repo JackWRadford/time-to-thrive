@@ -8,10 +8,10 @@ public class ObjectManager : MonoBehaviour
     public GenerateWorld generateWorld;
     public TerrainGen terrainGen;
 
-    public bool constructionIsSeeThrough = false;
-    private float timerLength = 5.0f;
-    public float timer = 0.0f;
-    public bool antiAllowed = false;
+    private bool constructionIsSeeThrough = false;
+    public float timerLength = 5.0f;
+    private float timer = 0.0f;
+    private bool antiAllowed = false;
     private float currentX = 0f;
     private float currentY = 0f;
 

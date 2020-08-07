@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fence: {fileID: 531452904732949613, guid: fff99a6d254e96544a172b262c9f3f7b, type: 3}
   placementOffset: {fileID: 0}
+  stackDetails: {fileID: 0}
   health: 1
   up: 0
   down: 0
@@ -159,3 +160,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
+  placeing: 1
+  height: 0
+  isExternalConstruction: 0
+  isWall: 0
+  isFoundation: 0
+  isRoof: 0
+  isDoor: 0
+  isGroundLevel: 1
+  extraPositions: []
+  canBePlacedInside: 0
+  orientation: 0
