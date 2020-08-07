@@ -109,6 +109,19 @@ public class ObjectManager : MonoBehaviour
         FindChunkFromCoords(x, y).AddObjectGO(x, y, title, go);
     }
 
+    //add obj to multiple spaces to be saved (multiple spaces used but only instantiate from "main" position)
+    public void AddObjectGOMultiple(float x, float y, List<Vector3> listOfPositions, string title, GameObject obj)
+    {
+        //add "main" space and other surrounding spaced specified
+        AddObjectGO(x, y, title, obj);
+        Debug.Log("add main");
+        foreach (var pos in listOfPositions)
+        {
+            Debug.Log("add other");
+            AddObjectGO(x + pos.x, y + pos.y, title, obj);
+        }
+    }
+
     public bool IsAboveAnother(float x, float y, GameObject obj)
     {
         return FindChunkFromCoords(x, y).IsAboveAnother(x, y, obj);
@@ -164,6 +177,18 @@ public class ObjectManager : MonoBehaviour
     {
         //call relevant chunk removeObject method
         FindChunkFromCoords(x, y).RemoveObjectGO(x, y);
+    }
+
+    //remove obj from all positions "main" and other
+    public void RemoveObjectGOMultiple(float x, float y, List<Vector3> listOfPositions)
+    {
+        //remove GO from "main" position
+        RemoveObjectGO(x, y);
+        foreach (var pos in listOfPositions)
+        {
+            //remove other positions
+            RemoveObjectGO(x + pos.x, y + pos.y);
+        }
     }
 
     // public bool IsSpaceFree(float x, float y)

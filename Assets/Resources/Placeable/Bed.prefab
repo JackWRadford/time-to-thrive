@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3802075122066469245}
   - component: {fileID: 8154723901212353559}
   - component: {fileID: 273404918082025433}
-  m_Layer: 0
+  - component: {fileID: 4741615275136669402}
+  m_Layer: 8
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +125,7 @@ MonoBehaviour:
   isMultiPos: 1
   extraPositions:
   - {x: 0, y: 1, z: 0}
-  canBePlacedInside: 0
+  canBePlacedInside: 1
   orientation: 0
 --- !u!61 &273404918082025433
 BoxCollider2D:
@@ -152,3 +153,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 1.81}
   m_EdgeRadius: 0
+--- !u!114 &4741615275136669402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802075122066469217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da70ad84a5aa88f44832ad02f02201a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 3802075122066469217}
+  placementOffset: {fileID: 0}
+  stackDetails: {fileID: 0}
+  alternativeSprite: {fileID: 0}
+  health: 1
+  orientation: 0

@@ -41,7 +41,7 @@ public class WallController : Interactable, ILoadState
         }
         else
         {
-            //same to go array when loading from data (already have data from save)
+            //save to GO array when loading from data (already have data from save)
             SaveGO();
         }
     }
@@ -50,7 +50,7 @@ public class WallController : Interactable, ILoadState
     public void SaveState()
     {
         WallData wd = new WallData(this);
-        //check object not already in that position (double save in same position)
+        //check object not already in that position (double save in same position) (SHOULD BE IS DATASPACEFREE ???)
         if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
         {
             //Debug.Log("add DATA" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
@@ -58,14 +58,16 @@ public class WallController : Interactable, ILoadState
         }
     }
 
-    //save GO to list (data already saved and loaded)
+    //save GO to list (data already saved and loaded) (ONLY SAVE MULTIPLR POSITIONS IN GO LIST)
     public void SaveGO()
     {
         //check object not already in that position (double save in same position)
-        if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        // if(objectManager.IsGOSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))
+        if(objectManager.IsGOSpaceFreeMultiple(this.positionMinusOffsetX,this.positionMinusOffsetY, this.GetComponent<StackDetails>().extraPositions, this.gameObject))
         {
             //Debug.Log("add GO" + this.positionMinusOffsetX + 0.5f.ToString() + this.positionMinusOffsetY + 0.5f.ToString());
-            objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", this.gameObject);
+            // objectManager.AddObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY, "Wall", this.gameObject);
+            objectManager.AddObjectGOMultiple(this.positionMinusOffsetX, this.positionMinusOffsetY, this.GetComponent<StackDetails>().extraPositions, "Wall", this.gameObject);
         }
     }
 
@@ -109,8 +111,9 @@ public class WallController : Interactable, ILoadState
             //remove from objectManager list
             WallData wd = new WallData(this);
             objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
-            objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
-
+            // objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            objectManager.RemoveObjectGOMultiple(this.positionMinusOffsetX, this.positionMinusOffsetY, this.GetComponent<StackDetails>().extraPositions);
+            Debug.Log("destory");
             Destroy(gameObject);
 
             return;
