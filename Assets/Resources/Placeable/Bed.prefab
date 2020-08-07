@@ -121,8 +121,10 @@ MonoBehaviour:
   isRoof: 0
   isDoor: 0
   isGroundLevel: 1
+  isMultiPos: 1
   extraPositions:
   - {x: 0, y: 1, z: 0}
+  canBePlacedInside: 0
   orientation: 0
 --- !u!61 &273404918082025433
 BoxCollider2D:

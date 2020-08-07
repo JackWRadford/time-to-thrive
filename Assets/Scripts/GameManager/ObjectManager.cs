@@ -199,9 +199,32 @@ public class ObjectManager : MonoBehaviour
         return FindChunkFromCoords(x, y).IsSpaceFree(x, y, obj);
     }
 
+    //check if single space is free
     public bool IsGOSpaceFree(float x, float y, GameObject obj)
     {
         return FindChunkFromCoords(x, y).IsGOSpaceFree(x, y, obj);
+    }
+
+    //check if multiple spaces are free (call findChunkFromCoords with adjusted coords too)
+    public bool IsGOSpaceFreeMultiple(float x, float y, List<Vector3> listOfPositions, GameObject obj)
+    {
+        bool allAreFree = true;
+
+        //check if "main" space or any others specified are not free
+        if(!IsGOSpaceFree(x, y, obj))
+        {
+            return false;
+        }
+        foreach (var pos in listOfPositions)
+        {
+            if(!IsGOSpaceFree(x + pos.x, y + pos.y, obj))
+            {
+                allAreFree = false;
+                break;
+            }
+        }
+
+        return allAreFree;
     }
 
     //method to make ExternalContruction objects SeeThrough (check current chunk and surrounding chunks)
@@ -253,7 +276,7 @@ public class ObjectManager : MonoBehaviour
 
     public void TimerDone()
     {
-        Debug.Log("timer done");
+        //Debug.Log("timer done");
         AntiSeeBehindExternalContruction(this.currentX, this.currentY);
         this.antiAllowed = true;
     }

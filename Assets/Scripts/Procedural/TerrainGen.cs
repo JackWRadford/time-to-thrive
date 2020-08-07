@@ -1012,7 +1012,7 @@ public class TileData
                 return false;
             }
         }
-        Debug.Log("no objects");
+        //Debug.Log("no objects");
         //there is no specified list of data for specified position
         return true;
     }
@@ -1095,7 +1095,7 @@ public class TileData
     //method to make any ExternalContruction objects seeThrough
     public void MakeConstructionSeeThrough()
     {
-        Debug.Log("see through");
+        //Debug.Log("see through");
         foreach (var objList in this.gObjects.Values)
         {
             foreach (var obj in objList)
@@ -1110,7 +1110,7 @@ public class TileData
     //method to make any ExternalConstruction objects AntiSeeThrough
     public void AntiMakeConstructionSeeThrough()
     {
-        Debug.Log("not see through");
+        //Debug.Log("not see through");
         foreach (var objList in this.gObjects.Values)
         {
             foreach (var obj in objList)

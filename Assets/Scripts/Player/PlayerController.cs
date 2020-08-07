@@ -511,9 +511,10 @@ public class PlayerController : MonoBehaviour
                 {
                     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
                 }
+                
 
                 //check if highlight position is free (not including placementOffset)
-                if(objectManager.IsGOSpaceFree(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))
+                if(objectManager.IsGOSpaceFreeMultiple(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace.GetComponent<StackDetails>().extraPositions, this.itemToPlace))
                 {
                     //check if object is to be placed above another (excluding foundations)
                     if(objectManager.IsGOAboveAnother(GetPosInfrontOfPlayer().x, GetPosInfrontOfPlayer().y, this.itemToPlace))

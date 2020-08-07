@@ -23,11 +23,12 @@ public class StackDetails : MonoBehaviour
     public bool isGroundLevel = false;
 
     //further tiles in each direction
+    public bool isMultiPos = false;
     public List<Vector3> extraPositions;
 
     //fields for if objects can be placed in same tile as walls
     public bool canBePlacedInside = false;
-    
+
 
     public int orientation = 0;
 
@@ -83,7 +84,7 @@ public class StackDetails : MonoBehaviour
         Color tmp = transform.GetComponent<SpriteRenderer>().color;
         if((this.isWall)&&(this.isGroundLevel))
         {
-            Debug.Log(this.orientation.ToString());
+            //Debug.Log(this.orientation.ToString());
             //set sprite to normal wall sprite
             this.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + "Wall")[this.orientation];
         }
