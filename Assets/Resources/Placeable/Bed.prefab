@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da70ad84a5aa88f44832ad02f02201a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 3802075122066469217}
+  wall: {fileID: 6827051248417112547, guid: 402416a001da77f428fa0863f9d901f4, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
   alternativeSprite: {fileID: 0}
