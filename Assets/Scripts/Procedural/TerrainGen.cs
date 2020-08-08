@@ -984,6 +984,12 @@ public class TileData
                         return false;
                     }
                 }
+                else if((obj.GetComponent<StackDetails>().canBePlacedInside)&&gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)
+                {
+                    //check if walls/doors are in the way
+                    
+                    return true;
+                }
                 else
                 {
                     //Debug.Log("not ec");

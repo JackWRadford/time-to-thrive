@@ -31,6 +31,7 @@ public class StackDetails : MonoBehaviour
 
 
     public int orientation = 0;
+    public int translation = 0;
 
     Vector3 posMinusOffset = new Vector3();
 
