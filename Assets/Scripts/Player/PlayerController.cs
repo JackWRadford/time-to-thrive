@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public Sprite redHighlight;
     //orientation of object to be placed
     public int orientation = 0;
+    //translation of object to be placed
+    public int translation = 0;
 
     private static bool allowedToMove = true;
 
@@ -379,6 +381,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //method to get correct itemToPlace depending on heldItem and rotation/translation
+    public void SetCorrectItemToPlace()
+    {
+        if((this.heldItem.rotatable)&&(!this.heldItem.translatable))
+        {   //rotatable, not translatable
+            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+        }
+        else if((!this.heldItem.rotatable)&&(this.heldItem.translatable))
+        {   //not rotatable, translatable
+            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.translation);
+        }
+        else if((this.heldItem.rotatable)&&(this.heldItem.translatable))
+        {   //rotatable, translatable
+            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation + "_" + this.translation);
+        }
+        else
+        {   //not rotatable, not translatable
+            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -469,21 +492,33 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //rotate object with (Z,X)
+        //rotate object with (X)
         if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
         {
             if((this.heldItem.placeable)&&(this.heldItem.rotatable))
             {
-                if(Input.GetKeyDown(KeyCode.Z))
-                {
-                    //ani-clockwise
-                    Rotate(false);
+                // if(Input.GetKeyDown(KeyCode.Z))
+                // {
+                //     //ani-clockwise
+                //     Rotate(false);
                     
-                }
+                // }
                 if(Input.GetKeyDown(KeyCode.X))
                 {
                     //clockwise
                     Rotate(true);
+                }
+            }
+        }
+
+        //translate object with (Z)
+        if((this.heldItem != null)&&(allowedToMove)&&(!gameManager.IsMouseOverUI()))
+        {
+            if((this.heldItem.placeable)&&(this.heldItem.translatable))
+            {
+                if(Input.GetKeyDown(KeyCode.Z))
+                {
+                    Translate();
                 }
             }
         }
@@ -503,14 +538,25 @@ public class PlayerController : MonoBehaviour
 
                 //highlight.transform.position = GetPosInfrontOfPlayer();
 
-                if(this.heldItem.rotatable)
-                {
-                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
-                }
-                else
-                {
-                    this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
-                }
+                // if((this.heldItem.rotatable)&&(!this.heldItem.translatable))
+                // {   //rotatable, not translatable
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                // }
+                // else if((!this.heldItem.rotatable)&&(this.heldItem.translatable))
+                // {   //not rotatable, translatable
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.translation);
+                // }
+                // else if((this.heldItem.rotatable)&&(this.heldItem.translatable))
+                // {   //rotatable, translatable
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation + "_" + this.translation);
+                // }
+                // else
+                // {   //not rotatable, not translatable
+                //     this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                // }
+
+                //set this.itemToPlace to the correct one depending on rotationa and translation
+                SetCorrectItemToPlace();
                 
 
                 //check if highlight position is free (not including placementOffset)
@@ -524,6 +570,7 @@ public class PlayerController : MonoBehaviour
                         if(this.heldItem.rotatable)
                         {
                             this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation + "_above");
+                            //SetCorrectItemToPlace();
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             this.itemToPlacePos.y += this.itemToPlace.GetComponent<StackDetails>().height;
                             highlight.transform.position = itemToPlacePos;
@@ -533,6 +580,7 @@ public class PlayerController : MonoBehaviour
                         else
                         {
                             this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_above");
+                            //SetCorrectItemToPlace();
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             this.itemToPlacePos.y += this.itemToPlace.GetComponent<StackDetails>().height;
                             highlight.transform.position = itemToPlacePos;
@@ -547,15 +595,25 @@ public class PlayerController : MonoBehaviour
                         //this.placeingAbove = false;
                         if(this.heldItem.rotatable)
                         {
-                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                            SetCorrectItemToPlace();
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             highlight.transform.position = itemToPlacePos;
                             //set highlight sprite depending on object selected
                             highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.orientation];
                         }
+                        else if((this.heldItem.translatable))
+                        {
+                            SetCorrectItemToPlace();
+                            this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
+                            highlight.transform.position = itemToPlacePos;
+                            //set highlight sprite depending on object selected
+                            highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[this.translation];
+                        }
                         else
                         {
-                            this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                            //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                            SetCorrectItemToPlace();
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             highlight.transform.position = itemToPlacePos;
                             //space free (green)
@@ -608,7 +666,8 @@ public class PlayerController : MonoBehaviour
                     if(this.heldItem.rotatable)
                     {
                         //set correct highlight position
-                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title + "_" + this.orientation);
+                        SetCorrectItemToPlace();
                         this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                         highlight.transform.position = itemToPlacePos;
                         //set highlight sprite depending on object selected
@@ -617,7 +676,8 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         //set correct highlight position
-                        this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        //this.itemToPlace = Resources.Load<GameObject>("Placeable/" + this.heldItem.title);
+                        SetCorrectItemToPlace();
                         this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                         highlight.transform.position = itemToPlacePos;
                         //space not free (red)
@@ -768,6 +828,19 @@ public class PlayerController : MonoBehaviour
             {
                 this.orientation = 3;
             }
+        }
+    }
+
+    //translate function (increment translation)
+    public void Translate()
+    {
+        if(this.translation < 3)
+        {
+            this.translation++;
+        }
+        else
+        {
+            this.translation = 0;
         }
     }
 

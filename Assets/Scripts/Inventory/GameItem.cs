@@ -18,9 +18,10 @@ public class GameItem
     public bool placeable;
     public bool consumable;
     public bool rotatable;
+    public bool translatable;
 
     public GameItem(int id, string title, string description, Dictionary<string, int> stats, Dictionary<string, int> recipe,
-     int count, int maxCount, int slot, bool placeable, bool consumable, bool rotatable)
+     int count, int maxCount, int slot, bool placeable, bool consumable, bool rotatable, bool translatable)
     {
         this.id = id;
         this.title = title;
@@ -34,6 +35,7 @@ public class GameItem
         this.placeable = placeable;
         this.consumable = consumable;
         this.rotatable = rotatable;
+        this.translatable = translatable;
     }
 
     //copy constructor
@@ -51,5 +53,6 @@ public class GameItem
         this.placeable = item.placeable;
         this.consumable = item.consumable;
         this.rotatable = item.rotatable;
+        this.translatable = item.translatable;
     }
 }
