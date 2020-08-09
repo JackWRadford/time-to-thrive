@@ -19,6 +19,9 @@ public class TreeGeneration : MonoBehaviour
     [SerializeField]
     private GameObject[] treePrefab = null;
 
+    [SerializeField]
+    private TreeSizes[] treePrefabs = null;
+
     void Awake()
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
@@ -83,15 +86,42 @@ public class TreeGeneration : MonoBehaviour
                         float yWithOffset = y + this.treePrefab[biome.index].GetComponent<PlacementOffset>().GetOffsetY();
 
                         Vector3 treePosition = new Vector3(xWithOffset, yWithOffset, 0);
-                        GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
-                        //make sure new gameObject name doesn't have (clone)
-                        tree.name = this.treePrefab[biome.index].name;
-                        TreeData td = new TreeData(tree.GetComponent<TallTree>());
-                        if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
+                        // GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
+                        System.Random rand = new System.Random();
+                        int randomInt = rand.Next(this.treePrefabs[biome.index].trees.Length);
+                        if(this.treePrefabs[biome.index].trees.Length > randomInt)
                         {
-                            tileData.AddObjectData(x, y,"Tree",td);
-                            tileData.AddObjectGO(x, y, "tree", tree);
+                            GameObject tree = Instantiate(this.treePrefabs[biome.index].trees[randomInt], treePosition, Quaternion.identity) as GameObject;
+                            //make sure new gameObject name doesn't have (clone)
+                            tree.name = this.treePrefabs[biome.index].trees[randomInt].name;
+                            TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                            if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
+                            {
+                                tileData.AddObjectData(x, y,"Tree",td);
+                                tileData.AddObjectGO(x, y, "tree", tree);
+                            }
                         }
+                        else
+                        {
+                            //spawn default object (not different size)
+                            GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
+                            //make sure new gameObject name doesn't have (clone)
+                            tree.name = this.treePrefab[biome.index].name;
+                            TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                            if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
+                            {
+                                tileData.AddObjectData(x, y,"Tree",td);
+                                tileData.AddObjectGO(x, y, "tree", tree);
+                            }
+                        }
+                        // //make sure new gameObject name doesn't have (clone)
+                        // tree.name = this.treePrefab[biome.index].name;
+                        // TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                        // if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
+                        // {
+                        //     tileData.AddObjectData(x, y,"Tree",td);
+                        //     tileData.AddObjectGO(x, y, "tree", tree);
+                        // }
                     }
 
                 }
@@ -99,4 +129,11 @@ public class TreeGeneration : MonoBehaviour
         }
     
     }
+}
+
+//class for Array of different size trees in biomes
+[System.Serializable]
+public class TreeSizes
+{   
+    public GameObject[] trees;
 }

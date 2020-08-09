@@ -9757,6 +9757,22 @@ MonoBehaviour:
   - {fileID: 7806885434134285501, guid: eed93c5c38557644c8ca5ea0bb686fa4, type: 3}
   - {fileID: 1585659700632514333, guid: a0d4c25333d17e1419e8e21b1ce6e409, type: 3}
   - {fileID: 1094225645926197080, guid: e110aa8435710994bb0221ed92df703a, type: 3}
+  treePrefabs:
+  - trees: []
+  - trees: []
+  - trees: []
+  - trees:
+    - {fileID: 5882227275073835112, guid: c56ab1c062b3010479092bd9579b195d, type: 3}
+    - {fileID: 5065395961310258255, guid: aa2bcf4af8f09ab4dbd97eeaba81650e, type: 3}
+    - {fileID: 7806885434134285501, guid: eed93c5c38557644c8ca5ea0bb686fa4, type: 3}
+  - trees:
+    - {fileID: 5037232099964557695, guid: 3da4f87799a7be04fbfdecec5116b116, type: 3}
+    - {fileID: 5073701055794192704, guid: 88f8797eb5950874dbb8635ce2992935, type: 3}
+    - {fileID: 1585659700632514333, guid: a0d4c25333d17e1419e8e21b1ce6e409, type: 3}
+  - trees:
+    - {fileID: 6285920338282617458, guid: 758fda0d5f5caa34983501d248ebd707, type: 3}
+    - {fileID: 923204824567906798, guid: 17b79bb6c45293544966b985d9040954, type: 3}
+    - {fileID: 1094225645926197080, guid: e110aa8435710994bb0221ed92df703a, type: 3}
 --- !u!114 &1461756161
 MonoBehaviour:
   m_ObjectHideFlags: 0
