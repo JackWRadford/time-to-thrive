@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1201665977990791752, guid: 7175ceef7978c9f48b481acc340d74d3,
+  m_Sprite: {fileID: -8250176132109445569, guid: a1e850ed536d19646acd5a3c2a6858f5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0010189414, y: 0.10290694}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.0625}
-    oldSize: {x: 3, y: 6}
+    pivot: {x: 0.5, y: 0.046875}
+    oldSize: {x: 1, y: 8}
     newSize: {x: 3, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -187,3 +187,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
+  placeing: 0
+  height: 0
+  isExternalConstruction: 0
+  isWall: 0
+  isFoundation: 0
+  isRoof: 0
+  isDoor: 0
+  isGroundLevel: 0
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
+  orientation: 0
+  translation: 0

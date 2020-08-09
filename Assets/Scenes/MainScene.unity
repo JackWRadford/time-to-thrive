@@ -9742,14 +9742,14 @@ MonoBehaviour:
   - seed: 5753
     amplitude: 4
     frequency: 4
-  levelScale: 2
+  levelScale: 15
   neighbourRadius:
+  - 10
+  - 10
+  - 10
+  - 2
+  - 1
   - 5
-  - 10
-  - 10
-  - 1
-  - 1
-  - 7
   treePrefab:
   - {fileID: 3466515846988768851, guid: d44ebd32aaa87d245a22cd76dcf4c7d9, type: 3}
   - {fileID: 6823617234609881137, guid: ae91c5146e9debb4cafeac753038de5e, type: 3}

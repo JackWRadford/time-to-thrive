@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8862269560330506961}
   - component: {fileID: 3259267710178867353}
   - component: {fileID: 3360141126103179794}
-  - component: {fileID: 3259267710486519613}
   - component: {fileID: 2168056196367242202}
   - component: {fileID: 5870283419767187295}
+  - component: {fileID: 2707265489999775645}
   m_Layer: 8
   m_Name: OakTree
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2492834077117129657, guid: 7175ceef7978c9f48b481acc340d74d3,
+  m_Sprite: {fileID: -3398288740560807470, guid: a1e850ed536d19646acd5a3c2a6858f5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,18 +100,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0010522604, y: 0.12001312}
+  m_Offset: {x: 0.000024735928, y: 0.12515044}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.0625}
-    oldSize: {x: 3, y: 6}
+    pivot: {x: 0.5, y: 0.046875}
+    oldSize: {x: 1, y: 8}
     newSize: {x: 3, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3618436, y: 0.2513616}
+  m_Size: {x: 0.24060214, y: 0.24108696}
   m_EdgeRadius: 0
 --- !u!114 &3360141126103179794
 MonoBehaviour:
@@ -131,33 +131,6 @@ MonoBehaviour:
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
---- !u!68 &3259267710486519613
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094225645926197080}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.67748445, y: 0.792722}
-  - {x: 0.172719, y: 0.9325712}
-  - {x: 0.6338525, y: 1.3655541}
-  - {x: -0.19232976, y: 1.8136296}
-  - {x: 0.46625674, y: 2.068897}
-  - {x: -0.014000058, y: 2.376494}
-  - {x: -0.39966893, y: 2.0863123}
-  - {x: -0.49818957, y: 1.4446208}
-  - {x: 0.004410863, y: 1.1435485}
-  - {x: -0.6277673, y: 1.0654528}
-  - {x: -0.604838, y: 0.78943586}
 --- !u!114 &2168056196367242202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +159,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
+  placeing: 0
+  height: 0
+  isExternalConstruction: 0
+  isWall: 0
+  isFoundation: 0
+  isRoof: 0
+  isDoor: 0
+  isGroundLevel: 0
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
+  orientation: 0
+  translation: 0
+--- !u!68 &2707265489999775645
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094225645926197080}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.92672646, y: 1.938232}
+  - {x: -0.83696306, y: 2.8703742}
+  - {x: 0.62966704, y: 2.8808455}
+  - {x: -0.8578571, y: 3.2793074}
+  - {x: -0.8673352, y: 4.065129}
+  - {x: 0.5883894, y: 4.024009}
+  - {x: -0.8362578, y: 4.5039883}
+  - {x: -0.86822593, y: 5.174802}
+  - {x: 0.523178, y: 5.245834}
+  - {x: -0.8960563, y: 5.60397}
+  - {x: -0.9152833, y: 6.2528114}
+  - {x: -0.08954525, y: 6.6535783}
+  - {x: -0.08954525, y: 6.643104}
+  - {x: 0.88179696, y: 6.2417}
+  - {x: 0.90680337, y: 5.929044}
+  - {x: -0.73086643, y: 6.114292}
+  - {x: 0.8780246, y: 5.52024}
+  - {x: 0.8727467, y: 4.828793}
+  - {x: -0.44106853, y: 4.786871}
+  - {x: 0.88476384, y: 4.3789325}
+  - {x: 0.9053306, y: 3.726281}
+  - {x: 0.8757868, y: 3.602942}
+  - {x: -0.5794147, y: 3.6924677}
+  - {x: 0.83596444, y: 3.2237844}
+  - {x: 0.85303855, y: 2.5863967}
+  - {x: -0.618893, y: 2.4607463}
+  - {x: 0.8642045, y: 2.2259808}
+  - {x: 0.9326366, y: 1.932322}
