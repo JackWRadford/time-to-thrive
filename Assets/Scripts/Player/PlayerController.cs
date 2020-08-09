@@ -585,8 +585,8 @@ public class PlayerController : MonoBehaviour
                             this.itemToPlacePos.y += this.itemToPlace.GetComponent<StackDetails>().height;
                             highlight.transform.position = itemToPlacePos;
                             //space free (green)
-                            highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
-                            //highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[0];
+                            //highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                            highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[0];
                         }
                         SetHighlightColor(Color.green);
                     }
@@ -617,7 +617,8 @@ public class PlayerController : MonoBehaviour
                             this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                             highlight.transform.position = itemToPlacePos;
                             //space free (green)
-                            highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                            //highlight.GetComponent<SpriteRenderer>().sprite = greenHighlight;
+                            highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[0];
                         }
                         SetHighlightColor(Color.green);
                     }
@@ -681,7 +682,8 @@ public class PlayerController : MonoBehaviour
                         this.itemToPlacePos = GetPosInfrontOfPlayerPlusOffset();
                         highlight.transform.position = itemToPlacePos;
                         //space not free (red)
-                        highlight.GetComponent<SpriteRenderer>().sprite = redHighlight; 
+                        //highlight.GetComponent<SpriteRenderer>().sprite = redHighlight;
+                        highlight.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Placeable/" + this.heldItem.title)[0];
                     }
                     SetHighlightColor(Color.red);
                 }
