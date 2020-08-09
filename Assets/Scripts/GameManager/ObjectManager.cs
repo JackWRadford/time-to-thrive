@@ -114,10 +114,10 @@ public class ObjectManager : MonoBehaviour
     {
         //add "main" space and other surrounding spaced specified
         AddObjectGO(x, y, title, obj);
-        Debug.Log("add main");
+        //Debug.Log("add main");
         foreach (var pos in listOfPositions)
         {
-            Debug.Log("add other");
+            //Debug.Log("add other");
             AddObjectGO(x + pos.x, y + pos.y, title, obj);
         }
     }

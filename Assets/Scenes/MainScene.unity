@@ -9560,7 +9560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
   noiseMapGeneration: {fileID: 1461756159}
-  mapScale: 30
+  mapScale: 40
   heightTerrainTypes:
   - name: water
     threshold: 0.4
@@ -9649,21 +9649,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   moistureWaves:
-  - seed: 2769
-    amplitude: 1
-    frequency: 0.25
+  - seed: 2321
+    amplitude: 0.5
+    frequency: 0.1
   heatWaves:
-  - seed: 3432
-    amplitude: 1
+  - seed: 4124
+    amplitude: 0.5
     frequency: 0.25
   heightWaves:
-  - seed: 2313
+  - seed: 6122
     amplitude: 1
     frequency: 1
-  - seed: 7432
+  - seed: 8765
     amplitude: 2
     frequency: 0.25
-  - seed: 6634
+  - seed: 7237
     amplitude: 0.5
     frequency: 1
   visualizationmode: 3
@@ -9678,10 +9678,10 @@ MonoBehaviour:
     - name: tundra
       index: 1
   - biomes:
-    - name: savanna
-      index: 2
-    - name: savanna
-      index: 2
+    - name: grassland
+      index: 5
+    - name: grassland
+      index: 5
     - name: boreal forest
       index: 3
     - name: tundra
