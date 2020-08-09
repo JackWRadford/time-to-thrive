@@ -99,7 +99,7 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
                 
             },
-            1,64,-1, true, false, true, false),
+            1,64,-1, true, false, false, false),
             //Roof
             new GameItem(9, "Roof", "Building",
             new Dictionary<string, int>{

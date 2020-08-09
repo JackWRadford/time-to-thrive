@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 253682610296244538}
   - component: {fileID: 997038629267801599}
   m_Layer: 8
-  m_Name: Wall_0_above
+  m_Name: Wall_above
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7050923899129507895, guid: 1e5a6341466ef5b46a66a1b5c2a9756a,
+  m_Sprite: {fileID: 5139951554315204928, guid: 20a7a17054349c74ea950417aa36edca,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
   wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
+  alternativeSprite: {fileID: 0}
   health: 1
   orientation: 0
 --- !u!114 &6863277742041373077
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetX: 8
-  offsetY: 12
+  offsetY: -0.01
 --- !u!114 &253682610296244538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,12 @@ MonoBehaviour:
   isFoundation: 0
   isRoof: 0
   isDoor: 0
+  isGroundLevel: 0
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
+  orientation: 0
+  translation: 0
 --- !u!68 &997038629267801599
 EdgeCollider2D:
   m_ObjectHideFlags: 0

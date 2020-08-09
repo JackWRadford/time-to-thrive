@@ -788,234 +788,68 @@ public class TileData
         {
             if(objPos.SequenceEqual(pos))
             {
-                //if heldItem is external construction check for foundation (if no foundation return false)
-                if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
+                //if heldItem is external construction
+                if((obj.GetComponent<StackDetails>().isExternalConstruction))
                 {
-                    //check for foundation in first position in list for specified position
-                    if(gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)
+                    //check if object to be placed is a roof
+                    if(obj.GetComponent<StackDetails>().isRoof)
                     {
-                        //check if object to be placed is a roof
-                        if(obj.GetComponent<StackDetails>().isRoof)
+                        //check there is not already a roof
+                        foreach (var placedObj in gObjects[objPos])
                         {
-                            //check there is not already a roof
-                            foreach (var placedObj in gObjects[objPos])
+                            if(placedObj.GetComponent<StackDetails>().isRoof)
                             {
-                                if(placedObj.GetComponent<StackDetails>().isRoof)
-                                {
-                                    return false;
-                                }
+                                return false;
                             }
-                            return true;
-
-                            //check there are two walls in the same orientation (below)
-                            // int r0c = 0;
-                            // int r1c = 0;
-                            // int r2c = 0;
-                            // int r3c = 0;
-                            // foreach (var placedObj in gObjects[objPos])
-                            // {
-                            //     if(placedObj.GetComponent<StackDetails>().isWall)
-                            //     {
-                            //         //save number of walls for each orientation and check for 2 of any orientation
-                            //         switch(placedObj.GetComponent<WallController>().orientation)
-                            //         {
-                            //             case 0:
-                            //                 r0c++;
-                            //                 break;
-                            //             case 1:
-                            //                 r1c++;
-                            //                 break;
-                            //             case 2:
-                            //                 r2c++;
-                            //                 break;
-                            //             case 3:
-                            //                 r3c++;
-                            //                 break;
-                            //             default:
-                            //                 break;
-                            //         }
-                            //     }
-                            //     if((r0c >=2)||(r1c >=2)||(r2c >=2)||(r3c >=2))
-                            //     {
-                            //         return true;
-                            //     }
-                            // }
-
-                            //check if there is a roof in an adjacent position (NESW)
-                            // List<float> offsetN = new List<float>{objPos[0]+0,objPos[1]+1};
-                            // List<float> offsetE = new List<float>{objPos[0]+1,objPos[1]+0};
-                            // List<float> offsetS = new List<float>{objPos[0]+0,objPos[1]-1};
-                            // List<float> offsetW = new List<float>{objPos[0]-1,objPos[1]+0};
-                            // // Debug.Log("Adjacent position N: " + offsetN[0] + "," + offsetN[1]);
-                            // // Debug.Log("Adjacent position E: " + offsetE[0] + "," + offsetE[1]);
-                            // // Debug.Log("Adjacent position S: " + offsetS[0] + "," + offsetS[1]);
-                            // // Debug.Log("Adjacent position W: " + offsetW[0] + "," + offsetW[1]);
-
-                            // //do sequence matching for each (if exists check for adjacent roof)
-                            // foreach (var adjObjPos in gObjects.Keys)
-                            // {
-                            //     //Debug.Log(adjObjPos[0].ToString() + "," + adjObjPos[1].ToString());
-                            //     if((adjObjPos.SequenceEqual(offsetN))||(adjObjPos.SequenceEqual(offsetE))||(adjObjPos.SequenceEqual(offsetS))
-                            //     ||(adjObjPos.SequenceEqual(offsetW)))
-                            //     {
-                            //         //Debug.Log("Found adjacent GOs data");
-                            //         //found adjacent list of GOs, check for roof
-                            //         foreach (var adjacentObj in gObjects[adjObjPos])
-                            //         {
-                            //             if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                            //             {
-                            //                 return true;
-                            //             }
-                            //         }
-                            //     }
-                            // }
-
-
-                            // foreach (var adjacentObj in gObjects[offsetN])
-                            // {
-                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                            //     {
-                            //         return true;
-                            //     }
-                            // }
-                            // foreach (var adjacentObj in gObjects[offsetE])
-                            // {
-                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                            //     {
-                            //         return true;
-                            //     }
-                            // }
-                            // foreach (var adjacentObj in gObjects[offsetS])
-                            // {
-                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                            //     {
-                            //         return true;
-                            //     }
-                            // }
-                            // foreach (var adjacentObj in gObjects[offsetW])
-                            // {
-                            //     if(adjacentObj.GetComponent<StackDetails>().isRoof)
-                            //     {
-                            //         return true;
-                            //     }
-                            // }
                         }
-
-
-                        //check if object to be placed is a wall
-                        if(obj.GetComponent<StackDetails>().isWall)
-                        {
-                            // REMOVE???
-                            //if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))// REMOVE???
-                            //{
-                                //check either no walls or wall that is same orientation as one being placed
-                                // if(gObjects[objPos].Count > 2)
-                                // {
-                                //     return false;
-                                // }
-                                if(gObjects[objPos].Count == 1)
-                                {
-                                    //just foundation
-                                    return true;
-                                }
-                                //if there is a wall (on foundation)
-                                //else if(gObjects[objPos][1].GetComponent<StackDetails>().isWall)
-                                //{
-                                    //check not more than two of the oreientation being placed
-                                    int c = 0;
-                                    foreach (var placedObj in gObjects[objPos])
-                                    {
-                                        if(placedObj.GetComponent<StackDetails>().isWall)
-                                        {
-                                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
-                                            {
-                                                //found wall of same orientation being placed (increment)
-                                                c++;
-                                            }
-                                        }
-                                        if(c >=2)
-                                        {
-                                            return false;
-                                        }
-
-                                        //if door in same orientation (false)
-                                        if(placedObj.GetComponent<StackDetails>().isDoor)
-                                        {
-                                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
-                                            {
-                                                return false;
-                                            }
-                                        }
-                                    }
-                                    return true;
-                                //}
-                                //else
-                                //{
-                                    //return false;
-                                //}
-                            //}
-                        }
-
-                        //check if object to be placed is a door
-                        if(obj.GetComponent<StackDetails>().isDoor)
-                        {
-                            // if(gObjects[objPos].Count == 1)
-                            // {
-                            //     //just foundation
-                            //     return true;
-                            // }
-                            //if there are any walls in same orinetation then can not place
-                            foreach (var placedObj in gObjects[objPos])
-                            {
-                                if((placedObj.GetComponent<StackDetails>().isWall)||(placedObj.GetComponent<StackDetails>().isDoor))
-                                {
-                                    if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
-                                    {
-                                        //found wall of same orientation being placed
-                                        return false;
-                                    }
-                                }
-                            }
-                            return true;
-                        }
+                        return true;
                     }
-                    else
+
+                    //check if object to be placed is a wall
+                    if(obj.GetComponent<StackDetails>().isWall)
                     {
-                        return false;
+                        //check not more than two placed
+                        int c = 0;
+                        foreach (var placedObj in gObjects[objPos])
+                        {
+                            if(!placedObj.GetComponent<StackDetails>().isWall)
+                            {
+                                return false;
+                            }
+                            if(placedObj.GetComponent<StackDetails>().isWall)
+                            {
+                                c++;
+                            }
+                            if(c >=2)
+                            {
+                                return false;
+                            }
+                        }
+                        return true;
                     }
-                }
-                else if((obj.GetComponent<StackDetails>().canBePlacedInside)&&gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)
-                {
-                    //check if walls/doors are in the way
-                    
-                    return true;
+
+                    //check if object to be placed is a door
+                    // if(obj.GetComponent<StackDetails>().isDoor)
+                    // {
+                    //     foreach (var placedObj in gObjects[objPos])
+                    //     {
+                    //         if((placedObj.GetComponent<StackDetails>().isWall)||(placedObj.GetComponent<StackDetails>().isDoor))
+                    //         {
+                    //             if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
+                    //             {
+                    //                 //found wall of same orientation being placed
+                    //                 return false;
+                    //             }
+                    //         }
+                    //     }
+                    //     return true;
+                    // }
                 }
                 else
                 {
                     //Debug.Log("not ec");
                     return false;
                 }
-
-                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                // if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
-                // {
-                //     if((obj.GetComponent<StackDetails>().isWall)&&(gObjects[objPos].Count >= 2))
-                //     {
-                //         return false;
-                //     }
-                //     //object can be stacked
-                //     return true;
-                // }
-                //return false;
-            }
-            //return false;
-        }
-        if(obj != null)
-        {
-            if((obj.GetComponent<StackDetails>().isExternalConstruction)&&(!obj.GetComponent<StackDetails>().isFoundation))
-            {
-                //Debug.Log("no foundation");
-                return false;
             }
         }
         //Debug.Log("no objects");
@@ -1054,22 +888,6 @@ public class TileData
         {
             if(objPos.SequenceEqual(pos))
             {
-                //Debug.Log("space filled");
-                //there is a list of data for specified position
-                //check if last obj in list canBeUnder and this obj canBeOver (inheritance is better?)
-                // if((gObjects[objPos][gObjects[objPos].Count-1].GetComponent<StackDetails>().canBeUnder)&&(obj.GetComponent<StackDetails>().canBeOver))
-                // {
-                //     //check if there is a foundation and no other walls (of the same orientation)
-                //     if((!gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count != 1))
-                //     {
-                //         return true;
-                //     }
-                //     else if((gObjects[objPos][0].GetComponent<StackDetails>().isFoundation)&&(gObjects[objPos].Count > 1))
-                //     {
-                //         return true;
-                //     }
-                // }
-
                 //if roof being placed it will always be above
                 if(obj.GetComponent<StackDetails>().isRoof)
                 {
@@ -1083,15 +901,11 @@ public class TileData
                     {
                         if(placedObj.GetComponent<StackDetails>().isWall)
                         {
-                            if(placedObj.GetComponent<WallController>().orientation == obj.GetComponent<WallController>().orientation)
-                            {
-                                //found wall of same orientation being placed (place above)
-                                return true;
-                            }
+                            //found wall of same orientation being placed (place above)
+                            return true; 
                         }
                     } 
                 }
-
                 return false;
             }
         }

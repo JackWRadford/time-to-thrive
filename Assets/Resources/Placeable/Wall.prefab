@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8240758309333319481}
   - component: {fileID: 9148774127496940522}
   m_Layer: 8
-  m_Name: Wall_0
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5356574185940491189, guid: 0dfd18c01533df14aba84ec131720bc0,
+  m_Sprite: {fileID: 3196942724577774030, guid: 24cf53d6c1c41754fb8d88c09a7e6c26,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,10 +100,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00021383166, y: 0.09306383}
+  m_Offset: {x: -0.00021383166, y: 0.5003377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.40625}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.97180754, y: 0.15696478}
+  m_Size: {x: 0.97180754, y: 0.97151256}
   m_EdgeRadius: 0
 --- !u!114 &6302999755966412887
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
-  alternativeSprite: {fileID: 4790705184681872096, guid: aa11d84075dfe774e8ed78786ebc4f56,
+  alternativeSprite: {fileID: -3931538429884421757, guid: 3d76b3a7bb0968c40b30b118612834b3,
     type: 3}
   health: 1
   orientation: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetX: 8
-  offsetY: 13
+  offsetY: 0
 --- !u!114 &-8240758309333319481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,11 @@ MonoBehaviour:
   isRoof: 0
   isDoor: 0
   isGroundLevel: 1
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
   orientation: 0
+  translation: 0
 --- !u!68 &9148774127496940522
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -185,17 +189,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.48544574, y: 0.19841564}
-  - {x: -0.46959567, y: 0.9565423}
-  - {x: -0.3570291, y: 0.21875489}
-  - {x: -0.24528942, y: 0.93655527}
-  - {x: -0.16784102, y: 0.2241121}
-  - {x: -0.083753705, y: 0.93415827}
-  - {x: 0.005349189, y: 0.22611994}
-  - {x: 0.08192819, y: 0.943915}
-  - {x: 0.16585928, y: 0.22969407}
-  - {x: 0.25961778, y: 0.93802536}
-  - {x: 0.32937425, y: 0.23067981}
-  - {x: 0.42443684, y: 0.9315814}
-  - {x: 0.47998786, y: 0.60957354}
-  - {x: 0.48180708, y: 0.1875}
+  - {x: 0.47214437, y: 1.0447507}
+  - {x: 0.4721444, y: 1.9506863}
+  - {x: 0.29334107, y: 1.0725641}
+  - {x: 0.1701658, y: 1.9308194}
+  - {x: 0.054937065, y: 1.0765378}
+  - {x: -0.021264065, y: 1.0840764}
+  - {x: -0.11591935, y: 1.9387662}
+  - {x: -0.2629351, y: 1.088458}
+  - {x: -0.429818, y: 1.9506865}
+  - {x: -0.44571176, y: 1.0725645}

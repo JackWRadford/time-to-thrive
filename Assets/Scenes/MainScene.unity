@@ -1356,6 +1356,7 @@ MonoBehaviour:
     placeable: 0
     consumable: 0
     rotatable: 0
+    translatable: 0
 --- !u!114 &163029875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9648,21 +9649,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   moistureWaves:
-  - seed: 4769
+  - seed: 2769
     amplitude: 1
     frequency: 0.25
   heatWaves:
-  - seed: 5432
+  - seed: 3432
     amplitude: 1
     frequency: 0.25
   heightWaves:
-  - seed: 4523
+  - seed: 2313
     amplitude: 1
     frequency: 1
-  - seed: 6432
+  - seed: 7432
     amplitude: 2
     frequency: 0.25
-  - seed: 5634
+  - seed: 6634
     amplitude: 0.5
     frequency: 1
   visualizationmode: 3
