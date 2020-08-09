@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 1
   canBeUnder: 1
-  placeing: 0
+  placeing: 1
   height: 1
   isExternalConstruction: 1
   isWall: 1

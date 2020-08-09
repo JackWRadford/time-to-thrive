@@ -734,7 +734,7 @@ public class TileData
 
                 for (int i = gObjects[objPos].Count - 1; i >= 0; i--)
                 {
-                    //Debug.Log("remove");
+                    Debug.Log("remove");
                     gObjects[objPos][i].GetComponent<StackDetails>().DestroyGO();
                 }
 
@@ -888,6 +888,7 @@ public class TileData
         {
             if(objPos.SequenceEqual(pos))
             {
+                //Debug.Log("found objects");
                 //if roof being placed it will always be above
                 if(obj.GetComponent<StackDetails>().isRoof)
                 {
@@ -897,10 +898,12 @@ public class TileData
                 //check that item to be placed can be on top
                 if(obj.GetComponent<StackDetails>().canBeOver)
                 {
+                    //Debug.Log("can be over");
                    foreach (var placedObj in gObjects[objPos])
                     {
                         if(placedObj.GetComponent<StackDetails>().isWall)
                         {
+                            //Debug.Log("found wall under");
                             //found wall of same orientation being placed (place above)
                             return true; 
                         }

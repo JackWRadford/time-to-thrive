@@ -9706,7 +9706,7 @@ MonoBehaviour:
       index: 1
   treeGeneration: {fileID: 1461756160}
   riverGeneration: {fileID: 0}
-  renderDistance: 1
+  renderDistance: 2
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0

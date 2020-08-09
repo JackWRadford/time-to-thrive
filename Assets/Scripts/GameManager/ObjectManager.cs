@@ -261,14 +261,23 @@ public class ObjectManager : MonoBehaviour
             this.currentX = x;
             this.currentY = y;
 
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x - TerrainGen.chunkSize, y).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x, y).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x + TerrainGen.chunkSize, y).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y - TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x - TerrainGen.chunkSize, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
+            //if(FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize) != null)
             FindChunkFromCoords(x + TerrainGen.chunkSize, y - TerrainGen.chunkSize).MakeConstructionSeeThrough();
 
             this.constructionIsSeeThrough = true;
@@ -282,7 +291,7 @@ public class ObjectManager : MonoBehaviour
         {
             this.currentX = x;
             this.currentY = y;
-
+            
             FindChunkFromCoords(x - TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
             FindChunkFromCoords(x, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
             FindChunkFromCoords(x + TerrainGen.chunkSize, y + TerrainGen.chunkSize).AntiMakeConstructionSeeThrough();
