@@ -11,6 +11,7 @@ public class UIInventory : MonoBehaviour
     public Transform bagSlotPanel;
     public Transform equipSlotPanel;
     public GameObject bagUI;
+    public GameObject canvas;
     private int selectedSlot = 0;
     private int prevSelectedSlot = -1;
     
@@ -71,7 +72,10 @@ public class UIInventory : MonoBehaviour
     void Start()
     {
         //close bag UI (needs to be open initially to run Awake)
-        CloseBag();
+        //CloseBag();
+
+        //close main HUD (needs to be open initially to run Awake for bag)
+        canvas.GetComponent<HUDController>().CloseMainHUD();
     }
 
     public void SetSlotSelected(int s)

@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\Saving\TreeData.cs" />
      <Compile Include="Assets\Scripts\Saving\WallData.cs" />
      <Compile Include="Assets\Scripts\UI\CanvasScript.cs" />
+     <Compile Include="Assets\Scripts\UI\HUDController.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerHTH.cs" />

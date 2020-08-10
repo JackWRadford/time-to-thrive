@@ -102,7 +102,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                         {
                             if((this.item.count < this.item.maxCount))
                             {
-                                Debug.Log("can stack");
+                                //Debug.Log("can stack");
                                 int t = selectedItem.item.count;
                                 for (int i = 0; i < t; i++)
                                 {
@@ -110,7 +110,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                                     this.item.count++;
                                     if(this.item.count == this.item.maxCount)
                                     {
-                                        Debug.Log("maxed");
+                                        //Debug.Log("maxed");
                                         UpdateItem(this.item);
                                         if(selectedItem.item.count <= 0)
                                         {
@@ -125,7 +125,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                                     }
                                     if(selectedItem.item.count <= 0)
                                     {
-                                        Debug.Log("ran out");
+                                        //Debug.Log("ran out");
                                         UpdateItem(this.item);
                                         GameInventory.instance.RemoveSelectedItem(selectedItem.item);
                                         selectedItem.UpdateItem(null);
