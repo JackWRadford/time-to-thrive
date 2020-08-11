@@ -44,6 +44,9 @@ public class HUDController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
+    //open relevant section for TAB selected
+    
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         //make gameManager aware that mouse is over main HUD UI 
