@@ -64,7 +64,7 @@ public class UICrafting : MonoBehaviour
                 ChangeSection(armourSection);
                 break;
 
-            case "Build":
+            case "Building":
                 ChangeSection(buildSection);
                 break;
 
@@ -81,16 +81,18 @@ public class UICrafting : MonoBehaviour
         {
             currentOpenSection.SetActive(false);
             currentOpenSection = section;
+            section.SetActive(!section.activeInHierarchy);
         }
         else if(currentOpenSection == section)
         {
-            currentOpenSection = null;
+            //currentOpenSection = null;
         }
         else
         {
             currentOpenSection = section;
+            section.SetActive(!section.activeInHierarchy);
         }
-        section.SetActive(!section.activeInHierarchy);
+        // section.SetActive(!section.activeInHierarchy);
     }
 
     //try to craft selected item

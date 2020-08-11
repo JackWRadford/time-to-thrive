@@ -1017,7 +1017,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: e98f5c08b5e70aa29f55830dec27272d
+      Hash: 68e89acfe521565fae71c1a9fb154f27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HUDController
