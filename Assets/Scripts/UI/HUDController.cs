@@ -97,16 +97,18 @@ public class HUDController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             currentOpenSection.SetActive(false);
             currentOpenSection = section;
+            section.SetActive(!section.activeInHierarchy);
         }
         else if(currentOpenSection == section)
         {
-            currentOpenSection = null;
+            //currentOpenSection = null;
         }
         else
         {
             currentOpenSection = section;
+            section.SetActive(!section.activeInHierarchy);
         }
-        section.SetActive(!section.activeInHierarchy);
+        // section.SetActive(!section.activeInHierarchy);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
