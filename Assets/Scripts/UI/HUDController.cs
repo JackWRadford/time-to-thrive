@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject mainHUD;
-    
     private UIItem selectedItem; 
     private Tooltip tooltip;
     private GameManager gameManager;
 
-    //private bool mainHUDisIOpen = false;
+    private GameObject currentOpenSection;
+
+    public GameObject inventorySection;
+    public GameObject craftingSection;
+    public GameObject researchSection;
+    public GameObject storeSection;
+
+    
 
     void Awake()
     {
@@ -22,13 +29,19 @@ public class HUDController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void Start()
     {
-        //CloseMainHUD();
+        inventorySection.SetActive(false);
+        
     }
 
     public void OpenMainHUD()
     {
+        ChangeHUDSection(inventorySection);
         mainHUD.SetActive(true);
-        //mainHUDisIOpen = true;
+        // if(currentOpenSection != null)
+        // {
+        //     currentOpenSection.SetActive(false);
+        //     currentOpenSection = null;
+        // }
     }
 
     public void CloseMainHUD()
@@ -42,22 +55,69 @@ public class HUDController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             //Update selectedItem UI
             selectedItem.UpdateItem(null);
         }
+        if(currentOpenSection != null)
+        {
+            currentOpenSection.SetActive(false);
+            currentOpenSection = null;
+        }
     }
 
     //open relevant section for TAB selected
-    
+    public void ExpandHUDSection(Button btn)
+    {
+        Debug.Log(btn.name);
+        switch (btn.name)
+        {
+            case "InventoryTAB":
+                ChangeHUDSection(inventorySection);
+                break;
+
+            case "craftingTAB":
+                ChangeHUDSection(craftingSection);
+                break;
+            
+            case "researchTAB":
+                ChangeHUDSection(researchSection);
+                break;
+
+            case "storeTAB":
+                ChangeHUDSection(storeSection);
+                break;
+
+            default:
+                Debug.Log("No section found");
+                break;
+        }
+    }
+
+    //logic for opening and closing correct HUD sections
+    public void ChangeHUDSection(GameObject section)
+    {
+        if((currentOpenSection != null)&&(currentOpenSection != section))
+        {
+            currentOpenSection.SetActive(false);
+            currentOpenSection = section;
+        }
+        else if(currentOpenSection == section)
+        {
+            currentOpenSection = null;
+        }
+        else
+        {
+            currentOpenSection = section;
+        }
+        section.SetActive(!section.activeInHierarchy);
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         //make gameManager aware that mouse is over main HUD UI 
         gameManager.mouseOverMainHUDUI = true;
-        //Debug.Log("in");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         //make gameManager aware that mouse is not over main HUD UI
         gameManager.mouseOverMainHUDUI = false;
-        //Debug.Log("out");
     }
 }

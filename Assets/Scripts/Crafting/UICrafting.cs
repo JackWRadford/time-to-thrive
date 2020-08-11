@@ -14,7 +14,6 @@ public class UICrafting : MonoBehaviour
     public GameObject toolsSection;
     public GameObject weaponsSection;
     public GameObject armourSection;
-
     public GameObject buildSection;
 
     private GameManager gameManager;
