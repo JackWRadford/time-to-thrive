@@ -18,7 +18,7 @@ public class TerrainGen : MonoBehaviour
     private float mapScale = 0;
 
     //size of tiles made with perlin noise
-    public static int chunkSize = 32;
+    public static int chunkSize = 16;
 
     [SerializeField]
     private TerrainType[] heightTerrainTypes = null;
