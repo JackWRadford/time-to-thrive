@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem: MonoBehaviour
 {
-    private string worldName;
+    private static string worldName;
 
     private  PassData passData;
     
@@ -16,24 +16,14 @@ public class SaveSystem: MonoBehaviour
         passData = GameObject.Find("PassInfo").GetComponent<PassData>();
 
         //set world name from menu scene
-        this.worldName = passData.GetWorldName();
-        Debug.Log("Passed Name: " + this.worldName.ToString());
+        worldName = passData.GetWorldName();
+        Debug.Log("Passed Name: " + worldName.ToString());
     }
-
-    // public void SetWorldName(string worldName)
-    // {
-    //     this.worldName = worldName;
-    // }
-
-    // public string GetWorldName()
-    // {
-    //     return this.worldName;
-    // }
 
     // //generic save 
     public static void Save<T>(T objectToSave, string key)
     {
-        string path = Application.persistentDataPath + "/saves/";
+        string path = Application.persistentDataPath + "/saves/" + worldName + "/";
         //creates directory if one doesn't already exist
         Directory.CreateDirectory(path);
         BinaryFormatter formatter = new BinaryFormatter();
@@ -48,7 +38,7 @@ public class SaveSystem: MonoBehaviour
     // //generic load 
     public static T Load<T>(string key)
     {
-        string path = Application.persistentDataPath + "/saves/";
+        string path = Application.persistentDataPath + "/saves/" + worldName + "/";
         BinaryFormatter formatter = new BinaryFormatter();
         //return default value of that type id we don't find a file
         T returnValue = default(T);
@@ -60,7 +50,7 @@ public class SaveSystem: MonoBehaviour
     }
 
     public static bool SaveExists(string key){
-        string path = Application.persistentDataPath + "/saves/" + key + ".txt";
+        string path = Application.persistentDataPath + "/saves/" + worldName + "/" + key + ".txt";
         return File.Exists(path);
     }
 
