@@ -4,8 +4,31 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SaveSystem
+public class SaveSystem: MonoBehaviour
 {
+    private string worldName;
+
+    private  PassData passData;
+    
+    void Awake()
+    {
+        //get worlds controller (passed from menu)
+        passData = GameObject.Find("PassInfo").GetComponent<PassData>();
+
+        //set world name from menu scene
+        this.worldName = passData.GetWorldName();
+        Debug.Log("Passed Name: " + this.worldName.ToString());
+    }
+
+    // public void SetWorldName(string worldName)
+    // {
+    //     this.worldName = worldName;
+    // }
+
+    // public string GetWorldName()
+    // {
+    //     return this.worldName;
+    // }
 
     // //generic save 
     public static void Save<T>(T objectToSave, string key)

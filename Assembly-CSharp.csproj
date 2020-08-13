@@ -60,6 +60,8 @@
      <Compile Include="Assets\Scripts\Inventory\Tooltip.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIInventory.cs" />
      <Compile Include="Assets\Scripts\Inventory\UIItem.cs" />
+     <Compile Include="Assets\Scripts\Menu\PassData.cs" />
+     <Compile Include="Assets\Scripts\Menu\WorldsController.cs" />
      <Compile Include="Assets\Scripts\Other\DoNotDestroy.cs" />
      <Compile Include="Assets\Scripts\Other\EventSystem.cs" />
      <Compile Include="Assets\Scripts\Other\FollowPlayerCam.cs" />
