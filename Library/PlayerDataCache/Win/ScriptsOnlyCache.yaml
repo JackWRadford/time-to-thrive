@@ -25,12 +25,14 @@ ScriptsOnlyBuild:
     - MainMenu
     - NoiseMapGeneration
     - ObjectManager
+    - PassData
     - PauseMenu
     - PickUp
     - PlacementOffset
     - PlayerController
     - PlayerHTH
     - RiverGeneration
+    - SaveSystem
     - StackDetails
     - TallTree
     - Tayx.Graphy.Advanced.G_AdvancedData
@@ -56,6 +58,7 @@ ScriptsOnlyBuild:
     - UIInventory
     - UIItem
     - WallController
+    - WorldsController
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachineFramingTransposer
@@ -139,6 +142,9 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.ButtonEditor
+    - UnityEditor.UI.ImageEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -219,6 +225,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11778}
     - Class: 114
       Script: {instanceID: 11802}
+    - Class: 114
+      Script: {instanceID: 11846}
     - Class: 114
       Script: {instanceID: 11864}
     - Class: 114
@@ -312,43 +320,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14524}
     - Class: 114
-      Script: {instanceID: 14836}
+      Script: {instanceID: 14838}
     - Class: 114
-      Script: {instanceID: 14890}
+      Script: {instanceID: 14892}
     - Class: 114
-      Script: {instanceID: 14922}
+      Script: {instanceID: 14924}
     - Class: 114
-      Script: {instanceID: 15000}
+      Script: {instanceID: 15002}
     - Class: 114
-      Script: {instanceID: 15036}
+      Script: {instanceID: 15038}
     - Class: 114
-      Script: {instanceID: 15046}
+      Script: {instanceID: 15048}
     - Class: 114
-      Script: {instanceID: 15104}
+      Script: {instanceID: 15106}
     - Class: 114
-      Script: {instanceID: 15182}
+      Script: {instanceID: 15186}
     - Class: 114
-      Script: {instanceID: 15188}
+      Script: {instanceID: 15192}
     - Class: 114
-      Script: {instanceID: 15248}
+      Script: {instanceID: 15252}
     - Class: 114
-      Script: {instanceID: 15272}
+      Script: {instanceID: 15276}
     - Class: 114
-      Script: {instanceID: 15306}
+      Script: {instanceID: 15310}
     - Class: 114
-      Script: {instanceID: 15312}
+      Script: {instanceID: 15316}
     - Class: 114
-      Script: {instanceID: 15334}
+      Script: {instanceID: 15338}
     - Class: 114
-      Script: {instanceID: 15368}
+      Script: {instanceID: 15372}
     - Class: 114
-      Script: {instanceID: 15376}
+      Script: {instanceID: 15380}
     - Class: 114
-      Script: {instanceID: 15394}
+      Script: {instanceID: 15398}
     - Class: 114
-      Script: {instanceID: 15446}
+      Script: {instanceID: 15450}
     - Class: 114
-      Script: {instanceID: 15460}
+      Script: {instanceID: 15464}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -503,29 +511,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14558}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14696}
     - Class: 114
-      Script: {instanceID: 14858}
+      Script: {instanceID: 14810}
     - Class: 114
-      Script: {instanceID: 15006}
+      Script: {instanceID: 14860}
     - Class: 114
-      Script: {instanceID: 15062}
+      Script: {instanceID: 15008}
     - Class: 114
-      Script: {instanceID: 15104}
+      Script: {instanceID: 15064}
     - Class: 114
-      Script: {instanceID: 15270}
+      Script: {instanceID: 15106}
+    - Class: 114
+      Script: {instanceID: 15152}
     - Class: 114
       Script: {instanceID: 15274}
     - Class: 114
-      Script: {instanceID: 15306}
+      Script: {instanceID: 15278}
     - Class: 114
-      Script: {instanceID: 15312}
+      Script: {instanceID: 15310}
     - Class: 114
-      Script: {instanceID: 15336}
+      Script: {instanceID: 15316}
     - Class: 114
-      Script: {instanceID: 15464}
+      Script: {instanceID: 15340}
     - Class: 114
-      Script: {instanceID: 15470}
+      Script: {instanceID: 15468}
+    - Class: 114
+      Script: {instanceID: 15474}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -822,6 +834,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SaveSystem
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1742,6 +1760,12 @@ ScriptsOnlyBuild:
     className: CinemachineUniversalPixelPerfect
   - hash:
       serializedVersion: 2
+      Hash: d1e0c667bc94eeb489d035ef7e8a836c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WorldsController
+  - hash:
+      serializedVersion: 2
       Hash: 36112b0a16753cab0931521e4de67ef6
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1860,6 +1884,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayModeRunnerCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PassData
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
