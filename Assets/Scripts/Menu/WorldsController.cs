@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 public class WorldsController : MonoBehaviour
 {
     public GameObject worldNameInputText;
+    public GameObject worldDetailsList;
     private PassData passData;
 
     private string worldName;
@@ -19,7 +20,8 @@ public class WorldsController : MonoBehaviour
         string[] worldDirectories = loadWorldData();
         foreach (var dir in worldDirectories)
         {
-            Debug.Log(GetWorldNameFromPath(dir));
+            //generate worldData UI element and add to content list
+            GenerateWorldDataUI(dir);
         }
     }
     
@@ -48,9 +50,22 @@ public class WorldsController : MonoBehaviour
         return Regex.Match(path, "[^/]+$").ToString();
     }
 
-    //method to generate WorldData prefab
-    public void GenerateWorldDataUI()
+    //method to generate WorldData prefab and add to content list
+    public void GenerateWorldDataUI(string path)
     {
-        
+        GameObject worldDetailsUI = Instantiate(Resources.Load<GameObject>("UIElements/WorldDetails")) as GameObject;
+
+        if(worldDetailsUI != null)
+        {
+            //set (first child) WorldName Text to worlName from path
+            worldDetailsUI.transform.GetChild(0).GetComponent<Text>().text = GetWorldNameFromPath(path);
+
+            //add new worldDetails as child of content list
+            worldDetailsUI.transform.SetParent(this.worldDetailsList.transform);
+
+        }else
+        {
+            Debug.Log("worldDetials prefab is NULL");
+        }
     }
 }
