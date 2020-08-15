@@ -32,6 +32,8 @@ public class WorldsController : MonoBehaviour
     {
         this.currentChosenWorld = GetWorldNameFromPath(world.GetComponent<Text>().text.ToString());
         Debug.Log(this.currentChosenWorld);
+        //set selected world in passData
+        passData.SetWorldName(this.currentChosenWorld);
     }
     
     //method to add new world
