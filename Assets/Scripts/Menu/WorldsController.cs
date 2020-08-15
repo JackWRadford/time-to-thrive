@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Text;
+using System.Linq;
 
 public class WorldsController : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class WorldsController : MonoBehaviour
     private PassData passData;
 
     private string currentChosenWorld;
+
+    //invalid windows starting fileName strings
+    private string[] invalidFileNamePrefixes = new string[]{"CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7",
+    "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8","LPT9"};
 
     void Awake()
     {
@@ -81,5 +87,54 @@ public class WorldsController : MonoBehaviour
         {
             Debug.Log("worldDetials prefab is NULL");
         }
+    }
+
+    /*
+    method to correct filename so can be saved in windows (other platforms?)
+    ", *, <, >, ?, \, |, /, :,
+    not end with space or period
+    reserved names (CON, PRN, ...)
+    */
+    public string CreateValidFileName(string name)
+    {
+        StringBuilder sb = new StringBuilder(name);
+
+        //replace any invalid chars with '_'
+        foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+        {
+            sb.Replace(c, '_');
+        }
+
+        //add '_' before and after invalid word at begining of filename
+        if(this.invalidFileNamePrefixes.Any(prefix => sb.ToString().StartsWith(prefix)))
+        {
+            sb.Insert(0, "_");
+        }
+        //Debug.Log(sb.ToString());
+        return sb.ToString();
+ 
+    }
+
+    /*
+    same as CreateValidFileName but return type null (show user fileName that will be in path)
+    */
+    public void CreateValidFileNameUI(GameObject text)
+    {
+        string worldName = text.GetComponent<Text>().text;
+
+        StringBuilder sb = new StringBuilder(worldName);
+
+        //replace any invalid chars with '_'
+        foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+        {
+            sb.Replace(c, '_');
+        }
+
+        //add '_' before and after invalid word at begining of filename
+        if(this.invalidFileNamePrefixes.Any(prefix => sb.ToString().ToUpper().StartsWith(prefix)))
+        {
+            sb.Insert(0, "_");
+        }
+        Debug.Log(sb.ToString());
     }
 }
