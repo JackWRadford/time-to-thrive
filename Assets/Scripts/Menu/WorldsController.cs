@@ -138,7 +138,10 @@ public class WorldsController : MonoBehaviour
             sb.Insert(0, "_");
         }
 
+        //check for duplicate name (if so add (i))
+        string[] savedWorldNames = loadWorldData();
+        
+
         this.actualFilePathText.GetComponent<Text>().text = "File name: " + sb.ToString();
-        //Debug.Log(sb.ToString());
     }
 }
