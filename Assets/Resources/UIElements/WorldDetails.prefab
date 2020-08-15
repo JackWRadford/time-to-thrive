@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 763051708118225350}
   - component: {fileID: 763051708118225349}
   - component: {fileID: 183098923}
+  - component: {fileID: 512409129547067435}
   m_Layer: 5
   m_Name: WorldDetails
   m_TagString: Untagged
@@ -355,8 +356,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetCurrentSelectedWorld
+      - m_Target: {fileID: 512409129547067435}
+        m_MethodName: SetSelectedWorld
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 763051707605300060}
@@ -366,3 +367,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &512409129547067435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763051708118225355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1471b34470f8542b5674f095ef7f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

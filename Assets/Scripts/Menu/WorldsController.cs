@@ -28,9 +28,10 @@ public class WorldsController : MonoBehaviour
     /*
     Setter for currentChosenWorld (world currently selected to play/edit/delete)
     */
-    public void SetCurrentSelectedWorld(string world)
+    public void SetCurrentSelectedWorld(GameObject world)
     {
-        this.currentChosenWorld = world;
+        this.currentChosenWorld = GetWorldNameFromPath(world.GetComponent<Text>().text.ToString());
+        Debug.Log(this.currentChosenWorld);
     }
     
     //method to add new world
