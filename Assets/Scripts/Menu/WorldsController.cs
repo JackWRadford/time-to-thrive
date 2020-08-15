@@ -11,7 +11,7 @@ public class WorldsController : MonoBehaviour
     public GameObject worldDetailsList;
     private PassData passData;
 
-    private string worldName;
+    private string currentChosenWorld;
 
     void Awake()
     {
@@ -23,6 +23,14 @@ public class WorldsController : MonoBehaviour
             //generate worldData UI element and add to content list
             GenerateWorldDataUI(dir);
         }
+    }
+
+    /*
+    Setter for currentChosenWorld (world currently selected to play/edit/delete)
+    */
+    public void SetCurrentSelectedWorld(string world)
+    {
+        this.currentChosenWorld = world;
     }
     
     //method to add new world
@@ -54,6 +62,9 @@ public class WorldsController : MonoBehaviour
     public void GenerateWorldDataUI(string path)
     {
         GameObject worldDetailsUI = Instantiate(Resources.Load<GameObject>("UIElements/WorldDetails")) as GameObject;
+
+        //pass setCurrentSelectedWorld() as a delegate on the onClick event of the button
+        //worldDetailsUI.onClick.AddListener(delegate{this.SetCurrentSelectedWorld({GetWorldNameFromPath(path)});});
 
         if(worldDetailsUI != null)
         {
