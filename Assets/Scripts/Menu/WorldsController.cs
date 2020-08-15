@@ -11,6 +11,7 @@ public class WorldsController : MonoBehaviour
 {
     public GameObject worldNameInputText;
     public GameObject worldDetailsList;
+    public GameObject actualFilePathText;
     private PassData passData;
 
     private string currentChosenWorld;
@@ -136,6 +137,8 @@ public class WorldsController : MonoBehaviour
         {
             sb.Insert(0, "_");
         }
-        Debug.Log(sb.ToString());
+
+        this.actualFilePathText.GetComponent<Text>().text = "File name: " + sb.ToString();
+        //Debug.Log(sb.ToString());
     }
 }
