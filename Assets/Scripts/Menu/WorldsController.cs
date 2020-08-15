@@ -118,9 +118,10 @@ public class WorldsController : MonoBehaviour
     /*
     same as CreateValidFileName but return type null (show user fileName that will be in path)
     */
-    public void CreateValidFileNameUI(GameObject text)
+    public void CreateValidFileNameUI()
     {
-        string worldName = text.GetComponent<Text>().text;
+        // string worldName = text.GetComponent<Text>().text;
+        string worldName = this.worldNameInputText.GetComponent<InputField>().text;
 
         StringBuilder sb = new StringBuilder(worldName);
 
