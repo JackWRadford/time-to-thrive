@@ -27,11 +27,35 @@ public class WorldsController : MonoBehaviour
     {
         passData = GameObject.Find("PassInfo").GetComponent<PassData>();
 
+        UpdateWorldDetailsUI();
+    }
+
+    /*
+    method to update worldDetails UI
+    */
+    public void UpdateWorldDetailsUI()
+    {
         string[] worldDirectories = loadWorldData();
+
+        //destory all children of content
+        DeleteAllWorldDetialsUI();
+
         foreach (var dir in worldDirectories)
         {
             //generate worldData UI element and add to content list
             GenerateWorldDataUI(dir);
+        }
+    }
+
+    /*
+    method to delete all children in world details list
+    */
+    public void DeleteAllWorldDetialsUI()
+    {
+        for (int i = this.worldDetailsList.transform.childCount-1; i >= 0; i--)
+        {
+            Debug.Log(i);
+            GameObject.Destroy(this.worldDetailsList.transform.GetChild(i).gameObject);
         }
     }
 
@@ -179,11 +203,20 @@ public class WorldsController : MonoBehaviour
     {
         if(this.currentChosenWorld != null)
         {
-
+            string path = Application.persistentDataPath + "/saves/" + this.currentChosenWorld;
+            DirectoryInfo directory = new DirectoryInfo(path);
+            //delete all files and subdirectories
+            // foreach (FileInfo f in directory.EnumerateFiles())
+            // {
+            //     f.Delete();
+            // }
+            // foreach (DirectoryInfo d in directory.EnumerateDirectories())
+            // {
+            //     d.Delete();
+            // }
+            directory.Delete(true);
         }
-        string path = Application.persistentDataPath + "/saves/";
-        DirectoryInfo directory = new DirectoryInfo(path);
-        directory.Delete();
-        Directory.CreateDirectory(path);
+        //update UI
+        UpdateWorldDetailsUI();
     }
 }
