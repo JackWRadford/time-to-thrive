@@ -15,10 +15,13 @@ public class WorldsController : MonoBehaviour
     private PassData passData;
 
     private string currentChosenWorld;
+    private string validWorldName;
 
     //invalid windows starting fileName strings
     private string[] invalidFileNamePrefixes = new string[]{"CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7",
     "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8","LPT9"};
+    //my additional invalid chars
+    private char[] invalidChars = new char[]{' ', '.'};
 
     void Awake()
     {
@@ -46,10 +49,10 @@ public class WorldsController : MonoBehaviour
     //method to add new world
     public void AddNewWorld()
     {
-        if(this.worldNameInputText.GetComponent<InputField>().text != null)
+        if(this.validWorldName != null)
         {
-            passData.SetWorldName(this.worldNameInputText.GetComponent<InputField>().text);
-            Debug.Log(this.worldNameInputText.GetComponent<InputField>().text.ToString());
+            passData.SetWorldName(this.validWorldName);
+            Debug.Log(this.validWorldName);
         }
     }
 
@@ -90,31 +93,31 @@ public class WorldsController : MonoBehaviour
         }
     }
 
-    /*
-    method to correct filename so can be saved in windows (other platforms?)
-    ", *, <, >, ?, \, |, /, :,
-    not end with space or period
-    reserved names (CON, PRN, ...)
-    */
-    public string CreateValidFileName(string name)
-    {
-        StringBuilder sb = new StringBuilder(name);
+    // /*
+    // method to correct filename so can be saved in windows (other platforms?)
+    // ", *, <, >, ?, \, |, /, :,
+    // not end with space or period
+    // reserved names (CON, PRN, ...)
+    // */
+    // public string CreateValidFileName(string name)
+    // {
+    //     StringBuilder sb = new StringBuilder(name);
 
-        //replace any invalid chars with '_'
-        foreach (char c in System.IO.Path.GetInvalidFileNameChars())
-        {
-            sb.Replace(c, '_');
-        }
+    //     //replace any invalid chars with '_'
+    //     foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+    //     {
+    //         sb.Replace(c, '_');
+    //     }
 
-        //add '_' before and after invalid word at begining of filename
-        if(this.invalidFileNamePrefixes.Any(prefix => sb.ToString().StartsWith(prefix)))
-        {
-            sb.Insert(0, "_");
-        }
-        //Debug.Log(sb.ToString());
-        return sb.ToString();
+    //     //add '_' before and after invalid word at begining of filename
+    //     if(this.invalidFileNamePrefixes.Any(prefix => sb.ToString().StartsWith(prefix)))
+    //     {
+    //         sb.Insert(0, "_");
+    //     }
+    //     //Debug.Log(sb.ToString());
+    //     return sb.ToString();
  
-    }
+    // }
 
     /*
     same as CreateValidFileName but return type null (show user fileName that will be in path)
@@ -131,6 +134,11 @@ public class WorldsController : MonoBehaviour
         {
             sb.Replace(c, '_');
         }
+        //check addition invalid chars (my additions)
+        foreach (char c in this.invalidChars)
+        {
+            sb.Replace(c, '_');
+        }
 
         //add '_' before and after invalid word at begining of filename
         if(this.invalidFileNamePrefixes.Any(prefix => sb.ToString().ToUpper().StartsWith(prefix)))
@@ -138,10 +146,44 @@ public class WorldsController : MonoBehaviour
             sb.Insert(0, "_");
         }
 
-        //check for duplicate name (if so add (i))
+        //check for duplicate name (add extention)
         string[] savedWorldNames = loadWorldData();
-        
+        //check for duplicate names after removing extensions and add extension to new fileName
+        int i = 0;
+        foreach (string s in savedWorldNames)
+        {
+            //remove extension
+            string savedString = GetWorldNameFromPath(s.Split(' ')[0]);
+            Debug.Log(savedString);
+            if(sb.ToString() == savedString)
+            {
+                i++;
+            }
+        }
+        if(i > 0)
+        {
+            sb.Append(" {" + i + '}');
+        }
 
+        //set name to be sent to main scene in PassData
+        this.validWorldName = sb.ToString();
+                
+        //set actualFilePathText to valid fileName
         this.actualFilePathText.GetComponent<Text>().text = "File name: " + sb.ToString();
+    }
+
+    /*
+    method to delete selected world save file
+    */
+    public void DeleteWorld()
+    {
+        if(this.currentChosenWorld != null)
+        {
+
+        }
+        string path = Application.persistentDataPath + "/saves/";
+        DirectoryInfo directory = new DirectoryInfo(path);
+        directory.Delete();
+        Directory.CreateDirectory(path);
     }
 }
