@@ -14775,7 +14775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 691352811}
   noiseMapGeneration: {fileID: 1461756159}
-  mapScale: 40
+  mapScale: 80
   heightTerrainTypes:
   - name: water
     threshold: 0.4

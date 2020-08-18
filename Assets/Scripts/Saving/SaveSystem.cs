@@ -17,7 +17,7 @@ public class SaveSystem: MonoBehaviour
 
         //set world name from menu scene
         worldName = passData.GetWorldName();
-        Debug.Log("Passed Name: " + worldName.ToString());
+        //Debug.Log("Passed Name: " + worldName.ToString());
     }
 
     // //generic save 

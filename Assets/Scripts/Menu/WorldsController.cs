@@ -65,7 +65,7 @@ public class WorldsController : MonoBehaviour
     public void SetCurrentSelectedWorld(GameObject world)
     {
         this.currentChosenWorld = GetWorldNameFromPath(world.GetComponent<Text>().text.ToString());
-        Debug.Log(this.currentChosenWorld);
+        //Debug.Log(this.currentChosenWorld);
         //set selected world in passData
         passData.SetWorldName(this.currentChosenWorld);
     }
@@ -76,7 +76,7 @@ public class WorldsController : MonoBehaviour
         if(this.validWorldName != null)
         {
             passData.SetWorldName(this.validWorldName);
-            Debug.Log(this.validWorldName);
+            //Debug.Log(this.validWorldName);
         }
     }
 
