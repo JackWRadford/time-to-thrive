@@ -765,6 +765,12 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

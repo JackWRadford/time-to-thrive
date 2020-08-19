@@ -503,7 +503,7 @@ public class TerrainGen : MonoBehaviour
                 {
                     //render normal water Tile (height value)
                     // tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), chosenHeightTerrainTypes[zIndex,xIndex].tile);
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + "water"));
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<RuleTile>("Tiles/" + "water"));
                 }
             }
         }
@@ -530,7 +530,7 @@ public class TerrainGen : MonoBehaviour
                 else
                 {
                     //render normal water Tile 
-                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<Tile>("Tiles/" + "water"));
+                    tilemap.SetTile(new Vector3Int(xIndex + oX, zIndex + oZ, 0), Resources.Load<RuleTile>("Tiles/" + "water"));
                 }
             }
         }
