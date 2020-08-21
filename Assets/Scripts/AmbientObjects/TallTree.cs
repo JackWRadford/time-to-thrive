@@ -13,6 +13,9 @@ public class TallTree : Interactable, ILoadState
     public GameObject apple;
     public GameObject log;
 
+    //tree stump
+    public GameObject oakTreeStump;
+
     private int health = 1;
 
     private float positionMinusOffsetX;
@@ -144,6 +147,14 @@ public class TallTree : Interactable, ILoadState
         //Debug.Log("Remove tree: " + this.positionMinusOffsetX.ToString() + ", " + this.positionMinusOffsetY);
         objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
+        //instantiate OakTreeStump at this tree position and save to objectManager
+        GameObject stump = Instantiate(oakTreeStump, this.transform.position, Quaternion.identity) as GameObject;
+        //add data to GO data and data to be saved
+        stump.name = "OakTreeStump";
+        TreeData d = new TreeData(stump.GetComponent<TallTree>());
+        objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", d);
+        objectManager.AddObjectGO(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", stump);
+
         //treeController.RemoveTree(td.position);
         Destroy(gameObject);
         return;

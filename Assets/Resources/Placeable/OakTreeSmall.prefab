@@ -131,6 +131,8 @@ MonoBehaviour:
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
+  oakTreeStump: {fileID: 7783058255050504646, guid: b1949525cbee65242821d61b877a4936,
+    type: 3}
 --- !u!114 &5045457428275883760
 MonoBehaviour:
   m_ObjectHideFlags: 0
