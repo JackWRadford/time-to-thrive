@@ -734,7 +734,7 @@ public class TileData
 
                 for (int i = gObjects[objPos].Count - 1; i >= 0; i--)
                 {
-                    Debug.Log("remove");
+                    //Debug.Log("remove");
                     gObjects[objPos][i].GetComponent<StackDetails>().DestroyGO();
                 }
 

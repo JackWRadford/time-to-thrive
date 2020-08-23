@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7783058255050504643}
   - component: {fileID: 7783058255050504644}
   - component: {fileID: 7783058255050504645}
-  - component: {fileID: -3841405216152414826}
+  - component: {fileID: 4268293945628587168}
   m_Layer: 8
   m_Name: OakTreeStump
   m_TagString: Untagged
@@ -153,7 +153,7 @@ MonoBehaviour:
   canBePlacedInside: 0
   orientation: 0
   translation: 0
---- !u!114 &-3841405216152414826
+--- !u!114 &4268293945628587168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,13 +162,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7783058255050504646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b91a07c87db4ccfbc44b202f1636bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fd9aba04c7dead4c8a7e2241b66cb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   treeController: {fileID: 0}
   objectManager: {fileID: 0}
   placementOffset: {fileID: 0}
-  stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
-  apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
-  oakTreeStump: {fileID: 7783058255050504646}
+  oakTreeStump: {fileID: 0}

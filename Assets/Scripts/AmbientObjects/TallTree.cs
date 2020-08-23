@@ -151,8 +151,8 @@ public class TallTree : Interactable, ILoadState
         GameObject stump = Instantiate(oakTreeStump, this.transform.position, Quaternion.identity) as GameObject;
         //add data to GO data and data to be saved
         stump.name = "OakTreeStump";
-        TreeData d = new TreeData(stump.GetComponent<TallTree>());
-        objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", d);
+        StumpData sd = new StumpData(stump.GetComponent<TreeStump>());
+        objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", sd);
         objectManager.AddObjectGO(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", stump);
 
         //treeController.RemoveTree(td.position);

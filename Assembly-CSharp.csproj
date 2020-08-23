@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
+     <Compile Include="Assets\Scripts\AmbientObjects\TreeStump.cs" />
      <Compile Include="Assets\Scripts\Animals\Cow.cs" />
      <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
      <Compile Include="Assets\Scripts\Crafting\CraftingBar.cs" />
@@ -91,6 +92,7 @@
      <Compile Include="Assets\Scripts\Saving\LoadGame.cs" />
      <Compile Include="Assets\Scripts\Saving\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveSystem.cs" />
+     <Compile Include="Assets\Scripts\Saving\StumpData.cs" />
      <Compile Include="Assets\Scripts\Saving\TerrainTypeData.cs" />
      <Compile Include="Assets\Scripts\Saving\TreeData.cs" />
      <Compile Include="Assets\Scripts\Saving\WallData.cs" />
@@ -717,6 +719,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -750,6 +755,9 @@
     <Reference Include="Unity.2D.PixelPerfect">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.cinemachine.editor">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
@@ -764,12 +772,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
