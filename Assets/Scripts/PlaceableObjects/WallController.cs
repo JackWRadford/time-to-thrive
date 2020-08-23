@@ -113,7 +113,7 @@ public class WallController : Interactable, ILoadState
             objectManager.RemoveObject(this.positionMinusOffsetX, this.positionMinusOffsetY);
             // objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
             objectManager.RemoveObjectGOMultiple(this.positionMinusOffsetX, this.positionMinusOffsetY, this.GetComponent<StackDetails>().extraPositions);
-            Debug.Log("destory");
+            //Debug.Log("destory");
             Destroy(gameObject);
 
             return;

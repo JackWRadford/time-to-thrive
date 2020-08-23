@@ -246,7 +246,7 @@
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/PackageCache/com.unity.render-pipelines.core@7.3.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/PackageCache/com.unity.render-pipelines.core@7.4.3/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -641,6 +641,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -674,6 +677,9 @@
     <Reference Include="Unity.2D.PixelPerfect">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.cinemachine.editor">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
@@ -689,11 +695,11 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    <Reference Include="Unity.Postprocessing.Editor">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+    <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>C:/Users/jackr/unityprojects/ttt_19.4/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

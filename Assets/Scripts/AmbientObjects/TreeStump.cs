@@ -11,7 +11,7 @@ public class TreeStump : Interactable, ILoadState
     public PlacementOffset placementOffset;
     public GameObject log;
 
-    private int health = 1;
+    private int health = 3;
 
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;

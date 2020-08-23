@@ -16,7 +16,7 @@ public class TallTree : Interactable, ILoadState
     //tree stump
     public GameObject oakTreeStump;
 
-    private int health = 1;
+    private int health = 10;
 
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;
