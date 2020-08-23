@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
+  oakTreeStump: {fileID: 0}
 --- !u!68 &5946817566459904507
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -187,3 +188,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
+  placeing: 0
+  height: 0
+  isExternalConstruction: 0
+  isWall: 0
+  isFoundation: 0
+  isRoof: 0
+  isDoor: 0
+  isGroundLevel: 0
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
+  orientation: 0
+  translation: 0

@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_Offset: {x: 0.0051034093, y: 0.1828053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.65, y: 0.19}
+    pivot: {x: 0.65625, y: 0.1875}
     oldSize: {x: 1, y: 2}
     newSize: {x: 3, y: 5}
     adaptiveTilingThreshold: 0.5
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeController: {fileID: 0}
   objectManager: {fileID: 0}
+  placementOffset: {fileID: 0}
   stick: {fileID: 8670373528743340514, guid: acfafee44da014fb7bc20f4f8299b7e2, type: 3}
   apple: {fileID: 1536758388710477887, guid: 47d0df9538b2d814cb503fa4e2d10d68, type: 3}
   log: {fileID: 4407011189081572706, guid: bfd24a45445de8642a80ae6c4217ef37, type: 3}
+  oakTreeStump: {fileID: 0}

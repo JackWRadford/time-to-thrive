@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   wall: {fileID: 4563228709375452358, guid: cc88fa045acfdb040a4be9257e9af48e, type: 3}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
+  alternativeSprite: {fileID: 0}
   health: 1
   orientation: 3
 --- !u!114 &1312726641980847096
@@ -137,4 +138,9 @@ MonoBehaviour:
   isFoundation: 0
   isRoof: 0
   isDoor: 0
+  isGroundLevel: 0
+  isMultiPos: 0
+  extraPositions: []
+  canBePlacedInside: 0
   orientation: 3
+  translation: 0
