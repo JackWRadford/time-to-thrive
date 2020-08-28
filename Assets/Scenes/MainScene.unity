@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7007,7 +7007,7 @@ MonoBehaviour:
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_UpscaleRT: 0
-  m_PixelSnapping: 1
+  m_PixelSnapping: 0
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
@@ -11069,10 +11069,10 @@ RectTransform:
   m_Father: {fileID: 78750568}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -281.58997}
-  m_SizeDelta: {x: -1055.3684, y: -683.5846}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 68.910034}
+  m_SizeDelta: {x: 66.63159, y: 17.415405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082042881
 MonoBehaviour:
@@ -15205,7 +15205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalLight: {fileID: 1979620612}
   timePanel: {fileID: 585836438}
-  worldTime: 
+  delay: 0.1
 --- !u!1001 &1462032117
 PrefabInstance:
   m_ObjectHideFlags: 0
