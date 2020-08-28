@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         uiInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         objectManager = GameObject.Find("GameManager").GetComponent<ObjectManager>();
         highlight = GameObject.Find("Highlight");
-        playerHTH = GameObject.Find("PlayerHTH").GetComponent<PlayerHTH>();
+        playerHTH = GameObject.Find("PlayerSimpleHTH").GetComponent<PlayerHTH>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         highlight.SetActive(false);
         animator = GetComponent<Animator>();
