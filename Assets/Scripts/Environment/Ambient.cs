@@ -91,8 +91,8 @@ public class Ambient : MonoBehaviour
         this.sbTime.Append(this.currentHours.ToString().PadLeft(2, '0'));
         this.sbTime.Append(":");
         this.sbTime.Append(this.currentMinutes.ToString().PadLeft(2, '0'));
-        this.sbTime.Append(":");
-        this.sbTime.Append(this.currentSeconds.ToString().PadLeft(2, '0'));
+        // this.sbTime.Append(":");
+        // this.sbTime.Append(this.currentSeconds.ToString().PadLeft(2, '0'));
     }
 
     public void ChangeGlobalLight(bool increase)
