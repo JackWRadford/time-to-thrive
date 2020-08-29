@@ -139,6 +139,20 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             1,4,-1, true, false, false, false),
+            //SpruceSapling
+            new GameItem(14, "SpruceSapling", "Agriculture",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, true, false, false, false),
+            //RainforestSapling
+            new GameItem(15, "RainforestSapling", "Agriculture",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, true, false, false, false),
         };
     }
 }
