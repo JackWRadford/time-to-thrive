@@ -8,7 +8,7 @@ public class TreeSapling : Interactable, ILoadState
     public PlacementOffset placementOffset;
     public StackDetails stackDetails;
     public GameObject sapling;
-    public GameObject tree;
+    public GameObject[] trees;
 
     private int health = 3;
 
@@ -151,12 +151,17 @@ public class TreeSapling : Interactable, ILoadState
             //remove the sapling from objects and data Lists
             objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
             objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
+
+            //generate random int to choose tree size
+            System.Random rand = new System.Random();
+            int randomInt = rand.Next(this.trees.Length);
+
             //instantiate Tree at this sapling position and save to objects and data Lists
-            GameObject newTree = Instantiate(tree, this.transform.position, Quaternion.identity) as GameObject;
-            newTree.name = tree.name;
+            GameObject newTree = Instantiate(trees[randomInt], this.transform.position, Quaternion.identity) as GameObject;
+            newTree.name = trees[randomInt].name;
             TreeData td = new TreeData(newTree.GetComponent<TallTree>());
-            objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", td);
-            objectManager.AddObjectGO(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", newTree);
+            objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "Tree", td);
+            objectManager.AddObjectGO(this.positionMinusOffsetX,this.positionMinusOffsetY, "Tree", newTree);
 
             Destroy(gameObject);
             return;
