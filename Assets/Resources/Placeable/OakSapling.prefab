@@ -167,4 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectManager: {fileID: 0}
   placementOffset: {fileID: 0}
+  stackDetails: {fileID: 0}
   sapling: {fileID: 6586463085256682923, guid: f1f5d40e227cc3a4ca82a08f07bf8d7d, type: 3}
+  tree: {fileID: 923204824567906798, guid: 17b79bb6c45293544966b985d9040954, type: 3}
+  delay: 1

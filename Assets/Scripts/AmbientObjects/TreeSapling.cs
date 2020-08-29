@@ -8,6 +8,7 @@ public class TreeSapling : Interactable, ILoadState
     public PlacementOffset placementOffset;
     public StackDetails stackDetails;
     public GameObject sapling;
+    public GameObject tree;
 
     private int health = 3;
 
@@ -15,8 +16,7 @@ public class TreeSapling : Interactable, ILoadState
     private float positionMinusOffsetY;
 
     private float growth = 0f;
-    private float growthThreshold = 5f;
-
+    public float growthThreshold = 5f;
     private float timer = 0f;
     public float delay = 1f;
 
@@ -84,8 +84,9 @@ public class TreeSapling : Interactable, ILoadState
     //set state from saved state
     public void LoadState(dynamic data)
     {
-        //load sapling growth
-        this.growth = data.growth;
+        // Debug.Log("load growth state: " + data.growth);
+        // //load sapling growth
+        // this.growth = data.growth;
     }
 
     // public void UpdateState()
@@ -93,8 +94,8 @@ public class TreeSapling : Interactable, ILoadState
     //     //find and remove data from objects list
     //     objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
     //     //add updated data to objects list
-    //     TreeData td = new TreeData(GetComponent<TallTree>());
-    //     objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY,"OakTreeSapling",td);
+    //     SaplingData sd = new SaplingData(this);
+    //     objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY,"OakTreeSapling",sd);
     // }
 
     public int GetHealth()
@@ -145,7 +146,20 @@ public class TreeSapling : Interactable, ILoadState
         if(this.growth >= this.growthThreshold)
         {
             //remove sapling and replace with tree
-            Debug.Log("tree grown");
+            this.growth = 0;
+
+            //remove the sapling from objects and data Lists
+            objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
+            objectManager.RemoveObjectGO(this.positionMinusOffsetX, this.positionMinusOffsetY);
+            //instantiate Tree at this sapling position and save to objects and data Lists
+            GameObject newTree = Instantiate(tree, this.transform.position, Quaternion.identity) as GameObject;
+            newTree.name = tree.name;
+            TreeData td = new TreeData(newTree.GetComponent<TallTree>());
+            objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", td);
+            objectManager.AddObjectGO(this.positionMinusOffsetX,this.positionMinusOffsetY, "OakTreeStump", newTree);
+
+            Destroy(gameObject);
+            return;
         }
     }
 }

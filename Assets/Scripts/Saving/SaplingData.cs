@@ -7,7 +7,7 @@ public class SaplingData
 {
     public float[] position;
     public string title = "OakTreeSapling";
-    public float growth;
+    // public float growth;
 
     public string GetTitle()
     {
@@ -21,7 +21,7 @@ public class SaplingData
         position[1] = s.transform.position.y;
         position[2] = s.transform.position.z;
 
-        this.growth = s.GetGrowth();
+        // this.growth = s.GetGrowth();
 
         this.title = s.gameObject.name;
     }
