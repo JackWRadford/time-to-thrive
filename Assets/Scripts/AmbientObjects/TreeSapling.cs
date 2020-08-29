@@ -14,6 +14,12 @@ public class TreeSapling : Interactable, ILoadState
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;
 
+    private float growth = 0f;
+    private float growthThreshold = 5f;
+
+    private float timer = 0f;
+    public float delay = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,22 @@ public class TreeSapling : Interactable, ILoadState
             //same to go array when loading from data (already have data from save)
             SaveGO();
         }
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if(timer > delay)
+        {
+            //increase growth
+            timer = 0f;
+            IterateGrowth();
+        }
+    }
+
+    public float GetGrowth()
+    {
+        return this.growth;
     }
 
     public void SaveState()
@@ -62,7 +84,8 @@ public class TreeSapling : Interactable, ILoadState
     //set state from saved state
     public void LoadState(dynamic data)
     {
-        
+        //load sapling growth
+        this.growth = data.growth;
     }
 
     // public void UpdateState()
@@ -114,5 +137,15 @@ public class TreeSapling : Interactable, ILoadState
         }
         //update state to be saved
         //UpdateState();
+    }
+
+    public void IterateGrowth()
+    {
+        this.growth++;
+        if(this.growth >= this.growthThreshold)
+        {
+            //remove sapling and replace with tree
+            Debug.Log("tree grown");
+        }
     }
 }
