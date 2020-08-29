@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
+     <Compile Include="Assets\Scripts\AmbientObjects\TreeSapling.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeStump.cs" />
      <Compile Include="Assets\Scripts\Animals\Cow.cs" />
      <Compile Include="Assets\Scripts\Crafting\Crafting.cs" />
@@ -92,6 +93,7 @@
      <Compile Include="Assets\Scripts\Saving\GameEvents.cs" />
      <Compile Include="Assets\Scripts\Saving\LoadGame.cs" />
      <Compile Include="Assets\Scripts\Saving\PlayerData.cs" />
+     <Compile Include="Assets\Scripts\Saving\SaplingData.cs" />
      <Compile Include="Assets\Scripts\Saving\SaveSystem.cs" />
      <Compile Include="Assets\Scripts\Saving\StumpData.cs" />
      <Compile Include="Assets\Scripts\Saving\TerrainTypeData.cs" />

@@ -132,6 +132,13 @@ public class ItemDatabase : MonoBehaviour
                 
             },
             1,64,-1, true, false, false, true),
+            //OakSapling
+            new GameItem(13, "OakSapling", "Agriculture",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, true, false, false, false),
         };
     }
 }

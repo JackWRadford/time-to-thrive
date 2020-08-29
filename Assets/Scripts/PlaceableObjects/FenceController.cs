@@ -189,8 +189,6 @@ public class FenceController : Interactable, ILoadState
     //update state to be saved
     public void SaveState()
     {
-        
-
         FenceData fd = new FenceData(this);
         //check object not already in that position (double save in same position)
         if(objectManager.IsSpaceFree(this.positionMinusOffsetX,this.positionMinusOffsetY, this.gameObject))

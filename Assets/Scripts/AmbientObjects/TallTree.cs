@@ -12,8 +12,7 @@ public class TallTree : Interactable, ILoadState
     public GameObject stick;
     public GameObject apple;
     public GameObject log;
-
-    //tree stump
+    public GameObject sapling;
     public GameObject oakTreeStump;
 
     private int health = 10;
@@ -121,6 +120,9 @@ public class TallTree : Interactable, ILoadState
         }
         if(health<=0)
         {
+        //drop sapling
+        Vector3 rd = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+        Instantiate(sapling,transform.position + rd, Quaternion.identity);
         //drop logs
         int randNumLogs = Random.Range(2,4);
         for(int i = 0; i < randNumLogs; i++ )
