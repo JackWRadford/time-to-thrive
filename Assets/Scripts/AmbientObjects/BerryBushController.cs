@@ -38,11 +38,15 @@ public class BerryBushController : Interactable, ILoadState
             stackDetails.SetPlaceing(false);
             SaveState();
             SaveGO();
+
+            //make bush empty when placing
+            SetCorrectSprite();
         }
         else
         {
             //same to go array when loading from data (already have data from save)
             SaveGO();
+            SetCorrectSprite();
         }
     }
 
@@ -88,7 +92,21 @@ public class BerryBushController : Interactable, ILoadState
     //set correct sprite for current stage (full, less1, less2, empty)
     public void SetCorrectSprite()
     {
-        
+        switch(this.stage)
+        {
+            case 0:
+                GetComponent<SpriteRenderer>().sprite = this.berryBushEmpty;
+                break;
+            case 1:
+                GetComponent<SpriteRenderer>().sprite = this.berryBushLess_2;
+                break;
+            case 2:
+                GetComponent<SpriteRenderer>().sprite = this.berryBushLess_1;
+                break;
+            case 3:
+                GetComponent<SpriteRenderer>().sprite = this.berryBushFull;
+                break;
+        }
     }
 
     public int GetHealth()

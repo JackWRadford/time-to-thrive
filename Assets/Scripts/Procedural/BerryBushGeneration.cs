@@ -94,6 +94,9 @@ public class BerryBushGeneration : MonoBehaviour
                                 GameObject berryBush = Instantiate(this.berryBushPrefabs[biome.index], berryBushPosition, Quaternion.identity) as GameObject;
                                 //make sure new gameObject name doesn't have (clone)
                                 berryBush.name = this.berryBushPrefabs[biome.index].name;
+                                //set random stage
+                                int randomS = rand.Next(4);
+                                berryBush.GetComponent<BerryBushController>().stage = randomS;
                                 BerryBushData bbd = new BerryBushData(berryBush.GetComponent<BerryBushController>());
 
                                 tileData.AddObjectData(x, y,"BerryBush",bbd);
