@@ -153,6 +153,36 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             1,4,-1, true, false, false, false),
+            //RaspberryBush
+            new GameItem(16, "RaspberryBush", "Agriculture",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, true, false, false, false),
+            //BlueberryBush
+            new GameItem(17, "BlueberryBush", "Agriculture",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, true, false, false, false),
+            //Raspberry
+            new GameItem(18, "Raspberry", "Food",
+            new Dictionary<string, int>{
+                {"Nutrition", 5},
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, false, true, false, false),
+            //Blueberry
+            new GameItem(19, "Blueberry", "Food",
+            new Dictionary<string, int>{
+                {"Nutrition", 3},
+            },
+            new Dictionary<string, int>{
+            },
+            1,4,-1, false, true, false, false),
         };
     }
 }

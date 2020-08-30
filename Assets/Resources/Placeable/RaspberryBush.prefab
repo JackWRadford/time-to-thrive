@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
-  placeing: 1
+  placeing: 0
   height: 0
   isExternalConstruction: 0
   isWall: 0
@@ -168,8 +168,10 @@ MonoBehaviour:
   objectManager: {fileID: 0}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
-  berryBushPUI: {fileID: 0}
-  berryPUI: {fileID: 0}
+  berryBushPUI: {fileID: 875900299221555295, guid: 32274f51e428e60498436778412e0b4e,
+    type: 3}
+  berryPUI: {fileID: 4557484228136691461, guid: 01c7c7eb287e0734991ca7765a222dc7,
+    type: 3}
   berryBushFull: {fileID: -3566885674067050796, guid: 95cf5653f85d6364992b8a275fde5f4b,
     type: 3}
   berryBushLess_1: {fileID: -3656271832009460635, guid: 95cf5653f85d6364992b8a275fde5f4b,
