@@ -186,7 +186,7 @@ public class TerrainGen : MonoBehaviour
             foreach (var obj in objPos.Value)
             {
                 GameObject go = Resources.Load<GameObject>("Placeable/" + obj.GetTitle());
-                //Debug.Log(obj.GetTitle().ToString());
+                Debug.Log(obj.GetTitle().ToString());
                 //spawn at position saved in data (including offset)
                 go.GetComponent<StackDetails>().SetPlaceing(false);
                 GameObject goi = Instantiate(go, new Vector3(obj.position[0], obj.position[1], 0), Quaternion.identity); //as GameObject;

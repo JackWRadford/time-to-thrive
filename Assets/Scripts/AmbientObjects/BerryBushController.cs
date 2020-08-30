@@ -85,8 +85,9 @@ public class BerryBushController : Interactable, ILoadState
         //find and remove data from objects list
         objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         //add updated data to objects list
-        BerryBushData bbd = new BerryBushData(this);
-        objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY,"BerryBush",bbd);
+        BerryBushData nbbd = new BerryBushData(this.GetComponent<BerryBushController>());
+        nbbd.title = "RaspberryBush";
+        objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY,"BerryBush", nbbd);
     }
 
     //set correct sprite for current stage (full, less1, less2, empty)
@@ -118,6 +119,20 @@ public class BerryBushController : Interactable, ILoadState
     {
         base.NDInteract(go);
 
+        //pick berry and lower stage if possible
+        if((this.stage <= 3)&&(this.stage > 0))
+        {
+            PickBerry();
+        }
+    }
+
+    private void PickBerry()
+    {
+        Vector3 rd = new Vector3(Random.Range(-1.0f,1.0f),Random.Range(-1.0f,1.0f),0);
+        Instantiate(berryPUI,transform.position + rd, Quaternion.identity);
+        this.stage--;
+        SetCorrectSprite();
+        UpdateState();
     }
 
     public override void Interact(GameObject go)
