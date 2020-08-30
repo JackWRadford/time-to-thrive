@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AmbientObjects\BerryBushController.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TallTree.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeController.cs" />
      <Compile Include="Assets\Scripts\AmbientObjects\TreeSapling.cs" />
@@ -82,10 +83,12 @@
      <Compile Include="Assets\Scripts\PlaceableObjects\Tent.cs" />
      <Compile Include="Assets\Scripts\PlaceableObjects\WallController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Procedural\BerryBushGeneration.cs" />
      <Compile Include="Assets\Scripts\Procedural\NoiseMapGeneration.cs" />
      <Compile Include="Assets\Scripts\Procedural\RiverGeneration.cs" />
      <Compile Include="Assets\Scripts\Procedural\TerrainGen.cs" />
      <Compile Include="Assets\Scripts\Procedural\TreeGeneration.cs" />
+     <Compile Include="Assets\Scripts\Saving\BerryBushData.cs" />
      <Compile Include="Assets\Scripts\Saving\BiomeData.cs" />
      <Compile Include="Assets\Scripts\Saving\ChunkData.cs" />
      <Compile Include="Assets\Scripts\Saving\CowData.cs" />
