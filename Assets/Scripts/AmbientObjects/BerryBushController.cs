@@ -15,6 +15,8 @@ public class BerryBushController : Interactable, ILoadState
     public Sprite berryBushLess_2;
     public Sprite berryBushEmpty;
 
+    public string objectTitle = "";
+
     private int health = 10;
     //stages: 0-empty 1-less2 2-less1 3-full
     public int stage = 0;
@@ -86,7 +88,7 @@ public class BerryBushController : Interactable, ILoadState
         objectManager.RemoveObject(this.positionMinusOffsetX,this.positionMinusOffsetY);
         //add updated data to objects list
         BerryBushData nbbd = new BerryBushData(this.GetComponent<BerryBushController>());
-        nbbd.title = "RaspberryBush";
+        nbbd.title = this.objectTitle;
         objectManager.AddObjectData(this.positionMinusOffsetX,this.positionMinusOffsetY,"BerryBush", nbbd);
     }
 

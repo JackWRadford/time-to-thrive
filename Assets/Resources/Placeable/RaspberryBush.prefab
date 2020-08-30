@@ -180,4 +180,5 @@ MonoBehaviour:
     type: 3}
   berryBushEmpty: {fileID: -4938465274652435497, guid: 95cf5653f85d6364992b8a275fde5f4b,
     type: 3}
+  objectTitle: RaspberryBush
   stage: 0
