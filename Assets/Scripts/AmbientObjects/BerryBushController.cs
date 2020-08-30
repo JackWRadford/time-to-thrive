@@ -20,6 +20,10 @@ public class BerryBushController : Interactable, ILoadState
     private int health = 10;
     //stages: 0-empty 1-less2 2-less1 3-full
     public int stage = 0;
+    private float growth = 0f;
+    public float growthThreshold = 5f;
+    private float timer = 0f;
+    public float delay = 1f;
 
     private float positionMinusOffsetX;
     private float positionMinusOffsetY;
@@ -49,6 +53,33 @@ public class BerryBushController : Interactable, ILoadState
             //same to go array when loading from data (already have data from save)
             SaveGO();
             SetCorrectSprite();
+        }
+    }
+
+    void Update()
+    {
+        if((this.stage < 3))
+        {
+            timer += Time.deltaTime;
+            if(timer > delay)
+            {
+                //increase growth
+                timer = 0f;
+                IterateGrowth();
+            }
+        }
+    }
+
+    public void IterateGrowth()
+    {
+        this.growth++;
+        if(this.growth >= this.growthThreshold)
+        {
+            this.growth = 0;
+            this.stage++;
+            SetCorrectSprite();
+            UpdateState();
+            return;
         }
     }
 
