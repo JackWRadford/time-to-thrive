@@ -91,25 +91,29 @@ public class TreeGeneration : MonoBehaviour
                         int randomInt = rand.Next(this.treePrefabs[biome.index].trees.Length);
                         if(this.treePrefabs[biome.index].trees.Length > randomInt)
                         {
-                            GameObject tree = Instantiate(this.treePrefabs[biome.index].trees[randomInt], treePosition, Quaternion.identity) as GameObject;
-                            //make sure new gameObject name doesn't have (clone)
-                            tree.name = this.treePrefabs[biome.index].trees[randomInt].name;
-                            TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                            
                             if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
                             {
+                                GameObject tree = Instantiate(this.treePrefabs[biome.index].trees[randomInt], treePosition, Quaternion.identity) as GameObject;
+                                //make sure new gameObject name doesn't have (clone)
+                                tree.name = this.treePrefabs[biome.index].trees[randomInt].name;
+                                TreeData td = new TreeData(tree.GetComponent<TallTree>());
+
                                 tileData.AddObjectData(x, y,"Tree",td);
                                 tileData.AddObjectGO(x, y, "tree", tree);
                             }
                         }
                         else
                         {
-                            //spawn default object (not different size)
-                            GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
-                            //make sure new gameObject name doesn't have (clone)
-                            tree.name = this.treePrefab[biome.index].name;
-                            TreeData td = new TreeData(tree.GetComponent<TallTree>());
+                            
                             if(tileData.IsSpaceFree(x, y, this.treePrefab[biome.index]))
                             {
+                                //spawn default object (not different size)
+                                GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
+                                //make sure new gameObject name doesn't have (clone)
+                                tree.name = this.treePrefab[biome.index].name;
+                                TreeData td = new TreeData(tree.GetComponent<TallTree>());
+
                                 tileData.AddObjectData(x, y,"Tree",td);
                                 tileData.AddObjectGO(x, y, "tree", tree);
                             }

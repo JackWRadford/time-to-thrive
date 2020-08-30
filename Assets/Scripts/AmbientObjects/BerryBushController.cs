@@ -10,10 +10,10 @@ public class BerryBushController : Interactable, ILoadState
 
     public GameObject berryBushPUI;
     public GameObject berryPUI;
-    public GameObject berryBushFull;
-    public GameObject berryBushLess_1;
-    public GameObject berryBushLess_2;
-    public GameObject berryBushEmpty;
+    public Sprite berryBushFull;
+    public Sprite berryBushLess_1;
+    public Sprite berryBushLess_2;
+    public Sprite berryBushEmpty;
 
     private int health = 10;
     //stages: 0-empty 1-less2 2-less1 3-full

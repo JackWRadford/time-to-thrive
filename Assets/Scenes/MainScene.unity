@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -16457,6 +16457,7 @@ GameObject:
   - component: {fileID: 1461756161}
   - component: {fileID: 1461756162}
   - component: {fileID: 1461756163}
+  - component: {fileID: 1461756164}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -16782,6 +16783,7 @@ MonoBehaviour:
     - name: tundra
       index: 1
   treeGeneration: {fileID: 1461756160}
+  berryBushGeneration: {fileID: 0}
   riverGeneration: {fileID: 0}
   renderDistance: 2
 --- !u!114 &1461756159
@@ -16892,6 +16894,41 @@ MonoBehaviour:
   globalLight: {fileID: 1979620612}
   timePanel: {fileID: 585836438}
   delay: 0.1
+--- !u!114 &1461756164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9887e485098b5e4a936dea67f775573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseMapGeneration: {fileID: 1461756159}
+  waves:
+  - seed: 3245
+    amplitude: 1
+    frequency: 1
+  - seed: 4587
+    amplitude: 2
+    frequency: 2
+  levelScale: 15
+  neighbourRadius:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  berryBushPrefabs:
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
 --- !u!1001 &1462032117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17206,7 +17243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -189.31, y: 7.79599}
+  m_AnchoredPosition: {x: -189.31, y: 7.7959595}
   m_SizeDelta: {x: 179.71582, y: 74.15425}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1505565305

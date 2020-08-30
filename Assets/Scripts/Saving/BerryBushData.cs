@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class BerryBushData
 {
     public float[] position;
     public string title = "BerryBush";
     public int stage = 0;
+
+    public bool canBeUnder = false;
+    public bool canBeOver = false;
 
     public string GetTitle()
     {

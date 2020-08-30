@@ -88,12 +88,14 @@ public class BerryBushGeneration : MonoBehaviour
                         int randomInt = rand.Next(this.berryBushPrefabs.Length);
                         if(this.berryBushPrefabs.Length > randomInt)
                         {
-                            GameObject berryBush = Instantiate(this.berryBushPrefabs[biome.index], berryBushPosition, Quaternion.identity) as GameObject;
-                            //make sure new gameObject name doesn't have (clone)
-                            berryBush.name = this.berryBushPrefabs[biome.index].name;
-                            BerryBushData bbd = new BerryBushData(berryBush.GetComponent<BerryBushController>());
+                            
                             if(tileData.IsSpaceFree(x, y, this.berryBushPrefabs[biome.index]))
                             {
+                                GameObject berryBush = Instantiate(this.berryBushPrefabs[biome.index], berryBushPosition, Quaternion.identity) as GameObject;
+                                //make sure new gameObject name doesn't have (clone)
+                                berryBush.name = this.berryBushPrefabs[biome.index].name;
+                                BerryBushData bbd = new BerryBushData(berryBush.GetComponent<BerryBushController>());
+
                                 tileData.AddObjectData(x, y,"BerryBush",bbd);
                                 tileData.AddObjectGO(x, y, "BerryBush", berryBush);
                             }

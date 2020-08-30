@@ -54,6 +54,9 @@ public class TerrainGen : MonoBehaviour
     private TreeGeneration treeGeneration;
 
     [SerializeField]
+    private BerryBushGeneration berryBushGeneration;
+
+    [SerializeField]
     private RiverGeneration riverGeneration;
 
     //[SerializeField]
@@ -70,6 +73,7 @@ public class TerrainGen : MonoBehaviour
     {
         noiseMapGeneration = this.GetComponent<NoiseMapGeneration>();
         treeGeneration = this.GetComponent<TreeGeneration>();
+        berryBushGeneration = this.GetComponent<BerryBushGeneration>();
         riverGeneration = this.GetComponent<RiverGeneration>();
 
         GameEvents.SaveInitiated += Save;
@@ -210,6 +214,9 @@ public class TerrainGen : MonoBehaviour
         //generate trees for chunk
         treeGeneration.GenerateTrees(tileData);
         //TODO: save trees in tileData in levelData tileData array (and other enetities created)
+
+        //generate berry bushes for chunk
+        berryBushGeneration.GenerateBerryBushes(tileData);
 
         tileData.rendered = true;
     }
