@@ -9,4 +9,9 @@ public class Interactable : MonoBehaviour
     {
         //Debug.Log("Interacting with: " + transform.name);
     }
+
+    public virtual void NDInteract(GameObject go)
+    {
+        //Debug.Log("NDInteracting with: " + transform.name);
+    }
 }

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3820133149059828343}
   - component: {fileID: 7618356196239055576}
   - component: {fileID: 4190573828190498730}
-  - component: {fileID: 8570649129998722422}
   m_Layer: 8
   m_Name: Door_2
   m_TagString: Untagged
@@ -192,31 +191,3 @@ MonoBehaviour:
   sizeOne: {x: 1, y: 0.18}
   offsetTwo: {x: 0, y: 0.5}
   sizeTwo: {x: 0.17, y: 1}
---- !u!68 &8570649129998722422
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2698997169971749665}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 1}
-  - {x: -0.4047668, y: 0.23729873}
-  - {x: -0.44919285, y: 1.9349759}
-  - {x: -0.16618162, y: 0.24543893}
-  - {x: -0.23391257, y: 1.9151835}
-  - {x: 0.08502212, y: 0.26448214}
-  - {x: 0.0432014, y: 1.91855}
-  - {x: 0.3131907, y: 0.26518905}
-  - {x: 0.29584935, y: 1.8954535}
-  - {x: 0.40794384, y: 1.6203526}
-  - {x: 0.44000524, y: 0.3131199}
-  - {x: 0.5, y: 1}

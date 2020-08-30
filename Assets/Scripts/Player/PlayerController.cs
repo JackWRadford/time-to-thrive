@@ -480,10 +480,10 @@ public class PlayerController : MonoBehaviour
                     if(hit.collider.GetType() != typeof(EdgeCollider2D))
                     {
                         //Debug.Log("InteractND");
-                        NDInteractable NDinteractable = hit.collider.GetComponent<NDInteractable>();
-                        if(NDinteractable != null)
+                        Interactable interactable = hit.collider.GetComponent<Interactable>();
+                        if(interactable != null)
                         {
-                            NDinteractable.NDInteract(this.gameObject);
+                            interactable.NDInteract(this.gameObject);
                         }
                         break;
                     }

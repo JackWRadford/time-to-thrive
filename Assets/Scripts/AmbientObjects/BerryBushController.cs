@@ -96,6 +96,12 @@ public class BerryBushController : Interactable, ILoadState
         return this.health;
     }
 
+    public override void NDInteract(GameObject go)
+    {
+        base.NDInteract(go);
+
+    }
+
     public override void Interact(GameObject go)
     {
         base.Interact(go);

@@ -5,7 +5,7 @@ using UnityEngine;
 /*
 CLass for Doors to check for valid structure
 */
-public class DoorController : NDInteractable
+public class DoorController : Interactable
 {
     //private bool structureExists = false;
 
@@ -20,6 +20,7 @@ public class DoorController : NDInteractable
     public override void NDInteract(GameObject go)
     {
         base.NDInteract(go);
+        Debug.Log("open door");
 
         //if door is open close it vice-versa
         OpenCloseDoor();
