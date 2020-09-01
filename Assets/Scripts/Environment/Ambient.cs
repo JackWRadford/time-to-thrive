@@ -11,24 +11,26 @@ public class Ambient : MonoBehaviour
 {
     public GameObject globalLight;
     public GameObject timePanel;
-    private string worldTime;
-    private int daysPassed;
+    public string worldTime;
+    public int daysPassed;
     private float timer = 0f;
     public float delay = 0.1f;
-    private float currentHours = 12f;
-    private float currentMinutes = 00f;
-    private float currentSeconds = 00f;
+    public float currentHours = 12f;
+    public float currentMinutes = 00f;
+    public float currentSeconds = 00f;
+    public float globalLightIntensity = 1f;
     private StringBuilder sbTime = new StringBuilder("");
     
 
     void Awake()
     {
-
+        GameEvents.SaveInitiated += Save;
+        GameEvents.LoadInitiated += Load;
     }
 
     void Start()
     {
-        globalLight.GetComponent<Light2D>().intensity = 1f;
+        globalLight.GetComponent<Light2D>().intensity = this.globalLightIntensity;
     }
 
     void Update()
@@ -95,15 +97,22 @@ public class Ambient : MonoBehaviour
         // this.sbTime.Append(this.currentSeconds.ToString().PadLeft(2, '0'));
     }
 
+    public void SetLightIntensity()
+    {
+        globalLight.GetComponent<Light2D>().intensity = this.globalLightIntensity;
+    }
+
     public void ChangeGlobalLight(bool increase)
     {
         if(increase)
         {
             globalLight.GetComponent<Light2D>().intensity += 0.0667f;
+            this.globalLightIntensity = globalLight.GetComponent<Light2D>().intensity;
         }
         else if(!increase)
         {
             globalLight.GetComponent<Light2D>().intensity -= 0.0667f;
+            this.globalLightIntensity = globalLight.GetComponent<Light2D>().intensity;
         }
     }
 
@@ -112,10 +121,44 @@ public class Ambient : MonoBehaviour
         if(night)
         {
             globalLight.GetComponent<Light2D>().intensity = 0.2f;
+            this.globalLightIntensity = globalLight.GetComponent<Light2D>().intensity;
         }
         else if(!night)
         {
             globalLight.GetComponent<Light2D>().intensity = 1f;
+            this.globalLightIntensity = globalLight.GetComponent<Light2D>().intensity;
+        }
+    }
+
+    void Save()
+    {
+        WorldData wd = new WorldData(this);
+        SaveSystem.Save<dynamic>(wd, "ambient");
+        Debug.Log("Saved Ambient");
+    }
+
+    void Load()
+    {
+        if(SaveSystem.SaveExists("ambient"))
+        {
+            Debug.Log("Ambient Save Exists");
+
+            WorldData data = SaveSystem.Load<dynamic>("ambient");
+
+            this.currentHours = data.hours;
+            this.currentMinutes = data.minutes;
+            this.currentSeconds = data.seconds;
+
+            this.daysPassed = data.daysPassed;
+
+            this.globalLightIntensity = data.globalLightIntensity;
+
+            UpdateTimePanel();
+            //SetLightIntensity();
+        }
+        else
+        {
+            Debug.Log("Ambient Save Doesn't Exist");
         }
     }
 }

@@ -16893,7 +16893,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalLight: {fileID: 1979620612}
   timePanel: {fileID: 585836438}
-  delay: 0.1
+  worldTime: 
+  daysPassed: 0
+  delay: 0.001
+  currentHours: 12
+  currentMinutes: 0
+  currentSeconds: 0
+  globalLightIntensity: 1
 --- !u!114 &1461756164
 MonoBehaviour:
   m_ObjectHideFlags: 0
