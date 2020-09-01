@@ -168,8 +168,10 @@ MonoBehaviour:
   objectManager: {fileID: 0}
   placementOffset: {fileID: 0}
   stackDetails: {fileID: 0}
-  rockDropPUI: {fileID: 0}
-  oreDropPUI: {fileID: 0}
+  rockDropPUI: {fileID: 4266735759321436283, guid: 94774aa5614afcc439d92eb0fa0b9194,
+    type: 3}
+  oreDropPUI: {fileID: 4266735759321436283, guid: 94774aa5614afcc439d92eb0fa0b9194,
+    type: 3}
   stageFull: {fileID: -6140013619859882850, guid: 7accba3aebe15874783af48b7eecf435,
     type: 3}
   stageLess_1: {fileID: -6140013619859882850, guid: 7accba3aebe15874783af48b7eecf435,
