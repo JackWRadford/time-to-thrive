@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -16458,6 +16458,7 @@ GameObject:
   - component: {fileID: 1461756162}
   - component: {fileID: 1461756163}
   - component: {fileID: 1461756164}
+  - component: {fileID: 1461756165}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -16784,6 +16785,7 @@ MonoBehaviour:
       index: 1
   treeGeneration: {fileID: 1461756160}
   berryBushGeneration: {fileID: 0}
+  rockGeneration: {fileID: 0}
   riverGeneration: {fileID: 0}
   renderDistance: 2
 --- !u!114 &1461756159
@@ -16895,7 +16897,7 @@ MonoBehaviour:
   timePanel: {fileID: 585836438}
   worldTime: 
   daysPassed: 0
-  delay: 0.001
+  delay: 0.1
   currentHours: 12
   currentMinutes: 0
   currentSeconds: 0
@@ -16935,6 +16937,41 @@ MonoBehaviour:
   - {fileID: 3872518553490739237, guid: 6931da3bfce5a0e478af72c641b4fd7f, type: 3}
   - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
   - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+--- !u!114 &1461756165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461756147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a30d6b01dbabc44a6be40921171a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseMapGeneration: {fileID: 1461756159}
+  waves:
+  - seed: 1275
+    amplitude: 1
+    frequency: 1
+  - seed: 9764
+    amplitude: 2
+    frequency: 2
+  levelScale: 15
+  neighbourRadius:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  rockPrefabs:
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
 --- !u!1001 &1462032117
 PrefabInstance:
   m_ObjectHideFlags: 0

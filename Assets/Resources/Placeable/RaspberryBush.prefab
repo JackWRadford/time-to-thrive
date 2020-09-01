@@ -182,3 +182,5 @@ MonoBehaviour:
     type: 3}
   objectTitle: RaspberryBush
   stage: 0
+  growthThreshold: 5
+  delay: 60

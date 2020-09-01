@@ -183,6 +183,34 @@ public class ItemDatabase : MonoBehaviour
             new Dictionary<string, int>{
             },
             1,4,-1, false, true, false, false),
+            //Stone
+            new GameItem(20, "Stone", "Mining",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false, false, false, false),
+            //IronOre
+            new GameItem(21, "IronOre", "Mining",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false, false, false, false),
+            //GoldOre
+            new GameItem(22, "GoldOre", "Mining",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false, false, false, false),
+            //CopperOre
+            new GameItem(23, "CopperOre", "Mining",
+            new Dictionary<string, int>{
+            },
+            new Dictionary<string, int>{
+            },
+            1,16,-1, false, false, false, false),
         };
     }
 }

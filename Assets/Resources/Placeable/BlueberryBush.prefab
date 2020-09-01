@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeOver: 0
   canBeUnder: 0
-  placeing: 1
+  placeing: 0
   height: 0
   isExternalConstruction: 0
   isWall: 0
@@ -181,3 +181,5 @@ MonoBehaviour:
     type: 3}
   objectTitle: BlueberryBush
   stage: 0
+  growthThreshold: 5
+  delay: 60
