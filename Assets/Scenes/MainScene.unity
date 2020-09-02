@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -16787,7 +16787,7 @@ MonoBehaviour:
   berryBushGeneration: {fileID: 0}
   rockGeneration: {fileID: 0}
   riverGeneration: {fileID: 0}
-  renderDistance: 2
+  renderDistance: 10
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16833,14 +16833,17 @@ MonoBehaviour:
   - 5
   treePrefab:
   - {fileID: 3466515846988768851, guid: d44ebd32aaa87d245a22cd76dcf4c7d9, type: 3}
-  - {fileID: 6823617234609881137, guid: ae91c5146e9debb4cafeac753038de5e, type: 3}
+  - {fileID: 5065395961310258255, guid: aa2bcf4af8f09ab4dbd97eeaba81650e, type: 3}
   - {fileID: 507243399205105229, guid: 2391e74beb77f8a4ea5c3b0aa01be061, type: 3}
   - {fileID: 7806885434134285501, guid: eed93c5c38557644c8ca5ea0bb686fa4, type: 3}
   - {fileID: 1585659700632514333, guid: a0d4c25333d17e1419e8e21b1ce6e409, type: 3}
   - {fileID: 1094225645926197080, guid: e110aa8435710994bb0221ed92df703a, type: 3}
   treePrefabs:
   - trees: []
-  - trees: []
+  - trees:
+    - {fileID: 5882227275073835112, guid: c56ab1c062b3010479092bd9579b195d, type: 3}
+    - {fileID: 5065395961310258255, guid: aa2bcf4af8f09ab4dbd97eeaba81650e, type: 3}
+    - {fileID: 7806885434134285501, guid: eed93c5c38557644c8ca5ea0bb686fa4, type: 3}
   - trees: []
   - trees:
     - {fileID: 5882227275073835112, guid: c56ab1c062b3010479092bd9579b195d, type: 3}
@@ -16966,12 +16969,19 @@ MonoBehaviour:
   - 10
   - 10
   rockPrefabs:
-  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
-  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
-  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
-  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
-  - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
-  - {fileID: 20802817904598135, guid: c08d934dd2a8f554580d2f06ef3f98b1, type: 3}
+  - rock_or_ore: []
+  - rock_or_ore:
+    - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+    - {fileID: 450115418290970013, guid: fd5988debba09964c91d52827b7d6289, type: 3}
+    - {fileID: 20802817904598135, guid: c08d934dd2a8f554580d2f06ef3f98b1, type: 3}
+    - {fileID: 5722595356796469047, guid: f1bfee615fd4dbf48bad3eaf3290c419, type: 3}
+  - rock_or_ore: []
+  - rock_or_ore:
+    - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
+  - rock_or_ore:
+    - {fileID: 5722595356796469047, guid: f1bfee615fd4dbf48bad3eaf3290c419, type: 3}
+  - rock_or_ore:
+    - {fileID: 4392447389098223780, guid: 594d4c20141b3b54aab1553dc9ff668a, type: 3}
 --- !u!1001 &1462032117
 PrefabInstance:
   m_ObjectHideFlags: 0

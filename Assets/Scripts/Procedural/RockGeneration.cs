@@ -18,7 +18,7 @@ public class RockGeneration : MonoBehaviour
     private float[] neighbourRadius = null;
 
     [SerializeField]
-    private GameObject[] rockPrefabs = null;
+    private RockTypes[] rockPrefabs = null;
 
     void Awake()
     {
@@ -50,8 +50,8 @@ public class RockGeneration : MonoBehaviour
                 Biome biome = tileData.chosenBiomes[zIndex, xIndex];
                 
 
-                //check if water, if so don't place rock
-                if((terrainType.name != "water"))
+                //check if water, if so don't place rock (and not desert (0) or savanna (2) or plains (5))
+                if((terrainType.name != "water")&&(biome.index != 0)&&(biome.index != 2)&&(biome.index != 5))
                 {
                     float rocksValue = rocksMap[zIndex, xIndex];
 
@@ -74,30 +74,37 @@ public class RockGeneration : MonoBehaviour
                         }
                     }
 
-                    //if current tree noise value is the maximum, place rock at that location
+                    //if current rock noise value is the maximum, place rock at that location
                     if(rocksValue == maxValue)
                     {
-                        //position including placement offset
-                        float x = xIndex + worldXoffset;
-                        float y = zIndex + worldZoffset;
-                        float xWithOffset = x + this.rockPrefabs[biome.index].GetComponent<PlacementOffset>().GetOffsetX();
-                        float yWithOffset = y + this.rockPrefabs[biome.index].GetComponent<PlacementOffset>().GetOffsetY();
+                        //random number for random rock/ore type for current biome
+                        System.Random randRock = new System.Random();
+                        int randomRock = randRock.Next(this.rockPrefabs[biome.index].rock_or_ore.Length);
 
-                        Vector3 rockPosition = new Vector3(xWithOffset, yWithOffset, 0);
-                        
-                        System.Random rand = new System.Random();
-                        int randomInt = rand.Next(this.rockPrefabs.Length);
-                        if(this.rockPrefabs.Length > randomInt)
+                        if(this.rockPrefabs[biome.index].rock_or_ore.Length > randomRock)
                         {
+
+                            //position including placement offset
+                            float x = xIndex + worldXoffset;
+                            float y = zIndex + worldZoffset;
+                            float xWithOffset = x + this.rockPrefabs[biome.index].rock_or_ore[randomRock].GetComponent<PlacementOffset>().GetOffsetX();
+                            float yWithOffset = y + this.rockPrefabs[biome.index].rock_or_ore[randomRock].GetComponent<PlacementOffset>().GetOffsetY();
+
+                            Vector3 rockPosition = new Vector3(xWithOffset, yWithOffset, 0);
                             
-                            if(tileData.IsSpaceFree(x, y, this.rockPrefabs[biome.index]))
+                            // System.Random rand = new System.Random();
+                            // int randomInt = rand.Next(this.rockPrefabs.Length);
+                            // if(this.rockPrefabs[biome.index].rock_or_ore.Length > randomRock)
+                            // {
+                            
+                            if(tileData.IsSpaceFree(x, y, this.rockPrefabs[biome.index].rock_or_ore[randomRock]))
                             {
-                                GameObject rock = Instantiate(this.rockPrefabs[biome.index], rockPosition, Quaternion.identity) as GameObject;
+                                GameObject rock = Instantiate(this.rockPrefabs[biome.index].rock_or_ore[randomRock], rockPosition, Quaternion.identity) as GameObject;
                                 //make sure new gameObject name doesn't have (clone)
-                                rock.name = this.rockPrefabs[biome.index].name;
+                                rock.name = this.rockPrefabs[biome.index].rock_or_ore[randomRock].name;
                                 //set random stage
-                                int randomS = rand.Next(4);
-                                rock.GetComponent<RockController>().stage = randomS;
+                                // int randomS = rand.Next(4);
+                                // rock.GetComponent<RockController>().stage = randomS;
                                 RockData rd = new RockData(rock.GetComponent<RockController>());
 
                                 tileData.AddObjectData(x, y,"Rock",rd);
@@ -113,4 +120,10 @@ public class RockGeneration : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public class RockTypes
+{
+    public GameObject[] rock_or_ore;
 }
