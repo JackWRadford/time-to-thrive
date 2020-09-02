@@ -16787,7 +16787,7 @@ MonoBehaviour:
   berryBushGeneration: {fileID: 0}
   rockGeneration: {fileID: 0}
   riverGeneration: {fileID: 0}
-  renderDistance: 10
+  renderDistance: 2
 --- !u!114 &1461756159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16927,19 +16927,23 @@ MonoBehaviour:
     frequency: 2
   levelScale: 15
   neighbourRadius:
+  - 100
   - 10
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 100
+  - 20
+  - 20
+  - 100
   berryBushPrefabs:
-  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
-  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
-  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
-  - {fileID: 3872518553490739237, guid: 6931da3bfce5a0e478af72c641b4fd7f, type: 3}
-  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
-  - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - bushes: []
+  - bushes:
+    - {fileID: 3872518553490739237, guid: 6931da3bfce5a0e478af72c641b4fd7f, type: 3}
+    - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - bushes: []
+  - bushes:
+    - {fileID: 2275314789707583881, guid: 5f066c44c769a1b4fa14f4172860d12f, type: 3}
+  - bushes:
+    - {fileID: 3872518553490739237, guid: 6931da3bfce5a0e478af72c641b4fd7f, type: 3}
+  - bushes: []
 --- !u!114 &1461756165
 MonoBehaviour:
   m_ObjectHideFlags: 0

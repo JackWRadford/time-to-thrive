@@ -17,7 +17,7 @@ public class BerryBushGeneration : MonoBehaviour
     private float[] neighbourRadius = null;
 
     [SerializeField]
-    private GameObject[] berryBushPrefabs = null;
+    private BushTypes[] berryBushPrefabs = null;
 
     void Awake()
     {
@@ -49,8 +49,8 @@ public class BerryBushGeneration : MonoBehaviour
                 Biome biome = tileData.chosenBiomes[zIndex, xIndex];
                 
 
-                //check if water, if so don't place berry bush
-                if((terrainType.name != "water"))
+                //check if water, if so don't place berry bush (not desert, savanna, plains)
+                if((terrainType.name != "water")&&(biome.index != 0)&&(biome.index != 2)&&(biome.index != 5))
                 {
                     float berryBushValue = berryBushMap[zIndex, xIndex];
 
@@ -76,24 +76,29 @@ public class BerryBushGeneration : MonoBehaviour
                     //if current tree noise value is the maximum, place berryBush at that location
                     if(berryBushValue == maxValue)
                     {
-                        //position including placement offset
-                        float x = xIndex + worldXoffset;
-                        float y = zIndex + worldZoffset;
-                        float xWithOffset = x + this.berryBushPrefabs[biome.index].GetComponent<PlacementOffset>().GetOffsetX();
-                        float yWithOffset = y + this.berryBushPrefabs[biome.index].GetComponent<PlacementOffset>().GetOffsetY();
-
-                        Vector3 berryBushPosition = new Vector3(xWithOffset, yWithOffset, 0);
-                        // GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
                         System.Random rand = new System.Random();
-                        int randomInt = rand.Next(this.berryBushPrefabs.Length);
-                        if(this.berryBushPrefabs.Length > randomInt)
+                        int randomInt = rand.Next(this.berryBushPrefabs[biome.index].bushes.Length);
+                        if(this.berryBushPrefabs[biome.index].bushes.Length > randomInt)
                         {
+
+                            //position including placement offset
+                            float x = xIndex + worldXoffset;
+                            float y = zIndex + worldZoffset;
+                            float xWithOffset = x + this.berryBushPrefabs[biome.index].bushes[randomInt].GetComponent<PlacementOffset>().GetOffsetX();
+                            float yWithOffset = y + this.berryBushPrefabs[biome.index].bushes[randomInt].GetComponent<PlacementOffset>().GetOffsetY();
+
+                            Vector3 berryBushPosition = new Vector3(xWithOffset, yWithOffset, 0);
+                            // GameObject tree = Instantiate(this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
+                            // System.Random rand = new System.Random();
+                            // int randomInt = rand.Next(this.berryBushPrefabs.Length);
+                            // if(this.berryBushPrefabs.Length > randomInt)
+                            // {
                             
-                            if(tileData.IsSpaceFree(x, y, this.berryBushPrefabs[biome.index]))
+                            if(tileData.IsSpaceFree(x, y, this.berryBushPrefabs[biome.index].bushes[randomInt]))
                             {
-                                GameObject berryBush = Instantiate(this.berryBushPrefabs[biome.index], berryBushPosition, Quaternion.identity) as GameObject;
+                                GameObject berryBush = Instantiate(this.berryBushPrefabs[biome.index].bushes[randomInt], berryBushPosition, Quaternion.identity) as GameObject;
                                 //make sure new gameObject name doesn't have (clone)
-                                berryBush.name = this.berryBushPrefabs[biome.index].name;
+                                berryBush.name = this.berryBushPrefabs[biome.index].bushes[randomInt].name;
                                 //set random stage
                                 int randomS = rand.Next(4);
                                 berryBush.GetComponent<BerryBushController>().stage = randomS;
@@ -112,4 +117,10 @@ public class BerryBushGeneration : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public class BushTypes
+{
+    public GameObject[] bushes;
 }
