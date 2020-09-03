@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour
     private int attack = 1;//player attack damage
     private int defaultAttack = 1;
     private int health = 10;//player health
-    private int maxHealth = 20;
+    public static int maxHealth = 20;
     private int hunger = 10;//player hunger
-    private int maxHunger = 20;
+    public static int maxHunger = 20;
     private int thurst = 10;//player thurst
-    private int maxThurst = 20;
+    public static int maxThurst = 20;
     private Vector2 spawn;
 
     private bool allowedToRun = true;
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.health + 1 <= this.maxHealth)
+            if(this.health + 1 <= maxHealth)
             {
                 this.health++;
                 SetAllowedToRun();
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.thurst + 1 <= this.maxThurst)
+            if(this.thurst + 1 <= maxThurst)
             {
                 this.thurst++;
                 SetAllowedToRun();
@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            if(this.hunger + 1 <= this.maxHunger)
+            if(this.hunger + 1 <= maxHunger)
             {
                 this.hunger++;
                 SetAllowedToRun();
@@ -372,7 +372,7 @@ public class PlayerController : MonoBehaviour
     //check if player is allowed to run
     public void SetAllowedToRun()
     {
-        if((this.hunger < this.maxHunger/4)||(this.thurst < this.maxThurst/4)||(this.health < this.maxHealth/4))
+        if((this.hunger < maxHunger/4)||(this.thurst < maxThurst/4)||(this.health < maxHealth/4))
         {
             this.allowedToRun = false;
         }
@@ -439,7 +439,7 @@ public class PlayerController : MonoBehaviour
         {
             DamageOverTime();
         }
-        else if((this.hunger == this.maxHunger)&&(this.thurst == this.maxThurst)&&(this.health != this.maxHealth))
+        else if((this.hunger == maxHunger)&&(this.thurst == maxThurst)&&(this.health != maxHealth))
         {
             RecoverOverTime();
         }

@@ -26,15 +26,18 @@ public class PlayerHTH : MonoBehaviour
         playerHunger = GameObject.Find("PlayerHunger");
     }
 
-    public void UpdateAll(int health, int thurst, int hunger)
+    public void UpdateAll(float health, float thurst, float hunger)
     {
+        //Debug.Log(health + " " + hunger + " " + thurst);
         UpdateHealth(health);
         UpdateThurst(thurst);
         UpdateHunger(hunger);
     }
 
-    public void UpdateHealth(int health)
+    public void UpdateHealth(float health)
     {
+        //Debug.Log(health);
+        this.playerHealth.GetComponent<RectTransform>().localScale = new Vector3(health/PlayerController.maxHealth,1f,1f);
         // Image[] images = playerHealth.GetComponentsInChildren<Image>();
 
         // for (int i = 0; i < images.Length; i++)
@@ -53,10 +56,11 @@ public class PlayerHTH : MonoBehaviour
         //         playerHealth.GetComponentsInChildren<Image>()[i].sprite = emptyHeart;
         //     }
         // }
-        
     }
-    public void UpdateThurst(int thurst)
+    public void UpdateThurst(float thurst)
     {
+        //Debug.Log(thurst);
+        this.playerThurst.GetComponent<RectTransform>().localScale = new Vector3(thurst/PlayerController.maxThurst,1f,1f);
         // Image[] images = playerThurst.GetComponentsInChildren<Image>();
 
         // for (int i = 0; i < images.Length; i++)
@@ -77,8 +81,10 @@ public class PlayerHTH : MonoBehaviour
         // }
         
     }
-    public void UpdateHunger(int hunger)
+    public void UpdateHunger(float hunger)
     {
+        //Debug.Log(hunger);
+        this.playerHunger.GetComponent<RectTransform>().localScale = new Vector3(hunger/PlayerController.maxHunger,1f,1f);
         // Image[] images = playerHunger.GetComponentsInChildren<Image>();
 
         // for (int i = 0; i < images.Length; i++)
