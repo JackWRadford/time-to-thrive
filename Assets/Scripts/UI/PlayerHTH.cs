@@ -35,68 +35,68 @@ public class PlayerHTH : MonoBehaviour
 
     public void UpdateHealth(int health)
     {
-        Image[] images = playerHealth.GetComponentsInChildren<Image>();
+        // Image[] images = playerHealth.GetComponentsInChildren<Image>();
 
-        for (int i = 0; i < images.Length; i++)
-        {
-            if(Mathf.RoundToInt(health/2) >= i)
-            {
-                //set full heart
-                playerHealth.GetComponentsInChildren<Image>()[i].sprite = fullHeart;
-            }
-            else if((Mathf.RoundToInt(health/2) == i-1)&&(health % 2 != 0))
-            {
-                playerHealth.GetComponentsInChildren<Image>()[i].sprite = halfHeart;
-            }
-            else
-            {
-                playerHealth.GetComponentsInChildren<Image>()[i].sprite = emptyHeart;
-            }
-        }
+        // for (int i = 0; i < images.Length; i++)
+        // {
+        //     if(Mathf.RoundToInt(health/2) >= i)
+        //     {
+        //         //set full heart
+        //         playerHealth.GetComponentsInChildren<Image>()[i].sprite = fullHeart;
+        //     }
+        //     else if((Mathf.RoundToInt(health/2) == i-1)&&(health % 2 != 0))
+        //     {
+        //         playerHealth.GetComponentsInChildren<Image>()[i].sprite = halfHeart;
+        //     }
+        //     else
+        //     {
+        //         playerHealth.GetComponentsInChildren<Image>()[i].sprite = emptyHeart;
+        //     }
+        // }
         
     }
     public void UpdateThurst(int thurst)
     {
-        Image[] images = playerThurst.GetComponentsInChildren<Image>();
+        // Image[] images = playerThurst.GetComponentsInChildren<Image>();
 
-        for (int i = 0; i < images.Length; i++)
-        {
-            if(Mathf.RoundToInt(thurst/2) >= i)
-            {
-                //set full heart
-                playerThurst.GetComponentsInChildren<Image>()[i].sprite = fullWater;
-            }
-            else if((Mathf.RoundToInt(thurst/2) == i-1)&&(thurst % 2 != 0))
-            {
-                playerThurst.GetComponentsInChildren<Image>()[i].sprite = halfWater;
-            }
-            else
-            {
-                playerThurst.GetComponentsInChildren<Image>()[i].sprite = emptyWater;
-            }
-        }
+        // for (int i = 0; i < images.Length; i++)
+        // {
+        //     if(Mathf.RoundToInt(thurst/2) >= i)
+        //     {
+        //         //set full heart
+        //         playerThurst.GetComponentsInChildren<Image>()[i].sprite = fullWater;
+        //     }
+        //     else if((Mathf.RoundToInt(thurst/2) == i-1)&&(thurst % 2 != 0))
+        //     {
+        //         playerThurst.GetComponentsInChildren<Image>()[i].sprite = halfWater;
+        //     }
+        //     else
+        //     {
+        //         playerThurst.GetComponentsInChildren<Image>()[i].sprite = emptyWater;
+        //     }
+        // }
         
     }
     public void UpdateHunger(int hunger)
     {
-        Image[] images = playerHunger.GetComponentsInChildren<Image>();
+        // Image[] images = playerHunger.GetComponentsInChildren<Image>();
 
-        for (int i = 0; i < images.Length; i++)
-        {
-            if(Mathf.RoundToInt(hunger/2) >= i)
-            {
-                //set full heart
-                playerHunger.GetComponentsInChildren<Image>()[i].sprite = fullFood;
-            }
-            else if((Mathf.RoundToInt(hunger/2) == i-1)&&(hunger % 2 != 0))
-            {
-                playerHunger.GetComponentsInChildren<Image>()[i].sprite = halfFood;
-            }
-            else
-            {
-                playerHunger.GetComponentsInChildren<Image>()[i].sprite = emptyFood;
-            }
-        }
+        // for (int i = 0; i < images.Length; i++)
+        // {
+        //     if(Mathf.RoundToInt(hunger/2) >= i)
+        //     {
+        //         //set full heart
+        //         playerHunger.GetComponentsInChildren<Image>()[i].sprite = fullFood;
+        //     }
+        //     else if((Mathf.RoundToInt(hunger/2) == i-1)&&(hunger % 2 != 0))
+        //     {
+        //         playerHunger.GetComponentsInChildren<Image>()[i].sprite = halfFood;
+        //     }
+        //     else
+        //     {
+        //         playerHunger.GetComponentsInChildren<Image>()[i].sprite = emptyFood;
+        //     }
+        // }
         
     }
 }
