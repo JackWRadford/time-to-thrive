@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 670
     height: 309
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 117
+  controlID: 134
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 21
+  controlID: 81
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
-  controlID: 154
+  controlID: 82
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 155
+  controlID: 83
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -236,8 +236,8 @@ MonoBehaviour:
     y: 0
     width: 347
     height: 648
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -501,23 +501,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96870200
-      m_LastClickedID: 165782
-      m_ExpandedIDs: 5496fbffd6c1fbff4676fcff5a95fdff16fcfdffc2fefdffd6a9feff34b9feff40c8feff62d7feff00dafeffd8ecfeff32fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 44bef7ffb4bef7ffb6bef7ff80c5f7ff8cc5f7ffa6c6f7ff16c7f7ffd0c8f7ff18d0f7ff28d0f7ff3cf6f7ffecfff7ffd095f8ff50a3f8ff32a6f8ff42b8f8ff005cf9fff669f9ff04b3faff7abafaff12c7faff9a1dfcffb628fcff2671fdff5ac4ffff86d6fffffcddffff32fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Rock
-        m_OriginalName: Rock
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -115894
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -563,9 +563,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 15.3187895, y: 11.4931755, z: -58.625305}
+    m_Target: {x: 142.52718, y: 58.81073, z: -135.79688}
     speed: 2
-    m_Value: {x: 15.3187895, y: 11.4931755, z: -58.625305}
+    m_Value: {x: 142.52718, y: 58.81073, z: -135.79688}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -615,9 +615,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 198.34421
+    m_Target: 31.79715
     speed: 2
-    m_Value: 198.34421
+    m_Value: 31.79715
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -691,10 +691,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 328}
-    m_SelectedIDs: c8450000
-    m_LastClickedID: 17864
-    m_ExpandedIDs: 0000000076450000784500007a4500007c4500007e45000080450000824500008445000086450000884500008a450000
+    scrollPos: {x: 0, y: 324}
+    m_SelectedIDs: 5e4d0000
+    m_LastClickedID: 19806
+    m_ExpandedIDs: 00000000064d0000084d00000a4d00000c4d00000e4d0000104d0000124d0000144d0000164d0000184d00001a4d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -722,7 +722,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000076450000784500007a4500007c4500007e45000080450000824500008445000086450000884500008a450000
+    m_ExpandedIDs: 00000000064d0000084d00000a4d00000c4d00000e4d0000104d0000124d0000144d0000164d0000184d00001a4d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
