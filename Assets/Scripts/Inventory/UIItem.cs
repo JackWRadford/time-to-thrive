@@ -263,7 +263,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         //if((this.item != null)&&(scaledUp == false))
         if((scaledUp == false)&&(selected))
         {
-            transform.GetComponentInChildren<Text>().fontSize = 12;
+            transform.GetComponentInChildren<Text>().fontSize = 20;
             transform.localScale += scaleChange;
             scaledUp = true;
         }
@@ -272,7 +272,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     {
         if((scaledUp == true)&&(!selected))
         {
-            transform.GetComponentInChildren<Text>().fontSize = 14;
+            transform.GetComponentInChildren<Text>().fontSize = 20;
             transform.localScale -= scaleChange;
             scaledUp = false;
         }

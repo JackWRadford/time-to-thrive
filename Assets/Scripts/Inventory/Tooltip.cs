@@ -24,7 +24,7 @@ public class Tooltip : MonoBehaviour
             }
         }
 
-        string wholeTooltip = string.Format("<b><color=#004225>{0}</color></b>\n{1}\n{2}", item.title, item.description, statsText);
+        string wholeTooltip = string.Format("<color=#000000>{0}</color>\n{1}\n{2}", item.title, item.description, statsText);
         tooltipText.text = wholeTooltip;
         gameObject.SetActive(true);
     }
