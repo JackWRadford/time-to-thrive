@@ -21,6 +21,7 @@ public class UICrafting : MonoBehaviour
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        this.currentOpenSection = buildSection;
     }
 
     public void OpenCrafting()
@@ -32,6 +33,9 @@ public class UICrafting : MonoBehaviour
         {
             currentOpenSection.SetActive(false);
             currentOpenSection = null;
+            //open build section
+            // Debug.Log("yes");
+            // ChangeSection(buildSection);
         }
     }
 
